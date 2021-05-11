@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CodeActivity;
 
 import butterknife.BindView;
@@ -89,6 +90,7 @@ public class MainActivity extends BaseActivity {
             case R.id.rl_apply1:
                 break;
             case R.id.rl_apply2:
+                CheckOutApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_apply3:
                 break;

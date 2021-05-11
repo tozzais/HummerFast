@@ -30,6 +30,7 @@
         <activity android:name=".ui.activity.GoodsWriteOffActivity"/>
         <activity android:name=".ui.activity.MallCouponWriteOffActivity"/>
         <activity android:name=".ui.activity.AuthActivity"/>
+        <activity android:name=".ui.activity.CheckOutApplyActivity"/>
     </application>
 
 </manifest>
