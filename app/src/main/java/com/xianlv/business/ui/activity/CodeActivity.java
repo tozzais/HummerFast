@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CodeActivity extends BaseActivity {
 
@@ -71,7 +73,7 @@ public class CodeActivity extends BaseActivity {
             tvCodeName.setText("收款服务");
             Drawable drawable = getResources().getDrawable(R.mipmap.icon_receive_pay);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvCodeName.setCompoundDrawables(drawable,null,null,null);
+            tvCodeName.setCompoundDrawables(drawable, null, null, null);
             tvCodeName.setTextColor(getResources().getColor(R.color.yellowText));
 
             tvCode.setText("收款记录");
@@ -90,4 +92,16 @@ public class CodeActivity extends BaseActivity {
     }
 
 
+    @OnClick({R.id.iv_code, R.id.tv_code})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_code:
+                break;
+            case R.id.tv_code:
+                if (type == 2){
+                    CollectionRecordActivity.launch(mActivity);
+                }
+                break;
+        }
+    }
 }
