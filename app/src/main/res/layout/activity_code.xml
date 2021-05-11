@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/baseColor"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:id="@+id/ll_root">
+
+    <include
+        layout="@layout/base_toolbar_login"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@drawable/shape_gray5_top"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="12dp"
+       android:layout_marginRight="12dp">
+
+       <TextView
+           android:id="@+id/tv_code_name"
+           style="@style/blue_text_15sp"
+           android:padding="12dp"
+           android:drawableLeft="@mipmap/icon_app"
+           android:drawablePadding="10dp"
+           android:text="小程序二维码"/>
+
+   </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/code"/>
+
+        <TextView
+            android:id="@+id/tv_code"
+            style="@style/blue_text_12sp"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="扫码跳转二维码"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/line_light"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white5_bottom"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_safe"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_tip1"
+                style="@style/base_text_style_bold"
+                android:text="温馨提示"/>
+
+            <TextView
+                android:id="@+id/tv_tip2"
+                style="@style/small_text_gray_style"
+                android:text="如无法打开二维码，请再次扫码"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
