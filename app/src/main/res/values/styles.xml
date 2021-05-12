@@ -81,6 +81,10 @@
         <item name="android:textColor">@color/blue</item>
     </style>
 
+    <style name="blue_text_14sp" parent="base_text_style" >
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
     <style name="black_text_12sp" parent="base_text_style" >
         <item name="android:textSize">12sp</item>
     </style>
@@ -98,6 +102,37 @@
         <item name="android:padding">12dp</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="btn_blue_bg_white_text" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:background">@drawable/shape_blue5</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="btn_blue_bg_white_text_leftpadding5" parent="btn_blue_bg_white_text">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="btn_white_bg_blue_text" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:background">@drawable/shape_line_blue5</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/baseColor</item>
     </style>
 
 

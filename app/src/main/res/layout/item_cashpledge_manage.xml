@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white5"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:orientation="vertical"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:background="@color/baseColor"/>
+
+        <TextView
+            style="@style/base_text_style_bold"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="用户名：13166015579"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        style="@style/small_text_gray_style"
+        android:text="支付时间：2011-02-12 12:09:29"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        style="@style/small_text_gray_style"
+        android:text="支付类型：订单支付"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"/>
+
+
+    <View
+        style="@style/line_light"
+        android:layout_margin="12dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        >
+
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="支付金额："
+            />
+        <TextView
+            style="@style/blue_text_14sp"
+            android:text="￥1220"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="剩下押金："
+            />
+        <TextView
+            style="@style/blue_text_14sp"
+            android:text="￥1220"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            style="@style/btn_blue_bg_white_text"
+            android:text="通过"
+            android:layout_marginStart="12dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

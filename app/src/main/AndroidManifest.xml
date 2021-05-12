@@ -31,6 +31,12 @@
         <activity android:name=".ui.activity.MallCouponWriteOffActivity"/>
         <activity android:name=".ui.activity.AuthActivity"/>
         <activity android:name=".ui.activity.CheckOutApplyActivity"/>
+        <activity android:name=".ui.activity.CheckInApplyActivity"/>
+        <activity android:name=".ui.activity.BreakfastCouponApplyActivity"/>
+        <activity android:name=".ui.activity.ParkCouponApplyActivity"/>
+        <activity android:name=".ui.activity.DeliveryReminderActivity"/>
+        <activity android:name=".ui.activity.CleanApplyActivity"/>
+        <activity android:name=".ui.activity.CashPledgeManageActivity"/>
     </application>
 
 </manifest>

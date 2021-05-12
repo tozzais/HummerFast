@@ -29,6 +29,7 @@ public class CheckOutApplyActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
         setBackTitle("离店申请");
+        setLineVisibility();
 
     }
 

@@ -9,8 +9,14 @@ import android.widget.ImageView;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
+import com.xianlv.business.ui.activity.CashPledgeManageActivity;
+import com.xianlv.business.ui.activity.CheckInApplyActivity;
 import com.xianlv.business.ui.activity.CheckOutApplyActivity;
+import com.xianlv.business.ui.activity.CleanApplyActivity;
 import com.xianlv.business.ui.activity.CodeActivity;
+import com.xianlv.business.ui.activity.DeliveryReminderActivity;
+import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -88,21 +94,27 @@ public class MainActivity extends BaseActivity {
             case R.id.rl_write4:
                 break;
             case R.id.rl_apply1:
+                CheckInApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_apply2:
                 CheckOutApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_apply3:
+                BreakfastCouponApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_apply4:
+                ParkCouponApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_manage1:
+                DeliveryReminderActivity.launch(mActivity);
                 break;
             case R.id.rl_manage2:
+                CleanApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_manage3:
                 break;
             case R.id.rl_manage4:
+                CashPledgeManageActivity.launch(mActivity);
                 break;
             case R.id.rl_manage5:
                 break;

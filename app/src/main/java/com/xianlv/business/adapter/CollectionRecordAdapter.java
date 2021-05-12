@@ -1,6 +1,8 @@
 package com.xianlv.business.adapter;
 
 
+import android.view.View;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -16,9 +18,10 @@ public class CollectionRecordAdapter extends BaseQuickAdapter<String, BaseViewHo
     @Override
     protected void convert(BaseViewHolder helper,  String item) {
         int position = helper.getAdapterPosition();
+        View view = helper.getView(R.id.view1);
+        view.setVisibility(position == 0?View.INVISIBLE:View.VISIBLE);
 
-
-   }
+    }
 
 
 

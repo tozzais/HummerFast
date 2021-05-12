@@ -5,8 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
+    android:gravity="center_vertical"
     >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
+        
+        <View
+            android:id="@+id/view1"
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:background="@color/gray_eeeeee"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_step"/>
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:background="@color/gray_eeeeee"/>
+    </LinearLayout>
 
 
     <TextView
@@ -24,6 +49,7 @@
     <TextView
         style="@style/blue_text_12sp"
         android:text="+422"
+        android:layout_marginRight="12dp"
         />
 
 
