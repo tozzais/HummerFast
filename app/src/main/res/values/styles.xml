@@ -60,6 +60,11 @@
         <item name="android:textColor">@color/grayText</item>
     </style>
 
+    <style name="gray_text_11sp" parent="base_text_style" >
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/grayText</item>
+    </style>
+
     <style name="white_text_bold_15sp" parent="base_text_style" >
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">15sp</item>

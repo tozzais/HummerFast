@@ -13,4 +13,8 @@
         <attr name="matProg_barWidth" format="dimension" />
         <attr name="matProg_linearProgress" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="ScaleImageView">
+        <attr name="scale" format="float"/>
+    </declare-styleable>
 </resources>

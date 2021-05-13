@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white5"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:orientation="horizontal"
+    >
+
+    <RelativeLayout
+        android:layout_width="140dp"
+        android:layout_height="match_parent">
+        <com.tozzais.baselibrary.weight.ScaleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/demo_video"
+            app:scale="0.5548"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_video_bg"
+            android:layout_alignParentBottom="true"
+            android:text="34:44"
+            android:textColor="@color/white"
+            android:gravity="right|center_vertical"
+            android:paddingRight="10dp"
+            android:textSize="10sp"/>
+    </RelativeLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/base_text_style_bold"
+            android:text="十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例"
+            android:layout_marginTop="10dp"
+            android:lines="2"
+            android:ellipsize="end"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="5579"
+                android:drawableLeft="@mipmap/icon_tv"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="2021-09-11"
+                android:layout_weight="1"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

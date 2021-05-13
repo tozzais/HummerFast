@@ -24,6 +24,9 @@
     <color name="green">#264DA8</color>
 
     <color name="yellowText">#F1A156</color>
+    <color name="lnkgray">#6D859B</color>
+    <color name="yellow1">#FFC133</color>
+    <color name="yellow2">#FF7C1E</color>
 
     <color name="tran">#55000000</color>
     <color name="rule_color">#6f1200</color>

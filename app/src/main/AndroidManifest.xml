@@ -37,6 +37,10 @@
         <activity android:name=".ui.activity.DeliveryReminderActivity"/>
         <activity android:name=".ui.activity.CleanApplyActivity"/>
         <activity android:name=".ui.activity.CashPledgeManageActivity"/>
+        <activity android:name=".ui.activity.DepositInformActivity"/>
+        <activity android:name=".ui.activity.VideoListActivity"/>
+        <activity android:name=".ui.activity.OperationTrainActivity"/>
+        <activity android:name=".ui.activity.SalesRankActivity"/>
     </application>
 
 </manifest>

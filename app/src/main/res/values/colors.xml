@@ -12,4 +12,6 @@
     <color name="baseColorDeep">#264DA8</color>
     <color name="trans">#00000000</color>
     <color name="blue">#264DA8</color>
+    <color name="yellow_bg">#FFF4CA</color>
+    <color name="yellow_text">#956D00</color>
 </resources>

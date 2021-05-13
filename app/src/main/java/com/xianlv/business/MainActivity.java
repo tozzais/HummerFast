@@ -16,7 +16,11 @@ import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CleanApplyActivity;
 import com.xianlv.business.ui.activity.CodeActivity;
 import com.xianlv.business.ui.activity.DeliveryReminderActivity;
+import com.xianlv.business.ui.activity.DepositInformActivity;
+import com.xianlv.business.ui.activity.OperationTrainActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
+import com.xianlv.business.ui.activity.SalesRankActivity;
+import com.xianlv.business.ui.activity.VideoListActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -78,8 +82,10 @@ public class MainActivity extends BaseActivity {
                 CodeActivity.launch(mActivity,2);
                 break;
             case R.id.ll_rank_person:
+                SalesRankActivity.launch(mActivity,SalesRankActivity.PERSON);
                 break;
             case R.id.ll_rank_team:
+                SalesRankActivity.launch(mActivity,SalesRankActivity.TEAM);
                 break;
             case R.id.rl_order1:
                 break;
@@ -117,6 +123,7 @@ public class MainActivity extends BaseActivity {
                 CashPledgeManageActivity.launch(mActivity);
                 break;
             case R.id.rl_manage5:
+                DepositInformActivity.launch(mActivity);
                 break;
             case R.id.rl_manage6:
                 break;
@@ -129,12 +136,16 @@ public class MainActivity extends BaseActivity {
             case R.id.rl_manage10:
                 break;
             case R.id.rl_study1:
+                VideoListActivity.launch(mActivity);
                 break;
             case R.id.rl_study2:
+                OperationTrainActivity.launch(mActivity,OperationTrainActivity.OPERATION_TRAIN);
                 break;
             case R.id.rl_study3:
+                OperationTrainActivity.launch(mActivity,OperationTrainActivity.DISTRIBUTION_INSTRUCTIONS);
                 break;
             case R.id.rl_study4:
+                OperationTrainActivity.launch(mActivity,OperationTrainActivity.COMMON_PROBLEM);
                 break;
             case R.id.rl_study5:
                 break;

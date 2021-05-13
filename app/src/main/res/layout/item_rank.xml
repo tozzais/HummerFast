@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:paddingLeft="12dp"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/demo_avatar"/>
+
+        <TextView
+            style="@style/base_text_style"
+            android:text="喵喵不吃鱼"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_sign"
+            style="@style/base_text_style"
+            android:text="No.1"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@mipmap/icon_rectangle1"
+            android:layout_width="50dp"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/black_text_13sp"
+                android:text="300"
+                />
+
+            <TextView
+                style="@style/gray_text_11sp"
+                android:text="日单数"
+                android:layout_marginTop="4dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/black_text_13sp"
+                android:text="2289"
+                />
+
+            <TextView
+                style="@style/gray_text_11sp"
+                android:text="日销售额"
+                android:layout_marginTop="4dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/black_text_13sp"
+                android:text="128690"
+                />
+
+            <TextView
+                style="@style/gray_text_11sp"
+                android:text="累计销售额"
+                android:layout_marginTop="4dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_number4"
+                style="@style/black_text_13sp"
+                android:text="8823"
+                />
+
+            <TextView
+                style="@style/gray_text_11sp"
+                android:text="累计收益"
+                android:layout_marginTop="4dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+</androidx.cardview.widget.CardView>
