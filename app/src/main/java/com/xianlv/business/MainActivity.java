@@ -15,6 +15,7 @@ import com.xianlv.business.ui.activity.CheckInApplyActivity;
 import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CleanApplyActivity;
 import com.xianlv.business.ui.activity.CodeActivity;
+import com.xianlv.business.ui.activity.CouponWriteOffActivity;
 import com.xianlv.business.ui.activity.DeliveryReminderActivity;
 import com.xianlv.business.ui.activity.DepositInformActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
@@ -25,6 +26,9 @@ import com.xianlv.business.ui.activity.VideoListActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 用户
+ */
 public class MainActivity extends BaseActivity {
 
 
@@ -92,6 +96,7 @@ public class MainActivity extends BaseActivity {
             case R.id.rl_order2:
                 break;
             case R.id.rl_write1:
+                CouponWriteOffActivity.launch(mActivity);
                 break;
             case R.id.rl_write2:
                 break;

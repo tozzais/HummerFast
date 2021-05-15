@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@mipmap/icon_coupon_bg"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:orientation="horizontal"
+    >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="49"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/tv_type"
+            style="@style/blue_text_15sp"
+            android:text="兑换码"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:layout_below="@+id/tv_type"
+            style="@style/small_text_gray_style"
+            android:text="可在客房使用"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="89"
+        android:layout_height="match_parent"
+        android:paddingLeft="12dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+            <TextView
+                android:id="@+id/tv_code"
+                style="@style/blue_text_15sp"
+                android:text="劵码：37378298869"
+                />
+
+            <TextView
+                android:layout_below="@+id/tv_code"
+                style="@style/small_text_gray_style"
+                android:text="有效时间：2020-08-20"
+                android:layout_marginTop="12dp"
+                />
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/unused_coupon"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+
+
+
+
+
+
+</LinearLayout>

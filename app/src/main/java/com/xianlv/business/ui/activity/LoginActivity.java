@@ -47,6 +47,7 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
+                AuthActivity.launch(mActivity,0);
                 break;
             case R.id.tv_login:
                 MainActivity.launch(mActivity, "");
