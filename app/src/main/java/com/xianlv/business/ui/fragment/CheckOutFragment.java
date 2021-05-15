@@ -29,19 +29,11 @@ public class CheckOutFragment extends BaseListFragment<String> {
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-
         LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
         mRecyclerView.addItemDecoration(girdSpace);
-
         mAdapter = new CheckOutAdapter();
         mRecyclerView.setAdapter(mAdapter);
-
-//        setEmptyView(R.mipmap.empty_view,"您还没有相关订单哦~","去逛逛", view->{
-//
-//        });
-
         setEmptyView("暂时没有离店申请哦~");
 
 

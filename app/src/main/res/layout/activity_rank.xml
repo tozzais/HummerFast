@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
 
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:src="@mipmap/icon_rank_bg1"
+            tools:src="@mipmap/icon_rank_bg1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +28,10 @@
             android:layout_height="match_parent"
             android:layout_below="@id/iv_bg"
             android:scaleType="centerCrop"
-            android:src="@mipmap/icon_rank_ng2"/>
+            tools:src="@mipmap/icon_rank_ng2"
+            />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,7 +75,7 @@
 
                 <TextView
                     android:id="@+id/tv_month"
-                    style="@style/btn_white_bg_blue_text"
+                    style="@style/btn_gray_line_blue_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginRight="6dp"
@@ -82,7 +86,7 @@
 
                 <TextView
                     android:id="@+id/tv_day"
-                    style="@style/btn_white_bg_blue_text"
+                    style="@style/btn_gray_line_blue_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="6dp"
@@ -101,6 +105,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -118,6 +123,25 @@
 
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_title"
+            android:layout_marginRight="40dp"
+            >
+
+            <TextView
+                style="@style/base_btn_style"
+                android:background="@drawable/shape_yellow50"
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/yellow_text"
+                android:text="领取奖金"/>
+
+        </RelativeLayout>
+
+
 
 
 
