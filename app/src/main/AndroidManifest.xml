@@ -34,13 +34,18 @@
         <activity android:name=".ui.activity.CheckInApplyActivity"/>
         <activity android:name=".ui.activity.BreakfastCouponApplyActivity"/>
         <activity android:name=".ui.activity.ParkCouponApplyActivity"/>
-        <activity android:name=".ui.activity.DeliveryReminderActivity"/>
+        <activity android:name=".ui.activity.GiveAwayReminderActivity"/>
         <activity android:name=".ui.activity.CleanApplyActivity"/>
         <activity android:name=".ui.activity.CashPledgeManageActivity"/>
         <activity android:name=".ui.activity.DepositInformActivity"/>
         <activity android:name=".ui.activity.VideoListActivity"/>
         <activity android:name=".ui.activity.OperationTrainActivity"/>
         <activity android:name=".ui.activity.SalesRankActivity"/>
+        <activity android:name=".ui.activity.MallCouponWriteOffRecordActivity"/>
+        <activity android:name=".ui.activity.BreakfastCouponHistoryActivity"/>
+        <activity android:name=".ui.activity.CleanHistoryActivity"/>
+        <activity android:name=".ui.activity.GiveAwayHistoryActivity"/>
+        <activity android:name=".ui.activity.ParkCouponHistoryActivity"/>
     </application>
 
 </manifest>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="@drawable/shape_white5"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/base_text_style_bold"
+            android:layout_weight="1"
+            android:text="金额：120元" />
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="2012-12-18 12:12:12" />
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/small_text_gray_style"
+        android:layout_marginTop="15dp"
+        android:text="姓名：张三" />
+
+    <TextView
+        style="@style/small_text_gray_style"
+        android:layout_marginTop="8dp"
+        android:text="等级：黄金会员" />
+
+    <TextView
+        style="@style/small_text_gray_style"
+        android:layout_marginTop="8dp"
+        android:text="核销员：李四" />
+
+    <TextView
+        style="@style/small_text_gray_style"
+        android:layout_marginTop="8dp"
+        android:text="备注：客人很满意，说下次还来" />
+
+
+
+
+</LinearLayout>
+
+
+
+

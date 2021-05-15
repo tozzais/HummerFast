@@ -13,6 +13,7 @@ import com.xianlv.business.R;
 import com.xianlv.business.adapter.BreakfastCouponAdapter;
 import com.xianlv.business.adapter.CheckInAdapter;
 import com.xianlv.business.adapter.CleanApplyAdapter;
+import com.xianlv.business.ui.activity.CleanHistoryActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -83,6 +84,7 @@ public class CleanApplyFragment extends BaseListFragment<String> {
 
     @OnClick(R.id.btn_bottom)
     public void onClick() {
+        CleanHistoryActivity.launch(mActivity);
     }
 
 

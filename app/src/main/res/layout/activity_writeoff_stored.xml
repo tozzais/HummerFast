@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_tip"
+        style="@style/blue_text_12sp"
+        android:text="请客人出示储值卡付款二维码付款"
+        android:padding="12dp"/>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_step1"
+            style="@style/black_text_13sp"
+            android:text="需客人注册酒店小程序"
+            android:drawableLeft="@mipmap/step1"
+            android:drawablePadding="12dp"
+            android:padding="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_step2"
+            style="@style/black_text_13sp"
+            android:text="请打开小程序“我的”页面找到我的钱包"
+            android:drawableLeft="@mipmap/step2"
+            android:drawablePadding="12dp"
+            android:padding="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_step3"
+            style="@style/black_text_13sp"
+            android:text="点击储值卡查看二维码或卡号"
+            android:drawableLeft="@mipmap/step3"
+            android:drawablePadding="12dp"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_btn1"
+        style="@style/login_btn_style"
+        android:text="扫码扣款"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_btn2"
+        style="@style/login_btn_style"
+        android:text="查询扣款"
+        android:background="@drawable/shape_line_blue5"
+        android:textColor="@color/baseColor"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@color/white"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/btn_bottom"
+            style="@style/base_btn_style_large"
+            android:background="@drawable/shape_blue5"
+            android:text="明细"/>
+    </RelativeLayout>
+</LinearLayout>
+
+

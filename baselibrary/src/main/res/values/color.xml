@@ -22,6 +22,8 @@
     <color name="gray_deep">#404751</color>
 
     <color name="green">#264DA8</color>
+    <color name="green_text">#56C00F</color>
+    <color name="red_text">#FF5555</color>
 
     <color name="yellowText">#F1A156</color>
     <color name="lnkgray">#6D859B</color>

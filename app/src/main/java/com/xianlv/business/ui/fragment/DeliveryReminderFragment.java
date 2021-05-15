@@ -11,6 +11,7 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.DeliveryReminderAdapter;
+import com.xianlv.business.ui.activity.GiveAwayHistoryActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -81,5 +82,6 @@ public class DeliveryReminderFragment extends BaseListFragment<String> {
 
     @OnClick(R.id.btn_bottom)
     public void onClick() {
+        GiveAwayHistoryActivity.launch(mActivity);
     }
 }

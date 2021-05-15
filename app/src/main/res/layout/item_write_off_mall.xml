@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
+    android:paddingRight="12dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_select"
+            android:padding="12dp"/>
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="订单号：13166010865"
+            android:layout_marginLeft="12dp"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/line_light"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:gravity="center_vertical">
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_select"
+        android:padding="12dp"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_gray5"
+        android:layout_marginLeft="12dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/base_text_style"
+            android:text="双人七夕甜蜜下午茶 双人餐"
+            android:layout_marginLeft="12dp"/>
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="规格：双人餐"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"/>
+
+        <TextView
+            style="@style/btn_blue_bg_white_text"
+            android:layout_marginTop="5dp"
+            android:layout_width="70dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="核销"
+            android:layout_gravity="right"
+            android:layout_marginLeft="12dp"/>
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

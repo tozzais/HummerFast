@@ -101,6 +101,10 @@
     <style name="black_text_13sp" parent="base_text_style" >
         <item name="android:textSize">13sp</item>
     </style>
+
+    <style name="black_text_15sp" parent="base_text_style" >
+        <item name="android:textSize">15sp</item>
+    </style>
     <style name="login_btn_style" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

@@ -702,7 +702,7 @@
                         style="@style/black_text_12sp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="送货服务"
+                        android:text="送物提醒"
                         android:textSize="12sp" />
                 </LinearLayout>
 

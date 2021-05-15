@@ -12,6 +12,7 @@ import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.BreakfastCouponAdapter;
 import com.xianlv.business.adapter.ParkCouponAdapter;
+import com.xianlv.business.ui.activity.ParkCouponHistoryActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -80,6 +81,7 @@ public class ParkCouponApplyFragment extends BaseListFragment<String> {
 
     @OnClick(R.id.btn_bottom)
     public void onClick() {
+        ParkCouponHistoryActivity.launch(mActivity);
     }
 
 

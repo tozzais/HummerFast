@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+    <com.xianlv.business.weight.SpikeTabLayout
+        android:id="@+id/tablayout"
+        app:tabBackground="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        />
+
+
+
+
+   <androidx.viewpager.widget.ViewPager
+       android:id="@+id/viewpager"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+
+
+
+
+</LinearLayout>

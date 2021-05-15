@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="@drawable/shape_white5"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/black_text_13sp"
+            android:layout_weight="1"
+            android:text="陈先生" />
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="2012-12-18 12:12:12" />
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/black_text_15sp"
+        android:layout_marginTop="15dp"
+        android:text="金桥店储值卡" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            style="@style/black_text_bold_13sp"
+            android:text="￥0.01"
+            android:textColor="@color/baseColor"
+            android:textSize="50sp" />
+
+        <TextView
+            style="@style/black_text_13sp"
+            android:layout_marginLeft="12dp"
+            android:text="消费金额"
+            android:textColor="@color/grayText" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/black_text_13sp"
+        android:layout_marginTop="12dp"
+        android:text="营业点：餐饮部"
+        android:textColor="@color/grayText" />
+
+    <TextView
+        style="@style/black_text_13sp"
+        android:layout_marginTop="12dp"
+        android:text="消费备注：客人很满意"
+        android:textColor="@color/grayText" />
+
+    <View
+        style="@style/line_light"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        style="@style/black_text_13sp"
+        android:layout_marginTop="12dp"
+        android:text="消费扣款明细"
+        android:textColor="@color/grayText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_gray5"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/black_text_13sp"
+                android:text="卡号"
+                android:textColor="@color/grayText" />
+
+            <TextView
+                style="@style/black_text_13sp"
+                android:layout_marginLeft="4dp"
+                android:text="123341235135" />
+        </LinearLayout>
+
+        <View
+            style="@style/line_light"
+            android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/small_text_gray_style"
+                    android:text="本金消费" />
+
+                <TextView
+                    style="@style/black_text_12sp"
+                    android:layout_marginTop="4dp"
+                    android:text="￥0.01" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="20dp"
+                android:background="@color/grayText" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/small_text_gray_style"
+                    android:text="赠金消费" />
+
+                <TextView
+                    style="@style/black_text_12sp"
+                    android:layout_marginTop="4dp"
+                    android:text="￥0.01" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="20dp"
+                android:background="@color/grayText" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/small_text_gray_style"
+                    android:text="可用余额" />
+
+                <TextView
+                    style="@style/black_text_12sp"
+                    android:layout_marginTop="4dp"
+                    android:text="￥0.01" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
+

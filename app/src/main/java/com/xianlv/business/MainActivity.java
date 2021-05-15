@@ -16,11 +16,14 @@ import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CleanApplyActivity;
 import com.xianlv.business.ui.activity.CodeActivity;
 import com.xianlv.business.ui.activity.CouponWriteOffActivity;
-import com.xianlv.business.ui.activity.DeliveryReminderActivity;
+import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.DepositInformActivity;
+import com.xianlv.business.ui.activity.MallCouponWriteOffActivity;
+import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
 import com.xianlv.business.ui.activity.SalesRankActivity;
+import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
 import com.xianlv.business.ui.activity.VideoListActivity;
 
 import butterknife.BindView;
@@ -99,10 +102,14 @@ public class MainActivity extends BaseActivity {
                 CouponWriteOffActivity.launch(mActivity);
                 break;
             case R.id.rl_write2:
+                StoredValueCardWriteOffActivity.launch(mActivity,0);
                 break;
             case R.id.rl_write3:
+                MallCouponWriteOffActivity.launch(mActivity);
+//                StoredValueCardWriteOffActivity.launch(mActivity,1);
                 break;
             case R.id.rl_write4:
+                MallCouponWriteOffRecordActivity.launch(mActivity);
                 break;
             case R.id.rl_apply1:
                 CheckInApplyActivity.launch(mActivity);
@@ -117,7 +124,7 @@ public class MainActivity extends BaseActivity {
                 ParkCouponApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_manage1:
-                DeliveryReminderActivity.launch(mActivity);
+                GiveAwayReminderActivity.launch(mActivity);
                 break;
             case R.id.rl_manage2:
                 CleanApplyActivity.launch(mActivity);

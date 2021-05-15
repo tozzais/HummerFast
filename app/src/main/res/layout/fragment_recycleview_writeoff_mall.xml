@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        >
+
+        <TextView
+            style="@style/black_text_bold_13sp"
+            android:text="查询方式"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            >
+            <TextView
+                android:id="@+id/tv_btn1"
+                style="@style/btn_blue_bg_white_text"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="订单号查询"/>
+
+            <TextView
+                android:id="@+id/tv_btn2"
+                style="@style/btn_gray_line_blue_text"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_marginLeft="30dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:textColor="@color/grayText"
+                android:text="劵码查询"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_gray50"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_search"/>
+
+            <EditText
+                style="@style/et_style"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:hint="输入劵码"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/black_text_13sp"
+            android:text="取消"
+            android:padding="12dp"
+            />
+    </LinearLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@color/white"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/btn_bottom"
+            style="@style/btn_blue_bg_white_text_leftpadding5"
+            android:text="全部核销"/>
+    </RelativeLayout>
+
+</LinearLayout>
+
+

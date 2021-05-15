@@ -9,14 +9,14 @@ import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
 import com.xianlv.business.ui.fragment.DeliveryReminderFragment;
 
-public class DeliveryReminderActivity extends BaseActivity {
+public class GiveAwayReminderActivity extends BaseActivity {
 
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()){
             return;
         }
-        Intent intent = new Intent(from, DeliveryReminderActivity.class);
+        Intent intent = new Intent(from, GiveAwayReminderActivity.class);
         from.startActivity(intent);
     }
 
@@ -27,7 +27,7 @@ public class DeliveryReminderActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        setBackTitle("送餐提醒");
+        setBackTitle("送物提醒");
         setLineVisibility();
 
     }
