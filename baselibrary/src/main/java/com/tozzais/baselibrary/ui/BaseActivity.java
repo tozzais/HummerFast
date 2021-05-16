@@ -12,6 +12,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.tozzais.baselibrary.R;
 import com.tozzais.baselibrary.util.StatusBarUtil;
@@ -22,9 +26,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import butterknife.ButterKnife;
 
 
@@ -122,6 +123,9 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         }else if (tag == 1){
             StatusBarUtil.setTranslucent(this,0);
             StatusBarUtil.setDarkMode(this);
+        }else if (tag == 2){
+            StatusBarUtil.setTranslucent(this,0);
+            StatusBarUtil.setLightMode(this);
         }
 
     }

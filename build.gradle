@@ -36,6 +36,8 @@ allprojects {
         maven { url 'https://dl.bintray.com/umsdk/release' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        //https://blog.csdn.net/duoduo_11011/article/details/114844288
+        maven { url 'https://jitpack.io' }
     }
 }
 

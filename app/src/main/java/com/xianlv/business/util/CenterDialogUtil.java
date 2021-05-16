@@ -62,7 +62,7 @@ public class CenterDialogUtil {
         });
     }
 
-    public static void showVerify(Context context, String s,int type) {
+    public static void showVerify(Context context, String s,int type,OnGetStringListener listener) {
         View messageView = View.inflate(context, R.layout.pop_verify, null);
         cityDialog = DialogUtils.getCenterDialog(context, messageView, true);
         TextView tv_verify1 = messageView.findViewById(R.id.tv_verify1);
@@ -70,6 +70,7 @@ public class CenterDialogUtil {
         TextView tv_title = messageView.findViewById(R.id.tv_title);
         tv_title.setText(s);
         tv_verify1.setOnClickListener(v -> {
+            listener.getString("1");
             cityDialog.dismiss();
             cityDialog = null;
         });

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <xyz.doikki.videoplayer.player.VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <include
+            layout="@layout/base_toolbar_login"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <TextView
+            style="@style/base_text_style_bold"
+            android:text="10分钟掌握一个1个创新营销方案"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="贤旅官方"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:drawableLeft="@mipmap/demo_avatar"/>
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="2021-02-12"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="1027"
+                android:gravity="center_vertical"
+                android:drawableLeft="@mipmap/icon_tv"
+                android:drawablePadding="5dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/gray_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal">
+
+        <TextView
+            style="@style/base_text_style_bold"
+            android:text="课程介绍"
+            android:textColor="@color/baseColor"/>
+
+        <View
+            android:layout_width="25dp"
+            android:layout_height="2dp"
+            android:background="@color/baseColor"
+            android:layout_marginTop="8dp"/>
+
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

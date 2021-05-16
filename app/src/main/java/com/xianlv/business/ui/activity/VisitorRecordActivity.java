@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.ui.fragment.HistoryCleanFragment;
 import com.xianlv.business.ui.fragment.VisitorRecordFragment;
 
 public class VisitorRecordActivity extends BaseActivity {
@@ -29,7 +28,7 @@ public class VisitorRecordActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        setBackTitle("访客记录");
+        setBackTitle("访客登记");
 
     }
 
