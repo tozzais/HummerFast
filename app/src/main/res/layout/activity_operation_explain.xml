@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_white5"
+        android:padding="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/base_text_style"
+                android:layout_weight="1"
+                android:text="分销操作培训"/>
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/small_text_gray_style"
+                android:text="2021-09-10"/>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:text="分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

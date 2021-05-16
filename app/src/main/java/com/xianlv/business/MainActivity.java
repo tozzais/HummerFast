@@ -25,6 +25,8 @@ import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
 import com.xianlv.business.ui.activity.SalesRankActivity;
 import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
 import com.xianlv.business.ui.activity.VideoListActivity;
+import com.xianlv.business.ui.activity.VisitorRecordActivity;
+import com.xianlv.business.util.CenterDialogUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,12 +40,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.iv_bg)
     ImageView ivBg;
 
-    public static void launch(Context from, String type) {
+    public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
             return;
         }
         Intent intent = new Intent(from, MainActivity.class);
-        intent.putExtra("type", type);
         from.startActivity(intent);
     }
 
@@ -138,12 +139,15 @@ public class MainActivity extends BaseActivity {
                 DepositInformActivity.launch(mActivity);
                 break;
             case R.id.rl_manage6:
+                CenterDialogUtil.showVerify(mActivity,"早餐券验证",0);
                 break;
             case R.id.rl_manage7:
+                CenterDialogUtil.showVerify(mActivity,"停车券验证",1);
                 break;
             case R.id.rl_manage8:
                 break;
             case R.id.rl_manage9:
+                VisitorRecordActivity.launch(mActivity);
                 break;
             case R.id.rl_manage10:
                 break;

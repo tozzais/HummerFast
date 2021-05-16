@@ -8,6 +8,7 @@ import android.view.View;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
+import com.xianlv.business.util.CenterDialogUtil;
 
 import butterknife.OnClick;
 
@@ -46,7 +47,12 @@ public class ScanCodeDeductionActivity extends BaseActivity {
             case R.id.btn_cancel:
                 break;
             case R.id.btn_bottom:
-                DeductionResultActivity.launch(mActivity,0);
+                CenterDialogUtil.showTwo(mActivity,"取消","确定",s -> {
+                    if (s.equals("1")){
+                        DeductionResultActivity.launch(mActivity,0);
+                    }
+                });
+
                 break;
         }
     }

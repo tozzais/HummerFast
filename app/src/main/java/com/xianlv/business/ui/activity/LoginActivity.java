@@ -50,7 +50,7 @@ public class LoginActivity extends BaseActivity {
                 AuthActivity.launch(mActivity,0);
                 break;
             case R.id.tv_login:
-                MainActivity.launch(mActivity, "");
+                MainActivity.launch(mActivity);
                 break;
 
         }

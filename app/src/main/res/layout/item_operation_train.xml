@@ -12,6 +12,7 @@
     android:paddingBottom="15dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
+    android:id="@+id/ll_root"
     >
 
 

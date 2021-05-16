@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.CodeActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".ui.activity.CollectionRecordActivity"/>
         <activity android:name=".ui.activity.CouponWriteOffActivity"/>
         <activity android:name=".ui.activity.StoredValueCardWriteOffActivity"/>
@@ -46,6 +47,11 @@
         <activity android:name=".ui.activity.CleanHistoryActivity"/>
         <activity android:name=".ui.activity.GiveAwayHistoryActivity"/>
         <activity android:name=".ui.activity.ParkCouponHistoryActivity"/>
+        <activity android:name=".ui.activity.RefundActivity"/>
+        <activity android:name=".ui.activity.CouponCodeAuthActivity"/>
+        <activity android:name=".ui.activity.AuthResultActivity"/>
+        <activity android:name=".ui.activity.OperationTrainDetailActivity"/>
+        <activity android:name=".ui.activity.VisitorRecordActivity"/>
     </application>
 
 </manifest>

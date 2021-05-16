@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:background="@mipmap/code_park_bg"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:orientation="vertical"
+    >
+
+
+
+
+    <TextView
+        style="@style/blue_text_12sp"
+        android:textColor="#333749"
+        android:layout_width="150dp"
+        android:text="房间信息：SF108\n有效时间：2021-09-09"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="12dp"
+        />
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
