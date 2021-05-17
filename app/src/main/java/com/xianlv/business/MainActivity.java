@@ -25,6 +25,7 @@ import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
+import com.xianlv.business.ui.activity.OrderActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
 import com.xianlv.business.ui.activity.SalesRankActivity;
 import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
@@ -109,6 +110,7 @@ public class MainActivity extends CheckPermissionActivity {
                 SalesRankActivity.launch(mActivity,SalesRankActivity.TEAM);
                 break;
             case R.id.rl_order1:
+                OrderActivity.launch(mActivity);
                 break;
             case R.id.rl_order2:
                 break;

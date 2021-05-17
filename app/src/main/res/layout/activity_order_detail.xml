@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/gray_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/black_text_bold_15sp"
+            android:text="俱乐部客房"
+            />
+
+
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="含早餐 | 有Wi-Fi和宽带"
+            android:layout_marginTop="12dp"
+            />
+
+        <View
+            style="@style/line_light"
+            android:layout_marginTop="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            >
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="入住：08-19(周三)~08-20(周四)"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="1间1晚"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            >
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="实付金额："
+                />
+
+            <TextView
+                style="@style/blue_text_14sp"
+                android:text="￥5888.00"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/gray_bg"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/black_text_bold_15sp"
+            android:text="香港海洋公园万豪酒店"
+            />
+
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="地址：香港海洋公园黄竹坑道180号"
+            android:layout_marginTop="12dp"
+            />
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="电话：（852）3923 2323"
+            android:layout_marginTop="12dp"
+            />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/gray_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/black_text_bold_15sp"
+            android:text="订单信息"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="订单编号："
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                android:text="2083542374685283745"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="下单时间："
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                android:text="2021-02-12 18:52:32"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="订单状态："
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                android:text="待确定"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="支付方式："
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                android:text="微信支付"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="预订人："
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                android:text="李丽"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="手机号码："
+                />
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                android:text="13166015579"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/gray_bg"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/btn_cancel"
+                style="@style/btn_white_bg_blue_text"
+                android:text="取消" />
+
+            <TextView
+                android:id="@+id/btn_bottom"
+                style="@style/btn_blue_bg_white_text"
+                android:layout_marginLeft="40dp"
+                android:text="确认" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+
