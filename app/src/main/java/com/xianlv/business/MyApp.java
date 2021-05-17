@@ -1,6 +1,7 @@
 package com.xianlv.business;
 
 import android.app.Application;
+import android.content.Context;
 
 /**
      1：接口URL没有。需要提供url。IOS目前打开应用闪退（看一下原因 这边需要对一下）
@@ -23,8 +24,12 @@ import android.app.Application;
  */
 public class MyApp extends Application {
 
+    public static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mContext = this;
     }
 }
