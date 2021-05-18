@@ -7,5 +7,5 @@ package com.xianlv.business.http;
 public class BaseResult<T>{
     public int code;
     public T data;
-    public String message;
+    public String msg;
 }

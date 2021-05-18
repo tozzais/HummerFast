@@ -4,9 +4,10 @@ package com.xianlv.business.global;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.tozzais.baselibrary.util.SharedPreferencesUtil;
 import com.xianlv.business.MyApp;
-
+import com.xianlv.business.bean.LoginBean;
 
 
 /**
@@ -83,24 +84,6 @@ public class GlobalParam {
 
 
 
-    //存 用户的推荐码
-    public static void setRecommendCode(String userid) {
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_recommend_code, userid);
-    }
-    //取 用户的用户的推荐码
-    public static String getRecommendCode() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.user_recommend_code,"");
-    }
-    //存 用户是够是vip
-    public static void setIsVip(boolean userid) {
-        SharedPreferencesUtil.saveBooleanData(MyApp.mContext, Constant.user_is_vip, userid);
-    }
-    //取 用户是够是vip
-    public static boolean getIsVip() {
-        return SharedPreferencesUtil.getBooleanData(MyApp.mContext, Constant.user_is_vip,false);
-    }
-
-
 
 
     //存 用户 信息
@@ -108,28 +91,25 @@ public class GlobalParam {
         setUserLogin(false);
         setUserToken("");
         setUserId("");
-        setIsVip(false);
-        setRecommendCode("");
     }
 
 
-    //存 用户的token
-    public static void setSearch(String userid) {
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.search, userid);
+
+
+    //存储用户登录信息
+    public static void setLoginBean(LoginBean userInfo) {
+        Gson gson = new Gson();
+        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_bean_string, gson.toJson(userInfo));
     }
-    //取 用户的用户的token
-    public static String getSearch() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.search,"");
+    //获取用户登录信息
+    public static LoginBean getLoginBean() {
+        String data = SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.user_bean_string, "");
+        if (TextUtils.isEmpty(data)){
+            return null;
+        }
+        return new Gson().fromJson(data,LoginBean.class);
     }
 
-    //存 生活服务搜索记录
-    public static void setLifeSearch(String userid) {
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.search_life, userid);
-    }
-    //取  生活服务搜索记录
-    public static String getLifeSearch() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.search_life,"");
-    }
 
     //存 帖子搜索记录
     public static void setSearchPost(String userid) {

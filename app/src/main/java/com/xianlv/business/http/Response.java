@@ -105,7 +105,7 @@ public class Response<T> extends Subscriber<T> {
 
         if (str instanceof BaseResult){
             BaseResult base = (BaseResult) str;
-            if (200 == base.code ){
+            if (0 == base.code ){
                 onSuccess(str);
             }else if (20001 == base.code || 20014 == base.code || 20015 == base.code ){
                 /**
@@ -115,17 +115,17 @@ public class Response<T> extends Subscriber<T> {
                 GlobalParam.setUserLogin(false);
 //                LoginActivity.launch((Activity) mContext,true);
             }else {
-                if (!TextUtils.isEmpty(base.message)){
+                if (!TextUtils.isEmpty(base.msg)){
                     if (mNeedReturn && !isLoad){
-                        onErrorShow(base.message);
+                        onErrorShow(base.msg);
                     }if (mNeedTip){
-                        onToast(base.message);
+                        onToast(base.msg);
                     }
                 }
             }
         }else if (str instanceof BaseListResult){
             BaseListResult base = (BaseListResult) str;
-            if (200 == base.code){
+            if (0 == base.code){
                 onSuccess(str);
             }else if (20001 == base.code || 20014 == base.code || 20015 == base.code ){
                 GlobalParam.setUserLogin(false);

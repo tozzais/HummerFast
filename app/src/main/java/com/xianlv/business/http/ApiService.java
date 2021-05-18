@@ -1,11 +1,13 @@
 package com.xianlv.business.http;
 
 
-import java.util.TreeMap;
+import com.xianlv.business.bean.LoginBean;
+import com.xianlv.business.bean.ShopResult;
+import com.xianlv.business.bean.request.RequestCode;
+import com.xianlv.business.bean.request.RequestLogin;
+import com.xianlv.business.bean.request.RequestShopInfo;
 
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -15,15 +17,17 @@ import rx.Observable;
  */
 public interface ApiService {
 
-
-    @GET(HttpUrl.get_phone)
-    Observable<BaseResult>
-    getPhone();
-
     @POST(HttpUrl.get_code)
-    @FormUrlEncoded
     Observable<BaseResult>
-    getCode(@FieldMap TreeMap<String, String> map);
+    getCode(@Body RequestCode requestCode);
+
+    @POST(HttpUrl.login)
+    Observable<BaseResult<LoginBean>>
+    getLogin(@Body RequestLogin bean);
+
+    @POST(HttpUrl.shop_info)
+    Observable<BaseResult<ShopResult>>
+    shopInfo(@Body RequestShopInfo bean);
 
 
 
