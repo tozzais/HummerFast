@@ -1,33 +1,68 @@
 package com.xianlv.business.bean;
 
-public class ShopInfo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ShopInfo implements Parcelable {
 
 
-    public int shopId;
+    public String shopId;
     public String shopName;
     public String provinceCode;
     public String provinceName;
-    public String cityCode;
-    public String cityName;
-    public String areaCode;
-    public String areaName;
-    public int status;
     public String address;
-    public String tenantId;
-    public String longitude;
-    public String latitude;
     public String shopPhone;
-    public int blocId;
-    public int brandId;
     public int merchantId;
-    public int invoice;
-    public int starLevel;
-    public String applicability;
-    public int shopType;
-    public int invoiceType;
-    public int invoiceTypeAll;
-    public Object invoiceTime;
-    public String invoiceModule;
-    public String areaNameAll;
-    public String qrCode;
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.shopId);
+        dest.writeString(this.shopName);
+        dest.writeString(this.provinceCode);
+        dest.writeString(this.provinceName);
+        dest.writeString(this.address);
+        dest.writeString(this.shopPhone);
+        dest.writeInt(this.merchantId);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.shopId = source.readString();
+        this.shopName = source.readString();
+        this.provinceCode = source.readString();
+        this.provinceName = source.readString();
+        this.address = source.readString();
+        this.shopPhone = source.readString();
+        this.merchantId = source.readInt();
+    }
+
+    public ShopInfo() {
+    }
+
+    protected ShopInfo(Parcel in) {
+        this.shopId = in.readString();
+        this.shopName = in.readString();
+        this.provinceCode = in.readString();
+        this.provinceName = in.readString();
+        this.address = in.readString();
+        this.shopPhone = in.readString();
+        this.merchantId = in.readInt();
+    }
+
+    public static final Parcelable.Creator<ShopInfo> CREATOR = new Parcelable.Creator<ShopInfo>() {
+        @Override
+        public ShopInfo createFromParcel(Parcel source) {
+            return new ShopInfo(source);
+        }
+
+        @Override
+        public ShopInfo[] newArray(int size) {
+            return new ShopInfo[size];
+        }
+    };
 }

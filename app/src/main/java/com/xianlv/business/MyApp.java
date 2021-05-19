@@ -3,6 +3,8 @@ package com.xianlv.business;
 import android.app.Application;
 import android.content.Context;
 
+import com.ycbjie.webviewlib.X5WebUtils;
+
 /**
      1：接口URL没有。需要提供url。IOS目前打开应用闪退（看一下原因 这边需要对一下）
      2：提供应用图标
@@ -31,5 +33,7 @@ public class MyApp extends Application {
         super.onCreate();
 
         mContext = this;
+
+        X5WebUtils.init(this);
     }
 }

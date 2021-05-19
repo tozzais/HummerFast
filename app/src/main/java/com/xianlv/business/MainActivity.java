@@ -6,13 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
 import com.xianlv.business.ui.activity.CashPledgeManageActivity;
 import com.xianlv.business.ui.activity.CheckInApplyActivity;
@@ -53,6 +60,10 @@ public class MainActivity extends CheckPermissionActivity {
 
     @BindView(R.id.iv_bg)
     ImageView ivBg;
+    @BindView(R.id.tv_hotel_name)
+    TextView tvHotelName;
+    @BindView(R.id.tv_name)
+    TextView tvName;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -85,7 +96,7 @@ public class MainActivity extends CheckPermissionActivity {
 
     @Override
     public void loadData() {
-
+        getData();
     }
 
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
@@ -98,16 +109,16 @@ public class MainActivity extends CheckPermissionActivity {
             case R.id.iv_switch:
                 break;
             case R.id.ll_applets:
-                CodeActivity.launch(mActivity,1);
+                CodeActivity.launch(mActivity, 1);
                 break;
             case R.id.ll_store:
-                CodeActivity.launch(mActivity,2);
+                CodeActivity.launch(mActivity, 2);
                 break;
             case R.id.ll_rank_person:
-                SalesRankActivity.launch(mActivity,SalesRankActivity.PERSON);
+                SalesRankActivity.launch(mActivity, SalesRankActivity.PERSON);
                 break;
             case R.id.ll_rank_team:
-                SalesRankActivity.launch(mActivity,SalesRankActivity.TEAM);
+                SalesRankActivity.launch(mActivity, SalesRankActivity.TEAM);
                 break;
             case R.id.rl_order1:
                 OrderActivity.launch(mActivity);
@@ -118,7 +129,7 @@ public class MainActivity extends CheckPermissionActivity {
                 CouponWriteOffActivity.launch(mActivity);
                 break;
             case R.id.rl_write2:
-                StoredValueCardWriteOffActivity.launch(mActivity,0);
+                StoredValueCardWriteOffActivity.launch(mActivity, 0);
                 break;
             case R.id.rl_write3:
                 MallCouponWriteOffActivity.launch(mActivity);
@@ -154,14 +165,14 @@ public class MainActivity extends CheckPermissionActivity {
                 DepositInformActivity.launch(mActivity);
                 break;
             case R.id.rl_manage6:
-                CenterDialogUtil.showVerify(mActivity,"早餐券验证",0,s -> {
-                    if (s.equals("1")){
+                CenterDialogUtil.showVerify(mActivity, "早餐券验证", 0, s -> {
+                    if (s.equals("1")) {
                         checkPermissions(needPermissions);
                     }
                 });
                 break;
             case R.id.rl_manage7:
-                CenterDialogUtil.showVerify(mActivity,"停车券验证",1,s -> {
+                CenterDialogUtil.showVerify(mActivity, "停车券验证", 1, s -> {
 
                 });
                 break;
@@ -176,13 +187,13 @@ public class MainActivity extends CheckPermissionActivity {
                 VideoListActivity.launch(mActivity);
                 break;
             case R.id.rl_study2:
-                OperationTrainActivity.launch(mActivity,OperationTrainActivity.OPERATION_TRAIN);
+                OperationTrainActivity.launch(mActivity, OperationTrainActivity.OPERATION_TRAIN);
                 break;
             case R.id.rl_study3:
-                OperationTrainActivity.launch(mActivity,OperationTrainActivity.DISTRIBUTION_INSTRUCTIONS);
+                OperationTrainActivity.launch(mActivity, OperationTrainActivity.DISTRIBUTION_INSTRUCTIONS);
                 break;
             case R.id.rl_study4:
-                OperationTrainActivity.launch(mActivity,OperationTrainActivity.COMMON_PROBLEM);
+                OperationTrainActivity.launch(mActivity, OperationTrainActivity.COMMON_PROBLEM);
                 break;
             case R.id.rl_study5:
                 break;
@@ -190,6 +201,7 @@ public class MainActivity extends CheckPermissionActivity {
     }
 
     private static final int REQUEST_CODE_SCAN = 1001;
+
     @Override
     public void permissionGranted() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
@@ -218,8 +230,20 @@ public class MainActivity extends CheckPermissionActivity {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
 //                result.setText("扫描结果为：" + content);
-                Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void getData() {
+        new RxHttp<BaseResult<MineInfo>>().send(ApiManager.getService().mineInfo(new BaseRequest()),
+                new Response<BaseResult<MineInfo>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<MineInfo> result) {
+                        MineInfo mineInfo = result.data;
+                        tvHotelName.setText(mineInfo.address);
+                        tvName.setText(mineInfo.department+" "+mineInfo.trueName);
+                    }
+                });
     }
 }

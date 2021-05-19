@@ -12,6 +12,8 @@ import java.util.UUID;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        System.out.println(UUID.randomUUID().toString().replace("-", "").substring(0,6));
+        System.out.println(UUID.randomUUID().toString().replace("-", ""));
+//        System.out.println("*saas*0*55*".split("\\*")[3]);
+
     }
 }

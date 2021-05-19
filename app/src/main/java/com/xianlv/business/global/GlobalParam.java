@@ -9,6 +9,8 @@ import com.tozzais.baselibrary.util.SharedPreferencesUtil;
 import com.xianlv.business.MyApp;
 import com.xianlv.business.bean.LoginBean;
 
+import java.util.Objects;
+
 
 /**
  * Created by jumpbox on 16/4/19.
@@ -49,7 +51,7 @@ public class GlobalParam {
     }
     //取 用户的用户的token
     public static String getUserToken() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.user_token,"");
+        return Objects.requireNonNull(getLoginBean()).token;
     }
 
     //是否登录
@@ -57,7 +59,7 @@ public class GlobalParam {
         SharedPreferencesUtil.saveBooleanData(MyApp.mContext, Constant.user_login, userid);
     }
     public static boolean getUserLogin() {
-        return SharedPreferencesUtil.getBooleanData(MyApp.mContext, Constant.user_login,false);
+        return getLoginBean() != null;
     }
 
     public static boolean getUserLogin(Context context) {

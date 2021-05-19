@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -19,12 +23,15 @@ import com.tozzais.baselibrary.util.CommonUtils;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.LoginBean;
+import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestLogin;
+import com.xianlv.business.bean.request.RequestShopInfo;
 import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.ui.AgreementWebViewActivity;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -44,6 +51,8 @@ public class LoginActivity extends BaseActivity {
     EditText etCode;
     @BindView(R.id.tv_code)
     TextView tvCode;
+    @BindView(R.id.tv_agreement)
+    TextView tvAgreement;
 
     @Override
     public int getLayoutId() {
@@ -65,6 +74,41 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void loadData() {
+        if (GlobalParam.getUserLogin()){
+            MainActivity.launch(mActivity);
+            finish();
+        }
+
+        String str = "登录即同意《用户协议》和《隐私政策》";
+        SpannableString string = new SpannableString(str);
+        string.setSpan(new ClickableSpan() {
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getResources().getColor(R.color.white));       //设置文件颜色
+                ds.setUnderlineText(true);      //设置下划线
+            }
+            @Override
+            public void onClick(View view) {
+                AgreementWebViewActivity.launch(mActivity,"https://www.baidu.com");
+            }
+        },str.indexOf("《用户协议》"), str.indexOf("《用户协议》")+"《用户协议》".length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+        string.setSpan(new ClickableSpan() {
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getResources().getColor(R.color.white));       //设置文件颜色
+                ds.setUnderlineText(true);      //设置下划线
+            }
+            @Override
+            public void onClick(View view) {
+                AgreementWebViewActivity.launch(mActivity,"https://api.huiguniangvip.com/api/user/agreements/1");
+            }
+        },str.indexOf("《隐私政策》"), str.indexOf("《隐私政策》")+"《隐私政策》".length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+        tvAgreement.setText(string);
+        tvAgreement.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
 
     }
 
@@ -163,7 +207,7 @@ public class LoginActivity extends BaseActivity {
                 tvCode.setEnabled(false);
             } else {
                 time = 60;
-                tvCode.setTextColor(getResources().getColor(R.color.red));
+                tvCode.setTextColor(getResources().getColor(R.color.baseColor));
                 tvCode.setText("获取验证码");
                 tvCode.setEnabled(true);
             }
@@ -183,15 +227,30 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // 扫描二维码/条码回传
         if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-//                result.setText("扫描结果为：" + content);
-                Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
+                try {
+                    getHotelInfo(content.split("\\*")[3]);
+                }catch (Exception e){
+                    tsg("不是系统的二维码");
+                }
             }
         }
+    }
+
+    private void getHotelInfo(String shopId) {
+        RequestShopInfo bean = new RequestShopInfo();
+        bean.shopId = shopId;
+        new RxHttp<BaseResult<ShopResult>>().send(ApiManager.getService().shopInfo(bean),
+                new Response<BaseResult<ShopResult>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<ShopResult> result) {
+                        ShopResult data = result.data;
+                        AuthActivity.launch(mActivity,data);
+                    }
+                });
     }
 
 

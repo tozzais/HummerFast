@@ -111,7 +111,15 @@
     <TextView
         android:id="@+id/tv_login"
         style="@style/login_btn_style"
-        android:layout_marginBottom="50dp"
         android:text="登录"/>
+
+    <TextView
+        android:id="@+id/tv_agreement"
+        style="@style/base_text_style"
+        android:text="登录即同意《用户协议》和《隐私政策》"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp"
+        />
 
 </LinearLayout>
