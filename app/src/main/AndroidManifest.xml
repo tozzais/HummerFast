@@ -66,6 +66,7 @@
         <activity android:name=".ui.activity.OrderActivity"/>
         <activity android:name=".ui.activity.OrderDetailActivity"/>
         <activity android:name=".ui.AgreementWebViewActivity"/>
+        <activity android:name=".ui.activity.DeliveryReminderActivity"/>
         <activity android:name=".ui.activity.VideoDetailActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"/>

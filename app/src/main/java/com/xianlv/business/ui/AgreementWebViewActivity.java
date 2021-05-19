@@ -77,7 +77,7 @@ public class AgreementWebViewActivity extends BaseActivity {
         web_view.setWebChromeClient(new WebChrome());
         //显示进度条
         mProgress.show();
-        mProgress.setColor("#FF0000");
+        mProgress.setColor(getResources().getColor(R.color.baseColor));
 
         web_view.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         web_view.addJavascriptInterface(new AppJs(this), "toLogin");

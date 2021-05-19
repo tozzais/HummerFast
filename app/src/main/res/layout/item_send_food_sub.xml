@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:orientation="horizontal"
+
+    >
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@mipmap/demo_video"
+        android:layout_marginLeft="12dp"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp">
+
+
+        <TextView
+            style="@style/base_text_style_bold"
+            android:text="栗子鸡"
+            />
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="大份"
+            android:layout_marginTop="5dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:layout_marginRight="12dp">
+
+
+        <TextView
+            style="@style/blue_text_14sp"
+            android:text="X88"
+            />
+
+        <TextView
+            style="@style/small_text_gray_style"
+            android:text="X1"
+            android:layout_marginTop="5dp"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

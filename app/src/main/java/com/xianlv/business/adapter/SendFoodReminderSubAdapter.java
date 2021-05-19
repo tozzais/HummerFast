@@ -6,11 +6,11 @@ import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
 
-public class DeliveryReminderAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements LoadMoreModule {
+public class SendFoodReminderSubAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements LoadMoreModule {
 
 
-    public DeliveryReminderAdapter() {
-        super(R.layout.item_delivery_reminder, null);
+    public SendFoodReminderSubAdapter() {
+        super(R.layout.item_send_food_sub, null);
     }
 
     @Override

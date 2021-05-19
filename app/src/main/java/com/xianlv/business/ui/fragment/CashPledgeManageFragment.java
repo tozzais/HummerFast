@@ -11,7 +11,6 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.CashPledgeManageAdapter;
-import com.xianlv.business.adapter.DeliveryReminderAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -1,7 +1,6 @@
 package com.xianlv.business.ui.fragment;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -9,24 +8,18 @@ import com.tozzais.baselibrary.ui.BaseListFragment;
 import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
-import com.xianlv.business.R;
-import com.xianlv.business.adapter.SendGoodsReminderAdapter;
-import com.xianlv.business.ui.activity.GiveAwayHistoryActivity;
-
-import butterknife.BindView;
-import butterknife.OnClick;
+import com.xianlv.business.adapter.SendFoodReminderAdapter;
 
 
-public class DeliveryReminderFragment extends BaseListFragment<String> {
+public class DeliverReminderFragment extends BaseListFragment<String> {
 
 
-    @BindView(R.id.btn_bottom)
-    TextView btnBottom;
 
-    public static DeliveryReminderFragment newInstance(int type) {
-        DeliveryReminderFragment cartFragment = new DeliveryReminderFragment();
+
+    public static DeliverReminderFragment newInstance(int type){
+        DeliverReminderFragment cartFragment = new DeliverReminderFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("type", type);
+        bundle.putInt("type",type);
         cartFragment.setArguments(bundle);
         return cartFragment;
 
@@ -35,29 +28,22 @@ public class DeliveryReminderFragment extends BaseListFragment<String> {
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        btnBottom.setText("送物历史");
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
         LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
         mRecyclerView.addItemDecoration(girdSpace);
-
-        mAdapter = new SendGoodsReminderAdapter();
+        mAdapter = new SendFoodReminderAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
 //        setEmptyView(R.mipmap.empty_view,"您还没有相关订单哦~","去逛逛", view->{
 //
 //        });
 
-        setEmptyView("暂时没有送物历史哦~");
+        setEmptyView("暂时没有送餐提醒哦~");
 
 
 
-    }
-
-    @Override
-    public int setLayout() {
-        return R.layout.fragment_recycleview_bottom_btn;
     }
 
     @Override
@@ -68,8 +54,8 @@ public class DeliveryReminderFragment extends BaseListFragment<String> {
 
     }
 
-    private void getData() {
-        setData(DataUtil.getData(9));
+    private void  getData(){
+       setData(DataUtil.getData(9));
     }
 
     @Override
@@ -80,8 +66,4 @@ public class DeliveryReminderFragment extends BaseListFragment<String> {
     }
 
 
-    @OnClick(R.id.btn_bottom)
-    public void onClick() {
-        GiveAwayHistoryActivity.launch(mActivity);
-    }
 }
