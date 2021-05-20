@@ -20,6 +20,29 @@ public class CenterDialogUtil {
 
     private static Dialog cityDialog;
 
+    public static void show(Context context,String title, String content
+            , final OnGetStringListener listener) {
+        View messageView = View.inflate(context, R.layout.pop_custom, null);
+        cityDialog = DialogUtils.getCenterDialog(context, messageView);
+        TextView tv_cancel = messageView.findViewById(R.id.tv_cancel);
+        TextView tv_sure = messageView.findViewById(R.id.tv_sure);
+        TextView tv_title = messageView.findViewById(R.id.tv_title);
+        TextView tv_content = messageView.findViewById(R.id.tv_content);
+        tv_title.setText(title);
+        tv_content.setText(content);
+        tv_sure.setOnClickListener(v -> {
+            listener.getString("1");
+            cityDialog.dismiss();
+            cityDialog = null;
+        });
+        tv_cancel.setOnClickListener(v -> {
+            listener.getString("0");
+            cityDialog.dismiss();
+            cityDialog = null;
+
+        });
+    }
+
 
 
     public static void showTwo(Context context,String btnCancel, String btnSure
