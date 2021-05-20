@@ -274,7 +274,8 @@
         <TextView
             style="@style/black_text_bold_15sp"
             android:layout_margin="12dp"
-            android:text="订单处理" />
+            android:text="订单处理"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -282,6 +283,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:background="@drawable/shape_white5"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -936,7 +938,45 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_manage9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingRight="8dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_manage9"/>
+
+                    <TextView
+                        style="@style/black_text_12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="访客登记"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/cart_number_style"
+                    android:background="@drawable/shape_oval_red"
+                    android:text="3"
+                    android:visibility="gone"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/rl_manage8"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:paddingRight="8dp"
                 android:layout_height="match_parent"
@@ -981,42 +1021,7 @@
             android:background="@drawable/shape_white5_bottom"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/rl_manage9"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:paddingRight="8dp"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="vertical"
-                    android:gravity="center">
 
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_manage9"/>
-
-                    <TextView
-                        style="@style/black_text_12sp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="访客登记"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/cart_number_style"
-                    android:background="@drawable/shape_oval_red"
-                    android:text="3"
-                    android:visibility="gone"
-
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"/>
-            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_manage10"
                 android:layout_width="0dp"
@@ -1040,6 +1045,43 @@
                         style="@style/black_text_12sp"
                         android:layout_marginTop="5dp"
                         android:text="叫早服务"/>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/cart_number_style"
+                    android:background="@drawable/shape_oval_red"
+                    android:text="3"
+                    android:visibility="gone"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:visibility="invisible"
+                android:layout_height="match_parent"
+                android:paddingRight="8dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_manage9"/>
+
+                    <TextView
+                        style="@style/black_text_12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="访客登记"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
@@ -1134,6 +1176,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/shape_white5_top"
             android:orientation="horizontal">
 
@@ -1285,9 +1328,10 @@
             android:layout_height="80dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:layout_marginBottom="12dp"
+
             android:background="@drawable/shape_white5_bottom"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <RelativeLayout
                 android:id="@+id/rl_study5"
