@@ -11,6 +11,9 @@ public interface HttpUrl {
     String shop_info = "worker_login/toBeWorker";//扫描二维码 获取门店信息
     String register = "worker_login/workerRegister";//注册
     String mine_info = "employee/related/information";//个人信息
+    String code_applets = "app/applet/code";//小程序二维码
+    String code_receive = "shop/getQrCode";//收款码
+    String history_collection_history = "scan/queryScan";//收款历史
 
 
 

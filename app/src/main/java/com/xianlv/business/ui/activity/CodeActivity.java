@@ -11,9 +11,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.CodeBean;
+import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.bean.request.RequestShopId;
+import com.xianlv.business.global.GlobalParam;
+import com.xianlv.business.global.ImageUtil;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -88,7 +97,11 @@ public class CodeActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-
+        if (type == 1) {
+            getAppletCode();
+        }else {
+            getReceiveCode();
+        }
     }
 
 
@@ -103,5 +116,29 @@ public class CodeActivity extends BaseActivity {
                 }
                 break;
         }
+    }
+
+    private void getAppletCode(){
+        new RxHttp<BaseResult<CodeBean>>().send(ApiManager.getService()
+                        .code_applets(new BaseRequest()),
+                new Response<BaseResult<CodeBean>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<CodeBean> result) {
+                        ImageUtil.load(mActivity,ivCode,result.data.code);
+                    }
+                });
+    }
+
+    private void getReceiveCode(){
+        RequestShopId bean = new RequestShopId();
+        bean.shopId = GlobalParam.getLoginBean().shopId;
+        new RxHttp<BaseResult<CodeBean>>().send(ApiManager.getService().code_receive(bean),
+                new Response<BaseResult<CodeBean>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<CodeBean> result) {
+                        ImageUtil.loadFullAddress(mActivity,ivCode,result.data.qrCode);
+
+                    }
+                });
     }
 }

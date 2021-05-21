@@ -64,8 +64,12 @@ public class MainActivity extends CheckPermissionActivity {
     ImageView ivBg;
     @BindView(R.id.tv_hotel_name)
     TextView tvHotelName;
+    @BindView(R.id.tv_hotel_name1)
+    TextView tv_hotel_name1;
     @BindView(R.id.tv_name)
     TextView tvName;
+    @BindView(R.id.tv_address)
+    TextView tv_address;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -246,6 +250,8 @@ public class MainActivity extends CheckPermissionActivity {
                     public void onSuccess(BaseResult<MineInfo> result) {
                         MineInfo mineInfo = result.data;
                         tvHotelName.setText(mineInfo.address);
+                        tv_hotel_name1.setText(mineInfo.shopName);
+                        tv_address.setText(mineInfo.address);
                         tvName.setText(mineInfo.department+" "+mineInfo.trueName);
                     }
                 });

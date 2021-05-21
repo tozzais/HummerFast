@@ -35,20 +35,23 @@
 
 
     <TextView
+        android:id="@+id/tv_time"
         style="@style/gray_text_10sp"
-        android:text="2021-01-19"/>
+        tools:text="2021-01-19"/>
 
 
     <TextView
+        android:id="@+id/tv_name"
         style="@style/black_text_13sp"
-        android:text="刘丽"
+        tools:text="刘丽"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_marginLeft="12dp"/>
 
     <TextView
+        android:id="@+id/tv_number"
         style="@style/blue_text_12sp"
-        android:text="+422"
+        tools:text="+422"
         android:layout_marginRight="12dp"
         />
 

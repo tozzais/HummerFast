@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.JsonSyntaxException;
 import com.tozzais.baselibrary.R;
@@ -14,8 +17,6 @@ import com.tozzais.baselibrary.util.NetworkUtil;
 import java.net.SocketTimeoutException;
 import java.util.List;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import retrofit2.adapter.rxjava.HttpException;
 
 
@@ -27,7 +28,7 @@ public abstract class BaseListFragment<T> extends BaseFragment {
 
 
     protected BaseQuickAdapter mAdapter;
-    protected int DEFAULT_PAGE = 1;
+    protected int DEFAULT_PAGE = 0;
     protected int page = DEFAULT_PAGE;
     protected int PageSize = 10;
 

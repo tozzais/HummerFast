@@ -46,9 +46,9 @@
 
         <ImageView
             android:id="@+id/iv_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/code"/>
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            tools:src="@mipmap/code"/>
 
         <TextView
             android:id="@+id/tv_code"

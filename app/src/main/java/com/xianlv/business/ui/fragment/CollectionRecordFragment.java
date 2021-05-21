@@ -4,14 +4,17 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.xianlv.business.adapter.CollectionRecordAdapter;
+import com.xianlv.business.bean.CollectionHistoryItem;
+import com.xianlv.business.bean.request.RequestList;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 
 
-public class CollectionRecordFragment extends BaseListFragment<String> {
-
-
+public class CollectionRecordFragment extends BaseListFragment<CollectionHistoryItem> {
 
 
     public static CollectionRecordFragment newInstance(int type){
@@ -50,7 +53,23 @@ public class CollectionRecordFragment extends BaseListFragment<String> {
     }
 
     private void  getData(){
-       setData(DataUtil.getData(8));
+        RequestList bean = new RequestList();
+        bean.page = page+"";
+        new RxHttp<BaseListResult<CollectionHistoryItem>>().send(ApiManager.getService().history_collection_history(bean),
+                new Response<BaseListResult<CollectionHistoryItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<CollectionHistoryItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
     }
 
     @Override
