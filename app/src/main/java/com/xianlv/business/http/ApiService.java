@@ -1,6 +1,8 @@
 package com.xianlv.business.http;
 
 
+import com.xianlv.business.bean.CashDetail;
+import com.xianlv.business.bean.CashItem;
 import com.xianlv.business.bean.CheckInItem;
 import com.xianlv.business.bean.CheckOutItem;
 import com.xianlv.business.bean.CleanItem;
@@ -17,6 +19,8 @@ import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.bean.request.RequestCashId;
+import com.xianlv.business.bean.request.RequestCashUpdate;
 import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestGiveWay;
 import com.xianlv.business.bean.request.RequestGoodsOrderId;
@@ -99,7 +103,6 @@ public interface ApiService {
     @POST(HttpUrl.check_out_history)
     Observable<BaseListResult<CheckOutItem>>
     checkOutList(@Body RequestList bean);
-
     @POST(HttpUrl.coupon_list)
     Observable<BaseListResult<CouponItem>>
     coupon_list(@Body RequestVoucher bean);
@@ -109,26 +112,33 @@ public interface ApiService {
     @POST(HttpUrl.coupon_history)
     Observable<BaseListResult<CouponHistoryItem>>
     coupon_history(@Body RequestVoucher bean);
-
-
     @POST(HttpUrl.give_way_list)
     Observable<BaseListResult<GiveWayItem>>
     give_way_list(@Body RequestGiveWay bean);
     @POST(HttpUrl.give_way_confirm)
     Observable<BaseResult>
     give_way_confirm(@Body RequestGoodsOrderId bean);
-
-
     @POST(HttpUrl.clean_list)
     Observable<BaseListResult<CleanItem>>
     clean_list(@Body RequestGiveWay bean);
     @POST(HttpUrl.clean_complete)
     Observable<BaseResult>
     clean_complete(@Body RequestSweepId bean);
-
     @POST(HttpUrl.main_number)
     Observable<BaseResult<MainNumberBean>>
     main_number(@Body BaseRequest bean);
+    @POST(HttpUrl.cash_list)
+    Observable<BaseListResult<CashItem>>
+    cash_list(@Body RequestShopId bean);
+    @POST(HttpUrl.cash_detail)
+    Observable<BaseResult<CashDetail>>
+    cash_detail(@Body RequestCashId bean);
+    @POST(HttpUrl.cash_update)
+    Observable<BaseResult<CashDetail>>
+    cash_update(@Body RequestCashUpdate bean);
+    @POST(HttpUrl.cash_return)
+    Observable<BaseResult>
+    cash_return(@Body RequestCashUpdate bean);
 
 
 

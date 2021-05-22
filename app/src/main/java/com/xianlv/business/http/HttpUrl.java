@@ -33,6 +33,11 @@ public interface HttpUrl {
     String clean_complete = "lostArticle/updateSweep";//打扫完成
     String main_number = "lostArticle/querySweepNum";//打扫数量
 
+    String cash_list = "cash/queryCashOrderList";//押金管理
+    String cash_detail = "cash/queryCashOrder";//押金页面
+    String cash_update = "cash/updateCashOrder";
+    String cash_return = "cash/refundOrderCash";
+
 
 
 

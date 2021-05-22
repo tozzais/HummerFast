@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/shape_white5"
     android:orientation="vertical">
 
@@ -37,9 +37,10 @@
                 android:layout_marginTop="12dp">
 
                 <TextView
+                    android:id="@+id/tv_money"
                     style="@style/black_text_bold_15sp"
                     android:textSize="50sp"
-                    android:text="￥455"
+                    tools:text="￥455"
                     android:textColor="@color/baseColor"
                     />
 

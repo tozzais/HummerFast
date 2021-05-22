@@ -9,9 +9,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tozzais.baselibrary.util.DataUtil;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.RefundDetailAdapter;
+import com.xianlv.business.bean.CashDetail;
+import com.xianlv.business.listener.OnSureClickListener;
 import com.xianlv.business.ui.activity.CouponCodeAuthActivity;
 
 
@@ -104,23 +105,24 @@ public class CenterDialogUtil {
         });
     }
 
-    public static void showRefundDetail(Context context) {
+    public static void showRefundDetail(Context context, CashDetail data, OnSureClickListener listener) {
         View messageView = View.inflate(context, R.layout.pop_refund, null);
         cityDialog = DialogUtils.getCenterDialog(context, messageView);
         RecyclerView rv_list = messageView.findViewById(R.id.rv_list);
+        TextView tv_money = messageView.findViewById(R.id.tv_money);
         TextView btn_cancel = messageView.findViewById(R.id.btn_cancel);
         TextView btn_sure = messageView.findViewById(R.id.btn_sure);
-
         rv_list.setLayoutManager(new LinearLayoutManager(context));
         RefundDetailAdapter mAdapter = new RefundDetailAdapter();
         rv_list.setAdapter(mAdapter);
-        mAdapter.setNewData(DataUtil.getData(8));
-
+        tv_money.setText("￥"+data.money);
+        mAdapter.setNewData(data.accountRecords);
         btn_cancel.setOnClickListener(v -> {
             cityDialog.dismiss();
             cityDialog = null;
         });
         btn_sure.setOnClickListener(v -> {
+            listener.onSure();
             cityDialog.dismiss();
             cityDialog = null;
         });

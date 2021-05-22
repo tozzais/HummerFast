@@ -26,10 +26,11 @@
             android:background="@color/baseColor"/>
 
         <TextView
+            android:id="@+id/tv_name"
             style="@style/base_text_style_bold"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="用户名：13166015579"
+            tools:text="用户名：13166015579"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"/>
 
@@ -41,14 +42,16 @@
 
 
     <TextView
+        android:id="@+id/tv_pay_time"
         style="@style/small_text_gray_style"
-        android:text="支付时间：2011-02-12 12:09:29"
+        tools:text="支付时间：2011-02-12 12:09:29"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="12dp"/>
 
     <TextView
+        android:id="@+id/tv_pay_type"
         style="@style/small_text_gray_style"
-        android:text="支付类型：订单支付"
+        tools:text="支付类型：订单支付"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="12dp"/>
 
@@ -71,8 +74,9 @@
             android:text="支付金额："
             />
         <TextView
+            android:id="@+id/tv_pay_money"
             style="@style/blue_text_14sp"
-            android:text="￥1220"
+            tools:text="￥1220"
             android:layout_width="0dp"
             android:layout_weight="1"
             />
@@ -82,8 +86,9 @@
             android:text="剩下押金："
             />
         <TextView
+            android:id="@+id/tv_remain_money"
             style="@style/blue_text_14sp"
-            android:text="￥1220"
+            tools:text="￥1220"
             android:layout_width="0dp"
             android:layout_weight="1"
             />

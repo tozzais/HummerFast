@@ -28,6 +28,7 @@ import com.ycbjie.webviewlib.X5WebUtils;
  小程序二维码和门店收款码地址一个是全地址一个是相对地址
  销量排行榜没有年月日筛选条件及分页条件
  常见问题接口
+ 押金管理列表没有分页吗？
  */
 public class MyApp extends Application {
 

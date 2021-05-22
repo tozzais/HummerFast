@@ -21,7 +21,7 @@
         <View
             android:id="@+id/view1"
             android:layout_width="1dp"
-            android:layout_height="25dp"
+            android:layout_height="16dp"
             android:background="@color/gray_eeeeee"/>
 
         <ImageView
@@ -31,34 +31,37 @@
         <View
             android:id="@+id/view2"
             android:layout_width="1dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:background="@color/gray_eeeeee"/>
     </LinearLayout>
 
 
     <TextView
-        android:layout_marginTop="20dp"
+        android:id="@+id/tv_time"
+        android:layout_marginTop="14dp"
         style="@style/gray_text_10sp"
         android:lineSpacingExtra="4dp"
-        android:text="2021-01-19"/>
+        tools:text="2021-01-19"/>
 
 
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="12dp">
         <TextView
+            android:id="@+id/tv_name"
             style="@style/black_text_bold_13sp"
-            android:text="按摩"
+            tools:text="按摩"
 
             />
 
         <TextView
+            android:id="@+id/tv_content"
             style="@style/small_text_gray_style"
-            android:text="支付类型：快捷支付"
+            tools:text="支付类型：快捷支付"
             android:layout_marginTop="6dp"
             />
 
@@ -66,10 +69,11 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_money"
         style="@style/blue_text_12sp"
-        android:text="-422"
+        tools:text="-422"
         android:layout_marginRight="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
 
         />
 
