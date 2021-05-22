@@ -13,6 +13,7 @@
 
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -410,6 +411,7 @@
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
+                    android:visibility="gone"
                     android:layout_alignParentRight="true"
                     android:layout_margin="5dp"/>
             </RelativeLayout>
@@ -439,6 +441,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:visibility="gone"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -473,6 +476,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:visibility="gone"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -506,6 +510,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:visibility="gone"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -558,6 +563,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_number_check_in"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -626,6 +632,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_number_breakfast"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -660,6 +667,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_number_park"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -713,6 +721,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_number_send_goods"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -746,6 +755,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_number_clean"
                     style="@style/cart_number_style"
                     android:background="@drawable/shape_oval_red"
                     android:text="3"
@@ -756,6 +766,7 @@
 
             <RelativeLayout
                 android:id="@+id/rl_manage3"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:paddingRight="8dp"
                 android:layout_height="match_parent"
@@ -823,18 +834,6 @@
                     android:layout_margin="5dp"/>
             </RelativeLayout>
 
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
             <RelativeLayout
                 android:id="@+id/rl_manage5"
                 android:layout_width="0dp"
@@ -870,6 +869,18 @@
                     android:layout_alignParentRight="true"
                     android:layout_margin="5dp"/>
             </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
             <RelativeLayout
                 android:id="@+id/rl_manage6"
                 android:layout_width="0dp"
@@ -940,6 +951,40 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_manage8"
+                android:layout_width="0dp"
+                android:paddingRight="8dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_manage8"/>
+
+                    <TextView
+                        style="@style/black_text_12sp"
+                        android:layout_marginTop="5dp"
+                        android:text="电话会议"/>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/cart_number_style"
+                    android:background="@drawable/shape_oval_red"
+                    android:text="3"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/rl_manage9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -976,40 +1021,7 @@
                     android:layout_margin="5dp"/>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/rl_manage8"
-                android:visibility="gone"
-                android:layout_width="0dp"
-                android:paddingRight="8dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="vertical"
-                    android:gravity="center">
 
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_manage8"/>
-
-                    <TextView
-                        style="@style/black_text_12sp"
-                        android:layout_marginTop="5dp"
-                        android:text="电话会议"/>
-                </LinearLayout>
-
-                <TextView
-                    style="@style/cart_number_style"
-                    android:background="@drawable/shape_oval_red"
-                    android:text="3"
-                    android:visibility="gone"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"/>
-            </RelativeLayout>
 
 
 

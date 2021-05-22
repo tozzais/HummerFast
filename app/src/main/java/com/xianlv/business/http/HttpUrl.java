@@ -27,6 +27,12 @@ public interface HttpUrl {
     String coupon_deal_with = "workerVoucher/application/dealWith";//券的处理
     String coupon_history = "workerVoucher/history/list";//券的申请历史
 
+    String give_way_list = "goods/queryGoodsOrderStatus";//送物列表
+    String give_way_confirm = "goods/updateStatus";//确认送达
+    String clean_list = "lostArticle/querySweep";//打扫列表
+    String clean_complete = "lostArticle/updateSweep";//打扫完成
+    String main_number = "lostArticle/querySweepNum";//打扫数量
+
 
 
 

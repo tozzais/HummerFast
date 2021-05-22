@@ -15,6 +15,7 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.http.ApiManager;
@@ -69,6 +70,16 @@ public class MainActivity extends CheckPermissionActivity {
     TextView tvName;
     @BindView(R.id.tv_address)
     TextView tv_address;
+    @BindView(R.id.tv_number_check_in)
+    TextView tvNumberCheckIn;
+    @BindView(R.id.tv_number_breakfast)
+    TextView tvNumberBreakfast;
+    @BindView(R.id.tv_number_park)
+    TextView tvNumberPark;
+    @BindView(R.id.tv_number_send_goods)
+    TextView tvNumberSendGoods;
+    @BindView(R.id.tv_number_clean)
+    TextView tvNumberClean;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -102,6 +113,7 @@ public class MainActivity extends CheckPermissionActivity {
     @Override
     public void loadData() {
         getData();
+        getNumber();
     }
 
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
@@ -254,7 +266,28 @@ public class MainActivity extends CheckPermissionActivity {
                         tvHotelName.setText(mineInfo.address);
                         tv_hotel_name1.setText(mineInfo.shopName);
                         tv_address.setText(mineInfo.address);
-                        tvName.setText(mineInfo.department+" "+mineInfo.trueName);
+                        tvName.setText(mineInfo.department + " " + mineInfo.trueName);
+                    }
+                });
+    }
+
+
+    private void getNumber() {
+        new RxHttp<BaseResult<MainNumberBean>>().send(ApiManager.getService().main_number(new BaseRequest()),
+                new Response<BaseResult<MainNumberBean>>(mActivity, Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseResult<MainNumberBean> result) {
+                        MainNumberBean numberBean = result.data;
+                        tvNumberClean.setVisibility(numberBean.sweep>0?View.VISIBLE:View.GONE);
+                        tvNumberClean.setText(numberBean.sweep+"");
+                        tvNumberPark.setVisibility(numberBean.vouchers2>0?View.VISIBLE:View.GONE);
+                        tvNumberPark.setText(numberBean.vouchers2+"");
+                        tvNumberBreakfast.setVisibility(numberBean.vouchers1>0?View.VISIBLE:View.GONE);
+                        tvNumberBreakfast.setText(numberBean.vouchers1+"");
+                        tvNumberSendGoods.setVisibility(numberBean.goods>0?View.VISIBLE:View.GONE);
+                        tvNumberSendGoods.setText(numberBean.goods+"");
+                        tvNumberCheckIn.setVisibility(numberBean.roomWifiConfiguration>0?View.VISIBLE:View.GONE);
+                        tvNumberCheckIn.setText(numberBean.roomWifiConfiguration+"");
                     }
                 });
     }

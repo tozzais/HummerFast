@@ -5,19 +5,28 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.CleanApplyAdapter;
+import com.xianlv.business.bean.CleanItem;
+import com.xianlv.business.bean.eventbus.RefreshClean;
+import com.xianlv.business.bean.request.RequestGiveWay;
+import com.xianlv.business.global.GlobalParam;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.CleanHistoryActivity;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 
-public class CleanApplyFragment extends BaseListFragment<String> {
+public class CleanApplyFragment extends BaseListFragment<CleanItem> {
 
 
     @BindView(R.id.btn_bottom)
@@ -63,13 +72,27 @@ public class CleanApplyFragment extends BaseListFragment<String> {
     @Override
     public void loadData() {
         super.loadData();
-        getData();
+        RequestGiveWay bean = new RequestGiveWay();
+        bean.status = "1";
+        bean.page = page+"";
+        bean.shopId = Objects.requireNonNull(GlobalParam.getLoginBean()).shopId +"";
+        new RxHttp<BaseListResult<CleanItem>>().send(ApiManager.getService().clean_list(bean),
+                new Response<BaseListResult<CleanItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<CleanItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
 
 
-    }
-
-    private void getData() {
-        setData(DataUtil.getData(9));
     }
 
     @Override
@@ -86,4 +109,11 @@ public class CleanApplyFragment extends BaseListFragment<String> {
     }
 
 
+    @Override
+    public void onEvent(Object o) {
+        super.onEvent(o);
+        if (o instanceof RefreshClean){
+            onRefresh();
+        }
+    }
 }

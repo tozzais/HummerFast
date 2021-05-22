@@ -3,18 +3,23 @@ package com.xianlv.business.http;
 
 import com.xianlv.business.bean.CheckInItem;
 import com.xianlv.business.bean.CheckOutItem;
+import com.xianlv.business.bean.CleanItem;
 import com.xianlv.business.bean.CodeBean;
 import com.xianlv.business.bean.CollectionHistoryItem;
 import com.xianlv.business.bean.CouponHistoryItem;
 import com.xianlv.business.bean.CouponItem;
 import com.xianlv.business.bean.DepositItem;
+import com.xianlv.business.bean.GiveWayItem;
 import com.xianlv.business.bean.LoginBean;
+import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.request.RequestCode;
+import com.xianlv.business.bean.request.RequestGiveWay;
+import com.xianlv.business.bean.request.RequestGoodsOrderId;
 import com.xianlv.business.bean.request.RequestList;
 import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestRank;
@@ -22,6 +27,7 @@ import com.xianlv.business.bean.request.RequestRegister;
 import com.xianlv.business.bean.request.RequestShopId;
 import com.xianlv.business.bean.request.RequestShopInfo;
 import com.xianlv.business.bean.request.RequestStaffHousingId;
+import com.xianlv.business.bean.request.RequestSweepId;
 import com.xianlv.business.bean.request.RequestVoucher;
 import com.xianlv.business.bean.request.RequestVoucherId;
 
@@ -103,6 +109,26 @@ public interface ApiService {
     @POST(HttpUrl.coupon_history)
     Observable<BaseListResult<CouponHistoryItem>>
     coupon_history(@Body RequestVoucher bean);
+
+
+    @POST(HttpUrl.give_way_list)
+    Observable<BaseListResult<GiveWayItem>>
+    give_way_list(@Body RequestGiveWay bean);
+    @POST(HttpUrl.give_way_confirm)
+    Observable<BaseResult>
+    give_way_confirm(@Body RequestGoodsOrderId bean);
+
+
+    @POST(HttpUrl.clean_list)
+    Observable<BaseListResult<CleanItem>>
+    clean_list(@Body RequestGiveWay bean);
+    @POST(HttpUrl.clean_complete)
+    Observable<BaseResult>
+    clean_complete(@Body RequestSweepId bean);
+
+    @POST(HttpUrl.main_number)
+    Observable<BaseResult<MainNumberBean>>
+    main_number(@Body BaseRequest bean);
 
 
 
