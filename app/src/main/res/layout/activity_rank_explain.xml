@@ -43,62 +43,7 @@
             android:layout_marginRight="12dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_tip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_yellow5"
-                android:layout_margin="12dp"
-                android:textSize="10sp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:textColor="@color/yellow_text"
-                android:text="每日10点更新，根据前一日销售金额从高到低排序"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                >
-                <TextView
-                    android:id="@+id/tv_year"
-                    style="@style/btn_blue_bg_white_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="6dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:text="年"/>
-
-                <TextView
-                    android:id="@+id/tv_month"
-                    style="@style/btn_gray_line_blue_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginLeft="6dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:text="月"/>
-
-                <TextView
-                    android:id="@+id/tv_day"
-                    style="@style/btn_gray_line_blue_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="6dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:text="日"/>
-            </LinearLayout>
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 
 
         </LinearLayout>
@@ -132,7 +77,6 @@
             >
 
             <TextView
-                android:id="@+id/tv_explain"
                 style="@style/base_btn_style"
                 android:background="@drawable/shape_yellow50"
                 android:layout_marginTop="40dp"

@@ -4,15 +4,20 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.adapter.CheckInAdapter;
-import com.xianlv.business.adapter.CheckOutAdapter;
+import com.xianlv.business.bean.CheckInItem;
+import com.xianlv.business.bean.eventbus.RefreshCheckIn;
+import com.xianlv.business.bean.request.RequestList;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 
 
-public class CheckInFragment extends BaseListFragment<String> {
+public class CheckInFragment extends BaseListFragment<CheckInItem> {
 
 
 
@@ -51,14 +56,27 @@ public class CheckInFragment extends BaseListFragment<String> {
     @Override
     public void loadData() {
         super.loadData();
-        getData();
+        RequestList bean = new RequestList();
+        bean.page = page+"";
+        new RxHttp<BaseListResult<CheckInItem>>().send(ApiManager.getService().checkInList(bean),
+                new Response<BaseListResult<CheckInItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<CheckInItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
 
 
     }
 
-    private void  getData(){
-       setData(DataUtil.getData(9));
-    }
 
     @Override
     public void initListener() {
@@ -67,5 +85,11 @@ public class CheckInFragment extends BaseListFragment<String> {
 
     }
 
-
+    @Override
+    public void onEvent(Object o) {
+        super.onEvent(o);
+        if (o instanceof RefreshCheckIn){
+            onRefresh();
+        }
+    }
 }

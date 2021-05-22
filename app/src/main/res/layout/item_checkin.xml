@@ -26,17 +26,19 @@
             android:background="@color/baseColor"/>
 
         <TextView
+            android:id="@+id/tv_text1"
             style="@style/base_text_style_bold"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="房间号：0033"
+            tools:text="房间号：0033"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"/>
 
 
         <TextView
+            android:id="@+id/tv_text2"
             style="@style/small_text_gray_style"
-            android:text="2011-02-12 12:09:29"
+            tools:text="2011-02-12 12:09:29"
             android:layout_marginRight="12dp"
             />
     </LinearLayout>
@@ -45,8 +47,9 @@
 
 
     <TextView
+        android:id="@+id/tv_text3"
         style="@style/small_text_gray_style"
-        android:text="入住人手机号：18321836627"
+        tools:text="入住人手机号：18321836627"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="12dp"/>
 
@@ -63,10 +66,12 @@
         android:paddingRight="12dp">
 
         <TextView
+            android:id="@+id/tv_refuse"
             style="@style/btn_white_bg_blue_text"
             android:text="拒绝"/>
 
         <TextView
+            android:id="@+id/tv_pass"
             style="@style/btn_blue_bg_white_text"
             android:text="通过"
             android:layout_marginLeft="12dp"/>

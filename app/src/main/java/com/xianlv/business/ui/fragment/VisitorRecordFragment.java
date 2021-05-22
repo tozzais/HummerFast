@@ -4,13 +4,17 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
-import com.xianlv.business.adapter.HistoryGiveWayAdapter;
 import com.xianlv.business.adapter.VisitorRecordAdapter;
+import com.xianlv.business.bean.VisitorUserItem;
+import com.xianlv.business.bean.request.RequestList;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 
 
-public class VisitorRecordFragment extends BaseListFragment<String> {
+public class VisitorRecordFragment extends BaseListFragment<VisitorUserItem> {
 
 
 
@@ -32,6 +36,8 @@ public class VisitorRecordFragment extends BaseListFragment<String> {
         mAdapter = new VisitorRecordAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
+        setEmptyView("暂时没有访客登记哦~");
+
 
 
 
@@ -47,7 +53,23 @@ public class VisitorRecordFragment extends BaseListFragment<String> {
     }
 
     private void  getData(){
-       setData(DataUtil.getData(8));
+        RequestList bean = new RequestList();
+        bean.page = page+"";
+        new RxHttp<BaseListResult<VisitorUserItem>>().send(ApiManager.getService().visitorList(bean),
+                new Response<BaseListResult<VisitorUserItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<VisitorUserItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
     }
 
     @Override

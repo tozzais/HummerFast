@@ -1,18 +1,29 @@
 package com.xianlv.business.http;
 
 
+import com.xianlv.business.bean.CheckInItem;
+import com.xianlv.business.bean.CheckOutItem;
 import com.xianlv.business.bean.CodeBean;
 import com.xianlv.business.bean.CollectionHistoryItem;
+import com.xianlv.business.bean.CouponHistoryItem;
+import com.xianlv.business.bean.CouponItem;
+import com.xianlv.business.bean.DepositItem;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.ShopResult;
+import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestList;
 import com.xianlv.business.bean.request.RequestLogin;
+import com.xianlv.business.bean.request.RequestRank;
 import com.xianlv.business.bean.request.RequestRegister;
 import com.xianlv.business.bean.request.RequestShopId;
 import com.xianlv.business.bean.request.RequestShopInfo;
+import com.xianlv.business.bean.request.RequestStaffHousingId;
+import com.xianlv.business.bean.request.RequestVoucher;
+import com.xianlv.business.bean.request.RequestVoucherId;
 
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -54,6 +65,44 @@ public interface ApiService {
     @POST(HttpUrl.history_collection_history)
     Observable<BaseListResult<CollectionHistoryItem>>
     history_collection_history(@Body RequestList bean);
+    //收款历史
+    @POST(HttpUrl.rank)
+    Observable<BaseListResult<RankItem>>
+    getRank(@Body RequestRank bean);
+    //寄存列表
+    @POST(HttpUrl.workerDepositItems)
+    Observable<BaseListResult<DepositItem>>
+    getDeposit(@Body RequestList bean);
+    //叫早服务
+    @POST(HttpUrl.call_morning)
+    Observable<BaseListResult<DepositItem>>
+    callMorning(@Body RequestList bean);
+    //访客记录
+    @POST(HttpUrl.visitorUser)
+    Observable<BaseListResult<VisitorUserItem>>
+    visitorList(@Body RequestList bean);
+    @POST(HttpUrl.check_in_list)
+    Observable<BaseListResult<CheckInItem>>
+    checkInList(@Body RequestList bean);
+    @POST(HttpUrl.check_in_pass)
+    Observable<BaseResult>
+    checkInPass(@Body RequestStaffHousingId bean);
+    @POST(HttpUrl.check_in_refuse)
+    Observable<BaseResult>
+    checkInRefuse(@Body RequestStaffHousingId bean);
+    @POST(HttpUrl.check_out_history)
+    Observable<BaseListResult<CheckOutItem>>
+    checkOutList(@Body RequestList bean);
+
+    @POST(HttpUrl.coupon_list)
+    Observable<BaseListResult<CouponItem>>
+    coupon_list(@Body RequestVoucher bean);
+    @POST(HttpUrl.coupon_deal_with)
+    Observable<BaseResult>
+    couponDeal(@Body RequestVoucherId bean);
+    @POST(HttpUrl.coupon_history)
+    Observable<BaseListResult<CouponHistoryItem>>
+    coupon_history(@Body RequestVoucher bean);
 
 
 

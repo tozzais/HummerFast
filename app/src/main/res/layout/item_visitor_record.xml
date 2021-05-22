@@ -37,46 +37,52 @@
 
 
     <TextView
+        android:id="@+id/tv_text1"
         android:layout_marginTop="20dp"
         style="@style/gray_text_10sp"
         android:lineSpacingExtra="4dp"
-        android:text="等级时间\n2021-01-19\n12:09:03"/>
+        tools:text="登记时间\n2021-01-19\n12:09:03"/>
 
 
     <LinearLayout
+
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="12dp">
         <TextView
+            android:id="@+id/tv_text2"
             style="@style/black_text_bold_13sp"
-            android:text="房间号：0033"
+            tools:text="房间号：0033"
 
             />
 
         <TextView
+            android:id="@+id/tv_text3"
             style="@style/small_text_gray_style"
-            android:text="寻访人姓名：张三"
+            tools:text="寻访人姓名：张三"
             android:layout_marginTop="6dp"
             />
 
         <TextView
+            android:id="@+id/tv_text4"
             style="@style/small_text_gray_style"
-            android:text="拜访人登记：李四"
+            tools:text="拜访人登记：李四"
             android:layout_marginTop="6dp"
             />
 
         <TextView
+            android:id="@+id/tv_text5"
             style="@style/small_text_gray_style"
-            android:text="手机号：13166015579"
+            tools:text="手机号：13166015579"
             android:layout_marginTop="6dp"
             />
 
         <TextView
-            android:id="@+id/tv_status"
+            android:id="@+id/tv_text6"
             style="@style/small_text_gray_style"
-            android:text="寻访事由：公司事务需要领导签字"
+            tools:text="寻访事由：公司事务需要领导签字"
             android:layout_marginTop="6dp"
             />
     </LinearLayout>

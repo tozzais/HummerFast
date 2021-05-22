@@ -4,13 +4,17 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
-import com.xianlv.business.adapter.CollectionRecordAdapter;
 import com.xianlv.business.adapter.HistoryBreakfastAdapter;
+import com.xianlv.business.bean.CouponHistoryItem;
+import com.xianlv.business.bean.request.RequestVoucher;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 
 
-public class HistoryBreakfastFragment extends BaseListFragment<String> {
+public class HistoryBreakfastFragment extends BaseListFragment<CouponHistoryItem> {
 
 
 
@@ -23,20 +27,23 @@ public class HistoryBreakfastFragment extends BaseListFragment<String> {
         return cartFragment;
 
     }
+    private int type;
 
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-
+        type = getArguments().getInt("type");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mAdapter = new HistoryBreakfastAdapter();
+        mAdapter = new HistoryBreakfastAdapter(type);
         mRecyclerView.setAdapter(mAdapter);
 
-//        setEmptyView(R.mipmap.empty_view,"您还没有相关订单哦~","去逛逛", view->{
-//
-//        });
 
-        setEmptyView("您还没有收款记录哦~");
+        if (type == 1){
+            setEmptyView("暂时没有早餐券历史哦~");
+        }else {
+            setEmptyView("暂时没有停车券券历史哦~");
+        }
+
 
 
 
@@ -45,14 +52,28 @@ public class HistoryBreakfastFragment extends BaseListFragment<String> {
     @Override
     public void loadData() {
         super.loadData();
-        getData();
+        RequestVoucher bean = new RequestVoucher();
+        bean.voucherType = type+"";
+        bean.page = page+"";
+        new RxHttp<BaseListResult<CouponHistoryItem>>().send(ApiManager.getService().coupon_history(bean),
+                new Response<BaseListResult<CouponHistoryItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<CouponHistoryItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
 
 
     }
 
-    private void  getData(){
-       setData(DataUtil.getData(8));
-    }
 
     @Override
     public void initListener() {

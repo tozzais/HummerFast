@@ -5,8 +5,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.CheckOutItem;
 
-public class CheckOutAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements LoadMoreModule {
+public class CheckOutAdapter extends BaseQuickAdapter<CheckOutItem, BaseViewHolder> implements LoadMoreModule {
 
 
     public CheckOutAdapter() {
@@ -14,8 +15,12 @@ public class CheckOutAdapter extends BaseQuickAdapter<String, BaseViewHolder> im
     }
 
     @Override
-    protected void convert(BaseViewHolder helper,  String item) {
+    protected void convert(BaseViewHolder helper,  CheckOutItem item) {
         int position = helper.getAdapterPosition();
+
+        helper.setText(R.id.tv_text1,"房间号："+item.roomNumber)
+                .setText(R.id.tv_text2,item.failureTime)
+                .setText(R.id.tv_text3,"入住人手机号："+item.phone);
 
 
    }

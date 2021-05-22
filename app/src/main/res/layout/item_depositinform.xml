@@ -15,10 +15,12 @@
     >
 
 
-    <ImageView
+    <com.xianlv.business.weight.SquareRoundImageView
+        android:id="@+id/iv_goods"
+        android:scaleType="centerCrop"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@color/gray_bg"/>
+        tools:background="@color/gray_bg"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,26 +32,30 @@
 
 
         <TextView
+            android:id="@+id/tv_text1"
             style="@style/base_text_style_bold"
-            android:text="房间号：0033"
+            tools:text="房间号：0033"
             />
 
 
         <TextView
+            android:id="@+id/tv_text2"
             style="@style/small_text_gray_style"
-            android:text="用户手机号：13166015579"
+            tools:text="用户手机号：13166015579"
             android:layout_marginTop="12dp"
             />
 
         <TextView
+            android:id="@+id/tv_text3"
             style="@style/small_text_gray_style"
-            android:text="寄存时间：2021-09-11 12:23:23"
+            tools:text="寄存时间：2021-09-11 12:23:23"
             android:layout_marginTop="6dp"
             />
 
         <TextView
+            android:id="@+id/tv_text4"
             style="@style/small_text_gray_style"
-            android:text="锁号：SF0001"
+            tools:text="锁号：SF0001"
             android:layout_marginTop="6dp"
             />
     </LinearLayout>

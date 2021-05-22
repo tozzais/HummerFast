@@ -14,6 +14,18 @@ public interface HttpUrl {
     String code_applets = "app/applet/code";//小程序二维码
     String code_receive = "shop/getQrCode";//收款码
     String history_collection_history = "scan/queryScan";//收款历史
+    String rank = "ranking/getRankingList";//排行榜
+    String workerDepositItems = "workerDepositItems/list";//寄存列表
+    String call_morning = "app/call/morningWork";//叫早服务
+    String visitorUser = "app/registration/visitorUser";//访客记录
+
+    String check_in_pass = "staffHousing/processing/pass";//入住通过
+    String check_in_refuse = "staffHousing/processing/refuse";//入住拒绝
+    String check_in_list = "staffHousing/processing/list";//入住申请
+    String check_out_history = "checkOut/history";//离店历史
+    String coupon_list = "workerVoucher/application/list";//券的申请列表
+    String coupon_deal_with = "workerVoucher/application/dealWith";//券的处理
+    String coupon_history = "workerVoucher/history/list";//券的申请历史
 
 
 

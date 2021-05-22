@@ -26,10 +26,10 @@ import butterknife.OnClick;
 
 public class SalesRankActivity extends BaseActivity {
 
-    public static final int PERSON = 0;
-    public static final int TEAM = 1;
+    public static final int PERSON = 1;
+    public static final int TEAM = 2;
 
-    private int type = 0;
+    private int type = PERSON;
 
 
     public static void launch(Context from, int type) {
@@ -77,6 +77,8 @@ public class SalesRankActivity extends BaseActivity {
             ivBg1.setBackgroundResource(R.mipmap.icon_rank_ng2);
         }
 
+        selectTab(0);
+
     }
 
     private GoodsDetailPagerAdapter adapter;
@@ -84,9 +86,9 @@ public class SalesRankActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        fragmentList.add(RankFragment.newInstance(0));
-        fragmentList.add(RankFragment.newInstance(1));
-        fragmentList.add(RankFragment.newInstance(2));
+        fragmentList.add(RankFragment.newInstance(0,type));
+        fragmentList.add(RankFragment.newInstance(1,type));
+        fragmentList.add(RankFragment.newInstance(2,type));
         List<String> list = new ArrayList<>();
         list.add("年");
         list.add("月");
@@ -113,7 +115,7 @@ public class SalesRankActivity extends BaseActivity {
         StatusBarUtil.setDarkMode(this);
     }
 
-    @OnClick({R.id.tv_year, R.id.tv_month, R.id.tv_day})
+    @OnClick({R.id.tv_year, R.id.tv_month, R.id.tv_day, R.id.tv_explain})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_year:
@@ -124,6 +126,9 @@ public class SalesRankActivity extends BaseActivity {
                 break;
             case R.id.tv_day:
                 viewpager.setCurrentItem(2);
+                break;
+            case R.id.tv_explain:
+                BonusDescriptionActivity.launch(mActivity,type);
                 break;
         }
     }

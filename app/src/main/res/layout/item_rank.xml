@@ -23,14 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/demo_avatar"/>
+        <com.tozzais.baselibrary.weight.CircleImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:src="@mipmap/demo_avatar"/>
 
         <TextView
+            android:id="@+id/tv_name"
             style="@style/base_text_style"
-            android:text="喵喵不吃鱼"
+            tools:text="喵喵不吃鱼"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginLeft="12dp"/>
@@ -66,8 +68,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_number1"
                 style="@style/black_text_13sp"
-                android:text="300"
+                tools:text="300"
                 />
 
             <TextView
@@ -86,8 +89,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_number2"
                 style="@style/black_text_13sp"
-                android:text="2289"
+                tools:text="2289"
                 />
 
             <TextView
@@ -106,8 +110,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_number3"
                 style="@style/black_text_13sp"
-                android:text="128690"
+                tools:text="128690"
                 />
 
             <TextView
@@ -128,7 +133,7 @@
             <TextView
                 android:id="@+id/tv_number4"
                 style="@style/black_text_13sp"
-                android:text="8823"
+                tools:text="8823"
                 />
 
             <TextView

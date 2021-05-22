@@ -10,7 +10,6 @@ import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
-import com.xianlv.business.adapter.BreakfastCouponAdapter;
 import com.xianlv.business.adapter.ParkCouponAdapter;
 import com.xianlv.business.ui.activity.ParkCouponHistoryActivity;
 

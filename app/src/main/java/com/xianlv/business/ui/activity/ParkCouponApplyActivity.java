@@ -8,7 +8,6 @@ import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
 import com.xianlv.business.ui.fragment.BreakfastCouponApplyFragment;
-import com.xianlv.business.ui.fragment.ParkCouponApplyFragment;
 
 public class ParkCouponApplyActivity extends BaseActivity {
 
@@ -35,7 +34,7 @@ public class ParkCouponApplyActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        ParkCouponApplyFragment fragment = new ParkCouponApplyFragment();
+        BreakfastCouponApplyFragment fragment = BreakfastCouponApplyFragment.newInstance(2);
         getSupportFragmentManager().beginTransaction().add(R.id.content_container, fragment).commit();
     }
 }

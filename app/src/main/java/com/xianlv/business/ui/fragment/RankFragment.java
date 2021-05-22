@@ -4,23 +4,28 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
-import com.xianlv.business.adapter.CheckOutAdapter;
 import com.xianlv.business.adapter.RankAdapter;
+import com.xianlv.business.bean.RankItem;
+import com.xianlv.business.bean.request.RequestRank;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 
 
-public class RankFragment extends BaseListFragment<String> {
+public class RankFragment extends BaseListFragment<RankItem> {
 
 
 
 
-    public static RankFragment newInstance(int type){
+    public static RankFragment newInstance(int type,int category){
         RankFragment cartFragment = new RankFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type",type);
+        bundle.putInt("category",category);
         cartFragment.setArguments(bundle);
         return cartFragment;
 
@@ -57,7 +62,24 @@ public class RankFragment extends BaseListFragment<String> {
     }
 
     private void  getData(){
-       setData(DataUtil.getData(9));
+        RequestRank bean = new RequestRank();
+        bean.page = page+"";
+        bean.category = getArguments().getInt("category")+"";
+        new RxHttp<BaseListResult<RankItem>>().send(ApiManager.getService().getRank(bean),
+                new Response<BaseListResult<RankItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<RankItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
     }
 
     @Override

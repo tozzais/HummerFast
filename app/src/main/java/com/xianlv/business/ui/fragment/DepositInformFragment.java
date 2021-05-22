@@ -4,15 +4,19 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
-import com.xianlv.business.adapter.CheckInAdapter;
 import com.xianlv.business.adapter.DepositInformAdapter;
+import com.xianlv.business.bean.DepositItem;
+import com.xianlv.business.bean.request.RequestList;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
 
 
-public class DepositInformFragment extends BaseListFragment<String> {
+public class DepositInformFragment extends BaseListFragment<DepositItem> {
 
 
 
@@ -57,7 +61,23 @@ public class DepositInformFragment extends BaseListFragment<String> {
     }
 
     private void  getData(){
-       setData(DataUtil.getData(9));
+        RequestList bean = new RequestList();
+        bean.page = page+"";
+        new RxHttp<BaseListResult<DepositItem>>().send(ApiManager.getService().getDeposit(bean),
+                new Response<BaseListResult<DepositItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<DepositItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
     }
 
     @Override

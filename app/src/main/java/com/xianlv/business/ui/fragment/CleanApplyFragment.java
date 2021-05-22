@@ -10,8 +10,6 @@ import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
-import com.xianlv.business.adapter.BreakfastCouponAdapter;
-import com.xianlv.business.adapter.CheckInAdapter;
 import com.xianlv.business.adapter.CleanApplyAdapter;
 import com.xianlv.business.ui.activity.CleanHistoryActivity;
 
@@ -25,8 +23,8 @@ public class CleanApplyFragment extends BaseListFragment<String> {
     @BindView(R.id.btn_bottom)
     TextView btnBottom;
 
-    public static BreakfastCouponApplyFragment newInstance(int type) {
-        BreakfastCouponApplyFragment cartFragment = new BreakfastCouponApplyFragment();
+    public static CleanApplyFragment newInstance(int type) {
+        CleanApplyFragment cartFragment = new CleanApplyFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type", type);
         cartFragment.setArguments(bundle);
