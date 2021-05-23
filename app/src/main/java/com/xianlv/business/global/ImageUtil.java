@@ -69,7 +69,7 @@ public class ImageUtil {
     public static  void load(Context mContext, ImageView imageView, String path){
         RequestOptions options = new RequestOptions()
                 .error(R.drawable.shape_gray5);//图片加载失败后，显示的图片
-        Glide.with(mContext).load(HttpUrl.server_url+path).apply(options).into(imageView);
+        Glide.with(mContext).load(HttpUrl.image_url+path).apply(options).into(imageView);
 
     }
 

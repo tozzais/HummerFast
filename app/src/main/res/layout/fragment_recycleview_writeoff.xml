@@ -28,15 +28,19 @@
                 android:src="@mipmap/icon_search"/>
 
             <EditText
+                android:id="@+id/et_code"
                 style="@style/et_style"
                 android:paddingTop="8dp"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
                 android:paddingBottom="8dp"
-                android:hint="输入劵码"/>
+                android:hint="请输入劵码"/>
 
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_cancel"
             style="@style/black_text_13sp"
             android:text="取消"
             android:padding="12dp"

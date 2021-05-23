@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@mipmap/store_card_bg"
     android:layout_marginLeft="12dp"
     android:layout_marginRight="12dp"
-    android:orientation="vertical"
+    android:id="@+id/ll_root"
     >
 
+    <com.xianlv.business.weight.ScaleImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:scale="0.5"
+        tools:src="@mipmap/store_card_bg"/>
 
-    <TextView
-        style="@style/white_text_bold_15sp"
-        android:textSize="25sp"
-        android:text="餐饮储值卡"
-        android:drawableLeft="@mipmap/huiyuan"
-        android:drawablePadding="12dp"
-        android:layout_marginTop="12dp"
-        android:padding="12dp"/>
-
-    <TextView
-        style="@style/blue_text_12sp"
-        android:textColor="@color/white"
-        android:text="卡号：2773865793"
-        android:layout_marginLeft="12dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        >
 
 
-    <TextView
-        style="@style/blue_text_12sp"
-        android:textColor="@color/white"
-        android:text="使用门店：青浦店>>"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="12dp"
-        />
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/white_text_bold_15sp"
+            android:textSize="25sp"
+            android:text="餐饮储值卡"
+            android:drawableLeft="@mipmap/huiyuan"
+            android:drawablePadding="12dp"
+            android:padding="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_card_number"
+            style="@style/blue_text_12sp"
+            android:textColor="@color/white"
+            android:text="卡号：2773865793"
+            android:layout_marginLeft="12dp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_store"
+            style="@style/blue_text_12sp"
+            android:textColor="@color/white"
+            android:text="使用门店：青浦店>>"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="12dp"
+            />
 
 
 
@@ -43,4 +59,6 @@
 
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

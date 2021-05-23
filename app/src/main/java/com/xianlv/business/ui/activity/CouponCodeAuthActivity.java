@@ -19,6 +19,17 @@ public class CouponCodeAuthActivity extends BaseActivity {
         }
         Intent intent = new Intent(from, CouponCodeAuthActivity.class);
         intent.putExtra("type",type);
+        intent.putExtra("key","");
+        from.startActivity(intent);
+    }
+
+    public static void launch(Context from,int type,String key) {
+        if (!ClickUtils.isFastClick()){
+            return;
+        }
+        Intent intent = new Intent(from, CouponCodeAuthActivity.class);
+        intent.putExtra("type",type);
+        intent.putExtra("key",key);
         from.startActivity(intent);
     }
 
@@ -35,7 +46,9 @@ public class CouponCodeAuthActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        CouponCodeAuthFragment fragment = CouponCodeAuthFragment.newInstance(getIntent().getIntExtra("type",0));
+       int type =  getIntent().getIntExtra("type",0);
+       String key =  getIntent().getStringExtra("key");
+        CouponCodeAuthFragment fragment = CouponCodeAuthFragment.newInstance(type,key);
         getSupportFragmentManager().beginTransaction().add(R.id.content_container, fragment).commit();
     }
 

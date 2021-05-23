@@ -1,5 +1,6 @@
 package com.xianlv.business.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
+import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.CommonUtils;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
@@ -39,6 +41,9 @@ import com.yzq.zxinglibrary.common.Constant;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 尹晓冬 账号：15729271332
+ */
 public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
@@ -53,6 +58,14 @@ public class LoginActivity extends BaseActivity {
     TextView tvCode;
     @BindView(R.id.tv_agreement)
     TextView tvAgreement;
+
+    public static void launch(Context from) {
+        if (!ClickUtils.isFastClick()) {
+            return;
+        }
+        Intent intent = new Intent(from, LoginActivity.class);
+        from.startActivity(intent);
+    }
 
     @Override
     public int getLayoutId() {
@@ -118,10 +131,6 @@ public class LoginActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.tv_register:
                 Intent intent = new Intent(mActivity, CaptureActivity.class);
-                /*ZxingConfig是配置类  可以设置是否显示底部布局，闪光灯，相册，是否播放提示音  震动等动能
-                 * 也可以不传这个参数
-                 * 不传的话  默认都为默认不震动  其他都为true
-                 * */
                 ZxingConfig config = new ZxingConfig();
                 config.setShake(true);//是否震动  默认为true
                 config.setDecodeBarCode(true);//是否扫描条形码 默认为true
@@ -131,7 +140,6 @@ public class LoginActivity extends BaseActivity {
                 config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
                 intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
                 startActivityForResult(intent, REQUEST_CODE_SCAN);
-//                AuthActivity.launch(mActivity, 0);
                 break;
             case R.id.tv_login:
                 login();

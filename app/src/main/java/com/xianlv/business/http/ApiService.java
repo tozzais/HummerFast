@@ -1,8 +1,10 @@
 package com.xianlv.business.http;
 
 
+import com.xianlv.business.bean.CardReduceDetail;
 import com.xianlv.business.bean.CashDetail;
 import com.xianlv.business.bean.CashItem;
+import com.xianlv.business.bean.CheckDeductionItem;
 import com.xianlv.business.bean.CheckInItem;
 import com.xianlv.business.bean.CheckOutItem;
 import com.xianlv.business.bean.CleanItem;
@@ -18,14 +20,21 @@ import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VisitorUserItem;
+import com.xianlv.business.bean.WriteOffHistoryItem;
 import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.bean.request.RequestBreakfastId;
+import com.xianlv.business.bean.request.RequestCardReduce;
+import com.xianlv.business.bean.request.RequestCardReduceDetail;
 import com.xianlv.business.bean.request.RequestCashId;
 import com.xianlv.business.bean.request.RequestCashUpdate;
+import com.xianlv.business.bean.request.RequestCategory;
+import com.xianlv.business.bean.request.RequestCheckDeduction;
 import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestGiveWay;
 import com.xianlv.business.bean.request.RequestGoodsOrderId;
 import com.xianlv.business.bean.request.RequestList;
 import com.xianlv.business.bean.request.RequestLogin;
+import com.xianlv.business.bean.request.RequestMyCouponId;
 import com.xianlv.business.bean.request.RequestRank;
 import com.xianlv.business.bean.request.RequestRegister;
 import com.xianlv.business.bean.request.RequestShopId;
@@ -139,7 +148,29 @@ public interface ApiService {
     @POST(HttpUrl.cash_return)
     Observable<BaseResult>
     cash_return(@Body RequestCashUpdate bean);
+    //查询扣款
+    @POST(HttpUrl.check_deduction)
+    Observable<BaseListResult<CheckDeductionItem>>
+    check_deduction(@Body RequestCheckDeduction bean);
+    //优惠券核销
+    @POST(HttpUrl.coupon_verification)
+    Observable<BaseResult>
+    coupon_verification(@Body RequestMyCouponId bean);
+    //核销记录
+    @POST(HttpUrl.ver_history)
+    Observable<BaseListResult<WriteOffHistoryItem>>
+    ver_history(@Body RequestCategory bean);
+    @POST(HttpUrl.write_breakfast_park)
+    Observable<BaseResult>
+    write_breakfast_park(@Body RequestBreakfastId bean);
 
+    @POST(HttpUrl.card_reduce)
+    Observable<BaseResult<String>>
+    card_reduce(@Body RequestCardReduce bean);
+
+    @POST(HttpUrl.card_reduce_detail)
+    Observable<BaseListResult<CardReduceDetail>>
+    card_reduce_detail(@Body RequestCardReduceDetail bean);
 
 
 

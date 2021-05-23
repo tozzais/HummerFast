@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/gray_bg"
     android:orientation="vertical">
 
@@ -42,21 +43,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     style="@style/black_text_13sp"
                     android:layout_weight="1"
-                    android:text="陈先生" />
+                    tools:text="陈先生" />
 
                 <TextView
+                    android:id="@+id/tv_time"
                     style="@style/small_text_gray_style"
-                    android:text="2012-12-18 12:12:12" />
+                    tools:text="2012-12-18 12:12:12" />
 
             </LinearLayout>
 
 
             <TextView
+                android:id="@+id/tv_level"
                 style="@style/black_text_15sp"
                 android:layout_marginTop="15dp"
-                android:text="金桥店储值卡" />
+                tools:text="金桥店储值卡" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,8 +68,9 @@
                 android:layout_marginTop="12dp">
 
                 <TextView
+                    android:id="@+id/tv_money"
                     style="@style/black_text_bold_13sp"
-                    android:text="￥0.01"
+                    tools:text="￥0.01"
                     android:textColor="@color/baseColor"
                     android:textSize="50sp" />
 
@@ -78,15 +83,17 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_address"
                 style="@style/black_text_13sp"
                 android:layout_marginTop="12dp"
-                android:text="营业点：餐饮部"
+                android:text="营业点："
                 android:textColor="@color/grayText" />
 
             <TextView
+                android:id="@+id/tv_remark"
                 style="@style/black_text_13sp"
                 android:layout_marginTop="12dp"
-                android:text="消费备注：客人很满意"
+                android:text="消费备注："
                 android:textColor="@color/grayText" />
 
             <View
@@ -112,13 +119,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/tv_card_number"
                         style="@style/black_text_13sp"
                         android:text="卡号"
                         android:textColor="@color/grayText" />
 
                     <TextView
                         style="@style/black_text_13sp"
-                        android:text="123341235135"
+                        tools:text="123341235135"
                         android:layout_marginLeft="4dp"/>
                 </LinearLayout>
 
@@ -145,9 +153,10 @@
                             android:text="本金消费" />
 
                         <TextView
+                            android:id="@+id/tv_money1"
                             style="@style/black_text_12sp"
                             android:layout_marginTop="4dp"
-                            android:text="￥0.01" />
+                            tools:text="￥0.01" />
 
                     </LinearLayout>
 
@@ -168,9 +177,10 @@
                             android:text="赠金消费" />
 
                         <TextView
+                            android:id="@+id/tv_money2"
                             style="@style/black_text_12sp"
                             android:layout_marginTop="4dp"
-                            android:text="￥0.01" />
+                            tools:text="￥0.01" />
 
                     </LinearLayout>
 
@@ -191,9 +201,10 @@
                             android:text="可用余额" />
 
                         <TextView
+                            android:id="@+id/tv_money3"
                             style="@style/black_text_12sp"
                             android:layout_marginTop="4dp"
-                            android:text="￥0.01" />
+                            tools:text="￥0.01" />
 
                     </LinearLayout>
                 </LinearLayout>

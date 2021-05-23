@@ -1,14 +1,13 @@
 package com.xianlv.business.adapter;
 
 
-import android.view.View;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.CheckDeductionItem;
 
-public class CouponCodeParkAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements LoadMoreModule {
+public class CouponCodeParkAdapter extends BaseQuickAdapter<CheckDeductionItem, BaseViewHolder> implements LoadMoreModule {
 
 
     public CouponCodeParkAdapter() {
@@ -16,9 +15,9 @@ public class CouponCodeParkAdapter extends BaseQuickAdapter<String, BaseViewHold
     }
 
     @Override
-    protected void convert(BaseViewHolder helper,  String item) {
+    protected void convert(BaseViewHolder helper,  CheckDeductionItem item) {
         int position = helper.getAdapterPosition();
-
+        helper.setText(R.id.tv_text1,"房间信息："+item.roomNumber+"\n有效时间："+item.effectiveTime);
 
    }
 

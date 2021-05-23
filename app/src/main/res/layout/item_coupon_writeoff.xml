@@ -26,6 +26,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_desc"
             android:layout_below="@+id/tv_type"
             style="@style/small_text_gray_style"
             android:text="可在客房使用"
@@ -54,6 +55,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_below="@+id/tv_code"
                 style="@style/small_text_gray_style"
                 android:text="有效时间：2020-08-20"
@@ -67,14 +69,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/unused_coupon"
+            android:visibility="gone"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
-
-
-
-
-
 
 
 </LinearLayout>

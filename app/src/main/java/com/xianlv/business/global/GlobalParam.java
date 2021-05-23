@@ -1,15 +1,12 @@
 package com.xianlv.business.global;
 
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.tozzais.baselibrary.util.SharedPreferencesUtil;
 import com.xianlv.business.MyApp;
 import com.xianlv.business.bean.LoginBean;
-
-import java.util.Objects;
 
 
 /**
@@ -44,16 +41,6 @@ public class GlobalParam {
         return SharedPreferencesUtil.getBooleanData(MyApp.mContext, Constant.user_first_use,false);
     }
 
-
-    //存 用户的token
-    public static void setUserToken(String userid) {
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_token, userid);
-    }
-    //取 用户的用户的token
-    public static String getUserToken() {
-        return Objects.requireNonNull(getLoginBean()).token;
-    }
-
     //是否登录
     public static void setUserLogin(boolean userid) {
         SharedPreferencesUtil.saveBooleanData(MyApp.mContext, Constant.user_login, userid);
@@ -62,40 +49,11 @@ public class GlobalParam {
         return getLoginBean() != null;
     }
 
-    public static boolean getUserLogin(Context context) {
-        boolean isLogin = SharedPreferencesUtil.getBooleanData(MyApp.mContext, Constant.user_login, false);
-        if (!isLogin){
-//            LoginActivity.launch((Activity) context,true);
-        }
-        return isLogin;
-    }
-
-    //存 用户的token
-    public static void setUserId(String userid) {
-        if (TextUtils.isEmpty(userid)){
-            setAlias("");
-        }else {
-            setAlias("huiguniang_"+userid);
-        }
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_id, userid);
-    }
-    //取 用户的用户的token
-    public static String getUserId() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.user_id,"");
-    }
-
-
-
-
 
     //存 用户 信息
     public static void exitLogin() {
-        setUserLogin(false);
-        setUserToken("");
-        setUserId("");
+        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_bean_string, "");
     }
-
-
 
 
     //存储用户登录信息
@@ -112,34 +70,6 @@ public class GlobalParam {
         return new Gson().fromJson(data,LoginBean.class);
     }
 
-
-    //存 帖子搜索记录
-    public static void setSearchPost(String userid) {
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.search_post, userid);
-    }
-    //取 帖子搜索记录
-    public static String getSearchPost() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.search_post,"");
-    }
-
-    //存 话题搜索记录
-    public static void setSearchTopic(String userid) {
-        SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.search_topic, userid);
-    }
-    //取 话题搜索记录
-    public static String getSearchTopic() {
-        return SharedPreferencesUtil.getStringData(MyApp.mContext, Constant.search_topic,"");
-    }
-
-
-
-    //登录成功是否直接返回 用户没登录的情况 操作之后 返回当前界面
-    public static void setLoginFinish(boolean loginFinish) {
-        SharedPreferencesUtil.saveBooleanData(MyApp.mContext, Constant.user_login_finish, loginFinish);
-    }
-    public static boolean getLoginFinish() {
-        return SharedPreferencesUtil.getBooleanData(MyApp.mContext, Constant.user_login_finish,false);
-    }
 
 
 

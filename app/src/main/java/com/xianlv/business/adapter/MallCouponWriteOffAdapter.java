@@ -8,8 +8,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.CheckDeductionItem;
 
-public class MallCouponWriteOffAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements LoadMoreModule {
+public class MallCouponWriteOffAdapter extends BaseQuickAdapter<CheckDeductionItem, BaseViewHolder> implements LoadMoreModule {
 
 
     public MallCouponWriteOffAdapter() {
@@ -17,7 +18,7 @@ public class MallCouponWriteOffAdapter extends BaseQuickAdapter<String, BaseView
     }
 
     @Override
-    protected void convert(BaseViewHolder helper,  String item) {
+    protected void convert(BaseViewHolder helper,  CheckDeductionItem item) {
         int position = helper.getAdapterPosition();
         LinearLayout ll_header = helper.getView(R.id.ll_header);
         ll_header.setVisibility(position == 0 ? View.VISIBLE:View.GONE);

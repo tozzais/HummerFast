@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -18,6 +17,7 @@ import com.tozzais.baselibrary.util.StatusBarUtil;
 import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
@@ -27,12 +27,12 @@ import com.xianlv.business.ui.activity.CheckInApplyActivity;
 import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CleanApplyActivity;
 import com.xianlv.business.ui.activity.CodeActivity;
-import com.xianlv.business.ui.activity.CouponWriteOffActivity;
+import com.xianlv.business.ui.activity.CouponCodeAuthActivity;
 import com.xianlv.business.ui.activity.DeliveryReminderActivity;
 import com.xianlv.business.ui.activity.DepositInformActivity;
 import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.GoodsManageActivity;
-import com.xianlv.business.ui.activity.MallCouponWriteOffActivity;
+import com.xianlv.business.ui.activity.LoginActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
 import com.xianlv.business.ui.activity.OrderActivity;
@@ -58,7 +58,6 @@ public class MainActivity extends CheckPermissionActivity {
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
 
     @BindView(R.id.iv_bg)
     ImageView ivBg;
@@ -124,6 +123,13 @@ public class MainActivity extends CheckPermissionActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_switch:
+                CenterDialogUtil.show(mActivity,"提示","是否退出当前用户？",s -> {
+                    if ("1".equals(s)){
+                        GlobalParam.exitLogin();
+                        LoginActivity.launch(mActivity);
+                        finish();
+                    }
+                });
                 break;
             case R.id.ll_applets:
                 CodeActivity.launch(mActivity, 1);
@@ -144,14 +150,13 @@ public class MainActivity extends CheckPermissionActivity {
                 DeliveryReminderActivity.launch(mActivity);
                 break;
             case R.id.rl_write1:
-                CouponWriteOffActivity.launch(mActivity);
+                StoredValueCardWriteOffActivity.launch(mActivity, StoredValueCardWriteOffActivity.COUPON);
                 break;
             case R.id.rl_write2:
-                StoredValueCardWriteOffActivity.launch(mActivity, 0);
+                StoredValueCardWriteOffActivity.launch(mActivity, StoredValueCardWriteOffActivity.CARD);
                 break;
             case R.id.rl_write3:
-                MallCouponWriteOffActivity.launch(mActivity);
-//                StoredValueCardWriteOffActivity.launch(mActivity,1);
+                StoredValueCardWriteOffActivity.launch(mActivity,StoredValueCardWriteOffActivity.GOODS);
                 break;
             case R.id.rl_write4:
                 MallCouponWriteOffRecordActivity.launch(mActivity);
@@ -186,16 +191,21 @@ public class MainActivity extends CheckPermissionActivity {
             case R.id.rl_manage6:
                 CenterDialogUtil.showVerify(mActivity, "早餐券验证", 0, s -> {
                     if (s.equals("1")) {
+                        type = 0;
                         checkPermissions(needPermissions);
                     }
                 });
                 break;
             case R.id.rl_manage7:
                 CenterDialogUtil.showVerify(mActivity, "停车券验证", 1, s -> {
-
+                    if (s.equals("1")) {
+                        type = 1;
+                        checkPermissions(needPermissions);
+                    }
                 });
                 break;
             case R.id.rl_manage8:
+                tsg("该功能暂未开发，请您耐心等待");
                 break;
             case R.id.rl_manage9:
                 VisitorRecordActivity.launch(mActivity);
@@ -227,10 +237,6 @@ public class MainActivity extends CheckPermissionActivity {
     @Override
     public void permissionGranted() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-        /*ZxingConfig是配置类  可以设置是否显示底部布局，闪光灯，相册，是否播放提示音  震动等动能
-         * 也可以不传这个参数
-         * 不传的话  默认都为默认不震动  其他都为true
-         * */
         ZxingConfig config = new ZxingConfig();
         config.setPlayBeep(true);//是否播放扫描声音 默认为true
         config.setShake(true);//是否震动  默认为true
@@ -242,7 +248,7 @@ public class MainActivity extends CheckPermissionActivity {
         intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
         startActivityForResult(intent, REQUEST_CODE_SCAN);
     }
-
+    private int type = 0;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -251,8 +257,12 @@ public class MainActivity extends CheckPermissionActivity {
         if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-//                result.setText("扫描结果为：" + content);
-                Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
+                try {
+                    CouponCodeAuthActivity.launch(mActivity,type,content.split("\\*")[3]);
+                } catch (Exception e){
+                    tsg("不是系统的二维码");
+                }
+
             }
         }
     }
@@ -263,7 +273,7 @@ public class MainActivity extends CheckPermissionActivity {
                     @Override
                     public void onSuccess(BaseResult<MineInfo> result) {
                         MineInfo mineInfo = result.data;
-                        tvHotelName.setText(mineInfo.address);
+                        tvHotelName.setText(mineInfo.shopName);
                         tv_hotel_name1.setText(mineInfo.shopName);
                         tv_address.setText(mineInfo.address);
                         tvName.setText(mineInfo.department + " " + mineInfo.trueName);

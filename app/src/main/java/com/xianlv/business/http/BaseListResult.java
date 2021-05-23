@@ -9,5 +9,5 @@ import java.util.List;
 public class BaseListResult<T>{
     public int code;
     public List<T> data;
-    public String message;
+    public String msg;
 }

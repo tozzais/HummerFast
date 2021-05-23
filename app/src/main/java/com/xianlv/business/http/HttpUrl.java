@@ -6,6 +6,9 @@ package com.xianlv.business.http;
 public interface HttpUrl {
 
     String server_url = "https://test.shanghaixianlv.com/hotel-client/";
+    String image_url = "https://img.shanghaixianlv.com/";
+
+
     String get_code = "code/send";  //获取验证码
     String login = "worker_login/login";  //用户名登录
     String shop_info = "worker_login/toBeWorker";//扫描二维码 获取门店信息
@@ -37,6 +40,12 @@ public interface HttpUrl {
     String cash_detail = "cash/queryCashOrder";//押金页面
     String cash_update = "cash/updateCashOrder";
     String cash_return = "cash/refundOrderCash";
+    String check_deduction = "verification/selectWithhold";//查询扣款
+    String coupon_verification = "mycoupon/verification";
+    String ver_history = "verification/getVerificationRecordsList";
+    String write_breakfast_park = "voucher/breakfastVoucher/use";
+    String card_reduce = "card/withhold";//储值卡扣款
+    String card_reduce_detail = "card/withholdBalance";//储值卡扣款明细
 
 
 

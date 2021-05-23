@@ -77,10 +77,13 @@
                 android:src="@mipmap/icon_search"/>
 
             <EditText
+                android:id="@+id/et_code"
                 style="@style/et_style"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:hint="输入劵码"/>
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:hint="请输入"/>
 
 
         </LinearLayout>

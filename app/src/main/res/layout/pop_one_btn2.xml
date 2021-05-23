@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingTop="30dp"
     android:layout_marginLeft="40dp"
     android:layout_marginRight="40dp"
-    android:background="@drawable/shape_white5"
-    >
+    android:background="@drawable/shape_white5">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,8 +39,9 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text1"
                 style="@style/black_text_12sp"
-                android:text="陈先生"
+                tools:text="陈先生"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 />
@@ -60,6 +60,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text2"
                 style="@style/black_text_12sp"
                 android:text="13166015579"
                 android:layout_width="0dp"
@@ -80,6 +81,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text3"
                 style="@style/black_text_12sp"
                 android:text="金桥店"
                 android:layout_width="0dp"
@@ -100,6 +102,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text4"
                 style="@style/black_text_12sp"
                 android:text="0.01元"
                 android:layout_width="0dp"

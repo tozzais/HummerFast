@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/gray_bg"
     android:orientation="vertical">
 
@@ -21,9 +22,11 @@
             android:text="储值卡名称：" />
 
         <EditText
+            android:id="@+id/tv_card_name"
             style="@style/et_style"
             android:inputType="text"
-            android:text="金桥店储值卡" />
+            tools:text="金桥店储值卡"
+            android:enabled="false"/>
 
 
     </LinearLayout>
@@ -47,9 +50,11 @@
             android:text="客户名称：" />
 
         <EditText
+            android:id="@+id/tv_name"
             style="@style/et_style"
             android:inputType="text"
-            android:text="张先生" />
+            tools:text="张先生"
+            android:enabled="false"/>
 
 
     </LinearLayout>
@@ -73,9 +78,11 @@
             android:text="客户电话：" />
 
         <EditText
+            android:id="@+id/tv_phone"
             style="@style/et_style"
             android:inputType="text"
-            android:text="13166015579" />
+            tools:text="13166015579"
+            android:enabled="false"/>
 
 
     </LinearLayout>
@@ -99,9 +106,11 @@
             android:text="会员级别：" />
 
         <EditText
+            android:id="@+id/tv_level"
             style="@style/et_style"
             android:inputType="text"
-            android:text="微信会员" />
+            tools:text="微信会员"
+            android:enabled="false"/>
 
 
     </LinearLayout>
@@ -125,9 +134,11 @@
             android:text="可用余额：" />
 
         <EditText
+            android:id="@+id/tv_balance"
             style="@style/et_style"
             android:inputType="text"
-            android:text="5元" />
+            tools:text="5元"
+            android:enabled="false"/>
 
 
     </LinearLayout>
@@ -151,9 +162,11 @@
             android:text="营业点：" />
 
         <EditText
+            android:id="@+id/tv_address"
             style="@style/et_style"
             android:inputType="text"
-            android:text="金桥店" />
+            tools:text="金桥店"
+            android:enabled="false"/>
 
 
     </LinearLayout>
@@ -177,11 +190,13 @@
             android:text="消费金额：" />
 
         <EditText
+            android:id="@+id/et_money"
             style="@style/et_style"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:inputType="text"
             android:hint="输入金额"
+            android:digits="1234567890."
+            android:inputType="number"
             android:layout_marginLeft="12dp"
             android:layout_width="90dp"
             android:background="@drawable/shape_gray5"/>
@@ -213,6 +228,7 @@
             android:text="消费备注：" />
 
         <EditText
+            android:id="@+id/et_remark"
             style="@style/et_style"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"

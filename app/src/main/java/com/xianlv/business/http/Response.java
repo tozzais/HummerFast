@@ -131,11 +131,11 @@ public class Response<T> extends Subscriber<T> {
                 GlobalParam.setUserLogin(false);
 //                LoginActivity.launch((Activity) mContext,true);
             }else {
-                if (!TextUtils.isEmpty(base.message)){
+                if (!TextUtils.isEmpty(base.msg)){
                     if (mNeedReturn && !isLoad){
-                        onErrorShow(base.message);
+                        onErrorShow(base.msg);
                     }if (mNeedTip){
-                        onToast(base.message);
+                        onToast(base.msg);
                     }
                 }
             }

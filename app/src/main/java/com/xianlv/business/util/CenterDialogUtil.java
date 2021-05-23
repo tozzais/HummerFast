@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.RefundDetailAdapter;
 import com.xianlv.business.bean.CashDetail;
+import com.xianlv.business.bean.CheckDeductionItem;
 import com.xianlv.business.listener.OnSureClickListener;
 import com.xianlv.business.ui.activity.CouponCodeAuthActivity;
 
@@ -46,12 +47,20 @@ public class CenterDialogUtil {
 
 
 
-    public static void showTwo(Context context,String btnCancel, String btnSure
+    public static void showTwo(Context context, CheckDeductionItem item,String money,String btnCancel, String btnSure
             , final OnGetStringListener listener) {
         View messageView = View.inflate(context, R.layout.pop_one_btn2, null);
         cityDialog = DialogUtils.getCenterDialog(context, messageView);
         TextView tv_cancel = messageView.findViewById(R.id.tv_cancel);
         TextView tv_sure = messageView.findViewById(R.id.tv_sure);
+        TextView tv_text1 = messageView.findViewById(R.id.tv_text1);
+        TextView tv_text2 = messageView.findViewById(R.id.tv_text2);
+        TextView tv_text3 = messageView.findViewById(R.id.tv_text3);
+        TextView tv_text4 = messageView.findViewById(R.id.tv_text4);
+        tv_text1.setText(item.nickname);
+        tv_text2.setText(item.phone);
+        tv_text3.setText(item.cardName);
+        tv_text4.setText(money+"元");
         tv_cancel.setText(btnCancel);
         tv_sure.setText(btnSure);
         tv_sure.setOnClickListener(v -> {
