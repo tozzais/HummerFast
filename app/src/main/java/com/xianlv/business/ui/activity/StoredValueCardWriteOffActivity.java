@@ -49,7 +49,7 @@ public class StoredValueCardWriteOffActivity extends CheckPermissionActivity {
     TextView btnBottom;
     @BindView(R.id.ll_bottom)
     RelativeLayout ll_bottom;
-
+    //商品券 3041958924 1551973768
     private int type = 0;
     public static void launch(Context from, int type) {
         if (!ClickUtils.isFastClick()) {
@@ -159,7 +159,8 @@ public class StoredValueCardWriteOffActivity extends CheckPermissionActivity {
                     }else if (type == CARD) {
                         ScanCodeDeductionActivity.launch(mActivity,content.split("\\*")[3],"1","扫码扣款");
                     }else if (type == GOODS) {
-                        MallCouponWriteOffActivity.launch(mActivity, "3", category, content.split("\\*")[3]);
+                        tsg(content.split("\\*")[3]);
+                        MallCouponWriteOffActivity.launch(mActivity, "3", "3", content.split("\\*")[3]);
                     }
                 }
                 catch (Exception e){

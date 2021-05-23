@@ -4,6 +4,7 @@ package com.xianlv.business.http;
 import com.xianlv.business.bean.CardReduceDetail;
 import com.xianlv.business.bean.CashDetail;
 import com.xianlv.business.bean.CashItem;
+import com.xianlv.business.bean.CheckDeductionGoodsItem;
 import com.xianlv.business.bean.CheckDeductionItem;
 import com.xianlv.business.bean.CheckInItem;
 import com.xianlv.business.bean.CheckOutItem;
@@ -32,6 +33,7 @@ import com.xianlv.business.bean.request.RequestCheckDeduction;
 import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestGiveWay;
 import com.xianlv.business.bean.request.RequestGoodsOrderId;
+import com.xianlv.business.bean.request.RequestGoodsVerify;
 import com.xianlv.business.bean.request.RequestList;
 import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestMyCouponId;
@@ -152,6 +154,10 @@ public interface ApiService {
     @POST(HttpUrl.check_deduction)
     Observable<BaseListResult<CheckDeductionItem>>
     check_deduction(@Body RequestCheckDeduction bean);
+    //查询扣款
+    @POST(HttpUrl.check_deduction)
+    Observable<BaseListResult<CheckDeductionGoodsItem>>
+    check_deduction1(@Body RequestCheckDeduction bean);
     //优惠券核销
     @POST(HttpUrl.coupon_verification)
     Observable<BaseResult>
@@ -163,14 +169,16 @@ public interface ApiService {
     @POST(HttpUrl.write_breakfast_park)
     Observable<BaseResult>
     write_breakfast_park(@Body RequestBreakfastId bean);
-
     @POST(HttpUrl.card_reduce)
     Observable<BaseResult<String>>
     card_reduce(@Body RequestCardReduce bean);
-
     @POST(HttpUrl.card_reduce_detail)
     Observable<BaseListResult<CardReduceDetail>>
     card_reduce_detail(@Body RequestCardReduceDetail bean);
+    //商品核销
+    @POST(HttpUrl.goods_verification)
+    Observable<BaseResult>
+    goods_verification(@Body RequestGoodsVerify bean);
 
 
 

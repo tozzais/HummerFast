@@ -46,6 +46,7 @@ public interface HttpUrl {
     String write_breakfast_park = "voucher/breakfastVoucher/use";
     String card_reduce = "card/withhold";//储值卡扣款
     String card_reduce_detail = "card/withholdBalance";//储值卡扣款明细
+    String goods_verification = "verification/productVerification";//商品核销
 
 
 
