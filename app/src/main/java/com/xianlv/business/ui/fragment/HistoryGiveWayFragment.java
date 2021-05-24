@@ -4,13 +4,20 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
-import com.xianlv.business.adapter.CollectionRecordAdapter;
 import com.xianlv.business.adapter.HistoryGiveWayAdapter;
+import com.xianlv.business.bean.GiveWayItem;
+import com.xianlv.business.bean.request.RequestGiveWay;
+import com.xianlv.business.global.GlobalParam;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
+
+import java.util.Objects;
 
 
-public class HistoryGiveWayFragment extends BaseListFragment<String> {
+public class HistoryGiveWayFragment extends BaseListFragment<GiveWayItem> {
 
 
 
@@ -36,7 +43,7 @@ public class HistoryGiveWayFragment extends BaseListFragment<String> {
 //
 //        });
 
-        setEmptyView("您还没有收款记录哦~");
+        setEmptyView("暂无送物历史~");
 
 
 
@@ -45,14 +52,29 @@ public class HistoryGiveWayFragment extends BaseListFragment<String> {
     @Override
     public void loadData() {
         super.loadData();
-        getData();
+        RequestGiveWay bean = new RequestGiveWay();
+        bean.status = "1";
+        bean.page = page+"";
+        bean.shopId = Objects.requireNonNull(GlobalParam.getLoginBean()).shopId +"";
+        new RxHttp<BaseListResult<GiveWayItem>>().send(ApiManager.getService().give_way_list(bean),
+                new Response<BaseListResult<GiveWayItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<GiveWayItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
 
 
     }
 
-    private void  getData(){
-       setData(DataUtil.getData(8));
-    }
 
     @Override
     public void initListener() {

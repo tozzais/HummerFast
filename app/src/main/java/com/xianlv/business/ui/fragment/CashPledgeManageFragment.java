@@ -1,6 +1,8 @@
 package com.xianlv.business.ui.fragment;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +32,8 @@ public class CashPledgeManageFragment extends BaseListFragment<CashItem> {
 
     @BindView(R.id.btn_bottom)
     TextView btnBottom;
+    @BindView(R.id.ll_bottom)
+    RelativeLayout ll_bottom;
 
     public static CashPledgeManageFragment newInstance(int type) {
         CashPledgeManageFragment cartFragment = new CashPledgeManageFragment();
@@ -44,6 +48,7 @@ public class CashPledgeManageFragment extends BaseListFragment<CashItem> {
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         btnBottom.setText("押金历史");
+        ll_bottom.setVisibility(View.GONE);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
@@ -95,7 +100,8 @@ public class CashPledgeManageFragment extends BaseListFragment<CashItem> {
 
     @Override
     public void initListener() {
-        super.initListener();
+        if (swipeLayout != null)
+            swipeLayout.setOnRefreshListener(this::onRefresh);
         mAdapter.getLoadMoreModule().setEnableLoadMore(false);
 
     }

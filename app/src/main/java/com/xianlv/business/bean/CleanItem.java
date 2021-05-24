@@ -5,4 +5,6 @@ public class CleanItem {
     public String createTime;
     public String phone;
     public String sweepId;
+
+    public String completeTime;
 }

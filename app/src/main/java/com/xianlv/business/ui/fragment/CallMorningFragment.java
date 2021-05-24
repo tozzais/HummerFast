@@ -6,23 +6,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DpUtil;
-import com.tozzais.baselibrary.weight.LinearSpace;
-import com.xianlv.business.adapter.RecordCouponAdapter;
-import com.xianlv.business.bean.WriteOffHistoryItem;
-import com.xianlv.business.bean.request.RequestCategory;
+import com.xianlv.business.adapter.CallMorningAdapter;
+import com.xianlv.business.bean.CallMorningItem;
+import com.xianlv.business.bean.request.RequestList;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.Response;
 
 
-public class RecordCouponFragment extends BaseListFragment<WriteOffHistoryItem> {
+public class CallMorningFragment extends BaseListFragment<CallMorningItem> {
 
 
-
-
-    public static RecordCouponFragment newInstance(int type){
-        RecordCouponFragment cartFragment = new RecordCouponFragment();
+    public static CallMorningFragment newInstance(int type){
+        CallMorningFragment cartFragment = new CallMorningFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type",type);
         cartFragment.setArguments(bundle);
@@ -35,18 +31,14 @@ public class RecordCouponFragment extends BaseListFragment<WriteOffHistoryItem> 
         super.initView(savedInstanceState);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-
-        LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
-        mRecyclerView.addItemDecoration(girdSpace);
-
-        mAdapter = new RecordCouponAdapter();
+        mAdapter = new CallMorningAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
 //        setEmptyView(R.mipmap.empty_view,"您还没有相关订单哦~","去逛逛", view->{
 //
 //        });
 
-        setEmptyView("暂时没有优惠券核销记录~");
+        setEmptyView("暂无叫早服务~");
 
 
 
@@ -55,13 +47,17 @@ public class RecordCouponFragment extends BaseListFragment<WriteOffHistoryItem> 
     @Override
     public void loadData() {
         super.loadData();
-        RequestCategory bean = new RequestCategory();
-        bean.category = "3";
+        getData();
+
+    }
+
+    private void  getData(){
+        RequestList bean = new RequestList();
         bean.page = page+"";
-        new RxHttp<BaseListResult<WriteOffHistoryItem>>().send(ApiManager.getService().ver_history(bean),
-                new Response<BaseListResult<WriteOffHistoryItem>>(mActivity,Response.BOTH) {
+        new RxHttp<BaseListResult<CallMorningItem>>().send(ApiManager.getService().callMorning(bean),
+                new Response<BaseListResult<CallMorningItem>>(mActivity,Response.BOTH) {
                     @Override
-                    public void onSuccess(BaseListResult<WriteOffHistoryItem> result) {
+                    public void onSuccess(BaseListResult<CallMorningItem> result) {
                         setData(result.data);
                     }
                     @Override
@@ -73,10 +69,7 @@ public class RecordCouponFragment extends BaseListFragment<WriteOffHistoryItem> 
                         showError(s);
                     }
                 });
-
-
     }
-
 
     @Override
     public void initListener() {

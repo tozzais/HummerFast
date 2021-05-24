@@ -121,7 +121,7 @@ public class ScanCodeDeductionActivity extends BaseActivity {
                         RequestCardReduce bean = new RequestCardReduce();
                         bean.cardUserId = item.cardUserId;
                         bean.money = money;
-                        bean.remark = item.cardUserId;
+                        bean.remark = et_remark.getText().toString().trim();
                         new RxHttp<BaseResult<String>>().send(ApiManager.getService().card_reduce(bean),
                                 new Response<BaseResult<String>>(mActivity) {
                                     @Override

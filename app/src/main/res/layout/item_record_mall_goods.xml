@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <TextView
+        android:id="@+id/tv_text1"
+        style="@style/small_text_gray_style"
+        android:layout_weight="1"
+        android:text="双人七夕甜蜜下午茶双人七夕甜蜜下午茶双人七夕甜蜜下午茶双人七夕甜蜜下午茶双人七夕甜蜜下午茶双人七夕甜蜜下午茶 双人餐" />
+
+    <TextView
+        android:id="@+id/tv_text2"
+        style="@style/small_text_gray_style"
+        android:layout_marginLeft="12dp"
+        android:text="数量*1" />
+
+
+</LinearLayout>
+
+
+
+

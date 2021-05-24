@@ -22,6 +22,7 @@ import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
+import com.xianlv.business.ui.activity.CallMorningActivity;
 import com.xianlv.business.ui.activity.CashPledgeManageActivity;
 import com.xianlv.business.ui.activity.CheckInApplyActivity;
 import com.xianlv.business.ui.activity.CheckOutApplyActivity;
@@ -211,6 +212,7 @@ public class MainActivity extends CheckPermissionActivity {
                 VisitorRecordActivity.launch(mActivity);
                 break;
             case R.id.rl_manage10:
+                CallMorningActivity.launch(mActivity);
                 break;
             case R.id.rl_study1:
                 tsg("该功能暂未开发，请您耐心等待");

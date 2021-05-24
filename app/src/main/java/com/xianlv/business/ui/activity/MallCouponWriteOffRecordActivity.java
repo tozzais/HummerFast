@@ -11,11 +11,9 @@ import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.ui.fragment.CheckInFragment;
 import com.xianlv.business.ui.fragment.RecordCardFragment;
 import com.xianlv.business.ui.fragment.RecordCouponFragment;
 import com.xianlv.business.ui.fragment.RecordMallFragment;
-import com.xianlv.business.weight.CommentTabLayout;
 import com.xianlv.business.weight.SpikeTabLayout;
 
 import java.util.ArrayList;

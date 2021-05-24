@@ -1,6 +1,7 @@
 package com.xianlv.business.http;
 
 
+import com.xianlv.business.bean.CallMorningItem;
 import com.xianlv.business.bean.CardReduceDetail;
 import com.xianlv.business.bean.CashDetail;
 import com.xianlv.business.bean.CashItem;
@@ -96,7 +97,7 @@ public interface ApiService {
     getDeposit(@Body RequestList bean);
     //叫早服务
     @POST(HttpUrl.call_morning)
-    Observable<BaseListResult<DepositItem>>
+    Observable<BaseListResult<CallMorningItem>>
     callMorning(@Body RequestList bean);
     //访客记录
     @POST(HttpUrl.visitorUser)

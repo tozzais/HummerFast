@@ -37,6 +37,7 @@
 
 
     <TextView
+        android:id="@+id/tv_time"
         android:layout_marginTop="20dp"
         style="@style/gray_text_10sp"
         android:text="申请时间\n2021-01-19\n12:09:03\n\n完成时间\n2021-01-19\n12:09:03"/>
@@ -49,12 +50,14 @@
         android:orientation="vertical"
         android:layout_marginLeft="12dp">
         <TextView
+            android:id="@+id/tv_room_number"
             style="@style/black_text_bold_13sp"
             android:text="房间号：0033"
 
             />
 
         <TextView
+            android:id="@+id/tv_phone"
             style="@style/small_text_gray_style"
             android:text="入住人手机号：13166015579"
             android:layout_marginTop="6dp"
@@ -62,6 +65,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_goods"
             style="@style/small_text_gray_style"
             android:text="物品名称：温度计，矿泉水"
             android:layout_marginTop="6dp"
