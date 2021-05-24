@@ -4,11 +4,14 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
@@ -80,6 +83,10 @@ public class MainActivity extends CheckPermissionActivity {
     TextView tvNumberSendGoods;
     @BindView(R.id.tv_number_clean)
     TextView tvNumberClean;
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
+    @BindView(R.id.swipeLayout)
+    SwipeRefreshLayout swipeLayout;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -124,8 +131,8 @@ public class MainActivity extends CheckPermissionActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_switch:
-                CenterDialogUtil.show(mActivity,"提示","是否退出当前用户？",s -> {
-                    if ("1".equals(s)){
+                CenterDialogUtil.show(mActivity, "提示", "是否退出当前用户？", s -> {
+                    if ("1".equals(s)) {
                         GlobalParam.exitLogin();
                         LoginActivity.launch(mActivity);
                         finish();
@@ -157,7 +164,7 @@ public class MainActivity extends CheckPermissionActivity {
                 StoredValueCardWriteOffActivity.launch(mActivity, StoredValueCardWriteOffActivity.CARD);
                 break;
             case R.id.rl_write3:
-                StoredValueCardWriteOffActivity.launch(mActivity,StoredValueCardWriteOffActivity.GOODS);
+                StoredValueCardWriteOffActivity.launch(mActivity, StoredValueCardWriteOffActivity.GOODS);
                 break;
             case R.id.rl_write4:
                 MallCouponWriteOffRecordActivity.launch(mActivity);
@@ -234,6 +241,15 @@ public class MainActivity extends CheckPermissionActivity {
         }
     }
 
+    @Override
+    public void initListener() {
+        super.initListener();
+        swipeLayout.setOnRefreshListener(() -> {
+            getData();
+            getNumber();
+        });
+    }
+
     private static final int REQUEST_CODE_SCAN = 1001;
 
     @Override
@@ -250,7 +266,9 @@ public class MainActivity extends CheckPermissionActivity {
         intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
         startActivityForResult(intent, REQUEST_CODE_SCAN);
     }
+
     private int type = 0;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -260,8 +278,8 @@ public class MainActivity extends CheckPermissionActivity {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
                 try {
-                    CouponCodeAuthActivity.launch(mActivity,type,content.split("\\*")[3]);
-                } catch (Exception e){
+                    CouponCodeAuthActivity.launch(mActivity, type, content.split("\\*")[3]);
+                } catch (Exception e) {
                     tsg("不是系统的二维码");
                 }
 
@@ -280,6 +298,12 @@ public class MainActivity extends CheckPermissionActivity {
                         tv_address.setText(mineInfo.address);
                         tvName.setText(mineInfo.department + " " + mineInfo.trueName);
                     }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        swipeLayout.setRefreshing(false);
+                    }
                 });
     }
 
@@ -290,17 +314,34 @@ public class MainActivity extends CheckPermissionActivity {
                     @Override
                     public void onSuccess(BaseResult<MainNumberBean> result) {
                         MainNumberBean numberBean = result.data;
-                        tvNumberClean.setVisibility(numberBean.sweep>0?View.VISIBLE:View.GONE);
-                        tvNumberClean.setText(numberBean.sweep+"");
-                        tvNumberPark.setVisibility(numberBean.vouchers2>0?View.VISIBLE:View.GONE);
-                        tvNumberPark.setText(numberBean.vouchers2+"");
-                        tvNumberBreakfast.setVisibility(numberBean.vouchers1>0?View.VISIBLE:View.GONE);
-                        tvNumberBreakfast.setText(numberBean.vouchers1+"");
-                        tvNumberSendGoods.setVisibility(numberBean.goods>0?View.VISIBLE:View.GONE);
-                        tvNumberSendGoods.setText(numberBean.goods+"");
-                        tvNumberCheckIn.setVisibility(numberBean.roomWifiConfiguration>0?View.VISIBLE:View.GONE);
-                        tvNumberCheckIn.setText(numberBean.roomWifiConfiguration+"");
+                        tvNumberClean.setVisibility(numberBean.sweep > 0 ? View.VISIBLE : View.GONE);
+                        tvNumberClean.setText(numberBean.sweep + "");
+                        tvNumberPark.setVisibility(numberBean.vouchers2 > 0 ? View.VISIBLE : View.GONE);
+                        tvNumberPark.setText(numberBean.vouchers2 + "");
+                        tvNumberBreakfast.setVisibility(numberBean.vouchers1 > 0 ? View.VISIBLE : View.GONE);
+                        tvNumberBreakfast.setText(numberBean.vouchers1 + "");
+                        tvNumberSendGoods.setVisibility(numberBean.goods > 0 ? View.VISIBLE : View.GONE);
+                        tvNumberSendGoods.setText(numberBean.goods + "");
+                        tvNumberCheckIn.setVisibility(numberBean.roomWifiConfiguration > 0 ? View.VISIBLE : View.GONE);
+                        tvNumberCheckIn.setText(numberBean.roomWifiConfiguration + "");
                     }
+
                 });
+    }
+
+    private long mExitTime;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                tsg("再按一次退出");
+                mExitTime = System.currentTimeMillis();
+            } else {
+                //小于2000ms则认为是用户确实希望退出程序-调用System.exit()方法进行退出
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
