@@ -13,7 +13,7 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.bean.CheckDeductionItem;
+import com.xianlv.business.bean.CheckDeductionCardItem;
 import com.xianlv.business.bean.request.RequestCardReduce;
 import com.xianlv.business.bean.request.RequestCheckDeduction;
 import com.xianlv.business.http.ApiManager;
@@ -81,10 +81,10 @@ public class ScanCodeDeductionActivity extends BaseActivity {
         bean.category = category;
         bean.key = key;
         bean.page = "0";
-        new RxHttp<BaseListResult<CheckDeductionItem>>().send(ApiManager.getService().check_deduction(bean),
-                new Response<BaseListResult<CheckDeductionItem>>(mActivity) {
+        new RxHttp<BaseListResult<CheckDeductionCardItem>>().send(ApiManager.getService().check_deduction2(bean),
+                new Response<BaseListResult<CheckDeductionCardItem>>(mActivity) {
                     @Override
-                    public void onSuccess(BaseListResult<CheckDeductionItem> result) {
+                    public void onSuccess(BaseListResult<CheckDeductionCardItem> result) {
                         //默认第一个是有的。没有后续在处理
                         item = result.data.get(0);
                         tvCardName.setText(item.cardName);
@@ -102,7 +102,7 @@ public class ScanCodeDeductionActivity extends BaseActivity {
                 });
 
     }
-    CheckDeductionItem item;
+    CheckDeductionCardItem item;
 
     @OnClick({R.id.btn_cancel, R.id.btn_bottom})
     public void onClick(View view) {

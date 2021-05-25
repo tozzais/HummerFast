@@ -10,6 +10,9 @@ public class ApiManager {
     private static ApiManager mInstance;
     private ApiService mApiService;
 
+    private static ApiManager weatherInstance;
+    private ApiService weatherService;
+
 
     public ApiManager() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -20,12 +23,27 @@ public class ApiManager {
                 .build();
         mApiService = retrofit.create(ApiService.class);
     }
-//    //单例模式
     public static ApiService getService() {
         if (mInstance == null) {
             mInstance = new ApiManager();
         }
         return mInstance.mApiService;
+    }
+
+    public ApiManager(String url) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(OkHttpUtils.getInstance())
+                .build();
+        weatherService = retrofit.create(ApiService.class);
+    }
+    public static ApiService getService1() {
+        if (weatherInstance == null) {
+            weatherInstance = new ApiManager(HttpUrl.weather_url);
+        }
+        return weatherInstance.weatherService;
     }
 
 

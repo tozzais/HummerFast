@@ -7,11 +7,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
-import com.xianlv.business.bean.CheckDeductionItem;
+import com.xianlv.business.bean.CheckDeductionCardItem;
 import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.ui.activity.ScanCodeDeductionActivity;
 
-public class StoreCardWriteAdapter extends BaseQuickAdapter<CheckDeductionItem, BaseViewHolder> implements LoadMoreModule {
+public class StoreCardWriteAdapter extends BaseQuickAdapter<CheckDeductionCardItem, BaseViewHolder> implements LoadMoreModule {
 
 
     public StoreCardWriteAdapter() {
@@ -19,7 +19,7 @@ public class StoreCardWriteAdapter extends BaseQuickAdapter<CheckDeductionItem, 
     }
 
     @Override
-    protected void convert(BaseViewHolder helper,  CheckDeductionItem item) {
+    protected void convert(BaseViewHolder helper,  CheckDeductionCardItem item) {
         int position = helper.getAdapterPosition();
         ImageView iv_image = helper.getView(R.id.iv_image);
         ImageUtil.loadFullAddress(getContext(),iv_image,item.logo);

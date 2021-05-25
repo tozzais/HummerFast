@@ -8,6 +8,7 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.GiveWayItem;
+import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.eventbus.RefreshSendGoods;
 import com.xianlv.business.bean.request.RequestGoodsOrderId;
 import com.xianlv.business.http.ApiManager;
@@ -46,6 +47,7 @@ public class SendGoodsReminderAdapter extends BaseQuickAdapter<GiveWayItem, Base
                     public void onSuccess(BaseResult result) {
                         ToastCommom.createToastConfig().ToastShow(getContext(),"操作成功");
                         EventBus.getDefault().post(new RefreshSendGoods());
+                        EventBus.getDefault().post(new RefreshMain());
                     }
                 });
     }

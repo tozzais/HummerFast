@@ -9,6 +9,7 @@ import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.CleanItem;
 import com.xianlv.business.bean.eventbus.RefreshClean;
+import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.RequestSweepId;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
@@ -45,6 +46,7 @@ public class CleanApplyAdapter extends BaseQuickAdapter<CleanItem, BaseViewHolde
                     public void onSuccess(BaseResult result) {
                         ToastCommom.createToastConfig().ToastShow(getContext(),"操作成功");
                         EventBus.getDefault().post(new RefreshClean());
+                        EventBus.getDefault().post(new RefreshMain());
                     }
                 });
     }

@@ -2,7 +2,7 @@ package com.xianlv.business.bean;
 
 import java.util.List;
 
-public class CheckDeductionItem {
+public class CheckDeductionCardItem {
     public String myCouponId;
     public String couponName;
     public String viewVo;
@@ -20,6 +20,7 @@ public class CheckDeductionItem {
     public String phone;//电话
     public String levelName;//会员级别
     public String balance;//可用余额
+    public List<String> shopNames;//营业点
     //储值卡列表
     public String logo;//卡名称
     public String cardUserNo;//卡名称
@@ -29,6 +30,7 @@ public class CheckDeductionItem {
     public String productName;//名称
     public String property;//
     public int status;//0 未核销  1已核销
+
 
 
 

@@ -10,6 +10,7 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.CouponItem;
+import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.eventbus.RefreshVoucher;
 import com.xianlv.business.bean.request.RequestVoucherId;
 import com.xianlv.business.http.ApiManager;
@@ -38,7 +39,7 @@ public class BreakfastCouponAdapter extends BaseQuickAdapter<CouponItem, BaseVie
                 .setText(R.id.tv_number,"申请券数："+item.count)
                 .setText(R.id.tv_type,"类型："+item.breakfastTypesOf);
         helper.getView(R.id.tv_refuse).setOnClickListener(view -> {
-            dealWith(item.voucherId,"2");
+            dealWith(item.voucherId,"1");
         });
         helper.getView(R.id.tv_pass).setOnClickListener(view -> {
             dealWith(item.voucherId,"2");
@@ -56,6 +57,7 @@ public class BreakfastCouponAdapter extends BaseQuickAdapter<CouponItem, BaseVie
                     public void onSuccess(BaseResult result) {
                         ToastCommom.createToastConfig().ToastShow(getContext(),"操作成功");
                         EventBus.getDefault().post(new RefreshVoucher());
+                        EventBus.getDefault().post(new RefreshMain());
                     }
                 });
     }

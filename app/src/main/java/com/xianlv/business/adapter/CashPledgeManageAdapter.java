@@ -25,8 +25,8 @@ public class CashPledgeManageAdapter extends BaseQuickAdapter<CashItem, BaseView
         helper.setText(R.id.tv_name,"用户名："+item.phone)
                 .setText(R.id.tv_pay_time,"支付时间："+item.payTime)
                 .setText(R.id.tv_pay_type,"支付类型："+item.roomOrderIdDesc)
-                .setText(R.id.tv_pay_money,"￥："+item.payMoney)
-                .setText(R.id.tv_remain_money,"￥："+item.money);
+                .setText(R.id.tv_pay_money,"￥"+item.payMoney)
+                .setText(R.id.tv_remain_money,"￥"+item.money);
 
 
 

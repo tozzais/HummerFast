@@ -5,6 +5,7 @@ package com.xianlv.business.http;
  */
 public interface HttpUrl {
 
+    String weather_url = "http://api.k780.com/";
     String server_url = "https://test.shanghaixianlv.com/hotel-client/";
     String image_url = "https://img.shanghaixianlv.com/";
 

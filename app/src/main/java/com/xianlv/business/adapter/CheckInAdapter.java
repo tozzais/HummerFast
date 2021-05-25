@@ -9,6 +9,7 @@ import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.CheckInItem;
 import com.xianlv.business.bean.eventbus.RefreshCheckIn;
+import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.RequestStaffHousingId;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
@@ -48,6 +49,7 @@ public class CheckInAdapter extends BaseQuickAdapter<CheckInItem, BaseViewHolder
                    public void onSuccess(BaseResult result) {
                        ToastCommom.createToastConfig().ToastShow(getContext(),"操作成功");
                        EventBus.getDefault().post(new RefreshCheckIn());
+                       EventBus.getDefault().post(new RefreshMain());
                    }
                });
    }
@@ -61,6 +63,7 @@ public class CheckInAdapter extends BaseQuickAdapter<CheckInItem, BaseViewHolder
                     public void onSuccess(BaseResult result) {
                         ToastCommom.createToastConfig().ToastShow(getContext(),"操作成功");
                         EventBus.getDefault().post(new RefreshCheckIn());
+                        EventBus.getDefault().post(new RefreshMain());
                     }
                 });
     }

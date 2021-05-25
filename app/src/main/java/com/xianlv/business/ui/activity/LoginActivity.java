@@ -103,7 +103,8 @@ public class LoginActivity extends BaseActivity {
             }
             @Override
             public void onClick(View view) {
-                AgreementWebViewActivity.launch(mActivity,"https://www.baidu.com");
+                AgreementWebViewActivity.launch(mActivity,
+                        "http://www.mofan.store/mf/profile/biz/html/xianlvyhxy.html","用户协议");
             }
         },str.indexOf("《用户协议》"), str.indexOf("《用户协议》")+"《用户协议》".length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
@@ -116,7 +117,8 @@ public class LoginActivity extends BaseActivity {
             }
             @Override
             public void onClick(View view) {
-                AgreementWebViewActivity.launch(mActivity,"https://api.huiguniangvip.com/api/user/agreements/1");
+                AgreementWebViewActivity.launch(mActivity,
+                        "http://www.mofan.store/mf/profile/biz/html/xianlvxy.html","隐私政策");
             }
         },str.indexOf("《隐私政策》"), str.indexOf("《隐私政策》")+"《隐私政策》".length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 

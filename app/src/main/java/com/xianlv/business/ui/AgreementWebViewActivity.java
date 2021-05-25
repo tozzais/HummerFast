@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -48,6 +50,16 @@ public class AgreementWebViewActivity extends BaseActivity {
         from.startActivity(intent);
     }
 
+    public static void launch(Context from,  String  type,  String  title) {
+        if (!ClickUtils.isFastClick()){
+            return;
+        }
+        Intent intent = new Intent(from, AgreementWebViewActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("title", title);
+        from.startActivity(intent);
+    }
+
 
 
 
@@ -79,7 +91,11 @@ public class AgreementWebViewActivity extends BaseActivity {
         mProgress.show();
         mProgress.setColor(getResources().getColor(R.color.baseColor));
 
-        web_view.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        WebSettings settings = web_view.getSettings();
+        settings.setDisplayZoomControls(false);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         web_view.addJavascriptInterface(new AppJs(this), "toLogin");
 
 
@@ -120,8 +136,11 @@ public class AgreementWebViewActivity extends BaseActivity {
         public void onProgressChanged(WebView webView, int i) {
             super.onProgressChanged(webView, i);
             mProgress.setProgress(i);
-            if (i == 100)
-            title.setText(webView.getTitle());
+            String title1 = getIntent().getStringExtra("title");
+            if (i == 100){
+                title.setText(TextUtils.isEmpty(title1)?webView.getTitle():title1);
+            }
+
         }
 
         @Override

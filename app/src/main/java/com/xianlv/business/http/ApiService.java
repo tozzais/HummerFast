@@ -5,6 +5,7 @@ import com.xianlv.business.bean.CallMorningItem;
 import com.xianlv.business.bean.CardReduceDetail;
 import com.xianlv.business.bean.CashDetail;
 import com.xianlv.business.bean.CashItem;
+import com.xianlv.business.bean.CheckDeductionCardItem;
 import com.xianlv.business.bean.CheckDeductionGoodsItem;
 import com.xianlv.business.bean.CheckDeductionItem;
 import com.xianlv.business.bean.CheckInItem;
@@ -46,9 +47,11 @@ import com.xianlv.business.bean.request.RequestStaffHousingId;
 import com.xianlv.business.bean.request.RequestSweepId;
 import com.xianlv.business.bean.request.RequestVoucher;
 import com.xianlv.business.bean.request.RequestVoucherId;
+import com.xianlv.business.bean.weather.WeatherResult;
 
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 
@@ -159,6 +162,10 @@ public interface ApiService {
     @POST(HttpUrl.check_deduction)
     Observable<BaseListResult<CheckDeductionGoodsItem>>
     check_deduction1(@Body RequestCheckDeduction bean);
+    //查询扣款
+    @POST(HttpUrl.check_deduction)
+    Observable<BaseListResult<CheckDeductionCardItem>>
+    check_deduction2(@Body RequestCheckDeduction bean);
     //优惠券核销
     @POST(HttpUrl.coupon_verification)
     Observable<BaseResult>
@@ -180,6 +187,11 @@ public interface ApiService {
     @POST(HttpUrl.goods_verification)
     Observable<BaseResult>
     goods_verification(@Body RequestGoodsVerify bean);
+
+    //商品核销
+    @POST("?app=weather.today&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
+    Observable<WeatherResult>
+    getWeather(@Query("cityNm") String bean);
 
 
 

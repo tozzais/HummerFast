@@ -17,7 +17,7 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.StoreCardWriteAdapter;
-import com.xianlv.business.bean.CheckDeductionItem;
+import com.xianlv.business.bean.CheckDeductionCardItem;
 import com.xianlv.business.bean.request.RequestCheckDeduction;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
@@ -29,7 +29,7 @@ import butterknife.OnClick;
 /**
  * 储值卡扣款列表页
  */
-public class StoredCardWriteOffFragment extends BaseListFragment<CheckDeductionItem> {
+public class StoredCardWriteOffFragment extends BaseListFragment<CheckDeductionCardItem> {
 
 
     @BindView(R.id.et_code)
@@ -80,10 +80,10 @@ public class StoredCardWriteOffFragment extends BaseListFragment<CheckDeductionI
         bean.category = category;
         bean.key = key;
         bean.page = page+"";
-        new RxHttp<BaseListResult<CheckDeductionItem>>().send(ApiManager.getService().check_deduction(bean),
-                new Response<BaseListResult<CheckDeductionItem>>(mActivity) {
+        new RxHttp<BaseListResult<CheckDeductionCardItem>>().send(ApiManager.getService().check_deduction2(bean),
+                new Response<BaseListResult<CheckDeductionCardItem>>(mActivity) {
                     @Override
-                    public void onSuccess(BaseListResult<CheckDeductionItem> result) {
+                    public void onSuccess(BaseListResult<CheckDeductionCardItem> result) {
                         setData(result.data);
                     }
 

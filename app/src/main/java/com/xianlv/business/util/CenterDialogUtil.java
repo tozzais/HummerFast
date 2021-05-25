@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.RefundDetailAdapter;
 import com.xianlv.business.bean.CashDetail;
-import com.xianlv.business.bean.CheckDeductionItem;
+import com.xianlv.business.bean.CheckDeductionCardItem;
 import com.xianlv.business.listener.OnSureClickListener;
 import com.xianlv.business.ui.activity.CouponCodeAuthActivity;
 
@@ -47,7 +47,7 @@ public class CenterDialogUtil {
 
 
 
-    public static void showTwo(Context context, CheckDeductionItem item,String money,String btnCancel, String btnSure
+    public static void showTwo(Context context, CheckDeductionCardItem item, String money, String btnCancel, String btnSure
             , final OnGetStringListener listener) {
         View messageView = View.inflate(context, R.layout.pop_one_btn2, null);
         cityDialog = DialogUtils.getCenterDialog(context, messageView);

@@ -19,8 +19,11 @@ import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
 import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.bean.weather.WeatherResult;
 import com.xianlv.business.global.GlobalParam;
+import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
@@ -63,6 +66,10 @@ public class MainActivity extends CheckPermissionActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+    @BindView(R.id.iv_weather)
+    ImageView iv_weather;
+    @BindView(R.id.tv_weather)
+    TextView tv_weather;
     @BindView(R.id.iv_bg)
     ImageView ivBg;
     @BindView(R.id.tv_hotel_name)
@@ -121,6 +128,7 @@ public class MainActivity extends CheckPermissionActivity {
     public void loadData() {
         getData();
         getNumber();
+        getWeather();
     }
 
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
@@ -245,8 +253,7 @@ public class MainActivity extends CheckPermissionActivity {
     public void initListener() {
         super.initListener();
         swipeLayout.setOnRefreshListener(() -> {
-            getData();
-            getNumber();
+            loadData();
         });
     }
 
@@ -343,5 +350,27 @@ public class MainActivity extends CheckPermissionActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void getWeather(){
+        new RxHttp<WeatherResult>().send(ApiManager.getService1().getWeather("上海"),
+                new Response<WeatherResult>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onNext(WeatherResult result) {
+                        if ("1".equals(result.success)){
+                            WeatherResult.ResultDTO resultDTO = result.result;
+                            ImageUtil.loadFullAddress(mActivity,iv_weather,resultDTO.weather_icon);
+                            tv_weather.setText(resultDTO.temp_low+"℃~"+resultDTO.temp_curr +"℃"+"\n"+resultDTO.weather_curr);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onEvent(Object o) {
+        super.onEvent(o);
+        if (o instanceof RefreshMain){
+            getNumber();
+        }
     }
 }
