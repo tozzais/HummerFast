@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -63,7 +67,12 @@ public class MainActivity extends CheckPermissionActivity {
 
     public static String[] needPermissions = {
             Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
+    public static String[] needPermissions1 = {
+            Manifest.permission.ACCESS_FINE_LOCATION
     };
 
     @BindView(R.id.iv_weather)
@@ -113,8 +122,33 @@ public class MainActivity extends CheckPermissionActivity {
         return R.layout.activity_main;
     }
 
+
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明定位回调监听器
+    public AMapLocationListener mLocationListener = aMapLocation -> {
+        getWeather(aMapLocation.getCity().replaceAll("市",""));
+    };
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
+
     @Override
     public void initView(Bundle savedInstanceState) {
+
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(mLocationListener);
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
+        mLocationOption.setOnceLocation(true);
+        /**
+         * 设置定位场景，目前支持三种场景（签到、出行、运动，默认无场景）
+         */
+        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
+        checkPermissions(needPermissions1);
+
 
     }
 
@@ -128,7 +162,7 @@ public class MainActivity extends CheckPermissionActivity {
     public void loadData() {
         getData();
         getNumber();
-        getWeather();
+
     }
 
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
@@ -259,22 +293,34 @@ public class MainActivity extends CheckPermissionActivity {
 
     private static final int REQUEST_CODE_SCAN = 1001;
 
+
+
     @Override
     public void permissionGranted() {
-        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-        ZxingConfig config = new ZxingConfig();
-        config.setPlayBeep(true);//是否播放扫描声音 默认为true
-        config.setShake(true);//是否震动  默认为true
-        config.setDecodeBarCode(true);//是否扫描条形码 默认为true
-        config.setReactColor(R.color.baseColor);//设置扫描框四个角的颜色 默认为白色
-        config.setFrameLineColor(R.color.white);//设置扫描框边框颜色 默认无色
-        config.setScanLineColor(R.color.white);//设置扫描线的颜色 默认白色
-        config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
-        intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
-        startActivityForResult(intent, REQUEST_CODE_SCAN);
+        if (type == -1){
+            if(null != mLocationClient){
+                mLocationClient.setLocationOption(mLocationOption);
+                //设置场景模式后最好调用一次stop，再调用start以保证场景模式生效
+                mLocationClient.stopLocation();
+                mLocationClient.startLocation();
+            }
+        }else {
+            Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+            ZxingConfig config = new ZxingConfig();
+            config.setPlayBeep(true);//是否播放扫描声音 默认为true
+            config.setShake(true);//是否震动  默认为true
+            config.setDecodeBarCode(true);//是否扫描条形码 默认为true
+            config.setReactColor(R.color.baseColor);//设置扫描框四个角的颜色 默认为白色
+            config.setFrameLineColor(R.color.white);//设置扫描框边框颜色 默认无色
+            config.setScanLineColor(R.color.white);//设置扫描线的颜色 默认白色
+            config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
+            intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+            startActivityForResult(intent, REQUEST_CODE_SCAN);
+        }
+
     }
 
-    private int type = 0;
+    private int type = -1;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -352,8 +398,8 @@ public class MainActivity extends CheckPermissionActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void getWeather(){
-        new RxHttp<WeatherResult>().send(ApiManager.getService1().getWeather("上海"),
+    private void getWeather(String city){
+        new RxHttp<WeatherResult>().send(ApiManager.getService1().getWeather(TextUtils.isEmpty(city)?"上海":city),
                 new Response<WeatherResult>(mActivity,Response.BOTH) {
                     @Override
                     public void onNext(WeatherResult result) {
@@ -361,8 +407,11 @@ public class MainActivity extends CheckPermissionActivity {
                             WeatherResult.ResultDTO resultDTO = result.result;
                             ImageUtil.loadFullAddress(mActivity,iv_weather,resultDTO.weather_icon);
                             tv_weather.setText(resultDTO.temp_low+"℃~"+resultDTO.temp_curr +"℃"+"\n"+resultDTO.weather_curr);
+                        }else {
+                            getWeather("上海");
                         }
                     }
+
                 });
     }
 

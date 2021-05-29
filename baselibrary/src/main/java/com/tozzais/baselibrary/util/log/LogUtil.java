@@ -2,8 +2,6 @@ package com.tozzais.baselibrary.util.log;
 
 import android.util.Log;
 
-import com.tozzais.baselibrary.BuildConfig;
-
 
 /**
  * Created by 32672 on 2019/4/11.
@@ -20,7 +18,7 @@ public class LogUtil {
      */
     public static boolean isDebuggable() {
 //        return BuildConfig.DEBUG;
-        return false;
+        return true;
     }
 
     private static String createLog(String log ) {

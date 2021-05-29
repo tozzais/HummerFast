@@ -1,5 +1,6 @@
 package com.xianlv.business.ui.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.tozzais.baselibrary.http.RxHttp;
-import com.tozzais.baselibrary.ui.BaseActivity;
+import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.CommonUtils;
 import com.xianlv.business.MainActivity;
@@ -33,6 +34,8 @@ import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.toast.OnDialogClickListener;
+import com.xianlv.business.toast.PrivacyUtil;
 import com.xianlv.business.ui.AgreementWebViewActivity;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
@@ -44,7 +47,15 @@ import butterknife.OnClick;
 /**
  * 尹晓冬 账号：15729271332
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends CheckPermissionActivity {
+
+
+    public static String[] needPermissions = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -87,10 +98,30 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        if (GlobalParam.getUserLogin()){
+        boolean firstUse = GlobalParam.getFirstUse();
+        if (!firstUse) {
+            PrivacyUtil.showTwo(mActivity, new OnDialogClickListener() {
+                @Override
+                public void onSure() {
+                    GlobalParam.setFirstUse(true);
+                    if (GlobalParam.getUserLogin()){
+                        MainActivity.launch(mActivity);
+                        finish();
+                    }
+                }
+                @Override
+                public void onCancel() {
+                    if (!isFinishing())
+                        finish();
+                }
+            });
+        }else {
+            if (GlobalParam.getUserLogin()){
             MainActivity.launch(mActivity);
             finish();
+            }
         }
+
 
         String str = "登录即同意《用户协议》和《隐私政策》";
         SpannableString string = new SpannableString(str);
@@ -132,16 +163,8 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
-                Intent intent = new Intent(mActivity, CaptureActivity.class);
-                ZxingConfig config = new ZxingConfig();
-                config.setShake(true);//是否震动  默认为true
-                config.setDecodeBarCode(true);//是否扫描条形码 默认为true
-                config.setReactColor(R.color.baseColor);//设置扫描框四个角的颜色 默认为白色
-                config.setFrameLineColor(R.color.white);//设置扫描框边框颜色 默认无色
-                config.setScanLineColor(R.color.white);//设置扫描线的颜色 默认白色
-                config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
-                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
-                startActivityForResult(intent, REQUEST_CODE_SCAN);
+                checkPermissions(needPermissions);
+
                 break;
             case R.id.tv_login:
                 login();
@@ -263,5 +286,24 @@ public class LoginActivity extends BaseActivity {
                 });
     }
 
+    private void setData(){
 
+    }
+
+
+    @Override
+    public void permissionGranted() {
+        Intent intent = new Intent(mActivity, CaptureActivity.class);
+        ZxingConfig config = new ZxingConfig();
+        config.setShake(true);//是否震动  默认为true
+        config.setDecodeBarCode(true);//是否扫描条形码 默认为true
+        config.setReactColor(R.color.baseColor);//设置扫描框四个角的颜色 默认为白色
+        config.setFrameLineColor(R.color.white);//设置扫描框边框颜色 默认无色
+        config.setScanLineColor(R.color.white);//设置扫描线的颜色 默认白色
+        config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
+        intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+        startActivityForResult(intent, REQUEST_CODE_SCAN);
+
+
+    }
 }
