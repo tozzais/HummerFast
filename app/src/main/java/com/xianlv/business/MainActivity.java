@@ -61,6 +61,7 @@ import butterknife.OnClick;
 
 /**
  * 用户
+ * 我的dev分支
  */
 public class MainActivity extends CheckPermissionActivity {
 
