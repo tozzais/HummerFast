@@ -6,8 +6,8 @@ package com.xianlv.business.http;
 public interface HttpUrl {
 
     String weather_url = "http://api.k780.com/";
-    String server_url = "https://test.shanghaixianlv.com/hotel-client/";
-    String image_url = "https://img.shanghaixianlv.com/";
+    String server_url = "https://shanghaixianlv.com/hotel-client/";
+    String image_url = "https://shanghaixianlv.com/";
 
 
     String get_code = "code/send";  //获取验证码
