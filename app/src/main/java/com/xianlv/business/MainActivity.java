@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ import butterknife.OnClick;
 
 /**
  * 用户
+ * 我是dev分支
  */
 public class MainActivity extends CheckPermissionActivity {
 
@@ -119,6 +121,7 @@ public class MainActivity extends CheckPermissionActivity {
 
     @Override
     protected int getBaseLayout() {
+        Log.e("","dev分支修改了代码");
         return R.layout.activity_main;
     }
 
