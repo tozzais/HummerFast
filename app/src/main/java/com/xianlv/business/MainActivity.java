@@ -60,8 +60,20 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 用户
- * 我是dev分支
+ * 菜鸟驿站：
+ * 翰林公馆一期南门门面店D1-14店。
+ * 取件码：5-1-3017(韵达)
+ * 取件码：5-1-3021(韵达)
+ * 取件码：9-5-4002(百世快递)（粉色四个小鹿）
+ * 翰林公馆商业街E1-10号商铺
+ * 4-1-4037（德邦包裹）（铁锅）
+ * 2-4-4012（中通快递）（四个花瓶）
+ * 芜湖华鼎商务酒店旁边顺丰快递：有个大牌子
+ * 报我名字 +13166015579
+ * 小米吹风机
+ *
+ *
+ *
  */
 public class MainActivity extends CheckPermissionActivity {
 

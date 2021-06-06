@@ -88,12 +88,11 @@ public class CommonInterceptor implements Interceptor {
 
     private Request rebuildRequest(Request request) throws IOException {
         LoginBean loginBean = GlobalParam.getLoginBean();
-        if (loginBean != null)
             request = request.newBuilder()
                     .addHeader("worker", "1")
-                    .addHeader("tenantId",loginBean.tenantId)
-                    .addHeader("shopId",loginBean.shopId)
-                    .addHeader("token",loginBean.token)
+                    .addHeader("tenantId",loginBean == null?"":loginBean.tenantId)
+                    .addHeader("shopId",loginBean == null?"":loginBean.shopId)
+                    .addHeader("token",loginBean == null?"":loginBean.token)
                     .addHeader("idempotent", UUID.randomUUID().toString().replace("-", ""))
                     .build();
         return request;
