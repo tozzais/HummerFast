@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_switch"
+        style="@style/login_btn_style"
+        android:background="@drawable/shape_white5"
+        android:textColor="@color/black_title_color"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp"
+        android:text="切换酒店"
+        />
+
+    <TextView
+        android:id="@+id/tv_logout"
+        style="@style/login_btn_style"
+        android:background="@drawable/shape_white5"
+        android:textColor="@color/black_title_color"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp"
+        android:text="退出登录"
+        />
+
+
+
+    <TextView
+        android:id="@+id/tv_sure"
+        style="@style/login_btn_style"
+        android:background="@drawable/shape_white5"
+        android:textColor="@color/black_title_color"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="取消"
+        />
+
+</LinearLayout>

@@ -19,20 +19,18 @@ public class DepartmentDialogUtil  {
 	private static Dialog cityDialog;
 
 	public static  void showSelectDialog(Context context, List<ShopDepartment> data, onSelectListener listener) {
-
 		View view = View.inflate(context, R.layout.pop_bottom_department, null);
 		cityDialog = DialogUtils.getBottomDialog(context,view);
 		WheelView mViewProvince = view.findViewById(R.id.wv_country);
 		TextView mBtnConfirm = view.findViewById(R.id.tv_sure);
 		mBtnConfirm.setOnClickListener(v->{
-			cityDialog.dismiss();
 			listener.onFinish(data.get(mViewProvince.getCurrentItem()));
+			cityDialog.dismiss();
+			cityDialog = null;
 		});
-
 		WheelAdapter provinceAdapter = new WheelAdapter(context, data);
 		mViewProvince.setViewAdapter(provinceAdapter);
 		mViewProvince.setVisibleItems(7);
-
 
 	}
 

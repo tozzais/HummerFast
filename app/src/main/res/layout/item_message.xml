@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white5"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:paddingBottom="12dp"
+    android:paddingRight="12dp"
+    android:orientation="vertical"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tv_text1"
+            style="@style/base_text_style_bold"
+            android:text="餐饮订单通知"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_text2"
+            style="@style/small_text_gray_style"
+            android:text="2011-02-12 12:09:29"
+            android:layout_marginTop="12dp"
+            />
+
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_oval_red"/>
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/tv_text3"
+        style="@style/small_text_gray_style"
+        android:text="您有新的餐饮订单，请及时处理！点餐金额：254元，下单时间:2021-05-24 12:12:12"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
