@@ -4,15 +4,24 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.adapter.MessageAdapter;
+import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.eventbus.RefreshCheckIn;
+import com.xianlv.business.bean.request.RequestList;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 
-public class MessageFragment extends BaseListFragment<String> {
+public class MessageFragment extends BaseListFragment<MessageItem> {
 
 
 
@@ -44,23 +53,23 @@ public class MessageFragment extends BaseListFragment<String> {
     @Override
     public void loadData() {
         super.loadData();
-//        RequestList bean = new RequestList();
-//        bean.page = page+"";
-//        new RxHttp<BaseListResult<CheckInItem>>().send(ApiManager.getService().checkInList(bean),
-//                new Response<BaseListResult<CheckInItem>>(mActivity,Response.BOTH) {
-//                    @Override
-//                    public void onSuccess(BaseListResult<CheckInItem> result) {
-                        setData(DataUtil.getData(8));
-//                    }
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        onErrorResult(e);
-//                    }
-//                    @Override
-//                    public void onErrorShow(String s) {
-//                        showError(s);
-//                    }
-//                });
+        RequestList bean = new RequestList();
+        bean.page = page+"";
+        new RxHttp<BaseListResult<MessageItem>>().send(ApiManager.getService().messageList(bean),
+                new Response<BaseListResult<MessageItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<MessageItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
 
 
     }
@@ -79,5 +88,22 @@ public class MessageFragment extends BaseListFragment<String> {
         if (o instanceof RefreshCheckIn){
             onRefresh();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    public String getIds(){
+        @NotNull List<MessageItem> data = mAdapter.getData();
+        StringBuilder s = new StringBuilder();
+        for (MessageItem messageItem:data){
+            if ("0".equals(messageItem.status)){
+                s.append(messageItem.jiguangId).append(",");
+            }
+        }
+        return new String(s);
+
     }
 }

@@ -17,8 +17,10 @@ import com.xianlv.business.bean.CouponHistoryItem;
 import com.xianlv.business.bean.CouponItem;
 import com.xianlv.business.bean.DepositItem;
 import com.xianlv.business.bean.GiveWayItem;
+import com.xianlv.business.bean.HouseResult;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
+import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.ShopResult;
@@ -33,12 +35,14 @@ import com.xianlv.business.bean.request.RequestCashUpdate;
 import com.xianlv.business.bean.request.RequestCategory;
 import com.xianlv.business.bean.request.RequestCheckDeduction;
 import com.xianlv.business.bean.request.RequestCode;
+import com.xianlv.business.bean.request.RequestEditMessage;
 import com.xianlv.business.bean.request.RequestGiveWay;
 import com.xianlv.business.bean.request.RequestGoodsOrderId;
 import com.xianlv.business.bean.request.RequestGoodsVerify;
 import com.xianlv.business.bean.request.RequestList;
 import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestMyCouponId;
+import com.xianlv.business.bean.request.RequestPhone;
 import com.xianlv.business.bean.request.RequestRank;
 import com.xianlv.business.bean.request.RequestRegister;
 import com.xianlv.business.bean.request.RequestShopId;
@@ -194,6 +198,18 @@ public interface ApiService {
     getWeather(@Query("cityNm") String bean);
 
 
+    @POST("app/jiguang/list")
+    Observable<BaseListResult<MessageItem>>
+    messageList(@Body RequestList bean);
+
+    @POST("app/jiguang/edits")
+    Observable<BaseResult>
+    messageEdit(@Body RequestEditMessage bean);
+
+
+    @POST("worker_login/getInTenantList")
+    Observable<BaseResult<HouseResult>>
+    houseList(@Body RequestPhone bean);
 
 
 

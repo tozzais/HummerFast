@@ -34,6 +34,7 @@ public class RankFragment extends BaseListFragment<RankItem> {
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        category = getArguments().getInt("type")+"";
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
@@ -60,10 +61,12 @@ public class RankFragment extends BaseListFragment<RankItem> {
 
 
     }
+    private String category;
 
     private void  getData(){
         RequestRank bean = new RequestRank();
         bean.page = page+"";
+        bean.rank = category+"";
         bean.category = getArguments().getInt("category")+"";
         new RxHttp<BaseListResult<RankItem>>().send(ApiManager.getService().getRank(bean),
                 new Response<BaseListResult<RankItem>>(mActivity,Response.BOTH) {
@@ -84,7 +87,8 @@ public class RankFragment extends BaseListFragment<RankItem> {
 
     @Override
     public void initListener() {
-        super.initListener();
+        if (swipeLayout != null)
+            swipeLayout.setOnRefreshListener(this::onRefresh);
         mAdapter.getLoadMoreModule().setEnableLoadMore(false);
 
     }

@@ -26,7 +26,6 @@ import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.weather.WeatherResult;
-import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
@@ -43,15 +42,17 @@ import com.xianlv.business.ui.activity.DeliveryReminderActivity;
 import com.xianlv.business.ui.activity.DepositInformActivity;
 import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.GoodsManageActivity;
-import com.xianlv.business.ui.activity.LoginActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
+import com.xianlv.business.ui.activity.MessageActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
 import com.xianlv.business.ui.activity.OrderActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
 import com.xianlv.business.ui.activity.SalesRankActivity;
 import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
 import com.xianlv.business.ui.activity.VisitorRecordActivity;
+import com.xianlv.business.util.BottomDialogUtil;
 import com.xianlv.business.util.CenterDialogUtil;
+import com.xianlv.business.weight.MarqueeTextView;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -60,20 +61,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 菜鸟驿站：
- * 翰林公馆一期南门门面店D1-14店。
- * 取件码：5-1-3017(韵达)
- * 取件码：5-1-3021(韵达)
- * 取件码：9-5-4002(百世快递)（粉色四个小鹿）
- * 翰林公馆商业街E1-10号商铺
- * 4-1-4037（德邦包裹）（铁锅）
- * 2-4-4012（中通快递）（四个花瓶）
- * 芜湖华鼎商务酒店旁边顺丰快递：有个大牌子
- * 报我名字 +13166015579
- * 小米吹风机
- *
- *
- *
  */
 public class MainActivity extends CheckPermissionActivity {
 
@@ -116,6 +103,12 @@ public class MainActivity extends CheckPermissionActivity {
     NestedScrollView scrollView;
     @BindView(R.id.swipeLayout)
     SwipeRefreshLayout swipeLayout;
+    @BindView(R.id.tv_number)
+    TextView tvNumber;
+    @BindView(R.id.tv_message)
+    MarqueeTextView tvMessage;
+    @BindView(R.id.tv_message_more)
+    TextView tvMessageMore;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -140,7 +133,7 @@ public class MainActivity extends CheckPermissionActivity {
     public AMapLocationClient mLocationClient = null;
     //声明定位回调监听器
     public AMapLocationListener mLocationListener = aMapLocation -> {
-        getWeather(aMapLocation.getCity().replaceAll("市",""));
+        getWeather(aMapLocation.getCity().replaceAll("市", ""));
     };
     //声明AMapLocationClientOption对象
     public AMapLocationClientOption mLocationOption = null;
@@ -186,13 +179,14 @@ public class MainActivity extends CheckPermissionActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_switch:
-                CenterDialogUtil.show(mActivity, "提示", "是否退出当前用户？", s -> {
-                    if ("1".equals(s)) {
-                        GlobalParam.exitLogin();
-                        LoginActivity.launch(mActivity);
-                        finish();
-                    }
-                });
+//                CenterDialogUtil.show(mActivity, "提示", "是否退出当前用户？", s -> {
+//                    if ("1".equals(s)) {
+//                        GlobalParam.exitLogin();
+//                        LoginActivity.launch(mActivity);
+//                        finish();
+//                    }
+//                });
+                BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.ll_applets:
                 CodeActivity.launch(mActivity, 1);
@@ -307,17 +301,16 @@ public class MainActivity extends CheckPermissionActivity {
     private static final int REQUEST_CODE_SCAN = 1001;
 
 
-
     @Override
     public void permissionGranted() {
-        if (type == -1){
-            if(null != mLocationClient){
+        if (type == -1) {
+            if (null != mLocationClient) {
                 mLocationClient.setLocationOption(mLocationOption);
                 //设置场景模式后最好调用一次stop，再调用start以保证场景模式生效
                 mLocationClient.stopLocation();
                 mLocationClient.startLocation();
             }
-        }else {
+        } else {
             Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
             ZxingConfig config = new ZxingConfig();
             config.setPlayBeep(true);//是否播放扫描声音 默认为true
@@ -351,6 +344,7 @@ public class MainActivity extends CheckPermissionActivity {
 
             }
         }
+
     }
 
     private void getData() {
@@ -396,6 +390,7 @@ public class MainActivity extends CheckPermissionActivity {
     }
 
     private long mExitTime;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -411,16 +406,16 @@ public class MainActivity extends CheckPermissionActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void getWeather(String city){
-        new RxHttp<WeatherResult>().send(ApiManager.getService1().getWeather(TextUtils.isEmpty(city)?"上海":city),
-                new Response<WeatherResult>(mActivity,Response.BOTH) {
+    private void getWeather(String city) {
+        new RxHttp<WeatherResult>().send(ApiManager.getService1().getWeather(TextUtils.isEmpty(city) ? "上海" : city),
+                new Response<WeatherResult>(mActivity, Response.BOTH) {
                     @Override
                     public void onNext(WeatherResult result) {
-                        if ("1".equals(result.success)){
+                        if ("1".equals(result.success)) {
                             WeatherResult.ResultDTO resultDTO = result.result;
-                            ImageUtil.loadFullAddress(mActivity,iv_weather,resultDTO.weather_icon);
-                            tv_weather.setText(resultDTO.temp_low+"℃~"+resultDTO.temp_curr +"℃"+"\n"+resultDTO.weather_curr);
-                        }else {
+                            ImageUtil.loadFullAddress(mActivity, iv_weather, resultDTO.weather_icon);
+                            tv_weather.setText(resultDTO.temp_low + "℃~" + resultDTO.temp_curr + "℃" + "\n" + resultDTO.weather_curr);
+                        } else {
                             getWeather("上海");
                         }
                     }
@@ -431,8 +426,14 @@ public class MainActivity extends CheckPermissionActivity {
     @Override
     public void onEvent(Object o) {
         super.onEvent(o);
-        if (o instanceof RefreshMain){
+        if (o instanceof RefreshMain) {
             getNumber();
         }
     }
+
+    @OnClick(R.id.tv_message_more)
+    public void onClick() {
+        MessageActivity.launch(mActivity);
+    }
+
 }

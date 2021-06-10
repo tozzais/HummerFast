@@ -86,13 +86,13 @@ public class SalesRankActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        fragmentList.add(RankFragment.newInstance(0,type));
         fragmentList.add(RankFragment.newInstance(1,type));
         fragmentList.add(RankFragment.newInstance(2,type));
+        fragmentList.add(RankFragment.newInstance(3,type));
         List<String> list = new ArrayList<>();
-        list.add("年");
-        list.add("月");
         list.add("日");
+        list.add("周");
+        list.add("月");
         adapter = new GoodsDetailPagerAdapter(getSupportFragmentManager(), fragmentList, list);
         viewpager.setAdapter(adapter);
         viewpager.setOffscreenPageLimit(2);

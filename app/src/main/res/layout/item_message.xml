@@ -40,6 +40,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_tip"
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:layout_marginTop="8dp"

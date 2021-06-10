@@ -1,5 +1,8 @@
 package com.xianlv.business.bean;
 
 public class HouseItem {
-    boolean isCheck;
+    public boolean isCheck;
+    public String tenantId;
+    public String tenantName;
+
 }

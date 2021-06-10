@@ -4,13 +4,21 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.xianlv.business.adapter.SelectHouseAdapter;
-import com.xianlv.business.bean.eventbus.RefreshCheckIn;
+import com.xianlv.business.bean.HouseItem;
+import com.xianlv.business.bean.HouseResult;
+import com.xianlv.business.bean.request.RequestPhone;
+import com.xianlv.business.global.GlobalParam;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
+
+import java.util.Objects;
 
 
-public class SelectHouseFragment extends BaseListFragment<String> {
+public class SelectHouseFragment extends BaseListFragment<HouseItem> {
 
 
 
@@ -40,23 +48,23 @@ public class SelectHouseFragment extends BaseListFragment<String> {
     @Override
     public void loadData() {
         super.loadData();
-//        RequestList bean = new RequestList();
-//        bean.page = page+"";
-//        new RxHttp<BaseListResult<CheckInItem>>().send(ApiManager.getService().checkInList(bean),
-//                new Response<BaseListResult<CheckInItem>>(mActivity,Response.BOTH) {
-//                    @Override
-//                    public void onSuccess(BaseListResult<CheckInItem> result) {
-                        setData(DataUtil.getData(8));
-//                    }
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        onErrorResult(e);
-//                    }
-//                    @Override
-//                    public void onErrorShow(String s) {
-//                        showError(s);
-//                    }
-//                });
+        RequestPhone bean = new RequestPhone();
+        bean.phone = Objects.requireNonNull(GlobalParam.getLoginBean()).phone;
+        new RxHttp<BaseResult<HouseResult>>().send(ApiManager.getService().houseList(bean),
+                new Response<BaseResult<HouseResult>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseResult<HouseResult> result) {
+                        setData(result.data.tenantList);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
 
 
     }
@@ -64,16 +72,12 @@ public class SelectHouseFragment extends BaseListFragment<String> {
 
     @Override
     public void initListener() {
-        super.initListener();
+        //刷新
+        if (swipeLayout != null)
+            swipeLayout.setOnRefreshListener(this::onRefresh);
         mAdapter.getLoadMoreModule().setEnableLoadMore(false);
 
     }
 
-    @Override
-    public void onEvent(Object o) {
-        super.onEvent(o);
-        if (o instanceof RefreshCheckIn){
-            onRefresh();
-        }
-    }
+
 }

@@ -1,12 +1,15 @@
 package com.xianlv.business.adapter;
 
 
+import android.view.View;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.eventbus.RefreshCheckIn;
 import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.RequestStaffHousingId;
@@ -16,7 +19,7 @@ import com.xianlv.business.http.Response;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class MessageAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements LoadMoreModule {
+public class MessageAdapter extends BaseQuickAdapter<MessageItem, BaseViewHolder> implements LoadMoreModule {
 
 
     public MessageAdapter() {
@@ -24,12 +27,14 @@ public class MessageAdapter extends BaseQuickAdapter<String, BaseViewHolder> imp
     }
 
     @Override
-    protected void convert(BaseViewHolder helper,  String item) {
+    protected void convert(BaseViewHolder helper,  MessageItem item) {
         int position = helper.getAdapterPosition();
-//
-//        helper.setText(R.id.tv_text1,"房间号："+item.roomNumber)
-//                .setText(R.id.tv_text2,item.time)
-//                .setText(R.id.tv_text3,"入住人手机号："+item.phone);
+
+        helper.setText(R.id.tv_text1,item.title)
+                .setText(R.id.tv_text2,item.createTime)
+                .setText(R.id.tv_text3,item.content);
+        View view = helper.getView(R.id.tv_tip);
+        view.setVisibility("0".equals(item.status)?View.VISIBLE:View.GONE);
 //        helper.getView(R.id.tv_refuse).setOnClickListener(view -> {
 //            refuse(item.id);
 //        });

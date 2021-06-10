@@ -37,7 +37,6 @@ import com.xianlv.business.http.Response;
 import com.xianlv.business.toast.OnDialogClickListener;
 import com.xianlv.business.toast.PrivacyUtil;
 import com.xianlv.business.ui.AgreementWebViewActivity;
-import com.xianlv.business.util.BottomDialogUtil;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -164,16 +163,16 @@ public class LoginActivity extends CheckPermissionActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
-//                checkPermissions(needPermissions);
-                BottomDialogUtil.showSelectDialog(mActivity);
+                checkPermissions(needPermissions);
+//                BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.tv_login:
                 login();
-//                SelectHouseActivity.launch(mActivity);
+//
                 break;
             case R.id.tv_code:
-                MessageActivity.launch(mActivity);
-//                getCode();
+//                MessageActivity.launch(mActivity);
+                getCode();
                 break;
 
         }
