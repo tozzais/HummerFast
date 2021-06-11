@@ -7,4 +7,6 @@ public class MainNumberBean {
     public int vouchers1;
     public int goods;
     public int roomWifiConfiguration;
+    public int jiguangCount;//极光消息数量
+    public MessageItem jiguangMsg;//极光消息数量
 }

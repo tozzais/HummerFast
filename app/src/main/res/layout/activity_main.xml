@@ -247,7 +247,7 @@
                     android:layout_gravity="center_vertical"
                     android:textSize="12sp"
                     android:layout_marginLeft="5dp"
-                    android:text="你有一条新消息你有一条新消息你有一条新消息"/>
+                    tools:text="你有一条新消息你有一条新消息你有一条新消息"/>
 
 
                 <TextView
@@ -372,7 +372,7 @@
                 style="@style/black_text_bold_15sp"
                 android:layout_margin="12dp"
                 android:text="订单处理"
-                android:visibility="gone"/>
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -380,7 +380,6 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:background="@drawable/shape_white5"
-                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -453,6 +452,78 @@
                         android:text="3"
                         android:visibility="gone"
                         android:layout_toRightOf="@+id/ll_order2"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_order3"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order3"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="商品订单"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order3"
+                        style="@style/cart_number_style"
+                        android:background="@drawable/shape_oval_red"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_toRightOf="@+id/ll_order3"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_order4"
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order2"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="订餐订单"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order4"
+                        style="@style/cart_number_style"
+                        android:background="@drawable/shape_oval_red"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_toRightOf="@+id/ll_order4"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
 

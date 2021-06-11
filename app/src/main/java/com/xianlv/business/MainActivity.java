@@ -3,6 +3,7 @@ package com.xianlv.business;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -154,6 +155,8 @@ public class MainActivity extends CheckPermissionActivity {
          */
         mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
         checkPermissions(needPermissions1);
+
+        tvMessageMore.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 
 
     }
@@ -384,6 +387,10 @@ public class MainActivity extends CheckPermissionActivity {
                         tvNumberSendGoods.setText(numberBean.goods + "");
                         tvNumberCheckIn.setVisibility(numberBean.roomWifiConfiguration > 0 ? View.VISIBLE : View.GONE);
                         tvNumberCheckIn.setText(numberBean.roomWifiConfiguration + "");
+                        tvNumber.setVisibility(numberBean.jiguangCount > 0 ? View.VISIBLE : View.GONE);
+                        tvNumber.setText(numberBean.jiguangCount + "");
+                        if (numberBean.jiguangMsg != null && TextUtils.isEmpty(numberBean.jiguangMsg.content))
+                        tvMessage.setText(numberBean.jiguangMsg.content);
                     }
 
                 });

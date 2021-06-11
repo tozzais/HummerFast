@@ -53,6 +53,8 @@ import com.xianlv.business.bean.request.RequestVoucher;
 import com.xianlv.business.bean.request.RequestVoucherId;
 import com.xianlv.business.bean.weather.WeatherResult;
 
+import java.util.Map;
+
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -191,25 +193,26 @@ public interface ApiService {
     @POST(HttpUrl.goods_verification)
     Observable<BaseResult>
     goods_verification(@Body RequestGoodsVerify bean);
-
     //商品核销
     @POST("?app=weather.today&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
     Observable<WeatherResult>
     getWeather(@Query("cityNm") String bean);
-
-
+    //消息列表
     @POST("app/jiguang/list")
     Observable<BaseListResult<MessageItem>>
     messageList(@Body RequestList bean);
-
+    //消息已读
     @POST("app/jiguang/edits")
     Observable<BaseResult>
     messageEdit(@Body RequestEditMessage bean);
-
-
+    //酒店列表
     @POST("worker_login/getInTenantList")
     Observable<BaseResult<HouseResult>>
     houseList(@Body RequestPhone bean);
+    //切换酒店
+    @POST("worker_login/workerChangeTenant")
+    Observable<BaseResult<HouseResult>>
+    changeHouse(@Body Map<String,String> bean);
 
 
 
