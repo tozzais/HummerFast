@@ -5,8 +5,11 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.tozzais.baselibrary.util.SharedPreferencesUtil;
+import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.MyApp;
 import com.xianlv.business.bean.LoginBean;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -16,19 +19,16 @@ public class GlobalParam {
 
 
     private static void setAlias( String alias) {
-        // 调用 JPush 接口来设置别名。
-//        JPushInterface.setAliasAndTags(CinderellaApplication.mContext,
-//                alias,
-//                null, (i, s, set) -> {
-//                    if (i == 0){
-//                        LogUtil.e("设置成功");
-//                    }else if (i==6002){
-//                        LogUtil.e("设置失败"+i);
-//                    }
-//                });
-
-
-
+//         调用 JPush 接口来设置别名。
+        JPushInterface.setAliasAndTags(MyApp.mContext,
+                alias,
+                null, (i, s, set) -> {
+                    if (i == 0){
+                        LogUtil.e("设置成功");
+                    }else if (i==6002){
+                        LogUtil.e("设置失败"+i);
+                    }
+                });
     }
 
 
@@ -52,12 +52,14 @@ public class GlobalParam {
 
     //存 用户 信息
     public static void exitLogin() {
+        setAlias("");
         SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_bean_string, "");
     }
 
 
     //存储用户登录信息
     public static void setLoginBean(LoginBean userInfo) {
+        setAlias(userInfo.shopId+userInfo.phone);
         Gson gson = new Gson();
         SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_bean_string, gson.toJson(userInfo));
     }

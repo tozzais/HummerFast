@@ -174,6 +174,12 @@ public class MainActivity extends CheckPermissionActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNumber();
+    }
+
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
             R.id.rl_order1, R.id.rl_order2, R.id.rl_write1, R.id.rl_write2, R.id.rl_write3, R.id.rl_write4,
             R.id.rl_apply1, R.id.rl_apply2, R.id.rl_apply3, R.id.rl_apply4, R.id.rl_manage1, R.id.rl_manage2,
@@ -389,7 +395,7 @@ public class MainActivity extends CheckPermissionActivity {
                         tvNumberCheckIn.setText(numberBean.roomWifiConfiguration + "");
                         tvNumber.setVisibility(numberBean.jiguangCount > 0 ? View.VISIBLE : View.GONE);
                         tvNumber.setText(numberBean.jiguangCount + "");
-                        if (numberBean.jiguangMsg != null && TextUtils.isEmpty(numberBean.jiguangMsg.content))
+                        if (numberBean.jiguangMsg != null && !TextUtils.isEmpty(numberBean.jiguangMsg.content))
                         tvMessage.setText(numberBean.jiguangMsg.content);
                     }
 

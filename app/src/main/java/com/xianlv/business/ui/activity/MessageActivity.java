@@ -58,11 +58,11 @@ public class MessageActivity extends BaseActivity {
 
     @Override
     public void back() {
-        if (fragment != null && TextUtils.isEmpty(fragment.getIds())){
+        if (fragment != null && !TextUtils.isEmpty(fragment.getIds())){
             RequestEditMessage bean = new RequestEditMessage();
             bean.jiguangIds = fragment.getIds();
             new RxHttp<BaseResult>().send(ApiManager.getService().messageEdit(bean),
-                    new Response<BaseResult>(mActivity,Response.BOTH) {
+                    new Response<BaseResult>(mActivity, Response.BOTH) {
                         @Override
                         public void onCompleted() {
                             super.onCompleted();

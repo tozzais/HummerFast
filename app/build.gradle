@@ -22,6 +22,12 @@ android {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi-v7a", "arm64-v8a", 'x86', 'x86_64'
         }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "ba8b6eb1efc732c5bdfc0183", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default" //暂时填写默认值即可.
+        ]
     }
 
     buildTypes {
@@ -99,7 +105,8 @@ dependencies {
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
     implementation 'com.tencent.bugly:nativecrashreport:3.7.471'
 
-
+    implementation 'cn.jiguang.sdk:jpush:3.6.0'  // 此处以JPush 3.5.4 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.3.4'
 
 
 
