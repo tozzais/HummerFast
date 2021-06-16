@@ -1,6 +1,7 @@
 package com.xianlv.business.adapter;
 
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,6 +12,7 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.HouseItem;
+import com.xianlv.business.bean.eventbus.RefreshAccount;
 import com.xianlv.business.bean.eventbus.RefreshCheckIn;
 import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.RequestStaffHousingId;
@@ -45,9 +47,10 @@ public class SelectHouseAdapter extends BaseQuickAdapter<HouseItem, BaseViewHold
 //        helper.getView(R.id.tv_refuse).setOnClickListener(view -> {
 //            refuse(item.id);
 //        });
-//        helper.getView(R.id.tv_pass).setOnClickListener(view -> {
-//            pass(item.id);
-//        });
+        helper.getView(R.id.ll_root).setOnClickListener(view -> {
+            EventBus.getDefault().post(new RefreshAccount(item.tenantId));
+            ((Activity)getContext()).finish();
+        });
 
    }
 

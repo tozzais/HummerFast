@@ -22,11 +22,14 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.eventbus.RefreshAccount;
 import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.weather.WeatherResult;
+import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
@@ -57,6 +60,10 @@ import com.xianlv.business.weight.MarqueeTextView;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -170,15 +177,11 @@ public class MainActivity extends CheckPermissionActivity {
     @Override
     public void loadData() {
         getData();
-        getNumber();
+
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getNumber();
-    }
+
 
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
             R.id.rl_order1, R.id.rl_order2, R.id.rl_write1, R.id.rl_write2, R.id.rl_write3, R.id.rl_write4,
@@ -395,8 +398,12 @@ public class MainActivity extends CheckPermissionActivity {
                         tvNumberCheckIn.setText(numberBean.roomWifiConfiguration + "");
                         tvNumber.setVisibility(numberBean.jiguangCount > 0 ? View.VISIBLE : View.GONE);
                         tvNumber.setText(numberBean.jiguangCount + "");
-                        if (numberBean.jiguangMsg != null && !TextUtils.isEmpty(numberBean.jiguangMsg.content))
-                        tvMessage.setText(numberBean.jiguangMsg.content);
+                        if (numberBean.jiguangMsg != null && !TextUtils.isEmpty(numberBean.jiguangMsg.content)){
+                            tvMessage.setText(numberBean.jiguangMsg.content);
+                        }else {
+                            tvMessage.setText("暂无新消息");
+                        }
+
                     }
 
                 });
@@ -441,6 +448,23 @@ public class MainActivity extends CheckPermissionActivity {
         super.onEvent(o);
         if (o instanceof RefreshMain) {
             getNumber();
+        }if (o instanceof RefreshAccount) {
+            RefreshAccount refreshAccount = (RefreshAccount)o;
+            Map<String,String> map = new HashMap<>();
+            map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
+            map.put("tenantId",refreshAccount.tenantId);
+            new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().changeHouse(map),
+                    new Response<BaseResult<LoginBean>>(mActivity, Response.BOTH) {
+                        @Override
+                        public void onSuccess(BaseResult<LoginBean> result) {
+                            tsg("切换成功");
+                            GlobalParam.setLoginBean(result.data);
+                            getData();
+                            getNumber();
+                        }
+
+                    });
+
         }
     }
 

@@ -211,7 +211,7 @@ public interface ApiService {
     houseList(@Body RequestPhone bean);
     //切换酒店
     @POST("worker_login/workerChangeTenant")
-    Observable<BaseResult<HouseResult>>
+    Observable<BaseResult<LoginBean>>
     changeHouse(@Body Map<String,String> bean);
 
 

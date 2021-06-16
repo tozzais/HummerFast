@@ -15,12 +15,11 @@ import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 
+import java.util.List;
 import java.util.Objects;
 
 
 public class SelectHouseFragment extends BaseListFragment<HouseItem> {
-
-
 
 
     public static SelectHouseFragment newInstance(int type){
@@ -54,7 +53,16 @@ public class SelectHouseFragment extends BaseListFragment<HouseItem> {
                 new Response<BaseResult<HouseResult>>(mActivity,Response.BOTH) {
                     @Override
                     public void onSuccess(BaseResult<HouseResult> result) {
-                        setData(result.data.tenantList);
+                        HouseResult data = result.data;
+                        List<HouseItem> tenantList = data.tenantList;
+                        HouseItem currentTenant = data.currentTenant;
+                        for (HouseItem item:tenantList){
+                            if (currentTenant.tenantId.equals(item.tenantId)){
+                                item.isCheck = true;
+                                break;
+                            }
+                        }
+                        setData(tenantList);
                     }
                     @Override
                     public void onError(Throwable e) {
@@ -76,6 +84,7 @@ public class SelectHouseFragment extends BaseListFragment<HouseItem> {
         if (swipeLayout != null)
             swipeLayout.setOnRefreshListener(this::onRefresh);
         mAdapter.getLoadMoreModule().setEnableLoadMore(false);
+
 
     }
 

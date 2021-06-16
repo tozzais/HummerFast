@@ -9,11 +9,14 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.RequestEditMessage;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.fragment.MessageFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class MessageActivity extends BaseActivity {
 
@@ -66,6 +69,7 @@ public class MessageActivity extends BaseActivity {
                         @Override
                         public void onCompleted() {
                             super.onCompleted();
+                            EventBus.getDefault().post(new RefreshMain());
                             finish();
                         }
                     });
