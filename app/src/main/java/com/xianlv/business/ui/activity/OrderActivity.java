@@ -28,7 +28,7 @@ public class OrderActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        setBackTitle("订单处理");
+        setBackTitle("订房订单");
         setLineVisibility();
 
     }

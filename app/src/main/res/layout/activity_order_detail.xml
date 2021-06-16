@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <View
@@ -17,15 +18,17 @@
         android:background="@color/white">
 
         <TextView
+            android:id="@+id/tv_text1"
             style="@style/black_text_bold_15sp"
-            android:text="俱乐部客房"
+            tools:text="俱乐部客房"
             />
 
 
 
         <TextView
+            android:id="@+id/tv_text2"
             style="@style/small_text_gray_style"
-            android:text="含早餐 | 有Wi-Fi和宽带"
+            tools:text="含早餐 | 有Wi-Fi和宽带"
             android:layout_marginTop="12dp"
             />
 
@@ -40,14 +43,16 @@
             >
 
             <TextView
+                android:id="@+id/tv_text3"
                 style="@style/small_text_gray_style"
-                android:text="入住：08-19(周三)~08-20(周四)"
+                tools:text="入住：08-19(周三)~08-20(周四)"
                 android:layout_weight="1"
                 />
 
             <TextView
+                android:id="@+id/tv_text4"
                 style="@style/small_text_gray_style"
-                android:text="1间1晚"
+                tools:text="1间1晚"
                 />
         </LinearLayout>
 
@@ -58,13 +63,15 @@
             >
 
             <TextView
+
                 style="@style/small_text_gray_style"
                 android:text="实付金额："
                 />
 
             <TextView
+                android:id="@+id/tv_text5"
                 style="@style/blue_text_14sp"
-                android:text="￥5888.00"
+                tools:text="￥5888.00"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -84,20 +91,23 @@
         android:background="@color/white">
 
         <TextView
+            android:id="@+id/tv_text6"
             style="@style/black_text_bold_15sp"
-            android:text="香港海洋公园万豪酒店"
+            tools:text="香港海洋公园万豪酒店"
             />
 
 
         <TextView
+            android:id="@+id/tv_text7"
             style="@style/small_text_gray_style"
-            android:text="地址：香港海洋公园黄竹坑道180号"
+            tools:text="地址：香港海洋公园黄竹坑道180号"
             android:layout_marginTop="12dp"
             />
 
         <TextView
+            android:id="@+id/tv_text8"
             style="@style/small_text_gray_style"
-            android:text="电话：（852）3923 2323"
+            tools:text="电话：（852）3923 2323"
             android:layout_marginTop="12dp"
             />
 
@@ -133,9 +143,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text9"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                android:text="2083542374685283745"
+                tools:text="2083542374685283745"
                 />
 
         </LinearLayout>
@@ -152,9 +163,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text10"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                android:text="2021-02-12 18:52:32"
+                tools:text="2021-02-12 18:52:32"
                 />
 
         </LinearLayout>
@@ -170,9 +182,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text11"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                android:text="待确定"
+                tools:text="待确定"
                 />
 
         </LinearLayout>
@@ -188,9 +201,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text12"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                android:text="微信支付"
+                tools:text="微信支付"
                 />
 
         </LinearLayout>
@@ -206,9 +220,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text13"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                android:text="李丽"
+                tools:text="李丽"
                 />
 
         </LinearLayout>
@@ -224,9 +239,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_text14"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                android:text="13166015579"
+                tools:text="13166015579"
                 />
 
         </LinearLayout>
@@ -254,7 +270,7 @@
             <TextView
                 android:id="@+id/btn_cancel"
                 style="@style/btn_white_bg_blue_text"
-                android:text="取消" />
+                android:text="拒绝" />
 
             <TextView
                 android:id="@+id/btn_bottom"

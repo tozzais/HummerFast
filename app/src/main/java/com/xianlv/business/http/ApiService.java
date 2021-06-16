@@ -23,6 +23,8 @@ import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.RankItem;
+import com.xianlv.business.bean.RoomOrderDetail;
+import com.xianlv.business.bean.RoomOrderItem;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.WriteOffHistoryItem;
@@ -213,6 +215,14 @@ public interface ApiService {
     @POST("worker_login/workerChangeTenant")
     Observable<BaseResult<LoginBean>>
     changeHouse(@Body Map<String,String> bean);
+    //订房订单
+    @POST("roomOrder/getRoomOrderListOfStaff")
+    Observable<BaseListResult<RoomOrderItem>>
+    roomOrder(@Body Map<String,String> bean);
+    //订房订单详情
+    @POST("roomOrder/getOrderDetail")
+    Observable<BaseResult<RoomOrderDetail>>
+    roomOrderDetail(@Body Map<String,String> bean);
 
 
 

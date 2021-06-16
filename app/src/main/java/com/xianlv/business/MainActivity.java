@@ -178,6 +178,7 @@ public class MainActivity extends CheckPermissionActivity {
     public void loadData() {
         getData();
 
+        getNumber();
 
     }
 

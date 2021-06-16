@@ -25,6 +25,7 @@
             android:background="@color/baseColor"/>
 
         <TextView
+            android:id="@+id/tv_text1"
             style="@style/small_text_gray_style"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -44,18 +45,21 @@
 
 
     <TextView
+        android:id="@+id/tv_text2"
         style="@style/base_text_style_bold"
         android:text="香港海洋公园万豪酒店"
         android:layout_marginLeft="12dp"/>
 
 
     <TextView
+        android:id="@+id/tv_text3"
         style="@style/small_text_gray_style"
         android:text="入住时间：4-13~4-15 1晚"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="12dp"/>
 
     <TextView
+        android:id="@+id/tv_text4"
         style="@style/small_text_gray_style"
         android:text="房型：俱乐部客房"
         android:layout_marginTop="8dp"
@@ -75,7 +79,7 @@
 
         <TextView
             style="@style/btn_white_bg_blue_text"
-            android:text="取消"/>
+            android:text="拒绝"/>
 
         <TextView
             style="@style/btn_blue_bg_white_text"
