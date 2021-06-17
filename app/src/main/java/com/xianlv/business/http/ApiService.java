@@ -203,7 +203,7 @@ public interface ApiService {
     @POST("app/jiguang/list")
     Observable<BaseListResult<MessageItem>>
     messageList(@Body RequestList bean);
-    //消息已读
+    //消息已读S
     @POST("app/jiguang/edits")
     Observable<BaseResult>
     messageEdit(@Body RequestEditMessage bean);

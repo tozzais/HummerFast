@@ -59,7 +59,7 @@ public class GlobalParam {
 
     //存储用户登录信息
     public static void setLoginBean(LoginBean userInfo) {
-        setAlias(userInfo.shopId+userInfo.phone);
+        setAlias(userInfo.tenantId+userInfo.phone);
         Gson gson = new Gson();
         SharedPreferencesUtil.saveStringData(MyApp.mContext, Constant.user_bean_string, gson.toJson(userInfo));
     }
