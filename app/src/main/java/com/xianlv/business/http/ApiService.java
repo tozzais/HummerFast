@@ -223,6 +223,14 @@ public interface ApiService {
     @POST("roomOrder/getOrderDetail")
     Observable<BaseResult<RoomOrderDetail>>
     roomOrderDetail(@Body Map<String,String> bean);
+    //订房订单确认
+    @POST("roomOrder/confirm")
+    Observable<BaseResult>
+    roomOrderSure(@Body Map<String,String> bean);
+    //订房订单取消
+    @POST("roomOrder/cancelAndRefundOrder")
+    Observable<BaseResult>
+    roomOrderCancel(@Body Map<String,String> bean);
 
 
 

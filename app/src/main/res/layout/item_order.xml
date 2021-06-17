@@ -78,10 +78,12 @@
         android:paddingRight="12dp">
 
         <TextView
+            android:id="@+id/tv_cancel"
             style="@style/btn_white_bg_blue_text"
             android:text="拒绝"/>
 
         <TextView
+            android:id="@+id/tv_sure"
             style="@style/btn_blue_bg_white_text"
             android:text="确认"
             android:layout_marginLeft="12dp"/>

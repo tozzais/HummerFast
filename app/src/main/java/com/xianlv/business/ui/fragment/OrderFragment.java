@@ -10,6 +10,7 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.adapter.OrderAdapter;
 import com.xianlv.business.bean.RoomOrderItem;
+import com.xianlv.business.bean.eventbus.RefreshRoomOrder;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.Response;
@@ -88,5 +89,11 @@ public class OrderFragment extends BaseListFragment<RoomOrderItem> {
 
     }
 
-
+    @Override
+    public void onEvent(Object o) {
+        super.onEvent(o);
+        if (o instanceof RefreshRoomOrder){
+            onRefresh();
+        }
+    }
 }

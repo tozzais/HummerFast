@@ -9,11 +9,15 @@ import android.widget.TextView;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
+import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.RoomOrderDetail;
+import com.xianlv.business.bean.eventbus.RefreshRoomOrder;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -122,9 +126,40 @@ public class OrderDetailActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_cancel:
+                refuse(roomOrderId);
                 break;
             case R.id.btn_bottom:
+                pass(roomOrderId);
                 break;
         }
+    }
+    private void pass(String id){
+        Map<String, String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+        map.put("roomOrderId", id);
+        new RxHttp<BaseResult>().send(ApiManager.getService().roomOrderSure(map),
+                new Response<BaseResult>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult result) {
+                        ToastCommom.createToastConfig().ToastShow(mActivity,"确认成功");
+                        EventBus.getDefault().post(new RefreshRoomOrder());
+                        finish();
+                    }
+                });
+    }
+
+    private void refuse(String id){
+        Map<String, String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+        map.put("roomOrderId", id);
+        new RxHttp<BaseResult>().send(ApiManager.getService().roomOrderCancel(map),
+                new Response<BaseResult>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult result) {
+                        ToastCommom.createToastConfig().ToastShow(mActivity,"拒绝成功");
+                        EventBus.getDefault().post(new RefreshRoomOrder());
+                        finish();
+                    }
+                });
     }
 }
