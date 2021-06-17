@@ -16,19 +16,21 @@
         android:layout_width="140dp"
         android:layout_height="match_parent">
         <com.tozzais.baselibrary.weight.ScaleImageView
+            android:id="@+id/iv_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/demo_video"
+            tools:src="@mipmap/demo_video"
             app:scale="0.5548"
             android:scaleType="centerCrop"
             />
 
         <TextView
+            android:id="@+id/tv_duration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@mipmap/icon_video_bg"
             android:layout_alignParentBottom="true"
-            android:text="34:44"
+            tools:text="34:44"
             android:textColor="@color/white"
             android:gravity="right|center_vertical"
             android:paddingRight="10dp"
@@ -48,8 +50,9 @@
 
 
         <TextView
+            android:id="@+id/tv_title"
             style="@style/base_text_style_bold"
-            android:text="十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例"
+            tools:text="十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例十分钟掌握一个创新营销案例"
             android:layout_marginTop="10dp"
             android:lines="2"
             android:ellipsize="end"
@@ -63,16 +66,18 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_views"
                 style="@style/small_text_gray_style"
-                android:text="5579"
+                tools:text="5579"
                 android:drawableLeft="@mipmap/icon_tv"
                 android:drawablePadding="3dp"
                 android:gravity="center"
                 />
 
             <TextView
+                android:id="@+id/tv_time"
                 style="@style/small_text_gray_style"
-                android:text="2021-09-11"
+                tools:text="2021-09-11"
                 android:layout_weight="1"
                 android:gravity="right"
                 />

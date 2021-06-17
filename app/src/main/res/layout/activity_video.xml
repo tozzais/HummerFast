@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -30,8 +31,9 @@
         android:background="@color/white"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/tv_video_title"
             style="@style/base_text_style_bold"
-            android:text="10分钟掌握一个1个创新营销方案"/>
+            tools:text="10分钟掌握一个1个创新营销方案"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,22 +41,31 @@
             android:layout_marginTop="10dp"
             android:gravity="center_vertical">
 
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="贤旅官方"
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical"
-                android:drawableLeft="@mipmap/demo_avatar"/>
+            <com.tozzais.baselibrary.weight.CircleImageView
+                android:id="@+id/tv_image"
+                tools:src="@mipmap/demo_avatar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"/>
 
             <TextView
+                android:id="@+id/tv_name"
                 style="@style/small_text_gray_style"
-                android:text="2021-02-12"
+                tools:text="贤旅官方"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/small_text_gray_style"
+                tools:text="2021-02-12"
                 android:layout_weight="1"
                 android:layout_marginLeft="20dp"
                 />
             <TextView
+                android:id="@+id/tv_views"
                 style="@style/small_text_gray_style"
-                android:text="1027"
+                tools:text="1027"
                 android:gravity="center_vertical"
                 android:drawableLeft="@mipmap/icon_tv"
                 android:drawablePadding="5dp"

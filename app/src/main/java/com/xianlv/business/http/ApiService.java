@@ -26,6 +26,8 @@ import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.RoomOrderDetail;
 import com.xianlv.business.bean.RoomOrderItem;
 import com.xianlv.business.bean.ShopResult;
+import com.xianlv.business.bean.VideoDetail;
+import com.xianlv.business.bean.VideoItem;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.WriteOffHistoryItem;
 import com.xianlv.business.bean.request.BaseRequest;
@@ -231,6 +233,22 @@ public interface ApiService {
     @POST("roomOrder/cancelAndRefundOrder")
     Observable<BaseResult>
     roomOrderCancel(@Body Map<String,String> bean);
+    //送餐订单
+    @POST("restaurant/order/staffOrders")
+    Observable<BaseResult>
+    mealOrder(@Body Map<String,String> bean);
+    //视频列表
+    @POST("university/video")
+    Observable<BaseListResult<VideoItem>>
+    videoList(@Body Map<String,String> bean);
+    //视频详情
+    @POST("university/videoById")
+    Observable<BaseResult<VideoDetail>>
+    videoDetail(@Body Map<String,String> bean);
+    //更新视频播放量
+    @POST("university/updateViews")
+    Observable<BaseResult>
+    updateVideoViews(@Body Map<String,String> bean);
 
 
 

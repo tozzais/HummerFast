@@ -53,6 +53,7 @@ import com.xianlv.business.ui.activity.OrderActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
 import com.xianlv.business.ui.activity.SalesRankActivity;
 import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
+import com.xianlv.business.ui.activity.VideoListActivity;
 import com.xianlv.business.ui.activity.VisitorRecordActivity;
 import com.xianlv.business.util.BottomDialogUtil;
 import com.xianlv.business.util.CenterDialogUtil;
@@ -284,16 +285,14 @@ public class MainActivity extends CheckPermissionActivity {
                 CallMorningActivity.launch(mActivity);
                 break;
             case R.id.rl_study1:
-                tsg("该功能暂未开发，请您耐心等待");
-//                VideoListActivity.launch(mActivity);
+//                tsg("该功能暂未开发，请您耐心等待");
+                VideoListActivity.launch(mActivity);
                 break;
             case R.id.rl_study2:
-                tsg("该功能暂未开发，请您耐心等待");
-//                OperationTrainActivity.launch(mActivity, OperationTrainActivity.OPERATION_TRAIN);
+                OperationTrainActivity.launch(mActivity, OperationTrainActivity.OPERATION_TRAIN);
                 break;
             case R.id.rl_study3:
-                tsg("该功能暂未开发，请您耐心等待");
-//                OperationTrainActivity.launch(mActivity, OperationTrainActivity.DISTRIBUTION_INSTRUCTIONS);
+                OperationTrainActivity.launch(mActivity, OperationTrainActivity.DISTRIBUTION_INSTRUCTIONS);
                 break;
             case R.id.rl_study4:
                 OperationTrainActivity.launch(mActivity, OperationTrainActivity.COMMON_PROBLEM);
