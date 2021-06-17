@@ -249,6 +249,10 @@ public interface ApiService {
     @POST("university/updateViews")
     Observable<BaseResult>
     updateVideoViews(@Body Map<String,String> bean);
+    //常见问题列表
+    @POST("university/problem")
+    Observable<BaseListResult<VideoItem>>
+    problemList(@Body Map<String,String> bean);
 
 
 
