@@ -77,6 +77,7 @@ public class VideoDetailActivity extends BaseActivity {
         toolbar.setNavigationIcon(R.mipmap.back_video);
         toolbar.setNavigationOnClickListener(view -> back());
         web_view.getSettings().setJavaScriptEnabled(true);
+        updateNumber();
 
     }
 
@@ -160,6 +161,14 @@ public class VideoDetailActivity extends BaseActivity {
         if (!videoView.onBackPressed()) {
             super.onBackPressed();
         }
+    }
+
+    private void updateNumber(){
+        Map<String, String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+        map.put("videoId", "" + videoId);
+        new RxHttp<BaseResult>().send(ApiManager.getService().updateVideoViews(map),
+                new Response<BaseResult>(mActivity,Response.BOTH) {});
     }
 
 }
