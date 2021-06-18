@@ -22,6 +22,7 @@ import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.ProblemItem;
 import com.xianlv.business.bean.RankItem;
 import com.xianlv.business.bean.RoomOrderDetail;
 import com.xianlv.business.bean.RoomOrderItem;
@@ -251,8 +252,16 @@ public interface ApiService {
     updateVideoViews(@Body Map<String,String> bean);
     //常见问题列表
     @POST("university/problem")
-    Observable<BaseListResult<VideoItem>>
+    Observable<BaseListResult<ProblemItem>>
     problemList(@Body Map<String,String> bean);
+    //分销说明列表
+    @POST("university/explain")
+    Observable<BaseListResult<ProblemItem>>
+    explainList(@Body Map<String,String> bean);
+    //操作培训列表
+    @POST("university/train")
+    Observable<BaseListResult<ProblemItem>>
+    trainList(@Body Map<String,String> bean);
 
 
 

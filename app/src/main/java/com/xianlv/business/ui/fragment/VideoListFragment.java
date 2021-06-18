@@ -6,13 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
-import com.xianlv.business.adapter.DepositInformAdapter;
 import com.xianlv.business.adapter.VideoListAdapter;
-import com.xianlv.business.bean.RoomOrderItem;
 import com.xianlv.business.bean.VideoItem;
+import com.xianlv.business.bean.eventbus.RefreshVideoList;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.Response;
@@ -93,5 +91,11 @@ public class VideoListFragment extends BaseListFragment<VideoItem> {
 
     }
 
-
+    @Override
+    public void onEvent(Object o) {
+        super.onEvent(o);
+        if (o instanceof RefreshVideoList){
+            onRefresh();
+        }
+    }
 }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.ui.fragment.CleanApplyFragment;
 import com.xianlv.business.ui.fragment.OperationTrainFragment;
 
 public class OperationTrainActivity extends BaseActivity {
@@ -51,7 +50,7 @@ public class OperationTrainActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        OperationTrainFragment fragment = new OperationTrainFragment();
+        OperationTrainFragment fragment = OperationTrainFragment.newInstance(type);
         getSupportFragmentManager().beginTransaction().add(R.id.content_container, fragment).commit();
     }
 }

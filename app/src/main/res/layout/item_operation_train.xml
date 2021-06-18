@@ -24,15 +24,19 @@
             android:background="@color/baseColor"/>
 
         <TextView
+            android:id="@+id/tv_title"
             style="@style/base_text_style_bold"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="分销操作培训"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"/>
 
 
         <TextView
+            android:id="@+id/tv_time"
             style="@style/small_text_gray_style"
             android:text="2011-02-12"
             android:layout_marginRight="12dp"

@@ -15,10 +15,13 @@ import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.VideoDetail;
+import com.xianlv.business.bean.eventbus.RefreshVideoList;
 import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,7 +80,7 @@ public class VideoDetailActivity extends BaseActivity {
         toolbar.setNavigationIcon(R.mipmap.back_video);
         toolbar.setNavigationOnClickListener(view -> back());
         web_view.getSettings().setJavaScriptEnabled(true);
-        updateNumber();
+
 
     }
 
@@ -168,7 +171,18 @@ public class VideoDetailActivity extends BaseActivity {
         map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
         map.put("videoId", "" + videoId);
         new RxHttp<BaseResult>().send(ApiManager.getService().updateVideoViews(map),
-                new Response<BaseResult>(mActivity,Response.BOTH) {});
+                new Response<BaseResult>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onNext(BaseResult baseResult) {
+                        EventBus.getDefault().post(new RefreshVideoList());
+                    }
+                });
     }
 
+
+    @Override
+    public void initListener() {
+        super.initListener();
+        updateNumber();
+    }
 }

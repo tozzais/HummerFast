@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/tv_content_title"
                 style="@style/base_text_style"
                 android:layout_weight="1"
                 android:text="分销操作培训"/>
@@ -34,11 +34,12 @@
 
         </LinearLayout>
 
-        <TextView
-            style="@style/small_text_gray_style"
+        <WebView
+            android:id="@+id/web_view"
             android:layout_marginTop="12dp"
-            android:layout_weight="1"
-            android:text="分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训分销操作培训"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""/>
 
 
 

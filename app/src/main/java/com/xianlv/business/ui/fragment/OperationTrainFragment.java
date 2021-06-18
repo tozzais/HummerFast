@@ -4,15 +4,25 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.adapter.OperationTrainAdapter;
-import com.xianlv.business.adapter.VideoListAdapter;
+import com.xianlv.business.bean.ProblemItem;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseListResult;
+import com.xianlv.business.http.Response;
+import com.xianlv.business.ui.activity.OperationTrainActivity;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import rx.Observable;
 
 
-public class OperationTrainFragment extends BaseListFragment<String> {
+public class OperationTrainFragment extends BaseListFragment<ProblemItem> {
 
 
 
@@ -29,35 +39,55 @@ public class OperationTrainFragment extends BaseListFragment<String> {
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        type= getArguments().getInt("type");
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-
         LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
         mRecyclerView.addItemDecoration(girdSpace);
-
-        mAdapter = new OperationTrainAdapter();
+        mAdapter = new OperationTrainAdapter(type);
         mRecyclerView.setAdapter(mAdapter);
-
-//        setEmptyView(R.mipmap.empty_view,"您还没有相关订单哦~","去逛逛", view->{
-//
-//        });
-
         setEmptyView("暂时没有操作培训哦~");
 
 
-
     }
+
+    private int type;
 
     @Override
     public void loadData() {
         super.loadData();
-        getData();
-
+        Map<String,String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
+        map.put("page",""+page);
+        Observable<BaseListResult<ProblemItem>> observable = null;
+        if (type == OperationTrainActivity.OPERATION_TRAIN){
+            observable = ApiManager.getService().trainList(map);
+        }else if (type == OperationTrainActivity.DISTRIBUTION_INSTRUCTIONS){
+            observable = ApiManager.getService().explainList(map);
+        }else if (type == OperationTrainActivity.COMMON_PROBLEM){
+            observable = ApiManager.getService().problemList(map);
+        }
+        set(observable);
 
     }
 
-    private void  getData(){
-       setData(DataUtil.getData(9));
+    private void  set(Observable<BaseListResult<ProblemItem>> observable){
+
+        new RxHttp<BaseListResult<ProblemItem>>().send(observable,
+                new Response<BaseListResult<ProblemItem>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseListResult<ProblemItem> result) {
+                        setData(result.data);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        onErrorResult(e);
+                    }
+                    @Override
+                    public void onErrorShow(String s) {
+                        showError(s);
+                    }
+                });
     }
 
     @Override
