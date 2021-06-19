@@ -11,10 +11,12 @@
 
     >
 
-    <ImageView
+    <com.xianlv.business.weight.SquareRoundImageView
+        android:id="@+id/iv_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@mipmap/demo_video"
+        tools:background="@mipmap/demo_video"
+        android:scaleType="centerCrop"
         />
 
 
@@ -29,13 +31,15 @@
 
 
         <TextView
+            android:id="@+id/tv_title"
             style="@style/base_text_style_bold"
-            android:text="栗子鸡"
+            tools:text="栗子鸡"
             />
 
         <TextView
+            android:id="@+id/tv_special"
             style="@style/small_text_gray_style"
-            android:text="大份"
+            tools:text="大份"
             android:layout_marginTop="12dp"
             />
 
@@ -59,16 +63,18 @@
                 android:textSize="10sp"
                 />
             <TextView
+                android:id="@+id/tv_money"
                 style="@style/blue_text_14sp"
-                android:text="88"
+                tools:text="88"
                 />
         </LinearLayout>
 
 
 
         <TextView
+            android:id="@+id/tv_number"
             style="@style/small_text_gray_style"
-            android:text="X1"
+            tools:text="X1"
             android:layout_marginTop="12dp"
             />
 

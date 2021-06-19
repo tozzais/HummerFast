@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
 
@@ -12,10 +12,9 @@
 
     <com.xianlv.business.weight.SquareRoundImageView
         android:id="@+id/iv_image"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         tools:background="@mipmap/demo_video"
-        android:layout_marginLeft="12dp"
         android:scaleType="centerCrop"
         />
 
@@ -33,54 +32,31 @@
         <TextView
             android:id="@+id/tv_title"
             style="@style/base_text_style_bold"
-            android:text="栗子鸡"
+            android:text="爱心蛋糕"
+            android:lines="2"
+            android:ellipsize="end"
+
             />
-
-        <TextView
-            android:id="@+id/tv_special"
-            style="@style/small_text_gray_style"
-            android:text="大份"
-            android:layout_marginTop="5dp"
-            />
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:orientation="vertical"
-        android:layout_marginRight="12dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                style="@style/blue_text_12sp"
-                android:text="￥"
-                android:textSize="10sp"
-                />
-            <TextView
-                android:id="@+id/tv_money"
-                style="@style/blue_text_14sp"
-                android:text="88"
-                />
-        </LinearLayout>
-
-
 
         <TextView
             android:id="@+id/tv_number"
             style="@style/small_text_gray_style"
-            android:text="X1"
+            android:text="数量：*1"
             android:layout_marginTop="5dp"
             />
 
 
+        <TextView
+            android:id="@+id/tv_special"
+            style="@style/small_text_gray_style"
+            android:text="规格：1份"
+            android:layout_marginTop="5dp"
+            />
+
 
     </LinearLayout>
+
+
 
 
 

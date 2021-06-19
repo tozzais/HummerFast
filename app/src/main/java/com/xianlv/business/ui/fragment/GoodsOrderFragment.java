@@ -8,8 +8,8 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
-import com.xianlv.business.adapter.SendFoodReminderAdapter;
-import com.xianlv.business.bean.MealOrderItem;
+import com.xianlv.business.adapter.GoodsOrderAdapter;
+import com.xianlv.business.bean.GoodsOrderItem;
 import com.xianlv.business.bean.eventbus.RefreshOrder;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
@@ -20,14 +20,13 @@ import java.util.Map;
 import java.util.UUID;
 
 
-public class DeliverReminderFragment extends BaseListFragment<MealOrderItem> {
+public class GoodsOrderFragment extends BaseListFragment<GoodsOrderItem> {
 
 
 
 
-    private int type = 0;
-    public static DeliverReminderFragment newInstance(int type){
-        DeliverReminderFragment cartFragment = new DeliverReminderFragment();
+    public static GoodsOrderFragment newInstance(int type){
+        GoodsOrderFragment cartFragment = new GoodsOrderFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type",type);
         cartFragment.setArguments(bundle);
@@ -38,13 +37,12 @@ public class DeliverReminderFragment extends BaseListFragment<MealOrderItem> {
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        type = getArguments().getInt("type");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
         mRecyclerView.addItemDecoration(girdSpace);
-        mAdapter = new SendFoodReminderAdapter(type);
+        mAdapter = new GoodsOrderAdapter();
         mRecyclerView.setAdapter(mAdapter);
-        setEmptyView("暂时没有送餐提醒哦~");
+        setEmptyView("暂时没有商品订单哦~");
 
     }
 
@@ -53,12 +51,12 @@ public class DeliverReminderFragment extends BaseListFragment<MealOrderItem> {
         super.loadData();
         Map<String,String> map = new HashMap<>();
         map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
-        map.put("status",(type == 1?123:456)+"");
+        map.put("status","23");
         map.put("page",""+page);
-        new RxHttp<BaseListResult<MealOrderItem>>().send(ApiManager.getService().mealOrder(map),
-                new Response<BaseListResult<MealOrderItem>>(mActivity,Response.BOTH) {
+        new RxHttp<BaseListResult<GoodsOrderItem>>().send(ApiManager.getService().goodsOrder(map),
+                new Response<BaseListResult<GoodsOrderItem>>(mActivity,Response.BOTH) {
                     @Override
-                    public void onSuccess(BaseListResult<MealOrderItem> result) {
+                    public void onSuccess(BaseListResult<GoodsOrderItem> result) {
                         setData(result.data);
                     }
                     @Override

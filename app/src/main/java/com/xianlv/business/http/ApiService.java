@@ -17,13 +17,15 @@ import com.xianlv.business.bean.CouponHistoryItem;
 import com.xianlv.business.bean.CouponItem;
 import com.xianlv.business.bean.DepositItem;
 import com.xianlv.business.bean.GiveWayItem;
+import com.xianlv.business.bean.GoodsOrderItem;
 import com.xianlv.business.bean.HouseResult;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
+import com.xianlv.business.bean.MealOrderItem;
 import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.bean.ProblemItem;
-import com.xianlv.business.bean.RankItem;
+import com.xianlv.business.bean.RankResult;
 import com.xianlv.business.bean.RoomOrderDetail;
 import com.xianlv.business.bean.RoomOrderItem;
 import com.xianlv.business.bean.ShopResult;
@@ -103,7 +105,7 @@ public interface ApiService {
     history_collection_history(@Body RequestList bean);
     //收款历史
     @POST(HttpUrl.rank)
-    Observable<BaseListResult<RankItem>>
+    Observable<BaseResult<RankResult>>
     getRank(@Body RequestRank bean);
     //寄存列表
     @POST(HttpUrl.workerDepositItems)
@@ -236,7 +238,7 @@ public interface ApiService {
     roomOrderCancel(@Body Map<String,String> bean);
     //送餐订单
     @POST("restaurant/order/staffOrders")
-    Observable<BaseResult>
+    Observable<BaseListResult<MealOrderItem>>
     mealOrder(@Body Map<String,String> bean);
     //视频列表
     @POST("university/video")
@@ -262,6 +264,32 @@ public interface ApiService {
     @POST("university/train")
     Observable<BaseListResult<ProblemItem>>
     trainList(@Body Map<String,String> bean);
+    //送餐订单详情
+    @POST("restaurant/order/getOrder")
+    Observable<BaseResult<MealOrderItem>>
+    mealOrderDetail(@Body Map<String,String> bean);
+    //取消送餐订单
+    @POST("restaurant/order/cancelRestaurantOrder")
+    Observable<BaseResult>
+    mealOrderCancel(@Body Map<String,String> bean);
+    //送餐订单确认送达
+    @POST("restaurant/order/confirmSend")
+    Observable<BaseResult>
+    mealOrderSend(@Body Map<String,String> bean);
+    //送餐订单确认
+    @POST("restaurant/order/confirmOrder")
+    Observable<BaseResult>
+    mealOrderSure(@Body Map<String,String> bean);
+
+    //商品订单列表
+    @POST("apiOrder/getOrderList")
+    Observable<BaseListResult<GoodsOrderItem>>
+    goodsOrder(@Body Map<String,String> bean);
+    //商品订单详情
+    @POST("apiOrder/getOrderDetail")
+    Observable<BaseResult<GoodsOrderItem>>
+    goodsOrderDetail(@Body Map<String,String> bean);
+
 
 
 

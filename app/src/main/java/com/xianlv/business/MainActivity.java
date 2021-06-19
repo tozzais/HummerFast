@@ -46,6 +46,7 @@ import com.xianlv.business.ui.activity.DeliveryReminderActivity;
 import com.xianlv.business.ui.activity.DepositInformActivity;
 import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.GoodsManageActivity;
+import com.xianlv.business.ui.activity.GoodsOrderActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
 import com.xianlv.business.ui.activity.MessageActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
@@ -186,7 +187,7 @@ public class MainActivity extends CheckPermissionActivity {
 
 
     @OnClick({R.id.iv_switch, R.id.ll_applets, R.id.ll_store, R.id.ll_rank_person, R.id.ll_rank_team,
-            R.id.rl_order1, R.id.rl_order2, R.id.rl_write1, R.id.rl_write2, R.id.rl_write3, R.id.rl_write4,
+            R.id.rl_order1, R.id.rl_order2,  R.id.rl_order3, R.id.rl_write1, R.id.rl_write2, R.id.rl_write3, R.id.rl_write4,
             R.id.rl_apply1, R.id.rl_apply2, R.id.rl_apply3, R.id.rl_apply4, R.id.rl_manage1, R.id.rl_manage2,
             R.id.rl_manage3, R.id.rl_manage4, R.id.rl_manage5, R.id.rl_manage6, R.id.rl_manage7, R.id.rl_manage8,
             R.id.rl_manage9, R.id.rl_manage10, R.id.rl_study1, R.id.rl_study2, R.id.rl_study3, R.id.rl_study4, R.id.rl_study5})
@@ -219,6 +220,9 @@ public class MainActivity extends CheckPermissionActivity {
                 break;
             case R.id.rl_order2:
                 DeliveryReminderActivity.launch(mActivity);
+                break;
+            case R.id.rl_order3:
+                GoodsOrderActivity.launch(mActivity);
                 break;
             case R.id.rl_write1:
                 StoredValueCardWriteOffActivity.launch(mActivity, StoredValueCardWriteOffActivity.COUPON);

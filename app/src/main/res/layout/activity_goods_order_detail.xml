@@ -17,53 +17,99 @@
         android:padding="12dp"
         android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_room_number"
-            style="@style/black_text_bold_15sp"
-            tools:text="房间号：3300"
-            />
-
-
-
-        <TextView
-            android:id="@+id/tv_name"
-            style="@style/small_text_gray_style"
-            tools:text="用户名：张三"
-            android:layout_marginTop="12dp"
-            />
-
-        <TextView
-            android:id="@+id/tv_phone"
-            style="@style/small_text_gray_style"
-            tools:text="手机号：18317126946"
-            android:layout_weight="1"
-            />
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:background="@color/gray_bg"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@color/white">
-
-        <TextView
-            style="@style/black_text_bold_15sp"
-            android:text="送餐清单"
-            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_goods"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <View
+            style="@style/line_light"
+            android:layout_marginTop="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:layout_weight="1"
+                android:text="商品总价："
+                />
+
+            <TextView
+                android:id="@+id/tv_money_total"
+                style="@style/small_text_gray_style"
+                android:layout_height="match_parent"
+                tools:text="￥0.01"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:layout_weight="1"
+                android:text="积分："
+                />
+
+            <TextView
+                android:id="@+id/tv_score"
+                style="@style/small_text_gray_style"
+                android:layout_height="match_parent"
+                tools:text="￥0"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:layout_weight="1"
+                android:text="优惠券："
+                />
+
+            <TextView
+                android:id="@+id/tv_coupon"
+                style="@style/small_text_gray_style"
+                android:layout_height="match_parent"
+                tools:text="￥0.01"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/base_text_style"
+                android:layout_weight="1"
+                android:text="应付："
+                />
+
+            <TextView
+                android:id="@+id/tv_money"
+                style="@style/base_text_style"
+                android:layout_height="match_parent"
+                tools:text="￥0.01"
+                android:textColor="@color/baseColor" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -133,45 +179,6 @@
 
             <TextView
                 style="@style/small_text_gray_style"
-                android:text="支付时间："
-                />
-
-            <TextView
-                android:id="@+id/tv_pay_time"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="2021-02-12 18:52:32"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="期望送达时间："
-                />
-
-            <TextView
-                android:id="@+id/tv_expect_time"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="2021-02-12 18:52:32"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
                 android:text="订单状态："
                 />
 
@@ -179,7 +186,7 @@
                 android:id="@+id/tv_status"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
-                tools:text="待确定"
+                tools:text="待使用"
                 />
 
         </LinearLayout>
@@ -198,6 +205,65 @@
                 android:id="@+id/tv_pay_way"
                 style="@style/small_text_gray_style"
                 android:textColor="@color/black"
+                tools:text="支付宝"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="预订人："
+                />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                tools:text="郝哥"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="手机号："
+                />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
+                tools:text="12313231312"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                style="@style/small_text_gray_style"
+                android:text="备注："
+                />
+
+            <TextView
+                android:id="@+id/tv_note"
+                style="@style/small_text_gray_style"
+                android:textColor="@color/black"
                 tools:text="微信支付"
                 />
 
@@ -214,32 +280,7 @@
         android:layout_weight="1"
         android:background="@color/gray_bg"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center"
-        android:padding="12dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/btn_cancel"
-                style="@style/btn_white_bg_blue_text"
-                android:text="取消订单" />
-
-            <TextView
-                android:id="@+id/btn_bottom"
-                style="@style/btn_blue_bg_white_text"
-                android:layout_marginLeft="40dp"
-                android:text="确认订单" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
 
 
 </LinearLayout>
