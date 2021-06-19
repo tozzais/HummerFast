@@ -119,6 +119,12 @@ public class MainActivity extends CheckPermissionActivity {
     MarqueeTextView tvMessage;
     @BindView(R.id.tv_message_more)
     TextView tvMessageMore;
+    @BindView(R.id.tv_order1)
+    TextView tv_order1;
+    @BindView(R.id.tv_order2)
+    TextView tv_order2;
+    @BindView(R.id.tv_order3)
+    TextView tv_order3;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -407,6 +413,12 @@ public class MainActivity extends CheckPermissionActivity {
                         }else {
                             tvMessage.setText("暂无新消息");
                         }
+                        tv_order1.setVisibility(numberBean.orderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
+                        tv_order1.setText(numberBean.orderNoConfirmCount + "");
+                        tv_order2.setVisibility(numberBean.restOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
+                        tv_order2.setText(numberBean.restOrderNoConfirmCount + "");
+                        tv_order3.setVisibility(numberBean.roomOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
+                        tv_order3.setText(numberBean.roomOrderNoConfirmCount + "");
 
                     }
 

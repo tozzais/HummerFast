@@ -8,5 +8,9 @@ public class MainNumberBean {
     public int goods;
     public int roomWifiConfiguration;
     public int jiguangCount;//极光消息数量
+
     public MessageItem jiguangMsg;//极光消息数量
+    public int orderNoConfirmCount;
+    public int restOrderNoConfirmCount;
+    public int roomOrderNoConfirmCount;
 }

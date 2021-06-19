@@ -14,8 +14,10 @@ import com.xianlv.business.global.ImageUtil;
 public class RankAdapter extends BaseQuickAdapter<RankItem, BaseViewHolder> implements LoadMoreModule {
 
 
-    public RankAdapter() {
+    private int type;
+    public RankAdapter(int type) {
         super(R.layout.item_rank, null);
+        this.type = type;
     }
 
     @Override
@@ -48,6 +50,8 @@ public class RankAdapter extends BaseQuickAdapter<RankItem, BaseViewHolder> impl
                 .setText(R.id.tv_number1,item.dayNum+"")
                 .setText(R.id.tv_number2,item.dayMoney)
                 .setText(R.id.tv_number3,item.allMoney)
+                .setText(R.id.tv_tip1,(type == 1?"日":type==2?"周":"月")+"单数")
+                .setText(R.id.tv_tip2,(type == 1?"日":type==2?"周":"月")+"销售额")
                 .setText(R.id.tv_number4,item.allEarnings);
 
 

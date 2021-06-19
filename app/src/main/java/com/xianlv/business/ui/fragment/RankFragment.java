@@ -27,6 +27,12 @@ public class RankFragment extends BaseListFragment<RankItem> {
     @BindView(R.id.tv_time)
     TextView tvTime;
 
+    /**
+     *
+     * @param type 1 日 2 周 3 月
+     * @param category
+     * @return
+     */
     public static RankFragment newInstance(int type, int category) {
         RankFragment cartFragment = new RankFragment();
         Bundle bundle = new Bundle();
@@ -46,7 +52,7 @@ public class RankFragment extends BaseListFragment<RankItem> {
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         category = getArguments().getInt("category") + "";
-        type = getArguments().getInt("type") + "";
+        type = getArguments().getInt("type");
         int defaultColor = category.equals("2") ? getResources().getColor(R.color.orange) :
                 getResources().getColor(R.color.baseColor);
         tvTime.setTextColor(defaultColor);
@@ -55,7 +61,7 @@ public class RankFragment extends BaseListFragment<RankItem> {
         LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
         mRecyclerView.addItemDecoration(girdSpace);
 
-        mAdapter = new RankAdapter();
+        mAdapter = new RankAdapter(type);
         mRecyclerView.setAdapter(mAdapter);
 
 //        setEmptyView(R.mipmap.empty_view,"您还没有相关订单哦~","去逛逛", view->{
@@ -76,7 +82,7 @@ public class RankFragment extends BaseListFragment<RankItem> {
     }
 
     private String category;
-    private String type;
+    private int type;
 
     private void getData() {
         RequestRank bean = new RequestRank();

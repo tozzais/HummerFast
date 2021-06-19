@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.tozzais.baselibrary.util.log.LogUtil;
+import com.xianlv.business.bean.eventbus.RefreshMain;
+import com.xianlv.business.ui.activity.MessageActivity;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +32,7 @@ public class MyReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 //        mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		EventBus.getDefault().post(new RefreshMain());
 		try {
 			Bundle bundle = intent.getExtras();
 
@@ -53,20 +57,22 @@ public class MyReceiver extends BroadcastReceiver {
 				try{
 					JSONObject json = new JSONObject(bundle.getString(JPushInterface.EXTRA_EXTRA));
 					LogUtil.e("[MyReceiver] 用户点击打开了通知"+json);
-					//1 订单 2退款详情 3邀请有礼 4 系统消息5我的优惠券
-					String category = json.getString("type");
-					switch (category){
-//
-						case "1":
-							//消息列表
-//							MessageActivity.launch(context);
-							break;
-						case "2":
-							//抢购中心
-//							SpikeListActivity.launch(context);
-							break;
-//
-					}
+//					//1 订单 2退款详情 3邀请有礼 4 系统消息5我的优惠券
+//					String category = json.getString("type");
+//					switch (category){
+////
+//						case "1":
+//							//消息列表
+					Intent intent1 = new Intent(context, MessageActivity.class);
+					intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					context.startActivity(intent1);
+//							break;
+//						case "2":
+//							//抢购中心
+////							SpikeListActivity.launch(context);
+//							break;
+////
+//					}
 				}catch (Exception e){
 
 				}
