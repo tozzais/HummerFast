@@ -4,6 +4,7 @@ plugins {
     id 'com.jakewharton.butterknife'
 }
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -63,6 +64,29 @@ android {
             dirs 'libs'
         }
     }
+
+    android.applicationVariants.all{ variant->
+
+        variant.outputs.all{
+
+            if (variant.buildType.name =='release') {
+
+                outputFileName ="xianlv_${variant.versionName}_${releaseTime()}.apk"
+
+            }else if (variant.buildType.name =='debug') {
+
+                outputFileName ="xianlv_${variant.versionName}_${releaseTime()}.apk"
+
+            }
+        }
+
+    }
+
+}
+static def releaseTime() {
+
+    return new Date().format("MMdd-HHmmss", TimeZone.getTimeZone("UTC"))
+
 }
 
 dependencies {
