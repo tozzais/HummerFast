@@ -201,6 +201,8 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:paddingLeft="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 android:background="@drawable/shape_white5">
 
 
@@ -223,19 +225,10 @@
 
                 <TextView
                     android:id="@+id/tv_number"
-                    style="@style/base_text_style"
+                    style="@style/base_text_style1"
                     android:text="8"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/shape_oval_red"
+                    android:layout_marginTop="@dimen/dp_4"
                     />
-
 
                 <com.xianlv.business.weight.MarqueeTextView
                     android:id="@+id/tv_message"
@@ -257,7 +250,10 @@
                     android:textSize="12sp"
                     android:autoLink="all"
                     android:layout_gravity="center_vertical"
-                    android:padding="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp"
                     android:textColor="@color/baseColor"
                     />
 
@@ -411,13 +407,15 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_order1"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
-                        android:text="3"
                         android:visibility="gone"
-                        android:layout_toRightOf="@+id/ll_order1"
-                        android:layout_margin="5dp"/>
+                        android:id="@+id/tv_order1"
+                        style="@style/base_text_style1"
+                        android:text="4683"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"
+                        />
+
+
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_order2"
@@ -447,11 +445,10 @@
 
                     <TextView
                         android:id="@+id/tv_order2"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
-                        android:text="3"
+                        style="@style/base_text_style1"
+                        android:text="134"
                         android:visibility="gone"
-                        android:layout_toRightOf="@+id/ll_order2"
+                        android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -482,11 +479,10 @@
 
                     <TextView
                         android:id="@+id/tv_order3"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
-                        android:layout_toRightOf="@+id/ll_order3"
+                        android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
 
@@ -573,8 +569,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -607,8 +602,7 @@
 
                     <TextView
                         android:visibility="gone"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
@@ -642,8 +636,7 @@
 
                     <TextView
                         android:visibility="gone"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
@@ -676,8 +669,7 @@
 
                     <TextView
                         android:visibility="gone"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
@@ -729,8 +721,7 @@
 
                     <TextView
                         android:id="@+id/tv_number_check_in"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -762,8 +753,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -798,8 +788,7 @@
 
                     <TextView
                         android:id="@+id/tv_number_breakfast"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -833,8 +822,7 @@
 
                     <TextView
                         android:id="@+id/tv_number_park"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -887,8 +875,7 @@
 
                     <TextView
                         android:id="@+id/tv_number_send_goods"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:visibility="gone"
@@ -921,8 +908,7 @@
 
                     <TextView
                         android:id="@+id/tv_number_clean"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -957,8 +943,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -992,8 +977,7 @@
 
                     <TextView
                         android:visibility="gone"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
@@ -1027,8 +1011,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -1072,8 +1055,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -1107,8 +1089,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -1141,8 +1122,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -1177,11 +1157,9 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
-
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
@@ -1227,8 +1205,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
 
@@ -1264,8 +1241,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
 
@@ -1300,8 +1276,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
@@ -1333,8 +1308,8 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
+                        android:visibility="gone"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
@@ -1348,7 +1323,7 @@
             <TextView
                 style="@style/black_text_bold_15sp"
                 android:layout_margin="12dp"
-                android:text="贤旅大学" />
+                android:text="贤旅培训" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1387,8 +1362,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:visibility="gone"
@@ -1420,8 +1394,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:visibility="gone"
@@ -1455,8 +1428,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"
@@ -1489,8 +1461,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:layout_alignParentRight="true"
                         android:visibility="gone"
@@ -1540,8 +1511,7 @@
                     </LinearLayout>
 
                     <TextView
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
+                        style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
                         android:layout_alignParentRight="true"

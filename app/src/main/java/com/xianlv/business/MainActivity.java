@@ -397,28 +397,28 @@ public class MainActivity extends CheckPermissionActivity {
                     public void onSuccess(BaseResult<MainNumberBean> result) {
                         MainNumberBean numberBean = result.data;
                         tvNumberClean.setVisibility(numberBean.sweep > 0 ? View.VISIBLE : View.GONE);
-                        tvNumberClean.setText(numberBean.sweep + "");
+                        tvNumberClean.setText(getNumber(numberBean.sweep));
                         tvNumberPark.setVisibility(numberBean.vouchers2 > 0 ? View.VISIBLE : View.GONE);
-                        tvNumberPark.setText(numberBean.vouchers2 + "");
+                        tvNumberPark.setText(getNumber(numberBean.vouchers2));
                         tvNumberBreakfast.setVisibility(numberBean.vouchers1 > 0 ? View.VISIBLE : View.GONE);
-                        tvNumberBreakfast.setText(numberBean.vouchers1 + "");
+                        tvNumberBreakfast.setText(getNumber(numberBean.vouchers1));
                         tvNumberSendGoods.setVisibility(numberBean.goods > 0 ? View.VISIBLE : View.GONE);
-                        tvNumberSendGoods.setText(numberBean.goods + "");
+                        tvNumberSendGoods.setText(getNumber(numberBean.goods));
                         tvNumberCheckIn.setVisibility(numberBean.roomWifiConfiguration > 0 ? View.VISIBLE : View.GONE);
-                        tvNumberCheckIn.setText(numberBean.roomWifiConfiguration + "");
+                        tvNumberCheckIn.setText(getNumber(numberBean.roomWifiConfiguration));
                         tvNumber.setVisibility(numberBean.jiguangCount > 0 ? View.VISIBLE : View.GONE);
-                        tvNumber.setText(numberBean.jiguangCount + "");
+                        tvNumber.setText(getNumber(numberBean.jiguangCount));
                         if (numberBean.jiguangMsg != null && !TextUtils.isEmpty(numberBean.jiguangMsg.content)){
                             tvMessage.setText(numberBean.jiguangMsg.content);
                         }else {
                             tvMessage.setText("暂无新消息");
                         }
                         tv_order1.setVisibility(numberBean.orderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
-                        tv_order1.setText(numberBean.orderNoConfirmCount + "");
+                        tv_order1.setText(getNumber(numberBean.orderNoConfirmCount));
                         tv_order2.setVisibility(numberBean.restOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
-                        tv_order2.setText(numberBean.restOrderNoConfirmCount + "");
+                        tv_order2.setText(getNumber(numberBean.restOrderNoConfirmCount));
                         tv_order3.setVisibility(numberBean.roomOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
-                        tv_order3.setText(numberBean.roomOrderNoConfirmCount + "");
+                        tv_order3.setText(getNumber(numberBean.roomOrderNoConfirmCount));
 
                     }
 
@@ -487,6 +487,13 @@ public class MainActivity extends CheckPermissionActivity {
     @OnClick(R.id.tv_message_more)
     public void onClick() {
         MessageActivity.launch(mActivity);
+    }
+
+    public String getNumber(int num){
+        String number = num+"";
+        if (TextUtils.isEmpty(number))return "";
+        if (number.length()>3)return number.substring(0,2)+"...";
+        return number;
     }
 
 }

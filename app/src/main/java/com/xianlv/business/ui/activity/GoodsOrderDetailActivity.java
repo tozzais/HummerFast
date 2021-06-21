@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
+import com.tozzais.baselibrary.util.DpUtil;
+import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.GoodsDetailSubAdapter;
 import com.xianlv.business.bean.GoodsOrderItem;
@@ -118,6 +120,7 @@ public class GoodsOrderDetailActivity extends BaseActivity {
         tvNote.setText( detail.descs);
 
         GoodsDetailSubAdapter adapter = new GoodsDetailSubAdapter();
+        rvGoods.addItemDecoration(new LinearSpace(DpUtil.dip2px(mActivity,12)));
         rvGoods.setAdapter(adapter);
         adapter.setNewData(detail.orderDetailTitleList);
     }

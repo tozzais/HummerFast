@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-
     >
 
     <com.xianlv.business.weight.SquareRoundImageView
