@@ -413,12 +413,12 @@ public class MainActivity extends CheckPermissionActivity {
                         }else {
                             tvMessage.setText("暂无新消息");
                         }
-                        tv_order1.setVisibility(numberBean.orderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
-                        tv_order1.setText(getNumber(numberBean.orderNoConfirmCount));
+                        tv_order1.setVisibility(numberBean.roomOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
+                        tv_order1.setText(getNumber(numberBean.roomOrderNoConfirmCount));
                         tv_order2.setVisibility(numberBean.restOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
                         tv_order2.setText(getNumber(numberBean.restOrderNoConfirmCount));
-                        tv_order3.setVisibility(numberBean.roomOrderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
-                        tv_order3.setText(getNumber(numberBean.roomOrderNoConfirmCount));
+                        tv_order3.setVisibility(numberBean.orderNoConfirmCount > 0 ? View.VISIBLE : View.GONE);
+                        tv_order3.setText(getNumber(numberBean.orderNoConfirmCount));
 
                     }
 
