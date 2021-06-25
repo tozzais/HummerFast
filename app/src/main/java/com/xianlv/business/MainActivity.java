@@ -3,6 +3,8 @@ package com.xianlv.business;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -22,9 +25,11 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.eventbus.RefreshAccount;
 import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.BaseRequest;
@@ -59,10 +64,16 @@ import com.xianlv.business.ui.activity.VisitorRecordActivity;
 import com.xianlv.business.util.BottomDialogUtil;
 import com.xianlv.business.util.CenterDialogUtil;
 import com.xianlv.business.weight.MarqueeTextView;
+import com.xuexiang.xupdate.XUpdate;
+import com.xuexiang.xupdate._XUpdate;
+import com.xuexiang.xupdate.service.OnFileDownloadListener;
+import com.xuexiang.xutil.app.PathUtils;
+import com.xuexiang.xutil.display.HProgressDialogUtils;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -76,13 +87,14 @@ public class MainActivity extends CheckPermissionActivity {
 
 
     public static String[] needPermissions = {
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.CAMERA
     };
 
     public static String[] needPermissions1 = {
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE
     };
 
     @BindView(R.id.iv_weather)
@@ -315,9 +327,82 @@ public class MainActivity extends CheckPermissionActivity {
     @Override
     public void initListener() {
         super.initListener();
-        swipeLayout.setOnRefreshListener(() -> {
-            loadData();
+        swipeLayout.setOnRefreshListener(this::loadData);
+
+
+
+
+    }
+
+    private void getVersion(String version){
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+        hashMap.put("versionNo", version + "");
+        new RxHttp<BaseResult<VersionBean>>().send(ApiManager.getService().getVersion(hashMap),
+                new Response<BaseResult<VersionBean>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseResult<VersionBean> result) {
+                        swipeLayout.setRefreshing(false);
+
+                        showDialog(result.data);
+                    }
+
+                });
+    }
+    private void  showDialog(VersionBean versionBean){
+        if (!"1".equals(versionBean.news)){
+            //不是新版本
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setTitle("版本更新提示");
+        builder.setMessage(versionBean.intro);
+        builder.setPositiveButton("立即更新", (dialogInterface, i) -> {
+//            downFile(versionBean);
+            if (!TextUtils.isEmpty(versionBean.url)){
+                downFile(versionBean.url);
+            }else {
+                tsg("下载地址为空");
+            }
+
         });
+        if (!"1".equals(versionBean.modify)){
+            //不是强制更新
+            builder.setNegativeButton("暂不更新", null);
+        }
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show(); //构建AlertDialog并显示
+
+    }
+    private void downFile(String versionBean){
+        XUpdate.newBuild(mActivity)
+                .apkCacheDir(PathUtils.getExtDownloadsPath())
+                .build()
+                .download(versionBean, new OnFileDownloadListener() {
+                    @Override
+                    public void onStart() {
+                        HProgressDialogUtils.showHorizontalProgressDialog(mActivity, "下载进度", false);
+                    }
+
+                    @Override
+                    public void onProgress(float progress, long total) {
+                        HProgressDialogUtils.setProgress(Math.round(progress * 100));
+                    }
+
+                    @Override
+                    public boolean onCompleted(File file) {
+                        HProgressDialogUtils.cancel();
+                        _XUpdate.startInstallApk(mActivity, file);
+                        return false;
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        HProgressDialogUtils.cancel();
+                    }
+                });
     }
 
     private static final int REQUEST_CODE_SCAN = 1001;
@@ -331,6 +416,14 @@ public class MainActivity extends CheckPermissionActivity {
                 //设置场景模式后最好调用一次stop，再调用start以保证场景模式生效
                 mLocationClient.stopLocation();
                 mLocationClient.startLocation();
+            }
+            try {
+                PackageManager pm = mContext.getPackageManager();
+                PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), 0);
+                getVersion(pi.versionName);
+            } catch (Exception e) {
+                swipeLayout.setRefreshing(false);
+                LogUtil.e(e.toString());
             }
         } else {
             Intent intent = new Intent(MainActivity.this, CaptureActivity.class);

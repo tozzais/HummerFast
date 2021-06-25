@@ -29,6 +29,7 @@ import com.xianlv.business.bean.RankResult;
 import com.xianlv.business.bean.RoomOrderDetail;
 import com.xianlv.business.bean.RoomOrderItem;
 import com.xianlv.business.bean.ShopResult;
+import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.VideoDetail;
 import com.xianlv.business.bean.VideoItem;
 import com.xianlv.business.bean.VisitorUserItem;
@@ -289,7 +290,10 @@ public interface ApiService {
     @POST("apiOrder/getOrderDetail")
     Observable<BaseResult<GoodsOrderItem>>
     goodsOrderDetail(@Body Map<String,String> bean);
-
+    //版本更新接口
+    @POST("store_home/getVersion")
+    Observable<BaseResult<VersionBean>>
+    getVersion(@Body Map<String, String> map);
 
 
 
