@@ -87,6 +87,9 @@ import butterknife.OnClick;
  */
 public class MainActivity extends CheckPermissionActivity {
 
+    /**
+     * 修复bug
+     */
 
     public static String[] needPermissions = {
             Manifest.permission.CAMERA
