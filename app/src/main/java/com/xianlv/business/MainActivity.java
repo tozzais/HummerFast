@@ -82,6 +82,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ *
+ * 这是2.0.0版本
  */
 public class MainActivity extends CheckPermissionActivity {
 
