@@ -103,6 +103,8 @@
         <activity android:name=".ui.activity.MessageActivity" />
         <activity android:name=".ui.activity.GoodsOrderActivity" />
         <activity android:name=".ui.activity.GoodsOrderDetailActivity" />
+        <activity android:name=".ui.activity.ReceivePayActivity" />
+        <activity android:name=".ui.activity.ReceivePayResultActivity" />
         <activity android:name=".ui.activity.VideoDetailActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
