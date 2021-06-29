@@ -233,7 +233,7 @@ public class MainActivity extends CheckPermissionActivity {
                 BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.ll_applets:
-                CodeActivity.launch(mActivity, 1);
+//                CodeActivity.launch(mActivity, 1);
                 break;
             case R.id.ll_store:
                 ReceivePayActivity.launch(mActivity);

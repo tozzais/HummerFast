@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
@@ -28,6 +30,8 @@ public class ReceivePayActivity extends BaseActivity {
     TextView btnExplain;
     @BindView(R.id.tv_explain)
     TextView tv_explain;
+    @BindView(R.id.tv_scenes)
+    TextView tv_scenes;
     @BindView(R.id.et_money)
     EditText et_money;
 
@@ -62,7 +66,7 @@ public class ReceivePayActivity extends BaseActivity {
 
 
 
-    @OnClick({R.id.btn_explain, R.id.tv_sure, R.id.tv_receive_pay_record})
+    @OnClick({R.id.btn_explain, R.id.tv_sure, R.id.tv_receive_pay_record, R.id.ll_scenes})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_explain:
@@ -86,11 +90,19 @@ public class ReceivePayActivity extends BaseActivity {
             case R.id.tv_receive_pay_record:
                 CollectionRecordActivity.launch(mActivity);
                 break;
+            case R.id.ll_scenes:
+                ScenesActivity.launch(mActivity);
+                break;
         }
     }
 
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == RESULT_OK){
+            tv_scenes.setText("中餐厅");
+        }
+    }
 
     @Override
     public void initListener() {
