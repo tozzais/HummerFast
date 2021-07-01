@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
+import com.xianlv.business.print.SunmiPrintHelper;
 import com.xianlv.business.update.OKHttpUpdateHttpService;
 import com.xuexiang.xupdate.XUpdate;
 import com.xuexiang.xupdate.entity.UpdateError;
@@ -39,6 +40,13 @@ public class MyApp extends Application {
         JPushInterface.init(this);
 
         initUpdate();
+
+        init();
+
+    }
+
+    private void init(){
+        SunmiPrintHelper.getInstance().initSunmiPrinterService(this);
     }
 
     private void initUpdate() {

@@ -40,13 +40,15 @@ import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.print.BluetoothUtil;
+import com.xianlv.business.print.BytesUtil;
+import com.xianlv.business.print.SunmiPrintHelper;
 import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
 import com.xianlv.business.ui.activity.CallMorningActivity;
 import com.xianlv.business.ui.activity.CashPledgeManageActivity;
 import com.xianlv.business.ui.activity.CheckInApplyActivity;
 import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CleanApplyActivity;
-import com.xianlv.business.ui.activity.CodeActivity;
 import com.xianlv.business.ui.activity.CollectionRecordActivity;
 import com.xianlv.business.ui.activity.CouponCodeAuthActivity;
 import com.xianlv.business.ui.activity.DeliveryReminderActivity;
@@ -55,7 +57,6 @@ import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.GoodsManageActivity;
 import com.xianlv.business.ui.activity.GoodsOrderActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
-import com.xianlv.business.ui.activity.MessageActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
 import com.xianlv.business.ui.activity.OrderActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
@@ -210,6 +211,7 @@ public class MainActivity extends CheckPermissionActivity {
         getData();
 
         getNumber();
+
 
     }
 
@@ -593,8 +595,16 @@ public class MainActivity extends CheckPermissionActivity {
 
     @OnClick(R.id.tv_message_more)
     public void onClick() {
-        MessageActivity.launch(mActivity);
+//        MessageActivity.launch(mActivity);
+
+        byte[] erlmoData = BytesUtil.getErlmoData();
+        if(BluetoothUtil.isBlueToothPrinter){
+            BluetoothUtil.sendData(erlmoData);
+        }else{
+            SunmiPrintHelper.getInstance().sendRawData(erlmoData);
+        }
     }
+
 
     public String getNumber(int num){
         String number = num+"";
@@ -602,5 +612,7 @@ public class MainActivity extends CheckPermissionActivity {
         if (number.length()>3)return number.substring(0,2)+"...";
         return number;
     }
+
+
 
 }
