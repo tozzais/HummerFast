@@ -43,6 +43,8 @@ public class MyApp extends Application {
 
         init();
 
+        PrinterKernel.INSTANCE.init(mContext);
+
     }
 
     private void init(){

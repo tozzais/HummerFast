@@ -40,9 +40,6 @@ import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
-import com.xianlv.business.print.BluetoothUtil;
-import com.xianlv.business.print.BytesUtil;
-import com.xianlv.business.print.SunmiPrintHelper;
 import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
 import com.xianlv.business.ui.activity.CallMorningActivity;
 import com.xianlv.business.ui.activity.CashPledgeManageActivity;
@@ -597,13 +594,10 @@ public class MainActivity extends CheckPermissionActivity {
     public void onClick() {
 //        MessageActivity.launch(mActivity);
 
-        byte[] erlmoData = BytesUtil.getErlmoData();
-        if(BluetoothUtil.isBlueToothPrinter){
-            BluetoothUtil.sendData(erlmoData);
-        }else{
-            SunmiPrintHelper.getInstance().sendRawData(erlmoData);
-        }
+        SunmiPrint.INSTANCE.printReceipt(mActivity);
     }
+
+
 
 
     public String getNumber(int num){
