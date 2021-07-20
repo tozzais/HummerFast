@@ -24,10 +24,13 @@ import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MealOrderItem;
 import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.PayCode;
 import com.xianlv.business.bean.ProblemItem;
 import com.xianlv.business.bean.RankResult;
+import com.xianlv.business.bean.ReceiveOrderItem;
 import com.xianlv.business.bean.RoomOrderDetail;
 import com.xianlv.business.bean.RoomOrderItem;
+import com.xianlv.business.bean.SceneItem;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.VideoDetail;
@@ -294,6 +297,18 @@ public interface ApiService {
     @POST("store_home/getVersion")
     Observable<BaseResult<VersionBean>>
     getVersion(@Body Map<String, String> map);
+    //支付场景
+    @POST("scan/getQrcodeList")
+    Observable<BaseListResult<SceneItem>>
+    getPayScenes(@Body Map<String, String> map);
+    //门店收款码
+    @POST("scan/saveQrCode")
+    Observable<BaseResult<PayCode>>
+    getPayCode(@Body Map<String, String> map);
+    //收款记录
+    @POST("scan/queryScanOrder")
+    Observable<BaseListResult<ReceiveOrderItem>>
+    getReceiveList(@Body Map<String, String> map);
 
 
 

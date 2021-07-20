@@ -1,8 +1,10 @@
 package com.xianlv.business;
 
-import com.xianlv.business.print.BytesUtil;
+import com.google.gson.Gson;
 
 import org.junit.Test;
+
+import java.util.HashMap;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,8 +24,10 @@ public class ExampleUnitTest {
 //        while(m.find()) {
 //            System.out.println(m.group(1));
 //        }
-        System.out.println(new String(BytesUtil.getKoubeiData()));
-
+//        System.out.println(new String(BytesUtil.getKoubeiData()));Str
+        HashMap<String,String> map = new HashMap<>();
+        map.put("123","123213");
+        System.out.println(new Gson().toJson(map));
     }
 
 
