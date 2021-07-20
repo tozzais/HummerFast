@@ -263,13 +263,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
+
                 android:layout_marginRight="12dp"
-                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/ll_applets"
+                    android:layout_marginTop="12dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dp"
@@ -290,6 +290,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="12dp"
                     android:id="@+id/ll_store"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -488,7 +489,6 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_order4"
-                    android:visibility="invisible"
                     android:layout_width="0dp"
                     android:paddingRight="8dp"
                     android:layout_height="match_parent"
@@ -505,21 +505,20 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_order2"/>
+                            android:src="@mipmap/icon_order4"/>
 
                         <TextView
                             style="@style/black_text_12sp"
                             android:layout_marginTop="5dp"
-                            android:text="订餐订单"/>
+                            android:text="线下订单"/>
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_order4"
-                        style="@style/cart_number_style"
-                        android:background="@drawable/shape_oval_red"
-                        android:text="3"
+                        style="@style/base_text_style1"
+                        android:text="33"
                         android:visibility="gone"
-                        android:layout_toRightOf="@+id/ll_order4"
+                        android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
 

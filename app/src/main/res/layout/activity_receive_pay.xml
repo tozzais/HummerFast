@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_scenes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/shape_white5"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            style="@style/base_text_style"
+
+            android:text="使用场景" />
+
+        <TextView
+            android:id="@+id/tv_scenes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            style="@style/small_text_gray_style"
+            android:drawableRight="@mipmap/arrow_right_gray"
+            android:text=""
+            android:drawablePadding="5dp"
+            android:textColor="@color/black_title_color"
+            android:textColorHint="@color/grayText"
+            android:hint="请选择使用场景"/>
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/shape_white5"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                style="@style/base_text_style"
+                android:text="收款金额" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    style="@style/black_text_bold_15sp"
+                    android:textSize="25sp"
+                    android:text="￥"
+                    />
+
+                <EditText
+                    android:id="@+id/et_money"
+                    style="@style/et_style"
+                    android:textSize="18sp"
+                    android:digits="1234567890."
+                    android:inputType="number"
+                    android:layout_width="match_parent"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_explain"
+                    style="@style/small_text_gray_style"
+                    android:layout_marginTop="12dp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/btn_explain"
+                    style="@style/blue_text_12sp"
+                    android:layout_marginTop="12dp"
+                    android:text="输入备注"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/tv_sure"
+                style="@style/login_btn_style"
+                android:text="确认并生成收款码"
+                android:layout_marginTop="15dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_receive_pay_record"
+                style="@style/base_text_style"
+                android:textColor="@color/baseColor"
+                android:layout_gravity="center_horizontal"
+                android:text="查看收款记录"
+                android:padding="12dp"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+

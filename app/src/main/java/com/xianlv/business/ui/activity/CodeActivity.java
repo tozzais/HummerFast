@@ -85,8 +85,8 @@ public class CodeActivity extends BaseActivity {
             tvCodeName.setCompoundDrawables(drawable, null, null, null);
             tvCodeName.setTextColor(getResources().getColor(R.color.yellowText));
 
-            tvCode.setText("收款记录");
-            tvCode.setTextColor(getResources().getColor(R.color.yellowText));
+            tvCode.setText("备注：客人门店消费");
+            tvCode.setTextColor(getResources().getColor(R.color.grayText));
             tvTip1.setText("安全提示");
             tvTip2.setText("为了你的资金安全，请保管好收款码，防止泄露");
 
@@ -112,7 +112,8 @@ public class CodeActivity extends BaseActivity {
                 break;
             case R.id.tv_code:
                 if (type == 2){
-                    CollectionRecordActivity.launch(mActivity);
+                    ReceivePayResultActivity.launch(mActivity,2);
+//
                 }
                 break;
         }
