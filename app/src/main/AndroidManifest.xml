@@ -38,9 +38,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+
         <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -99,6 +97,7 @@
         <activity android:name=".ui.activity.ReceivePayActivity" />
         <activity android:name=".ui.activity.ReceivePayResultActivity" />
         <activity android:name=".ui.activity.ScenesActivity" />
+        <activity android:name=".ui.activity.Refund1Activity" />
         <activity
             android:name=".ui.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

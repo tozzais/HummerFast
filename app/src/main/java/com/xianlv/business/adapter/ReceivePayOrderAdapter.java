@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
 import com.xianlv.business.SunmiPrint;
 import com.xianlv.business.bean.ReceiveOrderItem;
+import com.xianlv.business.ui.activity.Refund1Activity;
 
 public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, BaseViewHolder> implements LoadMoreModule {
 
@@ -37,21 +38,39 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
        TextView tv_text8 = helper.getView(R.id.tv_text8);
        TextView tv_text10 = helper.getView(R.id.tv_text10);
        TextView tv_text9 = helper.getView(R.id.tv_text9);
-        if (type == 1){
+        TextView tv_refuse = helper.getView(R.id.tv_refuse);
+        if (type == 0){
+            tv_refuse.setVisibility(View.VISIBLE);
             helper.setVisible(R.id.tv_text2, false);
             tv_text9.setVisibility(View.GONE);
             tv_text10.setVisibility(View.GONE);
             tv_text3.setText("收款金额："+item.money);
+            helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
+                    .setText(R.id.tv_text2,item.getReturnStatus())
+                    .setText(R.id.tv_text4,"收款类型："+item.purposeStatus)
+                    .setText(R.id.tv_text5,"付款人："+item.nickname)
+                    .setText(R.id.tv_text6,"收款员工："+item.operuser)
+                    .setText(R.id.tv_text7,"收款时间："+item.createtime)
+                    .setText(R.id.tv_text8,"备注"+item.remark);
+        }else {
+            tv_refuse.setVisibility(View.GONE);
+            tv_text3.setText("退款金额："+item.refundMoney);
+            helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
+                    .setText(R.id.tv_text2,item.getReturnStatus())
+                    .setText(R.id.tv_text4,"收款类型："+item.qrcodeName)
+                    .setText(R.id.tv_text5,"付款人："+item.nickname)
+                    .setText(R.id.tv_text6,"收款员工："+item.operuser)
+                    .setText(R.id.tv_text7,"收款时间："+item.createtime)
+                    .setText(R.id.tv_text8,"退款时间："+item.checktime)
+                    .setText(R.id.tv_text9,"操作人"+item.operuserRefund)
+                    .setText(R.id.tv_text10,"备注"+item.reason);
         }
-        helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
-                .setText(R.id.tv_text8,"收款类型："+item.purposeStatus)
-                .setText(R.id.tv_text2,"房间号："+item.getReturnStatus())
-                .setText(R.id.tv_text4,"付款人："+item.nickname)
-                .setText(R.id.tv_text5,"收款员工："+item.operuser+" "+item.verPhone)
-                .setText(R.id.tv_text6,"收款时间："+item.payTime)
-                .setText(R.id.tv_text7,"备注"+item.remark);
+
         helper.getView(R.id.tv_pass).setOnClickListener(v -> {
             SunmiPrint.INSTANCE.printReceipt(getContext(),item,type);
+        });
+        tv_refuse.setOnClickListener(v -> {
+            Refund1Activity.launch(getContext(),item.scanId);
         });
 
 //        if (detailVOS.size() > 3){

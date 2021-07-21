@@ -2,7 +2,6 @@ package com.xianlv.business.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -11,57 +10,54 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
+import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
-import com.xianlv.business.bean.PayCode;
+import com.xianlv.business.bean.eventbus.RefreshReturn1;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.util.CenterDialogUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ReceivePayActivity extends BaseActivity {
+public class Refund1Activity extends BaseActivity {
 
 
-    @BindView(R.id.tv_receive_pay_record)
-    TextView tv_receive_pay_record;
+    @BindView(R.id.tv_explain)
+    TextView tvExplain;
     @BindView(R.id.btn_explain)
     TextView btnExplain;
-    @BindView(R.id.tv_explain)
-    TextView tv_explain;
-    @BindView(R.id.tv_scenes)
-    TextView tv_scenes;
     @BindView(R.id.et_money)
     EditText et_money;
 
-    public static void launch(Context from) {
+    private String scanId;
+    public static void launch(Context from, String scanId) {
         if (!ClickUtils.isFastClick()) {
             return;
         }
-        Intent intent = new Intent(from, ReceivePayActivity.class);
+        Intent intent = new Intent(from, Refund1Activity.class);
+        intent.putExtra("scanId", scanId);
         from.startActivity(intent);
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_receive_pay;
+        return R.layout.activity_refund1;
     }
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        setBackTitle("门店收款码");
-        tv_receive_pay_record.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        tv_receive_pay_record.getPaint().setAntiAlias(true);//抗锯齿
+        setBackTitle("退款");
+        scanId = getIntent().getStringExtra("scanId") + "";
 
 
 
@@ -73,14 +69,12 @@ public class ReceivePayActivity extends BaseActivity {
 
     }
 
-
-
-    @OnClick({R.id.btn_explain, R.id.tv_sure, R.id.tv_receive_pay_record, R.id.ll_scenes})
+    @OnClick({R.id.btn_explain, R.id.tv_sure})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_explain:
-                CenterDialogUtil.showExplain(mActivity, tv_explain.getText().toString().trim(), s -> {
-                    tv_explain.setText(s);
+                CenterDialogUtil.showExplain(mActivity, tvExplain.getText().toString().trim(), s -> {
+                    tvExplain.setText(s);
                     if (TextUtils.isEmpty(s)) {
                         btnExplain.setText("添加说明");
                     } else {
@@ -89,54 +83,33 @@ public class ReceivePayActivity extends BaseActivity {
                 });
                 break;
             case R.id.tv_sure:
-                if (TextUtils.isEmpty(qrcodeId)){
-                    tsg("请选择支付场景");
-                    return;
-                }
                 String money = et_money.getText().toString().trim();
                 if (TextUtils.isEmpty(money) || "0".equals(money)){
-                    tsg("请输入金额");
-                    return;
+                    tsg("输入退款金额");
+                }else{
+                    returnM();
                 }
-                createCode(money);
-                break;
-            case R.id.tv_receive_pay_record:
-                CollectionRecordActivity.launch(mActivity);
-                break;
-            case R.id.ll_scenes:
-                ScenesActivity.launch(mActivity);
                 break;
         }
     }
-    private void createCode(String money){
+
+
+    private void returnM(){
+        String trim = tvExplain.getText().toString().trim();
         Map<String,String> map = new HashMap<>();
-        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
-        map.put("price", money);
-        map.put("qrcodeId", qrcodeId);
-        map.put("operRemark", tv_explain.getText().toString().trim());
-        new RxHttp<BaseResult<PayCode>>().send(ApiManager.getService().getPayCode(map),
-                new Response<BaseResult<PayCode>>(mActivity) {
+        map.put("scanId", scanId);
+        map.put("money",et_money.getText().toString().trim());
+        map.put("reason",TextUtils.isEmpty(trim)?"":trim);
+        new RxHttp<BaseResult>().send(ApiManager.getService().return_money(map),
+                new Response<BaseResult>(mActivity) {
                     @Override
-                    public void onSuccess(BaseResult<PayCode> result) {
-                        PayCode payCode = result.data;
-                        payCode.money  = money;
-                        payCode.remark  = tv_explain.getText().toString().trim();
-                        CodeActivity.launch(mActivity, 2, payCode);
+                    public void onSuccess(BaseResult result) {
+                        ToastCommom.createToastConfig().ToastShow(mActivity,"操作成功");
+                        EventBus.getDefault().post(new RefreshReturn1());
                         finish();
                     }
                 });
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 101 && resultCode == RESULT_OK){
-            tv_scenes.setText(data.getStringExtra("name"));
-            qrcodeId = data.getStringExtra("qrcodeId");
-        }
-    }
-
-    private String qrcodeId;
 
     @Override
     public void initListener() {

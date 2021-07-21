@@ -27,17 +27,19 @@ public class ReceivePayResultActivity extends BaseActivity {
     @BindView(R.id.tv_btn2)
     TextView tv_btn2;
 
-    public static void launch(Context from, int type) {
+    public static void launch(Context from, int type, String scanId) {
         if (!ClickUtils.isFastClick()) {
             return;
         }
         Intent intent = new Intent(from, ReceivePayResultActivity.class);
         intent.putExtra("type", type);
+        intent.putExtra("scanId", scanId);
         from.startActivity(intent);
     }
 
 
     private int type;
+    private String scanId;
 
     @Override
     public int getLayoutId() {
@@ -48,6 +50,7 @@ public class ReceivePayResultActivity extends BaseActivity {
     public void initView(Bundle savedInstanceState) {
         setBackTitle("支付结果");
         type = getIntent().getIntExtra("type", 0);
+        scanId = getIntent().getStringExtra("scanId");
         if (type == 0) {
             ivResult.setImageResource(R.mipmap.auth_success);
             tvResult.setText("支付成功");

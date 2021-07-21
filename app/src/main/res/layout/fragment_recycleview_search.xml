@@ -51,6 +51,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_search"
             style="@style/blue_text_14sp"
             android:padding="12dp"
             android:text="搜索"/>

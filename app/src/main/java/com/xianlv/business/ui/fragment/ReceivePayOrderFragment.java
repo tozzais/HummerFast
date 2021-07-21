@@ -1,6 +1,7 @@
 package com.xianlv.business.ui.fragment;
 
 import android.os.Bundle;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +13,7 @@ import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.ReceivePayOrderAdapter;
 import com.xianlv.business.bean.ReceiveOrderItem;
-import com.xianlv.business.bean.eventbus.RefreshOrder;
+import com.xianlv.business.bean.eventbus.RefreshReturn1;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.Response;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 public class ReceivePayOrderFragment extends BaseListFragment<ReceiveOrderItem> {
@@ -62,7 +64,7 @@ public class ReceivePayOrderFragment extends BaseListFragment<ReceiveOrderItem> 
         super.loadData();
         Map<String,String> map = new HashMap<>();
         map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
-        map.put("type",(type == 1?0:1)+"");
+        map.put("type",type +"");
         map.put("page",""+page);
         map.put("keyword",""+et_search.getText().toString().trim());
         new RxHttp<BaseListResult<ReceiveOrderItem>>().send(ApiManager.getService().getReceiveList(map),
@@ -85,18 +87,30 @@ public class ReceivePayOrderFragment extends BaseListFragment<ReceiveOrderItem> 
     }
 
 
+
     @Override
     public void initListener() {
         super.initListener();
         mAdapter.getLoadMoreModule().setEnableLoadMore(false);
+        et_search.setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                //完成自己的事件
+                onRefresh();
+            }
+            return false;
+        });
 
     }
 
     @Override
     public void onEvent(Object o) {
         super.onEvent(o);
-        if (o instanceof RefreshOrder){
+        if (o instanceof RefreshReturn1){
             onRefresh();
         }
+    }
+    @OnClick(R.id.tv_search)
+    public void onClick() {
+        onRefresh();
     }
 }
