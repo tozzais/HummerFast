@@ -54,6 +54,7 @@ import com.xianlv.business.ui.activity.GiveAwayReminderActivity;
 import com.xianlv.business.ui.activity.GoodsManageActivity;
 import com.xianlv.business.ui.activity.GoodsOrderActivity;
 import com.xianlv.business.ui.activity.MallCouponWriteOffRecordActivity;
+import com.xianlv.business.ui.activity.MessageActivity;
 import com.xianlv.business.ui.activity.OperationTrainActivity;
 import com.xianlv.business.ui.activity.OrderActivity;
 import com.xianlv.business.ui.activity.ParkCouponApplyActivity;
@@ -85,6 +86,8 @@ import butterknife.OnClick;
 /**
  *
  * 这是2.0.0版本
+ * 1天 新增消息 和订单处理
+ * 2天 打印机和线下订单
  */
 public class MainActivity extends CheckPermissionActivity {
 
@@ -595,9 +598,9 @@ public class MainActivity extends CheckPermissionActivity {
 
     @OnClick(R.id.tv_message_more)
     public void onClick() {
-//        MessageActivity.launch(mActivity);
+        MessageActivity.launch(mActivity);
 
-        SunmiPrint.INSTANCE.printReceipt(mActivity);
+
     }
 
 

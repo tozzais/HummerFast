@@ -71,6 +71,19 @@ public class GlobalParam {
         }
         return new Gson().fromJson(data,LoginBean.class);
     }
+    //获取用户登录信息
+    public static String getShopId() {
+        LoginBean loginBean = getLoginBean();
+        return loginBean == null?"":loginBean.shopId;
+    }
+
+    //获取用户登录信息
+    public static String getUid() {
+        LoginBean loginBean = getLoginBean();
+        return loginBean == null?"":loginBean.userId;
+    }
+
+
 
 
 

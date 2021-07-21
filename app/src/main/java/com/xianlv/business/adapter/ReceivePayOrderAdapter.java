@@ -2,14 +2,17 @@ package com.xianlv.business.adapter;
 
 
 import android.annotation.SuppressLint;
+import android.view.View;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
-import com.xianlv.business.bean.MealOrderItem;
+import com.xianlv.business.SunmiPrint;
+import com.xianlv.business.bean.ReceiveOrderItem;
 
-public class ReceivePayOrderAdapter extends BaseQuickAdapter<MealOrderItem, BaseViewHolder> implements LoadMoreModule {
+public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, BaseViewHolder> implements LoadMoreModule {
 
 
     private int type;
@@ -20,7 +23,7 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<MealOrderItem, Base
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
-    protected void convert(BaseViewHolder helper,  MealOrderItem item) {
+    protected void convert(BaseViewHolder helper,  ReceiveOrderItem item) {
         int position = helper.getAdapterPosition();
 
 //        RecyclerView rv_goods = helper.getView(R.id.rv_goods);
@@ -30,13 +33,27 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<MealOrderItem, Base
 //        List<MealOrderItem.Goods> detailVOS = item.detailVOS;
 //        String openStr = "展开(共"+ detailVOS.size()+"件)";
 //        String closeStr = "收起(共"+ detailVOS.size()+"件)";
-//        helper.setText(R.id.tv_order_number,"订单编号："+item.orderNo)
-//                .setText(R.id.tv_room_number,"房间号："+item.consumer.roomNo)
-//                .setText(R.id.tv_time,"下单时间："+item.createTime)
-//                .setText(R.id.tv_name,"用户名："+item.consumer.consumerName)
-//                .setText(R.id.tv_phone,"手机号："+item.consumer.consumerPhone)
-//                .setText(R.id.tv_money,"￥"+item.payMoney)
-//                .setText(R.id.tv_open,openStr);
+       TextView tv_text3 = helper.getView(R.id.tv_text3);
+       TextView tv_text8 = helper.getView(R.id.tv_text8);
+       TextView tv_text10 = helper.getView(R.id.tv_text10);
+       TextView tv_text9 = helper.getView(R.id.tv_text9);
+        if (type == 1){
+            helper.setVisible(R.id.tv_text2, false);
+            tv_text9.setVisibility(View.GONE);
+            tv_text10.setVisibility(View.GONE);
+            tv_text3.setText("收款金额："+item.money);
+        }
+        helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
+                .setText(R.id.tv_text8,"收款类型："+item.purposeStatus)
+                .setText(R.id.tv_text2,"房间号："+item.getReturnStatus())
+                .setText(R.id.tv_text4,"付款人："+item.nickname)
+                .setText(R.id.tv_text5,"收款员工："+item.operuser+" "+item.verPhone)
+                .setText(R.id.tv_text6,"收款时间："+item.payTime)
+                .setText(R.id.tv_text7,"备注"+item.remark);
+        helper.getView(R.id.tv_pass).setOnClickListener(v -> {
+            SunmiPrint.INSTANCE.printReceipt(getContext(),item,type);
+        });
+
 //        if (detailVOS.size() > 3){
 //            tv_open.setVisibility(View.VISIBLE);
 //        }else {

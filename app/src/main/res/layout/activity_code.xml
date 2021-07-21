@@ -26,9 +26,9 @@
            android:id="@+id/tv_code_name"
            style="@style/blue_text_15sp"
            android:padding="12dp"
-           android:drawableLeft="@mipmap/icon_app"
+           android:drawableLeft="@mipmap/fukuanma"
            android:drawablePadding="10dp"
-           android:text="小程序二维码"/>
+           android:text="收款服务"/>
 
    </LinearLayout>
 
@@ -51,15 +51,16 @@
 
             <TextView
                 style="@style/blue_text_12sp"
-                android:textColor="@color/yellowText"
+                android:textColor="@color/baseColor"
                 android:text="收款金额"/>
             <TextView
+                android:id="@+id/tv_money"
                 style="@style/blue_text_12sp"
                 android:textSize="20sp"
                 android:layout_marginLeft="2dp"
                 android:textStyle="bold"
-                android:textColor="@color/yellowText"
-                android:text="￥1298.98"/>
+                android:textColor="@color/baseColor"
+                tools:text="￥1298.98"/>
 
         </LinearLayout>
 

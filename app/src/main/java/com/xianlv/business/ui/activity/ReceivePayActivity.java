@@ -13,10 +13,19 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.PayCode;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
 import com.xianlv.business.util.CenterDialogUtil;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -80,12 +89,16 @@ public class ReceivePayActivity extends BaseActivity {
                 });
                 break;
             case R.id.tv_sure:
+                if (TextUtils.isEmpty(qrcodeId)){
+                    tsg("请选择支付场景");
+                    return;
+                }
                 String money = et_money.getText().toString().trim();
                 if (TextUtils.isEmpty(money) || "0".equals(money)){
                     tsg("请输入金额");
-                }else{
-                    CodeActivity.launch(mActivity, 2);
+                    return;
                 }
+                createCode(money);
                 break;
             case R.id.tv_receive_pay_record:
                 CollectionRecordActivity.launch(mActivity);
@@ -95,14 +108,35 @@ public class ReceivePayActivity extends BaseActivity {
                 break;
         }
     }
+    private void createCode(String money){
+        Map<String,String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
+        map.put("price", money);
+        map.put("qrcodeId", qrcodeId);
+        map.put("operRemark", tv_explain.getText().toString().trim());
+        new RxHttp<BaseResult<PayCode>>().send(ApiManager.getService().getPayCode(map),
+                new Response<BaseResult<PayCode>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseResult<PayCode> result) {
+                        PayCode payCode = result.data;
+                        payCode.money  = money;
+                        payCode.remark  = tv_explain.getText().toString().trim();
+                        CodeActivity.launch(mActivity, 2, payCode);
+                        finish();
+                    }
+                });
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 101 && resultCode == RESULT_OK){
-            tv_scenes.setText("中餐厅");
+            tv_scenes.setText(data.getStringExtra("name"));
+            qrcodeId = data.getStringExtra("qrcodeId");
         }
     }
+
+    private String qrcodeId;
 
     @Override
     public void initListener() {

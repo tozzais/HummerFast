@@ -1,6 +1,7 @@
 package com.xianlv.business.ui.fragment;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -10,7 +11,7 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.ReceivePayOrderAdapter;
-import com.xianlv.business.bean.MealOrderItem;
+import com.xianlv.business.bean.ReceiveOrderItem;
 import com.xianlv.business.bean.eventbus.RefreshOrder;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
@@ -20,10 +21,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import butterknife.BindView;
 
-public class ReceivePayOrderFragment extends BaseListFragment<MealOrderItem> {
+
+public class ReceivePayOrderFragment extends BaseListFragment<ReceiveOrderItem> {
 
 
+    @BindView(R.id.et_search)
+    EditText et_search;
     private int type = 0;
     public static ReceivePayOrderFragment newInstance(int type){
         ReceivePayOrderFragment cartFragment = new ReceivePayOrderFragment();
@@ -57,12 +62,13 @@ public class ReceivePayOrderFragment extends BaseListFragment<MealOrderItem> {
         super.loadData();
         Map<String,String> map = new HashMap<>();
         map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
-        map.put("status",(type == 1?123:456)+"");
+        map.put("type",(type == 1?0:1)+"");
         map.put("page",""+page);
-        new RxHttp<BaseListResult<MealOrderItem>>().send(ApiManager.getService().mealOrder(map),
-                new Response<BaseListResult<MealOrderItem>>(mActivity,Response.BOTH) {
+        map.put("keyword",""+et_search.getText().toString().trim());
+        new RxHttp<BaseListResult<ReceiveOrderItem>>().send(ApiManager.getService().getReceiveList(map),
+                new Response<BaseListResult<ReceiveOrderItem>>(mActivity,Response.BOTH) {
                     @Override
-                    public void onSuccess(BaseListResult<MealOrderItem> result) {
+                    public void onSuccess(BaseListResult<ReceiveOrderItem> result) {
                         setData(result.data);
                     }
                     @Override
