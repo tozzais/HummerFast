@@ -7,10 +7,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
+import com.xianlv.business.SunmiPrint;
+import com.xianlv.business.bean.OrderDetail;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -76,12 +85,22 @@ public class ReceivePayResultActivity extends BaseActivity {
                 break;
             case R.id.tv_btn2:
                 if (type == 0) {
-
-                }else {
-                    finish();
+                    print();
                 }
                 break;
         }
 
+    }
+    private void print(){
+        Map<String,String> map = new HashMap<>();
+        map.put("scanId", scanId);
+        new RxHttp<BaseResult<OrderDetail>>().send(ApiManager.getService().getOrderDetail(map),
+                new Response<BaseResult<OrderDetail>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<OrderDetail> result) {
+                        SunmiPrint.INSTANCE.printReceipt(mActivity,result.data,type);
+                        finish();
+                    }
+                });
     }
 }

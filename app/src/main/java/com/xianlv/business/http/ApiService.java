@@ -24,6 +24,7 @@ import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MealOrderItem;
 import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.OrderDetail;
 import com.xianlv.business.bean.PayCode;
 import com.xianlv.business.bean.ProblemItem;
 import com.xianlv.business.bean.RankResult;
@@ -313,6 +314,15 @@ public interface ApiService {
     @POST("scan/scanOrder")
     Observable<BaseResult>
     return_money(@Body Map<String, String> map);
+    //快捷支付订单详情
+    @POST("scan/queryScanDetails")
+    Observable<BaseResult<OrderDetail>>
+    getOrderDetail(@Body Map<String, String> map);
+
+    //快捷支付订单详情
+    @POST("scan/queryRefundScanDetails")
+    Observable<BaseResult<OrderDetail>>
+    getOrderDetail1(@Body Map<String, String> map);
 
 
 

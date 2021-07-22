@@ -80,7 +80,7 @@ public class GlobalParam {
     //获取用户登录信息
     public static String getUid() {
         LoginBean loginBean = getLoginBean();
-        return loginBean == null?"":loginBean.shopId;
+        return loginBean == null?"":loginBean.tenantId;
     }
 
 

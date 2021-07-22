@@ -2,16 +2,25 @@ package com.xianlv.business.adapter;
 
 
 import android.annotation.SuppressLint;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.tozzais.baselibrary.http.RxHttp;
 import com.xianlv.business.R;
 import com.xianlv.business.SunmiPrint;
+import com.xianlv.business.bean.OrderDetail;
 import com.xianlv.business.bean.ReceiveOrderItem;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.Refund1Activity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, BaseViewHolder> implements LoadMoreModule {
 
@@ -62,62 +71,46 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
                     .setText(R.id.tv_text6,"收款员工："+item.operuser)
                     .setText(R.id.tv_text7,"收款时间："+item.createtime)
                     .setText(R.id.tv_text8,"退款时间："+item.checktime)
-                    .setText(R.id.tv_text9,"操作人"+item.operuserRefund)
-                    .setText(R.id.tv_text10,"备注"+item.reason);
+                    .setText(R.id.tv_text9,"操作人："+item.operuserRefund)
+                    .setText(R.id.tv_text10,"备注："+ (TextUtils.isEmpty(item.reason)?"":item.reason));
         }
 
         helper.getView(R.id.tv_pass).setOnClickListener(v -> {
-            SunmiPrint.INSTANCE.printReceipt(getContext(),item,type);
+            if (type == 0){
+                print1(item.scanId);
+            }else {
+                print2(item.scanRefundId);
+            }
+
+//            SunmiPrint.INSTANCE.printReceipt(getContext(),item,type);
         });
         tv_refuse.setOnClickListener(v -> {
             Refund1Activity.launch(getContext(),item.scanId);
         });
 
-//        if (detailVOS.size() > 3){
-//            tv_open.setVisibility(View.VISIBLE);
-//        }else {
-//            tv_open.setVisibility(View.GONE);
-//        }
-//        adapter.setNewData(detailVOS);
-//        int itemHeight = DpUtil.dip2px(getContext(),60);
-//        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) rv_goods.getLayoutParams();
-//        params.height = itemHeight*(detailVOS.size() > 3?3:detailVOS.size());
-//        rv_goods.setLayoutParams(params);
-//        tv_open.setOnClickListener(view -> {
-//            if (tv_open.getText().toString().equals(openStr)){
-//                params.height = itemHeight*detailVOS.size();
-//                rv_goods.setLayoutParams(params);
-//                tv_open.setText(closeStr);
-//                 Drawable drawable = getContext().getResources().getDrawable(R.mipmap.arrow_up_gray);
-//                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-//                tv_open.setCompoundDrawables(null, null, drawable, null);
-//            }else {
-//                params.height = itemHeight*3;
-//                rv_goods.setLayoutParams(params);
-//                tv_open.setText(openStr);
-//                Drawable drawable = getContext().getResources().getDrawable(R.mipmap.arrow_down_gray);
-//                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-//                tv_open.setCompoundDrawables(null, null, drawable, null);
-//            }
-//        });
-//        helper.getView(R.id.ll_root).setOnClickListener(view -> {
-//            DeliveryDetailActivity.launch(getContext(),item.orderId,type);
-//        });
-//
-//        TextView tv_cancel = helper.getView(R.id.tv_cancel);
-//        TextView tv_sure = helper.getView(R.id.tv_sure);
-//        if (type == 2){
-//            tv_cancel.setVisibility(View.GONE);
-//            tv_sure.setText("确认送达");
-//        }
-//
-//        View view1 = helper.getView(R.id.ll_root);
-//        rv_goods.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return view1.onTouchEvent(event);
-//            }
-//        });
 
+    }
+    private void print1(String scanId){
+        Map<String,String> map = new HashMap<>();
+        map.put("scanId", scanId);
+        new RxHttp<BaseResult<OrderDetail>>().send(ApiManager.getService().getOrderDetail(map),
+                new Response<BaseResult<OrderDetail>>(getContext()) {
+                    @Override
+                    public void onSuccess(BaseResult<OrderDetail> result) {
+                        SunmiPrint.INSTANCE.printReceipt(getContext(),result.data,type);
+                    }
+                });
+    }
+
+    private void print2(String scanId){
+        Map<String,String> map = new HashMap<>();
+        map.put("scanRefundId", scanId);
+        new RxHttp<BaseResult<OrderDetail>>().send(ApiManager.getService().getOrderDetail1(map),
+                new Response<BaseResult<OrderDetail>>(getContext()) {
+                    @Override
+                    public void onSuccess(BaseResult<OrderDetail> result) {
+                        SunmiPrint.INSTANCE.printReceipt(getContext(),result.data,type);
+                    }
+                });
     }
 }
