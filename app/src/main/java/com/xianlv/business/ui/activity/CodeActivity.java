@@ -193,6 +193,10 @@ public class CodeActivity extends BaseActivity {
             public void onMessage(final WebSocket webSocket, String text) {
                 LogUtil.e("连接成功 接受消息"+text);
                 CodePayResult codePayResult = new Gson().fromJson(text, CodePayResult.class);
+                if ("2".equals(codePayResult.category) && "2".equals(codePayResult.payStatus)){
+                    ReceivePayResultActivity.launch(mActivity,2,codePayResult.scanId);
+
+                }
                 //获取到服务器发送过来的信息，然后通过handler进行UI线程的操作
 //                Message message = Message.obtain();
 //                message.what = READ_BYSOKET;

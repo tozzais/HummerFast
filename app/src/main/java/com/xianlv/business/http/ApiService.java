@@ -309,6 +309,10 @@ public interface ApiService {
     @POST("scan/queryScanOrder")
     Observable<BaseListResult<ReceiveOrderItem>>
     getReceiveList(@Body Map<String, String> map);
+    //退款
+    @POST("scan/scanOrder")
+    Observable<BaseResult>
+    return_money(@Body Map<String, String> map);
 
 
 

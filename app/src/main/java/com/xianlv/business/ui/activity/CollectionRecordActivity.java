@@ -56,8 +56,8 @@ public class CollectionRecordActivity extends BaseActivity {
     @Override
     public void loadData() {
 
+        fragmentList.add(ReceivePayOrderFragment.newInstance(0));
         fragmentList.add(ReceivePayOrderFragment.newInstance(1));
-        fragmentList.add(ReceivePayOrderFragment.newInstance(2));
         List<String> list = new ArrayList<>();
         list.add("收款订单");
         list.add("退款订单");
