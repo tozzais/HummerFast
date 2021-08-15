@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <View
+        android:id="@+id/view"
         style="@style/line_light"/>
 
     <LinearLayout

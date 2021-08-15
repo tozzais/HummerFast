@@ -67,11 +67,13 @@
 
 
     <View
+        android:id="@+id/line"
         style="@style/line_light"
         android:layout_margin="12dp"
         />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"

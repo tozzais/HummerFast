@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tozzais.baselibrary.http.RxHttp;
@@ -57,17 +58,21 @@ public class OrderDetailActivity extends BaseActivity {
     TextView tvText13;
     @BindView(R.id.tv_text14)
     TextView tvText14;
+    @BindView(R.id.ll_bottom)
+    RelativeLayout ll_bottom;
 
-    public static void launch(Context from, String roomOrderId) {
+    public static void launch(Context from, String roomOrderId,int type) {
         if (!ClickUtils.isFastClick()) {
             return;
         }
         Intent intent = new Intent(from, OrderDetailActivity.class);
         intent.putExtra("roomOrderId", roomOrderId);
+        intent.putExtra("type", type);
         from.startActivity(intent);
     }
 
     private String roomOrderId;
+    private int type;
 
     @Override
     public int getLayoutId() {
@@ -78,6 +83,13 @@ public class OrderDetailActivity extends BaseActivity {
     public void initView(Bundle savedInstanceState) {
         setBackTitle("订单详情");
         roomOrderId = getIntent().getStringExtra("roomOrderId");
+        type = getIntent().getIntExtra("type",0);
+        if (type == 0){
+            ll_bottom.setVisibility(View.GONE);
+        }else {
+            ll_bottom.setVisibility(View.VISIBLE);
+
+        }
 
     }
 

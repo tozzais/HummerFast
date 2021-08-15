@@ -1,6 +1,8 @@
 package com.xianlv.business.adapter;
 
 
+import android.view.View;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -8,10 +10,7 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.RoomOrderItem;
-import com.xianlv.business.bean.eventbus.RefreshCheckIn;
-import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.eventbus.RefreshRoomOrder;
-import com.xianlv.business.bean.request.RequestStaffHousingId;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
@@ -26,16 +25,22 @@ import java.util.UUID;
 public class OrderAdapter extends BaseQuickAdapter<RoomOrderItem, BaseViewHolder> implements LoadMoreModule {
 
 
-    public OrderAdapter() {
+    private int type;
+    public OrderAdapter(int type) {
         super(R.layout.item_order, null);
+        this.type = type;
     }
 
     @Override
     protected void convert(BaseViewHolder helper,  RoomOrderItem item) {
         int position = helper.getAdapterPosition();
+        View line = helper.getView(R.id.line);
+        View ll_bottom = helper.getView(R.id.ll_bottom);
+        line.setVisibility(type ==2 ?View.VISIBLE:View.GONE);
+        ll_bottom.setVisibility(type ==2 ?View.VISIBLE:View.GONE);
 
         helper.getView(R.id.ll_root).setOnClickListener(view -> {
-            OrderDetailActivity.launch(getContext(),item.roomOrderId);
+            OrderDetailActivity.launch(getContext(),item.roomOrderId,type);
         });
         helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
                 .setText(R.id.tv_text2,""+item.shopName)

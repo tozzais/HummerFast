@@ -376,7 +376,7 @@
                 android:layout_height="80dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:background="@drawable/shape_white5"
+                android:background="@drawable/shape_white5_top"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -510,7 +510,7 @@
                         <TextView
                             style="@style/black_text_12sp"
                             android:layout_marginTop="5dp"
-                            android:text="线下订单"/>
+                            android:text="线下收款单"/>
                     </LinearLayout>
 
                     <TextView
@@ -526,6 +526,161 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/shape_white5_bottom"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rl_order5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingRight="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order5"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="储值卡订单"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_order5"
+                        style="@style/base_text_style1"
+                        android:text="4683"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"
+                        />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_order6"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order6"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="有效期卡订单"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order6"
+                        style="@style/base_text_style1"
+                        android:text="134"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_order7"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order7"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="快捷支付订单"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order7"
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_order8"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order8"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="预约订单"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order8"
+                        style="@style/base_text_style1"
+                        android:text="33"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
 
             <TextView
                 style="@style/black_text_bold_15sp"
@@ -1214,7 +1369,6 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:visibility="invisible"
                     android:layout_height="match_parent"
                     android:paddingRight="8dp"
                     android:layout_weight="1">
@@ -1229,13 +1383,13 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_manage9"/>
+                            android:src="@mipmap/icon_manage10"/>
 
                         <TextView
                             style="@style/black_text_12sp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="访客登记"
+                            android:text="商品管理"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -1243,7 +1397,6 @@
                         style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
-
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
@@ -1252,7 +1405,6 @@
                     android:layout_width="0dp"
                     android:paddingRight="8dp"
                     android:layout_height="match_parent"
-                    android:visibility="invisible"
                     android:layout_weight="1">
                     <LinearLayout
 
@@ -1266,17 +1418,18 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_manage3"/>
+                            android:src="@mipmap/icon_manage11"/>
 
                         <TextView
                             style="@style/black_text_12sp"
                             android:layout_marginTop="5dp"
-                            android:text="商品管理"/>
+                            android:text="洗衣呼叫"/>
                     </LinearLayout>
 
                     <TextView
                         style="@style/base_text_style1"
                         android:text="3"
+                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
