@@ -38,6 +38,8 @@ import com.xianlv.business.bean.VideoDetail;
 import com.xianlv.business.bean.VideoItem;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.WriteOffHistoryItem;
+import com.xianlv.business.bean.order.ReserveOrderItem;
+import com.xianlv.business.bean.order.StoreCardOrderItem;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.request.RequestBreakfastId;
 import com.xianlv.business.bean.request.RequestCardReduce;
@@ -323,6 +325,15 @@ public interface ApiService {
     @POST("scan/queryRefundScanDetails")
     Observable<BaseResult<OrderDetail>>
     getOrderDetail1(@Body Map<String, String> map);
+
+    @POST("card/getOrderList")
+    Observable<BaseListResult<StoreCardOrderItem>>
+    storeCardOrder(@Body Map<String,String> bean);
+
+    //预约订单
+    @POST("appointment_order/orderTitleList")
+    Observable<BaseListResult<ReserveOrderItem>>
+    reserveOrder(@Body Map<String,String> bean);
 
 
 

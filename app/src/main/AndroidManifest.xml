@@ -98,6 +98,9 @@
         <activity android:name=".ui.activity.ReceivePayResultActivity" />
         <activity android:name=".ui.activity.ScenesActivity" />
         <activity android:name=".ui.activity.Refund1Activity" />
+        <activity android:name=".order.activity.StoredValueCardActivity" />
+        <activity android:name=".order.activity.ReserveOrderActivity" />
+        <activity android:name=".order.activity.ValidityCardActivity" />
         <activity
             android:name=".ui.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

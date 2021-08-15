@@ -577,7 +577,6 @@
                 <RelativeLayout
                     android:id="@+id/rl_order6"
                     android:layout_width="0dp"
-                    android:paddingRight="8dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
                     <LinearLayout
@@ -608,40 +607,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/rl_order7"
-                    android:layout_width="0dp"
-                    android:paddingRight="8dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <LinearLayout
-                        android:id="@+id/ll_order7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:gravity="center">
 
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_order7"/>
-
-                        <TextView
-                            style="@style/black_text_12sp"
-                            android:layout_marginTop="5dp"
-                            android:text="快捷支付订单"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tv_order7"
-                        style="@style/base_text_style1"
-                        android:text="3"
-                        android:visibility="gone"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="5dp"/>
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_order8"
@@ -679,6 +645,41 @@
                 </RelativeLayout>
 
 
+                <RelativeLayout
+                    android:id="@+id/rl_order7"
+                    android:layout_width="0dp"
+                    android:visibility="invisible"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/ll_order7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_order7"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="快捷支付订单"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_order7"
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -1362,12 +1363,12 @@
                         style="@style/base_text_style1"
                         android:text="3"
                         android:visibility="gone"
-
                         android:layout_alignParentRight="true"
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_goods_manage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingRight="8dp"
@@ -1402,6 +1403,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rl_laundry_call"
                     android:layout_width="0dp"
                     android:paddingRight="8dp"
                     android:layout_height="match_parent"

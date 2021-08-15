@@ -40,6 +40,8 @@ import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.order.activity.ReserveOrderActivity;
+import com.xianlv.business.order.activity.StoredValueCardActivity;
 import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
 import com.xianlv.business.ui.activity.CallMorningActivity;
 import com.xianlv.business.ui.activity.CashPledgeManageActivity;
@@ -221,9 +223,22 @@ public class MainActivity extends CheckPermissionActivity {
             R.id.rl_order1, R.id.rl_order2,  R.id.rl_order3,R.id.ll_order4, R.id.rl_write1, R.id.rl_write2, R.id.rl_write3, R.id.rl_write4,
             R.id.rl_apply1, R.id.rl_apply2, R.id.rl_apply3, R.id.rl_apply4, R.id.rl_manage1, R.id.rl_manage2,
             R.id.rl_manage3, R.id.rl_manage4, R.id.rl_manage5, R.id.rl_manage6, R.id.rl_manage7, R.id.rl_manage8,
-            R.id.rl_manage9, R.id.rl_manage10, R.id.rl_study1, R.id.rl_study2, R.id.rl_study3, R.id.rl_study4, R.id.rl_study5})
+            R.id.rl_manage9, R.id.rl_manage10, R.id.rl_study1, R.id.rl_study2, R.id.rl_study3, R.id.rl_study4, R.id.rl_study5
+            , R.id.rl_order5, R.id.rl_order6, R.id.rl_order8, R.id.rl_goods_manage, R.id.rl_laundry_call})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rl_order5:
+                StoredValueCardActivity.launch(mActivity);
+                break;
+            case R.id.rl_order7:
+                break;
+            case R.id.rl_order8:
+                ReserveOrderActivity.launch(mActivity);
+                break;
+            case R.id.rl_goods_manage:
+                break;
+            case R.id.rl_laundry_call:
+                break;
             case R.id.iv_switch:
 //                CenterDialogUtil.show(mActivity, "提示", "是否退出当前用户？", s -> {
 //                    if ("1".equals(s)) {
