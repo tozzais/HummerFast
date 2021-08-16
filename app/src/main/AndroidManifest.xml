@@ -87,7 +87,6 @@
         <activity android:name=".ui.AgreementWebViewActivity" />
         <activity android:name=".ui.activity.DeliveryReminderActivity" />
         <activity android:name=".ui.activity.DeliveryDetailActivity" />
-        <activity android:name=".ui.activity.GoodsManageActivity" />
         <activity android:name=".ui.activity.BonusDescriptionActivity" />
         <activity android:name=".ui.activity.CallMorningActivity" />
         <activity android:name=".ui.activity.SelectHouseActivity" />
@@ -102,6 +101,8 @@
         <activity android:name=".order.activity.ReserveOrderActivity" />
         <activity android:name=".order.activity.ValidityCardActivity" />
         <activity android:name=".order.activity.ReserveOrderDetailActivity" />
+        <activity android:name=".goodsmanage.GoodsManageActivity" />
+        <activity android:name=".goodsmanage.GoodsManageEditActivity" />
         <activity
             android:name=".ui.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

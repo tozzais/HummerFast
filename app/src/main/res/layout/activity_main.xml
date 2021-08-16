@@ -1070,40 +1070,7 @@
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/rl_manage3"
-                    android:visibility="gone"
-                    android:layout_width="0dp"
-                    android:paddingRight="8dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <LinearLayout
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_manage3"/>
-
-                        <TextView
-                            style="@style/black_text_12sp"
-                            android:layout_marginTop="5dp"
-                            android:text="商品管理"/>
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/base_text_style1"
-                        android:text="3"
-                        android:visibility="gone"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="5dp"/>
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_manage4"
@@ -1384,7 +1351,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_manage10"/>
+                            android:src="@mipmap/icon_goodsmanage" />
 
                         <TextView
                             style="@style/black_text_12sp"

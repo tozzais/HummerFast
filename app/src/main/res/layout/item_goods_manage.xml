@@ -12,8 +12,6 @@
     android:orientation="vertical"
     >
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +23,7 @@
             android:background="@color/baseColor"/>
 
         <TextView
+            android:id="@+id/tv_text1"
             style="@style/small_text_gray_style"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -57,9 +56,10 @@
 
         >
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+        <com.xianlv.business.weight.SquareRoundImageView
+            android:id="@+id/iv_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:scaleType="centerCrop"
             android:background="@mipmap/demo_video"
             android:layout_marginLeft="12dp"
@@ -76,11 +76,13 @@
 
 
             <TextView
+                android:id="@+id/tv_text2"
                 style="@style/base_text_style_bold"
                 android:text="399元抢购3-4人套餐"
                 />
 
             <TextView
+                android:id="@+id/tv_text3"
                 style="@style/small_text_gray_style"
                 android:text="分类：直播特惠"
                 android:layout_marginTop="8dp"
@@ -88,6 +90,7 @@
 
 
             <TextView
+                android:id="@+id/tv_text4"
                 style="@style/small_text_gray_style"
                 android:text="状态：上架中"
                 android:layout_marginTop="4dp"
@@ -107,84 +110,14 @@
         android:layout_marginTop="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
+        android:layout_marginBottom="6dp"
         />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingRight="12dp"
-        android:paddingLeft="12dp"
-        android:gravity="center_vertical"
-        >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="价格："
-                />
-
-            <TextView
-                android:id="@+id/tv_price"
-                style="@style/blue_text_12sp"
-                android:text="￥455"
-                />
-
-            <EditText
-                android:visibility="gone"
-                android:singleLine="true"
-                android:maxLength="8"
-                android:id="@+id/et_price"
-                style="@style/et_style"
-                android:layout_width="wrap_content"
-                android:hint="输入价格"
-                android:minWidth="100dp"
-                android:imeOptions="actionUnspecified"
-                android:background="@drawable/shape_line_gray5"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-
-            <TextView
-
-                style="@style/small_text_gray_style"
-                android:text="库存："
-                />
-
-            <TextView
-                android:id="@+id/tv_number"
-                style="@style/blue_text_12sp"
-                android:text="455"
-                />
-
-            <EditText
-                android:id="@+id/et_number"
-                android:visibility="gone"
-                style="@style/et_style"
-                android:minWidth="100dp"
-                android:singleLine="true"
-                android:maxLength="8"
-                android:imeOptions="actionUnspecified"
-                android:layout_width="wrap_content"
-                android:hint="输入价格"
-                android:background="@drawable/shape_line_gray5"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"/>
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"/>
 
 
 

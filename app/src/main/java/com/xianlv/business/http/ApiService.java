@@ -17,6 +17,7 @@ import com.xianlv.business.bean.CouponHistoryItem;
 import com.xianlv.business.bean.CouponItem;
 import com.xianlv.business.bean.DepositItem;
 import com.xianlv.business.bean.GiveWayItem;
+import com.xianlv.business.bean.GoodsManageItem;
 import com.xianlv.business.bean.GoodsOrderItem;
 import com.xianlv.business.bean.HouseResult;
 import com.xianlv.business.bean.LoginBean;
@@ -343,13 +344,18 @@ public interface ApiService {
     @POST("appointment_order/cancelOrder")
     Observable<BaseResult>
     reserveOrderCancel(@Body Map<String,String> bean);
+    //有效卡订单
     @POST("validity/getOrderList")
     Observable<BaseListResult<ValidityOrderItem>>
     validityOrder(@Body Map<String,String> bean);
-
+    //预约订单详情
     @POST("appointment_order/orderDetail")
     Observable<BaseResult<ReserveOrderDetail>>
     reserveOrderDetail(@Body Map<String,String> bean);
+    //商品管理
+    @POST("shoppingType/getSkuDetails")
+    Observable<BaseListResult<GoodsManageItem>>
+    goodsManageList(@Body Map<String,String> bean);
 
 
 
