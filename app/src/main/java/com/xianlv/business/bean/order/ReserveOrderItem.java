@@ -2,6 +2,7 @@ package com.xianlv.business.bean.order;
 
 public class ReserveOrderItem {
 
+    public String appointmentOrderId;
     public String orderNo;
     public String appointmentName;
     public String truename;

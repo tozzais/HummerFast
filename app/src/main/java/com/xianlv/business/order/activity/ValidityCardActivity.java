@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.ui.fragment.GoodsOrderFragment;
+import com.xianlv.business.order.fragment.ValidityOrderFragment;
 
 /**
  * 有效期卡订单
@@ -36,7 +36,7 @@ public class ValidityCardActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        GoodsOrderFragment fragment = new GoodsOrderFragment();
+        ValidityOrderFragment fragment = new ValidityOrderFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.content_container, fragment).commit();
     }
 }

@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.order.ReserveOrderItem;
+import com.xianlv.business.order.activity.ReserveOrderDetailActivity;
 
 public class CommonReserveAdapter extends BaseQuickAdapter<ReserveOrderItem, BaseViewHolder> implements LoadMoreModule {
 
@@ -34,9 +35,12 @@ public class CommonReserveAdapter extends BaseQuickAdapter<ReserveOrderItem, Bas
                 .setText(R.id.tv_text3,""+item.appointmentName)
                 .setText(R.id.tv_text4,"联系人："+item.truename)
                 .setText(R.id.tv_text5,"联系电话："+item.phone)
-                .setText(R.id.tv_money,"价格：："+item.appointPrice);
+                .setText(R.id.tv_money,""+item.appointPrice);
             helper.getView(R.id.view).setVisibility(type == 1? View.VISIBLE:View.GONE);
             helper.getView(R.id.ll_bottom).setVisibility(type == 1? View.VISIBLE:View.GONE);
 
+        helper.getView(R.id.ll_root).setOnClickListener(v -> {
+            ReserveOrderDetailActivity.launch(getContext(),item.appointmentOrderId,1,type);
+        });
     }
 }

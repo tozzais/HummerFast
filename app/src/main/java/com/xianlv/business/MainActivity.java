@@ -42,6 +42,7 @@ import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.order.activity.ReserveOrderActivity;
 import com.xianlv.business.order.activity.StoredValueCardActivity;
+import com.xianlv.business.order.activity.ValidityCardActivity;
 import com.xianlv.business.ui.activity.BreakfastCouponApplyActivity;
 import com.xianlv.business.ui.activity.CallMorningActivity;
 import com.xianlv.business.ui.activity.CashPledgeManageActivity;
@@ -230,7 +231,8 @@ public class MainActivity extends CheckPermissionActivity {
             case R.id.rl_order5:
                 StoredValueCardActivity.launch(mActivity);
                 break;
-            case R.id.rl_order7:
+            case R.id.rl_order6:
+                ValidityCardActivity.launch(mActivity);
                 break;
             case R.id.rl_order8:
                 ReserveOrderActivity.launch(mActivity);

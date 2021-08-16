@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.order.ReserveOrderItem;
 import com.xianlv.business.global.ImageUtil;
+import com.xianlv.business.order.activity.ReserveOrderDetailActivity;
 
 public class GoodsReserveAdapter extends BaseQuickAdapter<ReserveOrderItem, BaseViewHolder> implements LoadMoreModule {
 
@@ -39,6 +40,10 @@ public class GoodsReserveAdapter extends BaseQuickAdapter<ReserveOrderItem, Base
 
         helper.getView(R.id.view).setVisibility(type == 1? View.VISIBLE:View.GONE);
         helper.getView(R.id.ll_bottom).setVisibility(type == 1? View.VISIBLE:View.GONE);
+
+        helper.getView(R.id.ll_root).setOnClickListener(v -> {
+            ReserveOrderDetailActivity.launch(getContext(),item.appointmentOrderId,2,type);
+        });
 
     }
 }

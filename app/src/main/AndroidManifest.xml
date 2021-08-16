@@ -101,6 +101,7 @@
         <activity android:name=".order.activity.StoredValueCardActivity" />
         <activity android:name=".order.activity.ReserveOrderActivity" />
         <activity android:name=".order.activity.ValidityCardActivity" />
+        <activity android:name=".order.activity.ReserveOrderDetailActivity" />
         <activity
             android:name=".ui.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

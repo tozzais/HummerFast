@@ -13,18 +13,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            >
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:background="@color/gray_bg"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="12dp"
+                android:layout_marginBottom="12dp"
                 android:background="@color/white">
 
                 <TextView
@@ -51,37 +51,96 @@
 
             </LinearLayout>
 
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:background="@color/gray_bg"/>
-
-
             <LinearLayout
+                android:id="@+id/ll_goods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@color/white"
                 android:padding="12dp"
-                android:background="@color/white">
+                android:layout_marginBottom="12dp"
+                >
 
-                <TextView
-                    style="@style/black_text_bold_15sp"
-                    android:text="送餐清单"
+                <com.xianlv.business.weight.SquareRoundImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    tools:background="@mipmap/demo_video"
+                    android:scaleType="centerCrop"
                     />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_goods"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="12dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_text3"
+                        style="@style/base_text_style_bold"
+                        android:text="爱心蛋糕"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        />
+
+
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/tv_text4"
+                            style="@style/small_text_gray_style"
+                            android:text="规格：双人餐"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            />
+                        <!--                -->
+                        <!--                <TextView-->
+                        <!--                    android:id="@+id/tv_text5"-->
+                        <!--                    style="@style/small_text_gray_style"-->
+                        <!--                    android:text="￥208"-->
+                        <!--                    android:textColor="@color/baseColor"-->
+                        <!--                    android:layout_weight="1"-->
+                        <!--                    android:layout_marginTop="5dp"-->
+                        <!--                    />-->
+
+                        <TextView
+                            android:id="@+id/tv_text6"
+                            style="@style/small_text_gray_style"
+                            android:text="数量：*1"
+                            android:layout_marginTop="5dp"
+                            />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
 
             </LinearLayout>
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:background="@color/gray_bg"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,7 +151,7 @@
 
                 <TextView
                     style="@style/black_text_bold_15sp"
-                    android:text="订单信息"
+                    android:text="预约信息"
                     />
 
                 <LinearLayout
@@ -123,7 +182,7 @@
 
                     <TextView
                         style="@style/small_text_gray_style"
-                        android:text="下单时间："
+                        android:text="预约时间："
                         />
 
                     <TextView
@@ -143,7 +202,7 @@
 
                     <TextView
                         style="@style/small_text_gray_style"
-                        android:text="支付时间："
+                        android:text="联系人："
                         />
 
                     <TextView
@@ -162,7 +221,7 @@
 
                     <TextView
                         style="@style/small_text_gray_style"
-                        android:text="期望送达时间："
+                        android:text="联系电话："
                         />
 
                     <TextView
@@ -182,7 +241,7 @@
 
                     <TextView
                         style="@style/small_text_gray_style"
-                        android:text="订单状态："
+                        android:text="预约状态："
                         />
 
                     <TextView
@@ -201,7 +260,7 @@
 
                     <TextView
                         style="@style/small_text_gray_style"
-                        android:text="支付方式："
+                        android:text="备注："
                         />
 
                     <TextView
@@ -231,6 +290,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -244,13 +304,13 @@
             <TextView
                 android:id="@+id/btn_cancel"
                 style="@style/btn_white_bg_blue_text"
-                android:text="取消订单" />
+                android:text="拒绝" />
 
             <TextView
                 android:id="@+id/btn_bottom"
                 style="@style/btn_blue_bg_white_text"
                 android:layout_marginLeft="40dp"
-                android:text="确认订单" />
+                android:text="确认" />
 
         </LinearLayout>
 
