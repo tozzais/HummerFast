@@ -335,6 +335,14 @@ public interface ApiService {
     @POST("appointment_order/orderTitleList")
     Observable<BaseListResult<ReserveOrderItem>>
     reserveOrder(@Body Map<String,String> bean);
+    //预约订单确认
+    @POST("appointment_order/confirm")
+    Observable<BaseResult>
+    reserveOrderConfirm(@Body Map<String,String> bean);
+    //预约订单取消
+    @POST("appointment_order/cancelOrder")
+    Observable<BaseResult>
+    reserveOrderCancel(@Body Map<String,String> bean);
     @POST("validity/getOrderList")
     Observable<BaseListResult<ValidityOrderItem>>
     validityOrder(@Body Map<String,String> bean);

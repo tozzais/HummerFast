@@ -14,7 +14,7 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.order.GoodsReserveAdapter;
-import com.xianlv.business.bean.eventbus.RefreshOrder;
+import com.xianlv.business.bean.eventbus.RefreshCommonReserveOrder;
 import com.xianlv.business.bean.order.ReserveOrderItem;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
@@ -83,6 +83,7 @@ public class GoodsReserveFragment extends BaseListFragment<ReserveOrderItem> {
         map.put("status",type+"");
         map.put("category","2");
         map.put("page",""+page);
+        map.put("employee","1");
         map.put("orderNo",""+et_search.getText().toString().trim());
         new RxHttp<BaseListResult<ReserveOrderItem>>().send(ApiManager.getService().reserveOrder(map),
                 new Response<BaseListResult<ReserveOrderItem>>(isLoad,mActivity) {
@@ -120,8 +121,7 @@ public class GoodsReserveFragment extends BaseListFragment<ReserveOrderItem> {
 
     @Override
     public void onEvent(Object o) {
-        super.onEvent(o);
-        if (o instanceof RefreshOrder){
+        if (o instanceof RefreshCommonReserveOrder){
             onRefresh();
         }
     }

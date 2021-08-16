@@ -14,13 +14,12 @@ import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
-import com.xianlv.business.bean.eventbus.RefreshOrder;
+import com.xianlv.business.bean.eventbus.RefreshCommonReserveOrder;
 import com.xianlv.business.bean.order.ReserveOrderDetail;
 import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
-import com.xianlv.business.util.CenterDialogUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -177,58 +176,41 @@ public class ReserveOrderDetailActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_cancel:
-                CenterDialogUtil.show(mActivity, "提示", "确认取消订单吗？", s -> {
-                    if ("1".equals(s))cancel();
-                });
+                cancel();
                 break;
             case R.id.btn_bottom:
-                if (type == 456){
-                    send();
-                    return;
-                }
                 sure();
-
                 break;
         }
     }
 
     private void cancel(){
-        Map<String, String> map = new HashMap<>();
-        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
-        new RxHttp<BaseResult>().send(ApiManager.getService().mealOrderCancel(map),
+        Map<String,String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
+        map.put("appointmentOrderId",appointmentOrderId);
+        new RxHttp<BaseResult>().send(ApiManager.getService().reserveOrderCancel(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult result) {
-                        ToastCommom.createToastConfig().ToastShow(mActivity,"取消订单成功");
-                        EventBus.getDefault().post(new RefreshOrder());
+                        ToastCommom.createToastConfig().ToastShow(mActivity,"取消成功");
+                        EventBus.getDefault().post(new RefreshCommonReserveOrder());
                         finish();
                     }
                 });
     }
     private void sure(){
-        Map<String, String> map = new HashMap<>();
-        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
-        new RxHttp<BaseResult>().send(ApiManager.getService().mealOrderSure(map),
+        Map<String,String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
+        map.put("appointmentOrderId",appointmentOrderId);
+        new RxHttp<BaseResult>().send(ApiManager.getService().reserveOrderConfirm(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult result) {
-                        ToastCommom.createToastConfig().ToastShow(mActivity,"确认订单成功");
-                        EventBus.getDefault().post(new RefreshOrder());
+                        ToastCommom.createToastConfig().ToastShow(mActivity,"确认成功");
+                        EventBus.getDefault().post(new RefreshCommonReserveOrder());
                         finish();
                     }
                 });
     }
-    private void send(){
-        Map<String, String> map = new HashMap<>();
-        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
-        new RxHttp<BaseResult>().send(ApiManager.getService().mealOrderSend(map),
-                new Response<BaseResult>(mActivity) {
-                    @Override
-                    public void onSuccess(BaseResult result) {
-                        ToastCommom.createToastConfig().ToastShow(mActivity,"确认送达成功");
-                        EventBus.getDefault().post(new RefreshOrder());
-                        finish();
-                    }
-                });
-    }
+
 }

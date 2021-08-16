@@ -14,7 +14,7 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.order.CommonReserveAdapter;
-import com.xianlv.business.bean.eventbus.RefreshOrder;
+import com.xianlv.business.bean.eventbus.RefreshCommonReserveOrder;
 import com.xianlv.business.bean.order.ReserveOrderItem;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
@@ -121,8 +121,7 @@ public class CommonReserveFragment extends BaseListFragment<ReserveOrderItem> {
 
     @Override
     public void onEvent(Object o) {
-        super.onEvent(o);
-        if (o instanceof RefreshOrder){
+        if (o instanceof RefreshCommonReserveOrder){
             onRefresh();
         }
     }
@@ -130,4 +129,6 @@ public class CommonReserveFragment extends BaseListFragment<ReserveOrderItem> {
     public void onClick() {
         et_search.setText("");
     }
+
+
 }
