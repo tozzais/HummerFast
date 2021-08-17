@@ -38,7 +38,10 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:padding="12dp"
-            android:text="455" />
+            android:textSize="14sp"
+            android:textColor="@color/grayText"
+            android:text="455"
+            android:inputType="number"/>
 
 
 
@@ -66,7 +69,10 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:padding="12dp"
-            android:text="455" />
+            android:textSize="14sp"
+            android:textColor="@color/grayText"
+            android:text="455"
+            android:digits="1234567890."/>
 
 
 

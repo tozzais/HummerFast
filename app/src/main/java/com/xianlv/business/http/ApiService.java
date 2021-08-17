@@ -19,6 +19,7 @@ import com.xianlv.business.bean.DepositItem;
 import com.xianlv.business.bean.GiveWayItem;
 import com.xianlv.business.bean.GoodsManageItem;
 import com.xianlv.business.bean.GoodsOrderItem;
+import com.xianlv.business.bean.GoodsTypeItem;
 import com.xianlv.business.bean.HouseResult;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
@@ -356,6 +357,14 @@ public interface ApiService {
     @POST("shoppingType/getSkuDetails")
     Observable<BaseListResult<GoodsManageItem>>
     goodsManageList(@Body Map<String,String> bean);
+    //商品编辑
+    @POST("shoppingType/updateSku")
+    Observable<BaseResult>
+    goodsManageEdit(@Body Map<String,Object> bean);
+    //商品类型
+    @POST("shoppingType/getType")
+    Observable<BaseListResult<GoodsTypeItem>>
+    goodsType(@Body Map<String,String> bean);
 
 
 

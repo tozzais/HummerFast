@@ -1,21 +1,31 @@
 package com.xianlv.business.goodsmanage;
 
 import android.os.Bundle;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
 import com.tozzais.baselibrary.util.DpUtil;
 import com.tozzais.baselibrary.weight.LinearSpace;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.GoodsManageEditAdapter;
 import com.xianlv.business.bean.GoodsManageItemSku;
+import com.xianlv.business.bean.eventbus.RefreshGoodsManageList;
 import com.xianlv.business.bean.eventbus.RefreshOrder;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,10 +35,8 @@ public class GoodsManageEditFragment extends BaseListFragment<GoodsManageItemSku
 
 
 
-    @BindView(R.id.et_search)
-    EditText et_search;
-    @BindView(R.id.tv_search)
-    TextView tv_search;
+    @BindView(R.id.btn_bottom)
+    TextView btn_bottom;
 
     public static GoodsManageEditFragment newInstance(ArrayList<GoodsManageItemSku> list){
         GoodsManageEditFragment cartFragment = new GoodsManageEditFragment();
@@ -41,15 +49,14 @@ public class GoodsManageEditFragment extends BaseListFragment<GoodsManageItemSku
 
     @Override
     public int setLayout() {
-        return R.layout.fragment_recycleview_goods_manage;
+        return R.layout.fragment_recycleview_bottom_btn_large;
     }
 
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        et_search.setHint("搜索关键字");
-        tv_search.setText("取消");
+        btn_bottom.setText("保存");
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         LinearSpace girdSpace = new LinearSpace(DpUtil.dip2px(mActivity, 12));
@@ -75,16 +82,10 @@ public class GoodsManageEditFragment extends BaseListFragment<GoodsManageItemSku
 
     @Override
     public void initListener() {
-        super.initListener();
+        //刷新
+        if (swipeLayout != null)
+            swipeLayout.setOnRefreshListener(this::onRefresh);
         mAdapter.getLoadMoreModule().setEnableLoadMore(false);
-        et_search.setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                //完成自己的事件
-                onRefresh();
-            }
-            return false;
-        });
-
     }
 
     @Override
@@ -94,8 +95,41 @@ public class GoodsManageEditFragment extends BaseListFragment<GoodsManageItemSku
             onRefresh();
         }
     }
-    @OnClick(R.id.tv_search)
+    @OnClick(R.id.btn_bottom)
     public void onClick() {
-        et_search.setText("");
+        List<GoodsManageItemSku> list = mAdapter.getData();
+
+        for (GoodsManageItemSku sku:list){
+            if (TextUtils.isEmpty(sku.total)){
+                tsg("请输入库存");
+                return;
+            }
+            if (TextUtils.isEmpty(sku.newPrice)){
+                tsg("请输入价格");
+                return;
+            }else {
+                String temp = sku.newPrice;
+                char c = temp.charAt(temp.length() - 1);
+                if (("" + c).equals(".")) {
+                    sku.newPrice = (temp.substring(0, temp.length() - 1));
+                }
+            }
+        }
+
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
+        map.put("data",list);
+        new RxHttp<BaseResult>().send(ApiManager.getService().goodsManageEdit(map),
+                new Response<BaseResult>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult result) {
+                        tsg("修改成功");
+                        EventBus.getDefault().post(new RefreshGoodsManageList());
+                        mActivity.finish();
+                    }
+
+                });
+
     }
 }
