@@ -91,6 +91,7 @@ import butterknife.OnClick;
  * 这是2.0.0版本
  * 1天 新增消息 和订单处理
  * 2天 打印机和线下订单
+ * 2天 所有的订单处理修改 和商品管理页面
  */
 public class MainActivity extends CheckPermissionActivity {
 

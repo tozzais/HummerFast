@@ -72,27 +72,39 @@
             android:gravity="center"
             android:text="分类筛选"
             android:singleLine="true"
-            android:textColor="@color/grayText"
-            android:textSize="12sp"
+            style="@style/base_text_style"
             android:drawableRight="@mipmap/arrow_down_gray"
-            android:drawablePadding="3dp"/>
+            android:drawablePadding="4dp"/>
 
 
     </LinearLayout>
 
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeLayout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list"
+        android:layout_height="match_parent">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_drop"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#55000000"/>
+    </FrameLayout>
+
+
+
 </LinearLayout>
 
 

@@ -16,6 +16,7 @@ public class GoodsTypeAdapter extends BaseQuickAdapter<GoodsTypeItem, BaseViewHo
     @Override
     protected void convert(BaseViewHolder helper,  GoodsTypeItem item) {
         int position = helper.getAdapterPosition();
+        helper.setText(R.id.tv_text2,item.typeName);
 
 
 

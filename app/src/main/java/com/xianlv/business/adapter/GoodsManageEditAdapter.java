@@ -57,6 +57,7 @@ public class GoodsManageEditAdapter extends BaseQuickAdapter<GoodsManageItemSku,
             public void afterTextChanged(Editable edt) {
                 String temp = tv_price.getText().toString();
                 LogUtil.e("temp=="+temp);
+                item.newPrice = temp;
                 if (temp.equals(".")) {
                     edt.clear();
                     return;

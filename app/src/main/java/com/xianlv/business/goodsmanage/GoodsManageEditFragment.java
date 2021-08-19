@@ -98,7 +98,7 @@ public class GoodsManageEditFragment extends BaseListFragment<GoodsManageItemSku
     @OnClick(R.id.btn_bottom)
     public void onClick() {
         List<GoodsManageItemSku> list = mAdapter.getData();
-
+        List<Map<String,String>> uploadList = new ArrayList<>();
         for (GoodsManageItemSku sku:list){
             if (TextUtils.isEmpty(sku.total)){
                 tsg("请输入库存");
@@ -113,13 +113,18 @@ public class GoodsManageEditFragment extends BaseListFragment<GoodsManageItemSku
                 if (("" + c).equals(".")) {
                     sku.newPrice = (temp.substring(0, temp.length() - 1));
                 }
+                Map<String,String> map = new HashMap<>();
+                map.put("newPrice",sku.newPrice);
+                map.put("skuId",sku.skuId);
+                map.put("total",sku.total);
+                uploadList.add(map);
             }
         }
 
 
         Map<String,Object> map = new HashMap<>();
         map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
-        map.put("data",list);
+        map.put("data",uploadList);
         new RxHttp<BaseResult>().send(ApiManager.getService().goodsManageEdit(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
