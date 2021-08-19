@@ -6,6 +6,7 @@ package com.xianlv.business.bean;
 public class ReceiveOrderItem {
 
     public String scanId;
+    public String scanRefundId;
     public String orderNo;
     public String refundMoney;
     public String money;

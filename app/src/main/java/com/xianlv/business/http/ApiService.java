@@ -17,13 +17,16 @@ import com.xianlv.business.bean.CouponHistoryItem;
 import com.xianlv.business.bean.CouponItem;
 import com.xianlv.business.bean.DepositItem;
 import com.xianlv.business.bean.GiveWayItem;
+import com.xianlv.business.bean.GoodsManageItem;
 import com.xianlv.business.bean.GoodsOrderItem;
+import com.xianlv.business.bean.GoodsTypeItem;
 import com.xianlv.business.bean.HouseResult;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.MainNumberBean;
 import com.xianlv.business.bean.MealOrderItem;
 import com.xianlv.business.bean.MessageItem;
 import com.xianlv.business.bean.MineInfo;
+import com.xianlv.business.bean.OrderDetail;
 import com.xianlv.business.bean.PayCode;
 import com.xianlv.business.bean.ProblemItem;
 import com.xianlv.business.bean.RankResult;
@@ -37,6 +40,10 @@ import com.xianlv.business.bean.VideoDetail;
 import com.xianlv.business.bean.VideoItem;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.WriteOffHistoryItem;
+import com.xianlv.business.bean.order.ReserveOrderDetail;
+import com.xianlv.business.bean.order.ReserveOrderItem;
+import com.xianlv.business.bean.order.StoreCardOrderItem;
+import com.xianlv.business.bean.order.ValidityOrderItem;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.request.RequestBreakfastId;
 import com.xianlv.business.bean.request.RequestCardReduce;
@@ -313,6 +320,51 @@ public interface ApiService {
     @POST("scan/scanOrder")
     Observable<BaseResult>
     return_money(@Body Map<String, String> map);
+    //快捷支付订单详情
+    @POST("scan/queryScanDetails")
+    Observable<BaseResult<OrderDetail>>
+    getOrderDetail(@Body Map<String, String> map);
+
+    //快捷支付订单详情
+    @POST("scan/queryRefundScanDetails")
+    Observable<BaseResult<OrderDetail>>
+    getOrderDetail1(@Body Map<String, String> map);
+
+    @POST("card/getOrderList")
+    Observable<BaseListResult<StoreCardOrderItem>>
+    storeCardOrder(@Body Map<String,String> bean);
+    //预约订单
+    @POST("appointment_order/orderTitleList")
+    Observable<BaseListResult<ReserveOrderItem>>
+    reserveOrder(@Body Map<String,String> bean);
+    //预约订单确认
+    @POST("appointment_order/confirm")
+    Observable<BaseResult>
+    reserveOrderConfirm(@Body Map<String,String> bean);
+    //预约订单取消
+    @POST("appointment_order/cancelOrder")
+    Observable<BaseResult>
+    reserveOrderCancel(@Body Map<String,String> bean);
+    //有效卡订单
+    @POST("validity/getOrderList")
+    Observable<BaseListResult<ValidityOrderItem>>
+    validityOrder(@Body Map<String,String> bean);
+    //预约订单详情
+    @POST("appointment_order/orderDetail")
+    Observable<BaseResult<ReserveOrderDetail>>
+    reserveOrderDetail(@Body Map<String,String> bean);
+    //商品管理
+    @POST("shoppingType/getSkuDetails")
+    Observable<BaseListResult<GoodsManageItem>>
+    goodsManageList(@Body Map<String,String> bean);
+    //商品编辑
+    @POST("shoppingType/updateSku")
+    Observable<BaseResult>
+    goodsManageEdit(@Body Map<String,Object> bean);
+    //商品类型
+    @POST("shoppingType/getType")
+    Observable<BaseListResult<GoodsTypeItem>>
+    goodsType(@Body Map<String,String> bean);
 
 
 

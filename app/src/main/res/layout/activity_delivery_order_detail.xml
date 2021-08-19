@@ -1,223 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:background="@color/gray_bg"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@color/white">
-
-        <TextView
-            android:id="@+id/tv_room_number"
-            style="@style/black_text_bold_15sp"
-            tools:text="房间号：3300"
-            />
-
-
-
-        <TextView
-            android:id="@+id/tv_name"
-            style="@style/small_text_gray_style"
-            tools:text="用户名：张三"
-            android:layout_marginTop="12dp"
-            />
-
-        <TextView
-            android:id="@+id/tv_phone"
-            style="@style/small_text_gray_style"
-            tools:text="手机号：18317126946"
-            android:layout_weight="1"
-            />
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:background="@color/gray_bg"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@color/white">
-
-        <TextView
-            style="@style/black_text_bold_15sp"
-            android:text="送餐清单"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_goods"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:background="@color/gray_bg"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@color/white">
-
-        <TextView
-            style="@style/black_text_bold_15sp"
-            android:text="订单信息"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="订单编号："
-                />
-
-            <TextView
-                android:id="@+id/tv_order_number"
-                style="@style/small_text_gray_style"
-                android:layout_height="match_parent"
-                tools:text="2083542374685283745"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="下单时间："
-                />
-
-            <TextView
-                android:id="@+id/tv_create_time"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="2021-02-12 18:52:32"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="支付时间："
-                />
-
-            <TextView
-                android:id="@+id/tv_pay_time"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="2021-02-12 18:52:32"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="期望送达时间："
-                />
-
-            <TextView
-                android:id="@+id/tv_expect_time"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="2021-02-12 18:52:32"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="订单状态："
-                />
-
-            <TextView
-                android:id="@+id/tv_status"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="待确定"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                style="@style/small_text_gray_style"
-                android:text="支付方式："
-                />
-
-            <TextView
-                android:id="@+id/tv_pay_way"
-                style="@style/small_text_gray_style"
-                android:textColor="@color/black"
-                tools:text="微信支付"
-                />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-
-    <View
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/gray_bg"/>
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/gray_bg"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_room_number"
+                    style="@style/black_text_bold_15sp"
+                    tools:text="房间号：3300"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/small_text_gray_style"
+                    tools:text="用户名：张三"
+                    android:layout_marginTop="12dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    style="@style/small_text_gray_style"
+                    tools:text="手机号：18317126946"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/gray_bg"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@color/white">
+
+                <TextView
+                    style="@style/black_text_bold_15sp"
+                    android:text="送餐清单"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_goods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/gray_bg"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@color/white">
+
+                <TextView
+                    style="@style/black_text_bold_15sp"
+                    android:text="订单信息"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        style="@style/small_text_gray_style"
+                        android:text="订单编号："
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_order_number"
+                        style="@style/small_text_gray_style"
+                        android:layout_height="match_parent"
+                        tools:text="2083542374685283745"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        style="@style/small_text_gray_style"
+                        android:text="下单时间："
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_create_time"
+                        style="@style/small_text_gray_style"
+                        android:textColor="@color/black"
+                        tools:text="2021-02-12 18:52:32"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        style="@style/small_text_gray_style"
+                        android:text="支付时间："
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_pay_time"
+                        style="@style/small_text_gray_style"
+                        android:textColor="@color/black"
+                        tools:text="2021-02-12 18:52:32"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        style="@style/small_text_gray_style"
+                        android:text="期望送达时间："
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_expect_time"
+                        style="@style/small_text_gray_style"
+                        android:textColor="@color/black"
+                        tools:text="2021-02-12 18:52:32"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        style="@style/small_text_gray_style"
+                        android:text="订单状态："
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_status"
+                        style="@style/small_text_gray_style"
+                        android:textColor="@color/black"
+                        tools:text="待确定"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        style="@style/small_text_gray_style"
+                        android:text="支付方式："
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_pay_way"
+                        style="@style/small_text_gray_style"
+                        android:textColor="@color/black"
+                        tools:text="微信支付"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/gray_bg"/>
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -245,9 +256,7 @@
 
 
     </RelativeLayout>
-
-
 </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
 
 

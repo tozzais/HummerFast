@@ -194,7 +194,8 @@ public class CodeActivity extends BaseActivity {
                 LogUtil.e("连接成功 接受消息"+text);
                 CodePayResult codePayResult = new Gson().fromJson(text, CodePayResult.class);
                 if ("2".equals(codePayResult.category) && "2".equals(codePayResult.payStatus)){
-                    ReceivePayResultActivity.launch(mActivity,2,codePayResult.scanId);
+                    ReceivePayResultActivity.launch(mActivity,0,codePayResult.scanId);
+                    finish();
 
                 }
                 //获取到服务器发送过来的信息，然后通过handler进行UI线程的操作

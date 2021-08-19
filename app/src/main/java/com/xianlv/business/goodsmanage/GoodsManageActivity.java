@@ -1,4 +1,4 @@
-package com.xianlv.business.ui.activity;
+package com.xianlv.business.goodsmanage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,11 +7,11 @@ import android.os.Bundle;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.ui.fragment.GoodsManageFragment;
 
+/**
+ * 商品管理
+ */
 public class GoodsManageActivity extends BaseActivity {
-
-
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()){

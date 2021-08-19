@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white5"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:orientation="vertical"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:background="@color/baseColor"/>
+
+
+        <TextView
+            android:id="@+id/tv_text1"
+            style="@style/small_text_gray_style"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="订单号：2148326481"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"/>
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_text2"
+        style="@style/base_text_style_bold"
+        android:text="退款金额：￥1220"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black_title_color"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"/>
+
+
+
+
+    <TextView
+        android:id="@+id/tv_text3"
+        style="@style/small_text_gray_style"
+        android:text="付款人：张三三"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        android:id="@+id/tv_text4"
+        style="@style/small_text_gray_style"
+        android:text="收款员工：张三 1234837461"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
+        android:id="@+id/tv_text5"
+        style="@style/small_text_gray_style"
+        android:text="收款时间：2021-06-25 12:34:56"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_text6"
+        style="@style/small_text_gray_style"
+        android:text="备注：客人很满意，说下次还来"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_text7"
+        style="@style/small_text_gray_style"
+        android:text="收款金额：￥1220.98"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+
+</LinearLayout>
+
+
+

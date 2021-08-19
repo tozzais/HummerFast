@@ -83,9 +83,15 @@ public class DeliveryDetailActivity extends BaseActivity {
 
         orderId = getIntent().getStringExtra("orderId");
         type = getIntent().getIntExtra("type",1);
-        if (type == 2){
+        if (type == 123){
+            btnBottom.setText("确认订单");
+            btnCancel.setText("取消订单");
+        }else if (type == 456){
             btnCancel.setVisibility(View.GONE);
             btnBottom.setText("确认送达");
+        }else {
+            btnCancel.setVisibility(View.GONE);
+            btnBottom.setVisibility(View.GONE);
         }
 
     }
@@ -144,7 +150,7 @@ public class DeliveryDetailActivity extends BaseActivity {
                 });
                 break;
             case R.id.btn_bottom:
-                if (type == 2){
+                if (type == 456){
                     send();
                     return;
                 }

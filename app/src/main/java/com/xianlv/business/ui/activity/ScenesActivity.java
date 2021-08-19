@@ -111,7 +111,7 @@ public class ScenesActivity extends BaseActivity {
             SceneItem.SceneSecondItem sceneSecondItem = mAdapter.getData().get(position);
             Intent intent = new Intent();
             intent.putExtra("name",sceneSecondItem.qrcodeName);
-            intent.putExtra("qrcodeId",sceneSecondItem.typeId);
+            intent.putExtra("qrcodeId",sceneSecondItem.qrcodeId);
             setResult(RESULT_OK,intent);
             finish();
         });

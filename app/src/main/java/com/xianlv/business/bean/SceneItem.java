@@ -12,6 +12,7 @@ public class SceneItem {
     public class SceneSecondItem {
         public String typeId;
         public String qrcodeName;
+        public String qrcodeId;
 
     }
 }

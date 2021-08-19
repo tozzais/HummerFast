@@ -18,7 +18,6 @@ import com.tozzais.baselibrary.util.DpUtil;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.MealOrderItem;
 import com.xianlv.business.ui.activity.DeliveryDetailActivity;
-import com.xianlv.business.ui.activity.GoodsOrderDetailActivity;
 
 import java.util.List;
 
@@ -84,9 +83,15 @@ public class SendFoodReminderAdapter extends BaseQuickAdapter<MealOrderItem, Bas
 
         TextView tv_cancel = helper.getView(R.id.tv_cancel);
         TextView tv_sure = helper.getView(R.id.tv_sure);
-        if (type == 2){
+        if (type == 123){
+            tv_sure.setText("确认订单");
+            tv_cancel.setText("取消订单");
+        }else if (type == 456){
             tv_cancel.setVisibility(View.GONE);
             tv_sure.setText("确认送达");
+        }else if (type == 0){
+            tv_cancel.setVisibility(View.GONE);
+            tv_sure.setVisibility(View.GONE);
         }
 
         View view1 = helper.getView(R.id.ll_root);

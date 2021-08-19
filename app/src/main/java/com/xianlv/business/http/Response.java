@@ -1,5 +1,6 @@
 package com.xianlv.business.http;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -9,6 +10,7 @@ import com.tozzais.baselibrary.util.NetworkUtil;
 import com.tozzais.baselibrary.util.progress.LoadingUtils;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.global.GlobalParam;
+import com.xianlv.business.ui.activity.LoginActivity;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -107,13 +109,13 @@ public class Response<T> extends Subscriber<T> {
             BaseResult base = (BaseResult) str;
             if (0 == base.code ){
                 onSuccess(str);
-            }else if (20001 == base.code || 20014 == base.code || 20015 == base.code ){
+            }else if (403 == base.code){
                 /**
                  * 单点登录  是首页的时候  都要走newIntent
                  *  不是首页的时候
                  */
                 GlobalParam.setUserLogin(false);
-//                LoginActivity.launch((Activity) mContext,true);
+                LoginActivity.launch( mContext);
             }else {
                 if (!TextUtils.isEmpty(base.msg)){
                     if (mNeedReturn && !isLoad){
@@ -127,9 +129,9 @@ public class Response<T> extends Subscriber<T> {
             BaseListResult base = (BaseListResult) str;
             if (0 == base.code){
                 onSuccess(str);
-            }else if (20001 == base.code || 20014 == base.code || 20015 == base.code ){
+            }else if (403 == base.code  ){
                 GlobalParam.setUserLogin(false);
-//                LoginActivity.launch((Activity) mContext,true);
+                LoginActivity.launch((Activity) mContext);
             }else {
                 if (!TextUtils.isEmpty(base.msg)){
                     if (mNeedReturn && !isLoad){
