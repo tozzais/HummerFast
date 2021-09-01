@@ -22,7 +22,7 @@ public class ValidityOrderAdapter extends BaseQuickAdapter<ValidityOrderItem, Ba
     protected void convert(BaseViewHolder helper,  ValidityOrderItem item) {
         int position = helper.getAdapterPosition();
 
-        helper.setText(R.id.tv_text1,"储值卡号："+item.validityNo)
+        helper.setText(R.id.tv_text1,"订单号："+item.validityNo)
                 .setText(R.id.tv_text2,item.validityName)
                 .setText(R.id.tv_text3,"会员名称："+item.nickname)
                 .setText(R.id.tv_text4,"会员登记："+item.levelName)

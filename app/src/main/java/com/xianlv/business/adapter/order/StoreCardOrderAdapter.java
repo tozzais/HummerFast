@@ -25,7 +25,7 @@ public class StoreCardOrderAdapter extends BaseQuickAdapter<StoreCardOrderItem, 
                 .setText(R.id.tv_text2,item.cardName)
                 .setText(R.id.tv_text3,"会员名称："+item.nickname)
                 .setText(R.id.tv_text4,"会员登记："+item.levelName)
-                .setText(R.id.tv_text5,"充值金额："+item.rechargeAmount)
+                .setText(R.id.tv_text5,"充值金额：￥"+item.rechargeAmount)
                 .setText(R.id.tv_text6,"赠送金额："+item.givenAmount)
                 .setText(R.id.tv_text7,"购买时间："+item.createtime);
 

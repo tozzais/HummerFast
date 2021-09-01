@@ -55,7 +55,7 @@ public class DeliverReminderFragment extends BaseListFragment<MealOrderItem> {
 
         view.setVisibility(View.GONE);
         type = getArguments().getInt("type");
-        et_search.setHint("请输入劵码");
+        et_search.setHint("请输入订单编号");
         tv_search.setText("取消");
 
 
