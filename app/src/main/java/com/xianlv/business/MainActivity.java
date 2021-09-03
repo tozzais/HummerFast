@@ -66,6 +66,8 @@ import com.xianlv.business.ui.activity.SalesRankActivity;
 import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
 import com.xianlv.business.ui.activity.VideoListActivity;
 import com.xianlv.business.ui.activity.VisitorRecordActivity;
+import com.xianlv.business.ui.roommanage.RoomPriceManageActivity;
+import com.xianlv.business.ui.roommanage.SwitchRoomManageActivity;
 import com.xianlv.business.util.BottomDialogUtil;
 import com.xianlv.business.util.CenterDialogUtil;
 import com.xianlv.business.weight.MarqueeTextView;
@@ -230,10 +232,18 @@ public class MainActivity extends CheckPermissionActivity {
             R.id.rl_apply1, R.id.rl_apply2, R.id.rl_apply3, R.id.rl_apply4, R.id.rl_manage1, R.id.rl_manage2,
             R.id.rl_manage4, R.id.rl_manage5, R.id.rl_manage6, R.id.rl_manage7, R.id.rl_manage8,
             R.id.rl_manage9, R.id.rl_manage10, R.id.rl_study1, R.id.rl_study2, R.id.rl_study3, R.id.rl_study4,
-            R.id.rl_study5
-            , R.id.rl_order5, R.id.rl_order6, R.id.rl_order8, R.id.rl_goods_manage, R.id.rl_laundry_call})
+            R.id.rl_study5, R.id.rl_order5, R.id.rl_order6, R.id.rl_order8, R.id.rl_goods_manage,
+            R.id.rl_laundry_call,R.id.rl_switch_room_manage,R.id.rl_house_price_manage})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rl_switch_room_manage:
+                //开关房管理
+                SwitchRoomManageActivity.launch(mActivity);
+                break;
+            case R.id.rl_house_price_manage:
+                //房价管理
+                RoomPriceManageActivity.launch(mActivity);
+                break;
             case R.id.rl_order5:
                 StoredValueCardActivity.launch(mActivity);
                 break;

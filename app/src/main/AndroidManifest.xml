@@ -103,6 +103,8 @@
         <activity android:name=".order.activity.ReserveOrderDetailActivity" />
         <activity android:name=".goodsmanage.GoodsManageActivity" />
         <activity android:name=".goodsmanage.GoodsManageEditActivity" />
+        <activity android:name=".ui.roommanage.SwitchRoomManageActivity" />
+        <activity android:name=".ui.roommanage.RoomPriceManageActivity" />
         <activity
             android:name=".ui.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

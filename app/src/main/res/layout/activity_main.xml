@@ -686,6 +686,162 @@
             <TextView
                 style="@style/black_text_bold_15sp"
                 android:layout_margin="12dp"
+                android:text="客房管理" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/shape_white5"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rl_goods_manage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingRight="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_goodsmanage" />
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="商品管理"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_switch_room_manage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingRight="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_writeoff1"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="开关房管理"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_house_price_manage"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_writeoff2"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="房价管理"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:visibility="gone"
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_writeoff3"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="商城券核销"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:visibility="gone"
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/black_text_bold_15sp"
+                android:layout_margin="12dp"
                 android:text="系统核销" />
 
             <LinearLayout
@@ -1335,7 +1491,41 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/rl_goods_manage"
+                    android:id="@+id/rl_laundry_call"
+                    android:layout_width="0dp"
+                    android:paddingRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_manage11"/>
+
+                        <TextView
+                            style="@style/black_text_12sp"
+                            android:layout_marginTop="5dp"
+                            android:text="洗衣呼叫"/>
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/base_text_style1"
+                        android:text="3"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="invisible"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingRight="8dp"
@@ -1369,39 +1559,7 @@
                         android:layout_margin="5dp"/>
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/rl_laundry_call"
-                    android:layout_width="0dp"
-                    android:paddingRight="8dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <LinearLayout
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_manage11"/>
-
-                        <TextView
-                            style="@style/black_text_12sp"
-                            android:layout_marginTop="5dp"
-                            android:text="洗衣呼叫"/>
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/base_text_style1"
-                        android:text="3"
-                        android:visibility="gone"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="5dp"/>
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
