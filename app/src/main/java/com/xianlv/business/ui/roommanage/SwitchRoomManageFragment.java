@@ -2,6 +2,7 @@ package com.xianlv.business.ui.roommanage;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -28,6 +29,7 @@ import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.ListResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.util.datapick.DataPickUtil;
 import com.xianlv.business.util.pop.CommonPopupWindow;
 
 import java.util.ArrayList;
@@ -51,6 +53,8 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
     RecyclerView rv_drop;
     @BindView(R.id.tv_tab_text)
     TextView tv_tab_text;
+    @BindView(R.id.tv_data)
+    TextView tv_data;
 
     @BindView(R.id.rv_list_data)
     RecyclerView rv_list_data;
@@ -108,6 +112,7 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
                     @Override
                     public void onSuccess(BaseResult<ListResult<SwitchRoomItem>> result) {
                         dataList = result.data.list;
+//                        tsg(dataList.get(0).calendarVos.get(0).roomSkuVoList.get(0).price);
                         setData();
                     }
                     @Override
@@ -159,7 +164,7 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
             }
         }
 
-        setData(roomNameList);
+        setData(true,roomNameList);
 
 
 
@@ -178,17 +183,27 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
 
     @Override
     public void onEvent(Object o) {
-        super.onEvent(o);
         if (o instanceof RefreshRoomPrice){
-            onRefresh();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    onRefresh();
+                }
+            },500);
+
         }
     }
-    @OnClick({R.id.tv_tab_text})
+    @OnClick({R.id.tv_tab_text,R.id.tv_data})
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_tab_text:
                 if (list != null)
                 show(list);
+                break;
+            case R.id.tv_data:
+                DataPickUtil.getInstance().showDataPickDialog(mActivity, days -> {
+
+                });
                 break;
 
         }
@@ -200,7 +215,7 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
             Map<String,String> map = new HashMap<>();
             map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0,6));
             new RxHttp<BaseListResult<ShopBean>>().send(ApiManager.getService().getShop(map),
-                    new Response<BaseListResult<ShopBean>>(mActivity) {
+                    new Response<BaseListResult<ShopBean>>(mActivity,Response.BOTH) {
                         @Override
                         public void onSuccess(BaseListResult<ShopBean> result) {
                             list = new ArrayList<>();
@@ -215,6 +230,14 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
                             }
                             shopId = goodsTypeItem.shopId;
                             getData();
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                            onErrorResult(e);
+                        }
+                        @Override
+                        public void onErrorShow(String s) {
+                            showError(s);
                         }
                     });
         }
@@ -264,6 +287,14 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
         });
     }
 
+
+
+
+
+    private void getCurrentData() {
+
+
+    }
 
 
 

@@ -392,7 +392,7 @@ public interface ApiService {
     //修改价格价格列表
     @POST("app/roomType/updatePrice")
     Observable<BaseResult>
-    modifyRoomPrice(@Body RoomPriceItem bean);
+    modifyRoomPrice(@Body Map<String,String> bean);
 
 
 

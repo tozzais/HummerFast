@@ -3,12 +3,14 @@ package com.xianlv.business.ui.roommanage;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -117,25 +119,43 @@ public class ModifyRoomPriceActivity extends BaseActivity {
     }
 
     private void modify(){
-        if (roomPriceItem == null){
+        if (roomPriceItem == null || roomPriceItem.leveList == null ||
+                roomPriceItem.leveList.size() == 0){
             return;
         }
-        roomPriceItem.nonce_str = UUID.randomUUID().toString().replace("-", "").substring(0, 6);
-        roomPriceItem.workDate = roomPriceItem.date;
-        roomPriceItem.levelParam = new ArrayList<>();
-        for (RoomPriceDetail roomPriceDetail:roomPriceItem.leveList){
-            roomPriceDetail.levelId = roomPriceDetail.id;
-            roomPriceItem.levelParam.add(roomPriceDetail);
+        if (roomPriceItem.leveList.get(0).isShow){
+            tsg("请点击确认按钮，确认会员房价");
+            return;
         }
-        new RxHttp<BaseResult>().send(ApiManager.getService().modifyRoomPrice(roomPriceItem),
+        for (RoomPriceDetail roomPriceDetail:roomPriceItem.leveList){
+            if (TextUtils.isEmpty(roomPriceDetail.price)){
+                tsg("请输入"+roomPriceDetail.levelName);
+                return;
+            }
+        }
+        List<Map<String,String>> list = new ArrayList<>();
+        for (RoomPriceDetail roomPriceDetail:roomPriceItem.leveList){
+            Map<String, String> map = new HashMap<>();
+            map.put("levelId",roomPriceDetail.id);
+            map.put("price",roomPriceDetail.price);
+            list.add(map);
+        }
+        Map<String, String> map = new HashMap<>();
+        map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+        map.put("workDate", roomPriceItem.date);
+        map.put("promotionId", roomPriceItem.promotionId);
+        map.put("levelParam", new Gson().toJson(list));
+        new RxHttp<BaseResult>().send(ApiManager.getService().modifyRoomPrice(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult result) {
+
                         EventBus.getDefault().post(new RefreshRoomPrice());
                         tsg("修改成功");
                         finish();
                     }
                 });
     }
+
 
 }

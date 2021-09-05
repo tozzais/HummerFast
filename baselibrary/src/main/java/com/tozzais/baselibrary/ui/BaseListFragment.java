@@ -101,6 +101,7 @@ public abstract class BaseListFragment<T> extends BaseFragment {
 
 
     protected void onRefresh() {
+        if (swipeLayout != null)
         swipeLayout.setRefreshing(true);
         // 这里的作用是防止下拉刷新的时候还可以上拉加载
         if ( mAdapter.getLoadMoreModule() != null)
