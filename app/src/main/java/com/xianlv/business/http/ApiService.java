@@ -69,6 +69,9 @@ import com.xianlv.business.bean.request.RequestStaffHousingId;
 import com.xianlv.business.bean.request.RequestSweepId;
 import com.xianlv.business.bean.request.RequestVoucher;
 import com.xianlv.business.bean.request.RequestVoucherId;
+import com.xianlv.business.bean.switchroom.RoomPriceItem;
+import com.xianlv.business.bean.switchroom.ShopBean;
+import com.xianlv.business.bean.switchroom.SwitchRoomItem;
 import com.xianlv.business.bean.weather.WeatherResult;
 
 import java.util.Map;
@@ -365,6 +368,31 @@ public interface ApiService {
     @POST("shoppingType/getType")
     Observable<BaseListResult<GoodsTypeItem>>
     goodsType(@Body Map<String,String> bean);
+
+    //根据酒店获取门店信息
+    @POST("app/roomType/queryShop")
+    Observable<BaseListResult<ShopBean>>
+    getShop(@Body Map<String,String> bean);
+
+    //查询订房开关房列表
+    @POST("app/roomType/queryRoomStatus")
+    Observable<BaseResult<ListResult<SwitchRoomItem>>>
+    getSwitchRoomList(@Body Map<String,String> bean);
+
+    //切换开关房开关
+    @POST("app/roomType/updateRoomStore")
+    Observable<BaseResult<ListResult<SwitchRoomItem>>>
+    switchRoomSwitch(@Body Map<String,String> bean);
+
+    //获取价格列表
+    @POST("app/roomType/queryPrice")
+    Observable<BaseResult<RoomPriceItem>>
+    getRoomPrice(@Body Map<String,String> bean);
+
+    //修改价格价格列表
+    @POST("app/roomType/updatePrice")
+    Observable<BaseResult>
+    modifyRoomPrice(@Body RoomPriceItem bean);
 
 
 

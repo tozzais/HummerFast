@@ -47,6 +47,13 @@
 
     </style>
 
+    <style name="gray_space">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@color/gray_bg</item>
+
+    </style>
+
     <style name="weight_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>

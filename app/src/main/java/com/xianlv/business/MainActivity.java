@@ -66,7 +66,6 @@ import com.xianlv.business.ui.activity.SalesRankActivity;
 import com.xianlv.business.ui.activity.StoredValueCardWriteOffActivity;
 import com.xianlv.business.ui.activity.VideoListActivity;
 import com.xianlv.business.ui.activity.VisitorRecordActivity;
-import com.xianlv.business.ui.roommanage.RoomPriceManageActivity;
 import com.xianlv.business.ui.roommanage.SwitchRoomManageActivity;
 import com.xianlv.business.util.BottomDialogUtil;
 import com.xianlv.business.util.CenterDialogUtil;
@@ -89,7 +88,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- *
+ * 接口地址：https://www.apizza.net/project/d8b19ba9902b438ff73489c7110e1b83/browse
  * 这是2.0.0版本
  * 1天 新增消息 和订单处理
  * 2天 打印机和线下订单
@@ -238,11 +237,11 @@ public class MainActivity extends CheckPermissionActivity {
         switch (view.getId()) {
             case R.id.rl_switch_room_manage:
                 //开关房管理
-                SwitchRoomManageActivity.launch(mActivity);
+                SwitchRoomManageActivity.launch(mActivity,0);
                 break;
             case R.id.rl_house_price_manage:
                 //房价管理
-                RoomPriceManageActivity.launch(mActivity);
+                SwitchRoomManageActivity.launch(mActivity,1);
                 break;
             case R.id.rl_order5:
                 StoredValueCardActivity.launch(mActivity);

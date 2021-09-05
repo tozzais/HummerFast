@@ -7,18 +7,22 @@ import android.os.Bundle;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.xianlv.business.R;
-import com.xianlv.business.goodsmanage.GoodsManageFragment;
 
 /**
  * 商品管理
  */
 public class SwitchRoomManageActivity extends BaseActivity {
 
-    public static void launch(Context from) {
+    /*
+    0 开关房
+    1 房价管理
+     */
+    public static void launch(Context from,int type) {
         if (!ClickUtils.isFastClick()){
             return;
         }
         Intent intent = new Intent(from, SwitchRoomManageActivity.class);
+        intent.putExtra("type",type);
         from.startActivity(intent);
     }
 
@@ -27,15 +31,22 @@ public class SwitchRoomManageActivity extends BaseActivity {
         return R.layout.layout_content;
     }
 
+    private int type;
     @Override
     public void initView(Bundle savedInstanceState) {
-        setBackTitle("开关房管理");
+        type = getIntent().getIntExtra("type",0);
+        if (type == 0){
+            setBackTitle("开关房管理");
+        }else if (type == 1){
+            setBackTitle("房价管理");
+        }
+
 
     }
 
     @Override
     public void loadData() {
-        GoodsManageFragment fragment = new GoodsManageFragment();
+        SwitchRoomManageFragment fragment = SwitchRoomManageFragment.newInstance(type);
         getSupportFragmentManager().beginTransaction().add(R.id.content_container, fragment).commit();
     }
 }
