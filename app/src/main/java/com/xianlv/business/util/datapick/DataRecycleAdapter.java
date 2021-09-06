@@ -13,8 +13,10 @@ import com.xianlv.business.R;
  */
 public class DataRecycleAdapter extends BaseQuickAdapter<DataPickItem, BaseViewHolder> {
 
-    public DataRecycleAdapter() {
+    private DataPickUtil.onSelectListener listener;
+    public DataRecycleAdapter(DataPickUtil.onSelectListener listener) {
         super(R.layout.item_datapick, null);
+        this.listener = listener;
     }
 
 
@@ -25,10 +27,11 @@ public class DataRecycleAdapter extends BaseQuickAdapter<DataPickItem, BaseViewH
         tv_data.setText(dataPickItem.data);
 
         tv_data.setOnClickListener(v -> {
-            if (dataPickItem.isClick){
-                dataPickItem.isSelete = !dataPickItem.isSelete;
-                notifyDataSetChanged();
-            }
+//            if (dataPickItem.isClick){
+//                dataPickItem.isSelete = !dataPickItem.isSelete;
+//                notifyDataSetChanged();
+//            }
+            listener.onFinish(dataPickItem.data);
         });
         if (dataPickItem.isSelete){
             tv_data.setBackgroundResource(R.drawable.shape_oval_basecolor);

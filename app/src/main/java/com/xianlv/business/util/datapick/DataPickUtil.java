@@ -67,7 +67,7 @@ public class DataPickUtil {
 		MyRecycleView gl_data = view.findViewById(R.id.viewpager);
 		gl_data.setLayoutManager(new GridLayoutManager(context,7));
 		if (mAdapter == null){
-			mAdapter = new DataRecycleAdapter();
+			mAdapter = new DataRecycleAdapter(listener);
 		}
 		gl_data.setAdapter(mAdapter);
 		mAdapter.setNewData(currentMonthDay);
@@ -129,11 +129,26 @@ public class DataPickUtil {
 			currentMonthDay.add(new DataPickItem("", false, false));
 		}
 		for (int i = 1; i <= daysOfMonth; i++) {
-			if (i >= day) {
+			if (curryear<year){
 				currentMonthDay.add(new DataPickItem(i + "", true, false));
-			} else {
+			}else if (curryear>year){
 				currentMonthDay.add(new DataPickItem(i + "", false, false));
+			}else {
+				if (currmonth<month){
+					currentMonthDay.add(new DataPickItem(i + "", true, false));
+				}else if (currmonth>month){
+					currentMonthDay.add(new DataPickItem(i + "", false, false));
+				}else {
+					if (i >day) {
+						currentMonthDay.add(new DataPickItem(i + "", true, false));
+					} else if (i <day) {
+						currentMonthDay.add(new DataPickItem(i + "", false, false));
+					}else {
+						currentMonthDay.add(new DataPickItem(i + "", true, true));
+					}
+				}
 			}
+
 		}
 	}
 
@@ -230,7 +245,7 @@ public class DataPickUtil {
 
 
 	public interface onSelectListener {
-		 void onFinish(ArrayList<DataPickItem> days);
+		 void onFinish(String date);
 	}
 
 }
