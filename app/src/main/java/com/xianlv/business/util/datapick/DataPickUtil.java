@@ -119,6 +119,8 @@ public class DataPickUtil {
 	public void getMonthData(){
 		currentMonthDay.clear();
 		Calendar cale = Calendar.getInstance();
+		int curryear = cale.get(Calendar.YEAR);
+		int currmonth = cale.get(Calendar.MONTH) + 1;
 		int day = cale.get(Calendar.DATE);
 		DataPickUtil instance = DataPickUtil.getInstance();
 		int daysOfMonth = instance.getDaysOfMonth(year, month);

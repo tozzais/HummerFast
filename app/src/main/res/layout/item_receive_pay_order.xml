@@ -61,6 +61,13 @@
         android:layout_marginLeft="12dp"/>
 
     <TextView
+        android:id="@+id/tv_text41"
+        style="@style/small_text_gray_style"
+        android:text="付款人：张三三"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"/>
+
+    <TextView
         android:id="@+id/tv_text5"
         style="@style/small_text_gray_style"
         android:text="收款员工：张三 1234837461"

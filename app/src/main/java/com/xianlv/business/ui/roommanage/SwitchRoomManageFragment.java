@@ -55,6 +55,8 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
     TextView tv_tab_text;
     @BindView(R.id.tv_data)
     TextView tv_data;
+    @BindView(R.id.ll_space)
+    View ll_space;
 
     @BindView(R.id.rv_list_data)
     RecyclerView rv_list_data;
@@ -250,7 +252,7 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
     public void show(List<ShopBean> list){
         if (popupWindow != null) {
             if (!popupWindow.isShowing()) {
-                popupWindow.showAsDropDown(ll_tab);
+                popupWindow.showAsDropDown(ll_space);
             }
             return;
         }
@@ -268,7 +270,7 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
                         popupWindow.dismiss();
                     });
                 }).build();
-        popupWindow.showAsDropDown(ll_tab);
+        popupWindow.showAsDropDown(ll_space);
         popupWindow.setFocusable(true);
         RecyclerView rv_list =  popupWindow.getContentView().findViewById(R.id.rv_list);
         rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -286,6 +288,8 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
             popupWindow.dismiss();
         });
     }
+
+
 
 
 

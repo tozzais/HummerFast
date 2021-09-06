@@ -748,7 +748,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_writeoff1"/>
+                            android:src="@mipmap/switch_room_manage"/>
 
                         <TextView
                             style="@style/black_text_12sp"
@@ -782,7 +782,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_writeoff2"/>
+                            android:src="@mipmap/room_price_manage"/>
 
                         <TextView
                             style="@style/black_text_12sp"

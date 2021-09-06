@@ -59,6 +59,8 @@ public class CodeActivity extends BaseActivity {
     TextView tvTip2;
     @BindView(R.id.tv_money)
     TextView tv_money;
+    @BindView(R.id.tv_money1)
+    TextView tv_money1;
     @BindView(R.id.ll_root)
     LinearLayout llRoot;
 
@@ -94,6 +96,19 @@ public class CodeActivity extends BaseActivity {
         toolbar.setNavigationOnClickListener(view -> back());
         if (type == 1) {
             tvTitle.setText("小程序二维码");
+            tvCodeName.setText("小程序二维码");
+            getAppletCode();
+            llRoot.setBackgroundColor(getResources().getColor(R.color.yellowText));
+//            Drawable drawable = getResources().getDrawable(R.mipmap.icon_receive_pay);
+//            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//            tvCodeName.setCompoundDrawables(drawable, null, null, null);
+            tvCodeName.setTextColor(getResources().getColor(R.color.yellowText));
+            tv_money1.setVisibility(View.GONE);
+            tv_money.setVisibility(View.GONE);
+            tvCode.setText("扫码跳转小程序");
+            tvCode.setTextColor(getResources().getColor(R.color.yellowText));
+            tvTip1.setText("温馨提示");
+            tvTip2.setText("如无法打开小程序，请再次扫描");
         } else if (type == 2) {
             tvTitle.setText("门店收款码");
 //            llRoot.setBackgroundColor(getResources().getColor(R.color.yellowText));
@@ -107,10 +122,12 @@ public class CodeActivity extends BaseActivity {
             tvCode.setTextColor(getResources().getColor(R.color.grayText));
             tvTip1.setText("安全提示");
             tvTip2.setText("为了你的资金安全，请保管好收款码，防止泄露");
+            tv_money.setText("￥"+data.money);
+            ImageUtil.loadFullAddress(mActivity,ivCode,data.qrCode);
 
+            test();
         }
-        tv_money.setText("￥"+data.money);
-        ImageUtil.loadFullAddress(mActivity,ivCode,data.qrCode);
+
 
     }
 
@@ -121,7 +138,7 @@ public class CodeActivity extends BaseActivity {
 //        }else {
 //            getReceiveCode();
 //        }
-        test();
+
     }
 
 
@@ -144,7 +161,7 @@ public class CodeActivity extends BaseActivity {
                 new Response<BaseResult<CodeBean>>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult<CodeBean> result) {
-                        ImageUtil.load(mActivity,ivCode,result.data.code);
+                        ImageUtil.loadFullAddress(mActivity,ivCode,result.data.code);
                     }
                 });
     }

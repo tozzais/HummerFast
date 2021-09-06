@@ -50,6 +50,7 @@
             >
 
             <TextView
+                android:id="@+id/tv_money1"
                 style="@style/blue_text_12sp"
                 android:textColor="@color/baseColor"
                 android:text="收款金额"/>

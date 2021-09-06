@@ -50,6 +50,7 @@ import com.xianlv.business.ui.activity.CashPledgeManageActivity;
 import com.xianlv.business.ui.activity.CheckInApplyActivity;
 import com.xianlv.business.ui.activity.CheckOutApplyActivity;
 import com.xianlv.business.ui.activity.CleanApplyActivity;
+import com.xianlv.business.ui.activity.CodeActivity;
 import com.xianlv.business.ui.activity.CollectionRecordActivity;
 import com.xianlv.business.ui.activity.CouponCodeAuthActivity;
 import com.xianlv.business.ui.activity.DeliveryReminderActivity;
@@ -269,7 +270,7 @@ public class MainActivity extends CheckPermissionActivity {
                 BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.ll_applets:
-//                CodeActivity.launch(mActivity, 1);
+                CodeActivity.launch(mActivity, 1,null);
                 break;
             case R.id.ll_store:
                 ReceivePayActivity.launch(mActivity);
@@ -635,10 +636,10 @@ public class MainActivity extends CheckPermissionActivity {
 
 
     public String getNumber(int num){
-        String number = num+"";
-        if (TextUtils.isEmpty(number))return "";
-        if (number.length()>3)return number.substring(0,2)+"...";
-        return number;
+        if (num>99){
+            return "99+";
+        }
+        return num+"";
     }
 
 

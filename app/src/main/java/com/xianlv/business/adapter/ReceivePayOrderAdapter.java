@@ -48,11 +48,13 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
        TextView tv_text10 = helper.getView(R.id.tv_text10);
        TextView tv_text9 = helper.getView(R.id.tv_text9);
         TextView tv_refuse = helper.getView(R.id.tv_refuse);
+        TextView tv_text41 = helper.getView(R.id.tv_text41);
         if (type == 0){
             tv_refuse.setVisibility(View.VISIBLE);
             helper.setVisible(R.id.tv_text2, false);
             tv_text9.setVisibility(View.GONE);
             tv_text10.setVisibility(View.GONE);
+            tv_text41.setVisibility(View.GONE);
             tv_text3.setText("收款金额："+item.money);
             helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
                     .setText(R.id.tv_text2,item.getReturnStatus())
@@ -66,7 +68,8 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
             tv_text3.setText("退款金额："+item.refundMoney);
             helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
                     .setText(R.id.tv_text2,item.getReturnStatus())
-                    .setText(R.id.tv_text4,"收款类型："+item.qrcodeName)
+                    .setText(R.id.tv_text4,"收款类型："+item.money)
+                    .setText(R.id.tv_text41,"收款金额："+item.qrcodeName)
                     .setText(R.id.tv_text5,"付款人："+item.nickname)
                     .setText(R.id.tv_text6,"收款员工："+item.operuser)
                     .setText(R.id.tv_text7,"收款时间："+item.createtime)

@@ -9,7 +9,7 @@ public interface HttpUrl {
 
 
 //    String base_url = "https://shanghaixianlv.com/";
-    String base_url = "https://shanghaixianlv.com/";
+    String base_url = "https://test.shanghaixianlv.com/";
     String server_url = base_url+"hotel-client/";
     String image_url = base_url;
 
