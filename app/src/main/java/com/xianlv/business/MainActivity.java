@@ -34,6 +34,7 @@ import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.eventbus.RefreshAccount;
 import com.xianlv.business.bean.eventbus.RefreshMain;
 import com.xianlv.business.bean.request.BaseRequest;
+import com.xianlv.business.bean.switchroom.EmployeePermissions;
 import com.xianlv.business.bean.weather.WeatherResult;
 import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.global.ImageUtil;
@@ -270,7 +271,20 @@ public class MainActivity extends CheckPermissionActivity {
                 BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.ll_applets:
-                CodeActivity.launch(mActivity, 1,null);
+                Map<String, String> map = new HashMap<>();
+                map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+                new RxHttp<BaseResult<EmployeePermissions>>().send(ApiManager.getService().queryAuthority(map)
+                        ,new Response<BaseResult<EmployeePermissions>>(mActivity){
+                    @Override
+                    public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
+                        if (baseResult.data.isCanReceivePayment()){
+                            CodeActivity.launch(mActivity, 1,null);
+                        }else {
+                            tsg("暂无权限");
+                        }
+                    }
+                });
+
                 break;
             case R.id.ll_store:
                 ReceivePayActivity.launch(mActivity);
@@ -312,9 +326,11 @@ public class MainActivity extends CheckPermissionActivity {
                 CheckOutApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_apply3:
+                //早餐券申请
                 BreakfastCouponApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_apply4:
+                //停车券申请
                 ParkCouponApplyActivity.launch(mActivity);
                 break;
             case R.id.rl_manage1:

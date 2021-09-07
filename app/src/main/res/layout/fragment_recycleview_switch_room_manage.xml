@@ -127,12 +127,9 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_drop"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#55000000"/>
+
+
+
     </FrameLayout>
 
 

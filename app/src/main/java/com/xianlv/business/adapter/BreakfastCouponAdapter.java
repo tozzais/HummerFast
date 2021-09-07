@@ -39,10 +39,10 @@ public class BreakfastCouponAdapter extends BaseQuickAdapter<CouponItem, BaseVie
                 .setText(R.id.tv_number,"申请券数："+item.count)
                 .setText(R.id.tv_type,"类型："+item.breakfastTypesOf);
         helper.getView(R.id.tv_refuse).setOnClickListener(view -> {
-            dealWith(item.voucherId,"1");
+            dealWith(item.voucherId,"2");
         });
         helper.getView(R.id.tv_pass).setOnClickListener(view -> {
-            dealWith(item.voucherId,"2");
+            dealWith(item.voucherId,"1");
         });
 
    }

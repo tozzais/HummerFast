@@ -10,10 +10,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.tozzais.baselibrary.http.RxHttp;
+import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
 import com.xianlv.business.SunmiPrint;
 import com.xianlv.business.bean.OrderDetail;
 import com.xianlv.business.bean.ReceiveOrderItem;
+import com.xianlv.business.bean.switchroom.EmployeePermissions;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
@@ -21,6 +23,7 @@ import com.xianlv.business.ui.activity.Refund1Activity;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, BaseViewHolder> implements LoadMoreModule {
 
@@ -88,7 +91,21 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
 //            SunmiPrint.INSTANCE.printReceipt(getContext(),item,type);
         });
         tv_refuse.setOnClickListener(v -> {
-            Refund1Activity.launch(getContext(),item.scanId);
+            Map<String, String> map = new HashMap<>();
+            map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+            new RxHttp<BaseResult<EmployeePermissions>>().send(ApiManager.getService().queryAuthority(map)
+                    ,new Response<BaseResult<EmployeePermissions>>(getContext()){
+                        @Override
+                        public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
+                            if (baseResult.data.isCanReceivePayment()){
+                                Refund1Activity.launch(getContext(),item.scanId);
+                            }else {
+                                ToastCommom.createToastConfig().ToastShow(getContext(),"暂无权限");
+                            }
+                        }
+                    });
+
+
         });
 
 

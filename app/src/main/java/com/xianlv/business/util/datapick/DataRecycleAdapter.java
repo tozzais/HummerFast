@@ -31,7 +31,7 @@ public class DataRecycleAdapter extends BaseQuickAdapter<DataPickItem, BaseViewH
 //                dataPickItem.isSelete = !dataPickItem.isSelete;
 //                notifyDataSetChanged();
 //            }
-            listener.onFinish(dataPickItem.data);
+            listener.onFinish(Integer.parseInt(dataPickItem.data),position);
         });
         if (dataPickItem.isSelete){
             tv_data.setBackgroundResource(R.drawable.shape_oval_basecolor);

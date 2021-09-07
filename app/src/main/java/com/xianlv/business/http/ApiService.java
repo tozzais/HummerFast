@@ -69,6 +69,7 @@ import com.xianlv.business.bean.request.RequestStaffHousingId;
 import com.xianlv.business.bean.request.RequestSweepId;
 import com.xianlv.business.bean.request.RequestVoucher;
 import com.xianlv.business.bean.request.RequestVoucherId;
+import com.xianlv.business.bean.switchroom.EmployeePermissions;
 import com.xianlv.business.bean.switchroom.RoomPriceItem;
 import com.xianlv.business.bean.switchroom.ShopBean;
 import com.xianlv.business.bean.switchroom.SwitchRoomItem;
@@ -393,6 +394,10 @@ public interface ApiService {
     @POST("app/roomType/updatePrice")
     Observable<BaseResult>
     modifyRoomPrice(@Body Map<String,String> bean);
+    //查看收款退款的权限
+    @POST("scan/queryScanAuthority")
+    Observable<BaseResult<EmployeePermissions>>
+    queryAuthority(@Body Map<String,String> bean);
 
 
 

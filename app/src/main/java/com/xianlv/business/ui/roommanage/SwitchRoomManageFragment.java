@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,8 +31,11 @@ import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.ListResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.util.datapick.DataPickItem;
 import com.xianlv.business.util.datapick.DataPickUtil;
+import com.xianlv.business.util.datapick.DataRecycleAdapter;
 import com.xianlv.business.util.pop.CommonPopupWindow;
+import com.xianlv.business.weight.MyRecycleView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,8 +54,6 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
 
     @BindView(R.id.ll_tab)
     LinearLayout ll_tab;
-    @BindView(R.id.rv_drop)
-    RecyclerView rv_drop;
     @BindView(R.id.tv_tab_text)
     TextView tv_tab_text;
     @BindView(R.id.tv_data)
@@ -85,6 +88,12 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
         mAdapter = new SwitchRoomNameAdapter();
         mRecyclerView.setAdapter(mAdapter);
         setEmptyView("暂时没有数据哦~");
+
+        Calendar cale = Calendar.getInstance();
+        month = cale.get(Calendar.MONTH) + 1;
+        year = cale.get(Calendar.YEAR);
+        tv_data.setText(getShowDate(year,month,cale.get(Calendar.DAY_OF_MONTH)));
+
 
     }
 
@@ -200,12 +209,10 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
         switch (view.getId()){
             case R.id.tv_tab_text:
                 if (list != null)
-                show(list);
+                show(list,1);
                 break;
             case R.id.tv_data:
-                DataPickUtil.getInstance().showDataPickDialog(mActivity, days -> {
-
-                });
+                show(list,2);
                 break;
 
         }
@@ -249,10 +256,19 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
 
 
     private CommonPopupWindow popupWindow;
-    public void show(List<ShopBean> list){
+    private RecyclerView rv_list;
+    private LinearLayout ll_calendar;
+    public void show(List<ShopBean> list,int type){
         if (popupWindow != null) {
             if (!popupWindow.isShowing()) {
                 popupWindow.showAsDropDown(ll_space);
+            }
+            if (type == 1){
+                rv_list.setVisibility(View.VISIBLE);
+                ll_calendar.setVisibility(View.GONE);
+            }else {
+                rv_list.setVisibility(View.GONE);
+                ll_calendar.setVisibility(View.VISIBLE);
             }
             return;
         }
@@ -272,7 +288,8 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
                 }).build();
         popupWindow.showAsDropDown(ll_space);
         popupWindow.setFocusable(true);
-        RecyclerView rv_list =  popupWindow.getContentView().findViewById(R.id.rv_list);
+
+        rv_list =  popupWindow.getContentView().findViewById(R.id.rv_list);
         rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
         DropStoreAdapter adapter = new DropStoreAdapter();
         rv_list.setAdapter(adapter);
@@ -287,19 +304,126 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
             onRefresh();
             popupWindow.dismiss();
         });
+
+
+        getMonthData();
+        View contentView = popupWindow.getContentView();
+        ll_calendar =  contentView.findViewById(R.id.ll_calendar);
+        TextView tv_data1 =  contentView.findViewById(R.id.tv_current_data);
+        ImageView tv_cancel = contentView.findViewById(R.id.tv_cancel);
+        ImageView tv_sure = contentView.findViewById(R.id.tv_sure);
+
+        MyRecycleView gl_data = contentView.findViewById(R.id.viewpager);
+        gl_data.setLayoutManager(new GridLayoutManager(mActivity,7));
+        if (dataRecycleAdapter == null){
+            dataRecycleAdapter = new DataRecycleAdapter((date,position) -> {
+                dayDate = year+"-"+month+"-"+date;
+                tv_data.setText(getShowDate(year,month,date));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    tv_data.setTextColor(getContext().getColor(R.color.baseColor));
+                }
+                onRefresh();
+                popupWindow.dismiss();
+            });
+        }
+        gl_data.setAdapter(dataRecycleAdapter);
+        dataRecycleAdapter.setNewData(currentMonthDay);
+        tv_sure.setOnClickListener(v -> {
+            if (month<12){
+                month = month+1;
+            }else {
+                year++;
+                month=1;
+            }
+            tv_data1.setText(year+"年"+month+"月");
+            getMonthData();
+            dataRecycleAdapter.notifyDataSetChanged();
+        });
+        tv_cancel.setOnClickListener(v -> {
+            if (month>1){
+                month = month-1;
+            }else {
+                year--;
+                month=12;
+            }
+            tv_data1.setText(year+"年"+month+"月");
+            getMonthData();
+            dataRecycleAdapter.notifyDataSetChanged();
+        });
+        tv_data1.setText(year+"年"+month+"月");
+        if (type == 1){
+            rv_list.setVisibility(View.VISIBLE);
+            ll_calendar.setVisibility(View.GONE);
+        }else {
+            rv_list.setVisibility(View.GONE);
+            ll_calendar.setVisibility(View.VISIBLE);
+        }
     }
 
+    private  int year,month;
+    private DataRecycleAdapter dataRecycleAdapter;
+    private List<DataPickItem> currentMonthDay = new ArrayList<>();
 
 
 
+    public void getMonthData(){
+        currentMonthDay.clear();
+        Calendar cale = Calendar.getInstance();
+        int curryear = cale.get(Calendar.YEAR);
+        int currmonth = cale.get(Calendar.MONTH) + 1;
+        int day = cale.get(Calendar.DATE);
+        DataPickUtil instance = DataPickUtil.getInstance();
+        int daysOfMonth = instance.getDaysOfMonth(year, month);
+        int firstDayInWeek = instance.getFirstDayInWeek(year, month - 1);
+        for (int i = 0; i < (firstDayInWeek - 1); i++) {
+            currentMonthDay.add(new DataPickItem("", false, false));
+        }
+        for (int i = 1; i <= daysOfMonth; i++) {
+            if (curryear<year){
+                currentMonthDay.add(new DataPickItem(i + "", true, false));
+            }else if (curryear>year){
+                currentMonthDay.add(new DataPickItem(i + "", false, false));
+            }else {
+                if (currmonth<month){
+                    currentMonthDay.add(new DataPickItem(i + "", true, false));
+                }else if (currmonth>month){
+                    currentMonthDay.add(new DataPickItem(i + "", false, false));
+                }else {
+                    if (i >day) {
+                        currentMonthDay.add(new DataPickItem(i + "", true, false));
+                    } else if (i <day) {
+                        currentMonthDay.add(new DataPickItem(i + "", false, false));
+                    }else {
+                        currentMonthDay.add(new DataPickItem(i + "", true, true));
+                    }
+                }
+            }
 
+        }
+    }
 
-
-    private void getCurrentData() {
-
+    private String getDayDate(int i){
+        return i<10?"0"+i:i+"";
 
     }
 
+    private String getShowDate(int year,int month,int day){
+        DataPickUtil instance = DataPickUtil.getInstance();
+        int daysOfMonth = instance.getDaysOfMonth(year, month);
+        if (day > daysOfMonth-6){
+            int sub = day - daysOfMonth+6;
+            if (month ==12){
+                return (getDayDate(month)+"."+getDayDate(day)
+                        +"-01.0"+sub);
+            }else {
+                return (getDayDate(month)+"."+getDayDate(day)
+                        +"-"+getDayDate(month+1)+".0"+sub);
+            }
+        }else {
+            return getDayDate(month)+"."+getDayDate(day)
+                    +"-"+getDayDate(month)+"."+getDayDate((day+6));
+        }
 
+    }
 
 }

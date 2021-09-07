@@ -60,7 +60,7 @@ public class DataPickUtil {
 
 		View view = View.inflate(context, R.layout.pop_bottom_datapick, null);
 
-		TextView tv_data = view.findViewById(R.id.tv_data);
+		TextView tv_data = view.findViewById(R.id.tv_current_data);
 		TextView tv_cancel = view.findViewById(R.id.tv_cancel);
 		TextView tv_sure = view.findViewById(R.id.tv_sure);
 
@@ -245,7 +245,7 @@ public class DataPickUtil {
 
 
 	public interface onSelectListener {
-		 void onFinish(String date);
+		 void onFinish(int date,int position);
 	}
 
 }
