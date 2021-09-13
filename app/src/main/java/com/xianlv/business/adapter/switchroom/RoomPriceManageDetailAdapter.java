@@ -32,7 +32,6 @@ public class RoomPriceManageDetailAdapter extends BaseQuickAdapter<SwitchDetailI
 
     @Override
     protected void convert(BaseViewHolder helper,  SwitchDetailItem item) {
-        int position = helper.getAdapterPosition();
         helper.setText(R.id.tv_price,"￥"+item.price)
                 .setText(R.id.tv_status,"状态:"+(item.isOpen()?"开":"关"))
                 .setText(R.id.tv_inventory,"库存:"+item.store);

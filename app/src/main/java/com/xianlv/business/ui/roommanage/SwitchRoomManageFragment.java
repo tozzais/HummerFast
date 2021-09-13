@@ -144,7 +144,6 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
             tsg("暂无数据");
             return;
         }
-
         //房型的集合
         List<String> roomNameList = new ArrayList<>();
         //房型数据的集合
@@ -177,19 +176,59 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
 
         setData(true,roomNameList);
 
-
-
         rv_list_data.setLayoutManager(new LinearLayoutManager(mActivity,RecyclerView.HORIZONTAL,false));
-        SwitchRoomNameManageAdapter adapter = new SwitchRoomNameManageAdapter(type);
+        adapter = new SwitchRoomNameManageAdapter(type);
         rv_list_data.setAdapter(adapter);
         adapter.setNewData(detailList);
 
+//        if (adapter != null) {
+//            for (RecyclerView recyclerView1:adapter.getList()){
+//                recyclerView1.addOnScrollListener(scrollListeners[1]);
+//            }
+//        }
+
+
 
     }
+    private SwitchRoomNameManageAdapter adapter;
 
+//    private  RecyclerView.OnScrollListener[] scrollListeners;
 
     @Override
     public void initListener() {
+
+//        scrollListeners = new RecyclerView.OnScrollListener[2];
+//        scrollListeners[0] = new RecyclerView.OnScrollListener( )
+//        {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+//            {
+//                super.onScrolled(recyclerView, dx, dy);
+//                if (adapter != null ) {
+//                    for (RecyclerView recyclerView1:adapter.getList()){
+//                        recyclerView1.removeOnScrollListener(scrollListeners[1]);
+//                        recyclerView1.scrollBy(dx, dy);
+//                        recyclerView1.addOnScrollListener(scrollListeners[1]);
+//                    }
+//                }
+//
+//            }
+//        };
+//        scrollListeners[1] = new RecyclerView.OnScrollListener( )
+//        {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+//            {
+//                super.onScrolled(recyclerView, dx, dy);
+//                mRecyclerView.removeOnScrollListener(scrollListeners[0]);
+//                mRecyclerView.scrollBy(dx, dy);
+//                mRecyclerView.addOnScrollListener(scrollListeners[0]);
+//            }
+//        };
+//        mRecyclerView.addOnScrollListener(scrollListeners[0]);
+
+
+
     }
 
     @Override
