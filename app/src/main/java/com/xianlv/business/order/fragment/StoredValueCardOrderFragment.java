@@ -122,5 +122,6 @@ public class StoredValueCardOrderFragment extends BaseListFragment<StoreCardOrde
     @OnClick(R.id.tv_search)
     public void onClick() {
         et_search.setText("");
+        onRefresh();
     }
 }

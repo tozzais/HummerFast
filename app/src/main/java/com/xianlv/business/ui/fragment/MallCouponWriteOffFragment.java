@@ -171,6 +171,7 @@ public class MallCouponWriteOffFragment extends BaseListFragment<CheckDeductionG
                 break;
             case R.id.tv_cancel:
                 et_code.setText("");
+                onRefresh();
                 break;
             case R.id.iv_select_all:
                 isSelectAll = !isSelectAll;

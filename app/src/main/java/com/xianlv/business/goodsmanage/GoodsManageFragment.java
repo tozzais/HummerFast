@@ -1,24 +1,17 @@
 package com.xianlv.business.goodsmanage;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
 import com.tozzais.baselibrary.util.DpUtil;
@@ -33,8 +26,6 @@ import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseListResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.util.pop.CommonPopupWindow;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -149,6 +140,7 @@ public class GoodsManageFragment extends BaseListFragment<GoodsManageItem> {
                 break;
             case R.id.tv_search:
                 et_search.setText("");
+                onRefresh();
                 break;
         }
 
@@ -198,6 +190,7 @@ public class GoodsManageFragment extends BaseListFragment<GoodsManageItem> {
         popupWindow.showAsDropDown(ll_tab);
         popupWindow.setFocusable(true);
         RecyclerView rv_list =  popupWindow.getContentView().findViewById(R.id.rv_list);
+        rv_list.setVisibility(View.VISIBLE);
         rv_list.setLayoutManager(new LinearLayoutManager(mActivity));
         GoodsTypeAdapter adapter = new GoodsTypeAdapter();
         rv_list.setAdapter(adapter);

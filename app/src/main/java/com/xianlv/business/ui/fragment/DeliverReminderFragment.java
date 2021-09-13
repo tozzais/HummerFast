@@ -124,5 +124,6 @@ public class DeliverReminderFragment extends BaseListFragment<MealOrderItem> {
     @OnClick(R.id.tv_search)
     public void onClick() {
         et_search.setText("");
+        onRefresh();
     }
 }

@@ -122,5 +122,6 @@ public class ValidityOrderFragment extends BaseListFragment<ValidityOrderItem> {
     @OnClick(R.id.tv_search)
     public void onClick() {
         et_search.setText("");
+        onRefresh();
     }
 }

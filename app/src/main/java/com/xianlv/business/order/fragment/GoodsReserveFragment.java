@@ -128,5 +128,6 @@ public class GoodsReserveFragment extends BaseListFragment<ReserveOrderItem> {
     @OnClick(R.id.tv_search)
     public void onClick() {
         et_search.setText("");
+        onRefresh();
     }
 }
