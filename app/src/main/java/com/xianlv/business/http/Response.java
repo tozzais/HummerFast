@@ -115,6 +115,7 @@ public class Response<T> extends Subscriber<T> {
                  *  不是首页的时候
                  */
                 GlobalParam.setUserLogin(false);
+                GlobalParam.exitLogin();
                 LoginActivity.launch( mContext);
             }else {
                 if (!TextUtils.isEmpty(base.msg)){
@@ -131,6 +132,7 @@ public class Response<T> extends Subscriber<T> {
                 onSuccess(str);
             }else if (403 == base.code  ){
                 GlobalParam.setUserLogin(false);
+                GlobalParam.exitLogin();
                 LoginActivity.launch((Activity) mContext);
             }else {
                 if (!TextUtils.isEmpty(base.msg)){
