@@ -57,13 +57,15 @@ public class MallCouponWriteOffRecordActivity extends BaseActivity {
     @Override
     public void loadData() {
 
-        fragmentList.add(new RecordCouponFragment());
-        fragmentList.add(new RecordCardFragment());
         fragmentList.add(new RecordMallFragment());
+        fragmentList.add(new RecordCardFragment());
+        fragmentList.add(new RecordCouponFragment());
         List<String> list = new ArrayList<>();
-        list.add("优惠券");
-        list.add("储值卡");
         list.add("商城券");
+
+        list.add("储值卡");
+        list.add("优惠券");
+
         tablayout.setTitle(list);
         adapter = new GoodsDetailPagerAdapter(getSupportFragmentManager(), fragmentList,list);
         viewpager.setAdapter(adapter);

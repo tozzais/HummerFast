@@ -116,7 +116,7 @@ public class Response<T> extends Subscriber<T> {
                  */
                 GlobalParam.setUserLogin(false);
                 GlobalParam.exitLogin();
-                LoginActivity.launch( mContext);
+                LoginActivity.launch(mContext);
             }else {
                 if (!TextUtils.isEmpty(base.msg)){
                     if (mNeedReturn && !isLoad){
