@@ -182,7 +182,7 @@ public class CodeActivity extends BaseActivity {
     private void test(){
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
-                .url("wss://test.shanghaixianlv.com/webSocket")
+                .url("wss://shanghaixianlv.com/webSocket")
                 .build();
         LogUtil.e("请求连接");
         WebSocket mWebSocket = okHttpClient.newWebSocket(request, new WebSocketListener() {
