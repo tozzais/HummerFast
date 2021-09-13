@@ -271,23 +271,24 @@ public class MainActivity extends CheckPermissionActivity {
                 BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.ll_applets:
+                CodeActivity.launch(mActivity, 1,null);
+                break;
+            case R.id.ll_store:
                 Map<String, String> map = new HashMap<>();
                 map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
                 new RxHttp<BaseResult<EmployeePermissions>>().send(ApiManager.getService().queryAuthority(map)
                         ,new Response<BaseResult<EmployeePermissions>>(mActivity){
-                    @Override
-                    public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
-                        if (baseResult.data.isCanReceivePayment()){
-                            CodeActivity.launch(mActivity, 1,null);
-                        }else {
-                            tsg("暂无权限");
-                        }
-                    }
-                });
+                            @Override
+                            public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
+                                if (baseResult.data.isCanReceivePayment()){
+                                    ReceivePayActivity.launch(mActivity);
+                                }else {
+                                    tsg("暂无权限");
+                                }
+                            }
+                        });
 
-                break;
-            case R.id.ll_store:
-                ReceivePayActivity.launch(mActivity);
+
                 break;
             case R.id.ll_rank_person:
                 SalesRankActivity.launch(mActivity, SalesRankActivity.PERSON);
