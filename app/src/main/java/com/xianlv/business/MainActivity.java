@@ -22,6 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.sobot.chat.ZCSobotApi;
+import com.sobot.chat.api.model.Information;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -234,9 +236,22 @@ public class MainActivity extends CheckPermissionActivity {
             R.id.rl_manage4, R.id.rl_manage5, R.id.rl_manage6, R.id.rl_manage7, R.id.rl_manage8,
             R.id.rl_manage9, R.id.rl_manage10, R.id.rl_study1, R.id.rl_study2, R.id.rl_study3, R.id.rl_study4,
             R.id.rl_study5, R.id.rl_order5, R.id.rl_order6, R.id.rl_order8, R.id.rl_goods_manage,
-            R.id.rl_laundry_call,R.id.rl_switch_room_manage,R.id.rl_house_price_manage})
+            R.id.rl_laundry_call,R.id.rl_switch_room_manage,R.id.rl_house_price_manage,R.id.iv_kefu})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_kefu:
+                LoginBean loginBean = GlobalParam.getLoginBean();
+                if (mineInfo == null || loginBean == null){
+                    return;
+                }
+                Information info = new Information();
+                // appkey 必填
+                info.setApp_key("d8a1bd63850b46ac965acebacd6ad402");
+//                info.setUser_nick(mineInfo.shopName);
+//                info.setUser_name(mineInfo.department+" "+ mineInfo.trueName);
+//                info.setUser_tels(loginBean.phone);
+                ZCSobotApi.openZCChat(mActivity, info);
+                break;
             case R.id.rl_switch_room_manage:
                 //开关房管理
                 SwitchRoomManageActivity.launch(mActivity,0);
@@ -527,12 +542,13 @@ public class MainActivity extends CheckPermissionActivity {
 
     }
 
+    private MineInfo mineInfo;
     private void getData() {
         new RxHttp<BaseResult<MineInfo>>().send(ApiManager.getService().mineInfo(new BaseRequest()),
                 new Response<BaseResult<MineInfo>>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult<MineInfo> result) {
-                        MineInfo mineInfo = result.data;
+                        mineInfo = result.data;
                         tvHotelName.setText(mineInfo.shopName);
                         tv_hotel_name1.setText(mineInfo.shopName);
                         tv_address.setText(mineInfo.address);

@@ -3,6 +3,7 @@ package com.xianlv.business;
 import android.app.Application;
 import android.content.Context;
 
+import com.sobot.chat.ZCSobotApi;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.print.SunmiPrintHelper;
@@ -44,6 +45,8 @@ public class MyApp extends Application {
         init();
 
         PrinterKernel.INSTANCE.init(mContext);
+
+        ZCSobotApi.initSobotSDK(this,"d8a1bd63850b46ac965acebacd6ad402","");
 
     }
 

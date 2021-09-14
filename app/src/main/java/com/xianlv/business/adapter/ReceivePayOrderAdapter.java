@@ -97,7 +97,7 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
                     ,new Response<BaseResult<EmployeePermissions>>(getContext()){
                         @Override
                         public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
-                            if (baseResult.data.isCanReceivePayment()){
+                            if (baseResult.data.isCanRefund()){
                                 Refund1Activity.launch(getContext(),item.scanId);
                             }else {
                                 ToastCommom.createToastConfig().ToastShow(getContext(),"暂无权限");
