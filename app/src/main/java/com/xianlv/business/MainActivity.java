@@ -247,9 +247,9 @@ public class MainActivity extends CheckPermissionActivity {
                 Information info = new Information();
                 // appkey 必填
                 info.setApp_key("d8a1bd63850b46ac965acebacd6ad402");
-//                info.setUser_nick(mineInfo.shopName);
-//                info.setUser_name(mineInfo.department+" "+ mineInfo.trueName);
-//                info.setUser_tels(loginBean.phone);
+                info.setUser_nick(mineInfo.shopName);
+                info.setUser_name(mineInfo.department+" "+ mineInfo.trueName);
+                info.setUser_tels(loginBean.phone);
                 ZCSobotApi.openZCChat(mActivity, info);
                 break;
             case R.id.rl_switch_room_manage:

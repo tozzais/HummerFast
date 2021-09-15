@@ -1,3 +1,4 @@
 include ':baselibrary'
 include ':app'
 rootProject.name = "xianlvBusiness"
+include ':sobotsdk'
