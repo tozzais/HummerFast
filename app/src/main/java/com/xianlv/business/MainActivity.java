@@ -97,6 +97,21 @@ import butterknife.OnClick;
  * 1天 新增消息 和订单处理
  * 2天 打印机和线下订单
  * 2天 所有的订单处理修改 和商品管理页面
+ *
+
+ 1和2：备注一下：没有获取安装应用列表，ACCESS_WIFI_STATE权限是用来定位获取天气的。相机权限是识别二维码用的
+ 3：在隐私条款里增加SDK说明。极光用来推送的，高德地图用来定位获取天气的。
+  bugly用来统计线上崩溃的，com.tencent.smtt用来加载h5的
+  com.bytedance.sdk.openadsdk，com.sensorsdata.analytics没有用到
+ 4：参考文档改一下（应用必须以清楚明确的方式呈现隐私政策并获取用户同意。）我也不知道啥意思
+
+ 5：小程序二维码正式环境应该是正常的吧。验证一下在提交包
+ 6：提交应用类型的时候 选择【商务】-【效率
+ *
+ * 备注一下吧。没有获取安装应用列表
+ * ACCESS_WIFI_STATE权限是用来定位的。
+ *
+ *
  */
 public class MainActivity extends CheckPermissionActivity {
 
