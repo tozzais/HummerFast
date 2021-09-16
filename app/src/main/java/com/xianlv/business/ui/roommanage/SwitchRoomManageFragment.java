@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,8 @@ import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseListFragment;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.switchroom.DropStoreAdapter;
+import com.xianlv.business.adapter.switchroom.RoomPriceManageDetailAdapter;
+import com.xianlv.business.adapter.switchroom.SwitchRoomDetailAdapter;
 import com.xianlv.business.adapter.switchroom.SwitchRoomNameAdapter;
 import com.xianlv.business.adapter.switchroom.SwitchRoomNameManageAdapter;
 import com.xianlv.business.bean.eventbus.RefreshRoomPrice;
@@ -62,7 +65,7 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
     View ll_space;
 
     @BindView(R.id.rv_list_data)
-    RecyclerView rv_list_data;
+    LinearLayoutCompat rv_list_data;
 
     private int type;
     public static SwitchRoomManageFragment newInstance(int type){
@@ -176,44 +179,61 @@ public class SwitchRoomManageFragment extends BaseListFragment<String> {
 
         setData(true,roomNameList);
 
-        rv_list_data.setLayoutManager(new LinearLayoutManager(mActivity,RecyclerView.HORIZONTAL,false));
-        adapter = new SwitchRoomNameManageAdapter(type);
-        rv_list_data.setAdapter(adapter);
-        adapter.setNewData(detailList);
+        recyclerViewArrayList.clear();
+        recyclerViewArrayList.add(mRecyclerView);
+        rv_list_data.removeAllViews();
+        for (SwitchRoomShowData item:detailList){
+            View view = View.inflate(mActivity,R.layout.item_switch_room,null);
+            TextView tv_title = view.findViewById(R.id.tv_title);
+            RecyclerView rv_list = view.findViewById(R.id.rv_list);
+            rv_list.setLayoutManager(new LinearLayoutManager(getContext()));
+            tv_title.setText(item.data.getDate());
+            if (type == 0){
+                SwitchRoomDetailAdapter adapter = new SwitchRoomDetailAdapter();
+                rv_list.setAdapter(adapter);
+                adapter.setNewData(item.list);
+            }else if (type == 1){
+                RoomPriceManageDetailAdapter adapter = new RoomPriceManageDetailAdapter();
+                rv_list.setAdapter(adapter);
+                adapter.setNewData(item.list);
+            }
+            recyclerViewArrayList.add(rv_list);
 
-//        if (adapter != null) {
-//            for (RecyclerView recyclerView1:adapter.getList()){
-//                recyclerView1.addOnScrollListener(scrollListeners[1]);
-//            }
-//        }
+            rv_list_data.addView(view);
+        }
+        for (RecyclerView recyclerView1:recyclerViewArrayList){
+            recyclerView1.addOnScrollListener(scrollListeners);
+        }
 
 
 
     }
+
+    private List<RecyclerView> recyclerViewArrayList = new ArrayList<>();
     private SwitchRoomNameManageAdapter adapter;
 
-//    private  RecyclerView.OnScrollListener[] scrollListeners;
+    private  RecyclerView.OnScrollListener scrollListeners;
 
     @Override
     public void initListener() {
 
 //        scrollListeners = new RecyclerView.OnScrollListener[2];
-//        scrollListeners[0] = new RecyclerView.OnScrollListener( )
-//        {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-//            {
-//                super.onScrolled(recyclerView, dx, dy);
-//                if (adapter != null ) {
-//                    for (RecyclerView recyclerView1:adapter.getList()){
-//                        recyclerView1.removeOnScrollListener(scrollListeners[1]);
-//                        recyclerView1.scrollBy(dx, dy);
-//                        recyclerView1.addOnScrollListener(scrollListeners[1]);
-//                    }
-//                }
-//
-//            }
-//        };
+        scrollListeners = new RecyclerView.OnScrollListener( )
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                super.onScrolled(recyclerView, dx, dy);
+                    for (RecyclerView recyclerView1:recyclerViewArrayList){
+                        if (recyclerView != recyclerView1){
+                            recyclerView1.removeOnScrollListener(scrollListeners);
+                            recyclerView1.scrollBy(dx, dy);
+                            recyclerView1.addOnScrollListener(scrollListeners);
+                        }
+                }
+
+            }
+        };
 //        scrollListeners[1] = new RecyclerView.OnScrollListener( )
 //        {
 //            @Override

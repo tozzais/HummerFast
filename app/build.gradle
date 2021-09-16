@@ -153,7 +153,8 @@ dependencies {
 
     // 普通版 androidX：
     implementation project(':sobotsdk')
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.sobot.chat:sobotsupport-glidev4:2.1'
+
 
 
 }
