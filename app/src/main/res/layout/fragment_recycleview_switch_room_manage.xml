@@ -118,12 +118,21 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list_data"
+            <HorizontalScrollView
                 android:layout_width="0dp"
                 android:layout_weight="8"
-                android:scrollbars="none"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/rv_list_data"
+                    android:layout_width="match_parent"
+                    android:scrollbars="none"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent"/>
+
+
+            </HorizontalScrollView>
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

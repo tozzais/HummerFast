@@ -31,7 +31,6 @@ public class SwitchRoomDetailAdapter extends BaseQuickAdapter<SwitchDetailItem, 
 
     @Override
     protected void convert(BaseViewHolder helper,  SwitchDetailItem item) {
-        int position = helper.getAdapterPosition();
         helper.setText(R.id.tv_price,"￥"+item.price)
                 .setText(R.id.tv_inventory,"库存:"+item.store);
         Switch close = helper.getView(R.id.vibrate_switch);

@@ -25,6 +25,7 @@ import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.HttpUrl;
 import com.xianlv.business.http.Response;
 
 import org.jetbrains.annotations.NotNull;
@@ -182,7 +183,7 @@ public class CodeActivity extends BaseActivity {
     private void test(){
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
-                .url("wss://shanghaixianlv.com/webSocket")
+                .url("wss://"+ HttpUrl.base_url1 +"/webSocket")
                 .build();
         LogUtil.e("请求连接");
         WebSocket mWebSocket = okHttpClient.newWebSocket(request, new WebSocketListener() {

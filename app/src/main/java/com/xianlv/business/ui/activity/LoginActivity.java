@@ -77,6 +77,9 @@ public class LoginActivity extends CheckPermissionActivity {
         Intent intent = new Intent(from, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         from.startActivity(intent);
+        if (from instanceof MainActivity){
+            ((MainActivity)from).finish();
+        }
     }
 
     @Override

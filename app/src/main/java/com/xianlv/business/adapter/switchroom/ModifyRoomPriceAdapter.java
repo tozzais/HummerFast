@@ -41,12 +41,12 @@ public class ModifyRoomPriceAdapter extends BaseQuickAdapter<RoomPriceDetail, Ba
     @Override
     protected void convert(BaseViewHolder helper,  RoomPriceDetail item) {
         int position = helper.getAdapterPosition();
+        helper.setIsRecyclable(false);
         helper.setText(R.id.tv_name,item.levelName+"：￥");
         LinearLayout  ll_root = helper.getView(R.id.ll_root);
         TextView tv_sure = helper.getView(R.id.tv_sure);
         EditText et_money = helper.getView(R.id.et_money);
         et_money.setHint("请输入"+item.levelName);
-
         if (position == 0 && item.isShow){
             tv_sure.setVisibility(View.VISIBLE);
         }else {
@@ -55,6 +55,8 @@ public class ModifyRoomPriceAdapter extends BaseQuickAdapter<RoomPriceDetail, Ba
         et_money.setText(item.price);
         if (position != 0){
             ll_root.setVisibility(item.isShow? View.VISIBLE:View.GONE);
+        }else {
+            ll_root.setVisibility(View.VISIBLE);
         }
         tv_sure.setOnClickListener(v -> {
             if (TextUtils.isEmpty(getData().get(0).price)){
@@ -72,9 +74,14 @@ public class ModifyRoomPriceAdapter extends BaseQuickAdapter<RoomPriceDetail, Ba
                 detail.isShow = i != 0;
                 if (i != 0){
                     try {
+
                         double price1 = Double.parseDouble(price) * Double.parseDouble(detail.discount);
-                        price1 = Math.max(price1,0.01);
+
+                        price1 = Math.ceil(Math.max(price1,0.01));
+//                        price1 = Math.max(price1,0.01);
                         detail.price = price1+"";
+
+                        LogUtil.e(price1+"====="+Double.parseDouble(price)+"====="+Double.parseDouble(detail.discount));
                     }catch (Exception e){
 
                     }

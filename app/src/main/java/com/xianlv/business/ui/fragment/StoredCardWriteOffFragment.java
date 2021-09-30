@@ -129,6 +129,7 @@ public class StoredCardWriteOffFragment extends BaseListFragment<CheckDeductionC
                 break;
             case R.id.tv_cancel:
                 et_code.setText("");
+                onRefresh();
                 break;
         }
     }

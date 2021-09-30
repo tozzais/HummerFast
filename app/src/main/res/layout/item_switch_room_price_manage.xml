@@ -37,14 +37,15 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp">
 
         <TextView
             android:id="@+id/tv_price"
             style="@style/small_text_gray_style"
-            android:text="￥10000000000000"
+            android:text="￥10"
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:singleLine="true"

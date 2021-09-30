@@ -149,6 +149,12 @@ dependencies {
 
     dependencies { implementation 'com.sunmi:printerlibrary:1.0.13' }
 
+    implementation 'com.android.support:support-v4:30.4.1'
+
+    // 普通版 androidX：
+    implementation project(':sobotsdk')
+    implementation 'com.sobot.chat:sobotsupport-glidev4:2.1'
+
 
 
 }

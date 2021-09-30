@@ -22,6 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.sobot.chat.ZCSobotApi;
+import com.sobot.chat.api.model.Information;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -91,11 +93,25 @@ import butterknife.OnClick;
 
 /**
  * 接口地址：https://www.apizza.net/project/d8b19ba9902b438ff73489c7110e1b83/browse
- * 2.0.0版本
+ * 这是2.0.0版本
  * 1天 新增消息 和订单处理
  * 2天 打印机和线下订单
  * 2天 所有的订单处理修改 和商品管理页面
- * 2天 开关房需求
+ *
+
+ 1和2：备注一下：没有获取安装应用列表，ACCESS_WIFI_STATE权限是用来定位获取天气的。相机权限是识别二维码用的
+ 3：在隐私条款里增加SDK说明。极光用来推送的，高德地图用来定位获取天气的。
+  bugly用来统计线上崩溃的，com.tencent.smtt用来加载h5的
+  com.bytedance.sdk.openadsdk，com.sensorsdata.analytics没有用到
+ 4：参考文档改一下（应用必须以清楚明确的方式呈现隐私政策并获取用户同意。）我也不知道啥意思
+
+ 5：小程序二维码正式环境应该是正常的吧。验证一下在提交包
+ 6：提交应用类型的时候 选择【商务】-【效率
+ *
+ * 备注一下吧。没有获取安装应用列表
+ * ACCESS_WIFI_STATE权限是用来定位的。
+ *
+ *
  */
 public class MainActivity extends CheckPermissionActivity {
 
@@ -235,9 +251,22 @@ public class MainActivity extends CheckPermissionActivity {
             R.id.rl_manage4, R.id.rl_manage5, R.id.rl_manage6, R.id.rl_manage7, R.id.rl_manage8,
             R.id.rl_manage9, R.id.rl_manage10, R.id.rl_study1, R.id.rl_study2, R.id.rl_study3, R.id.rl_study4,
             R.id.rl_study5, R.id.rl_order5, R.id.rl_order6, R.id.rl_order8, R.id.rl_goods_manage,
-            R.id.rl_laundry_call,R.id.rl_switch_room_manage,R.id.rl_house_price_manage})
+            R.id.rl_laundry_call,R.id.rl_switch_room_manage,R.id.rl_house_price_manage,R.id.iv_kefu})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_kefu:
+                LoginBean loginBean = GlobalParam.getLoginBean();
+                if (mineInfo == null || loginBean == null){
+                    return;
+                }
+                Information info = new Information();
+                // appkey 必填
+                info.setApp_key("d8a1bd63850b46ac965acebacd6ad402");
+                info.setUser_nick(mineInfo.shopName);
+                info.setUser_name(mineInfo.department+" "+ mineInfo.trueName);
+                info.setUser_tels(loginBean.phone);
+                ZCSobotApi.openZCChat(mActivity, info);
+                break;
             case R.id.rl_switch_room_manage:
                 //开关房管理
                 SwitchRoomManageActivity.launch(mActivity,0);
@@ -272,23 +301,24 @@ public class MainActivity extends CheckPermissionActivity {
                 BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.ll_applets:
+                CodeActivity.launch(mActivity, 1,null);
+                break;
+            case R.id.ll_store:
                 Map<String, String> map = new HashMap<>();
                 map.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
                 new RxHttp<BaseResult<EmployeePermissions>>().send(ApiManager.getService().queryAuthority(map)
                         ,new Response<BaseResult<EmployeePermissions>>(mActivity){
-                    @Override
-                    public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
-                        if (baseResult.data.isCanReceivePayment()){
-                            CodeActivity.launch(mActivity, 1,null);
-                        }else {
-                            tsg("暂无权限");
-                        }
-                    }
-                });
+                            @Override
+                            public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
+                                if (baseResult.data.isCanReceivePayment()){
+                                    ReceivePayActivity.launch(mActivity);
+                                }else {
+                                    tsg("暂无权限");
+                                }
+                            }
+                        });
 
-                break;
-            case R.id.ll_store:
-                ReceivePayActivity.launch(mActivity);
+
                 break;
             case R.id.ll_rank_person:
                 SalesRankActivity.launch(mActivity, SalesRankActivity.PERSON);
@@ -527,12 +557,13 @@ public class MainActivity extends CheckPermissionActivity {
 
     }
 
+    private MineInfo mineInfo;
     private void getData() {
         new RxHttp<BaseResult<MineInfo>>().send(ApiManager.getService().mineInfo(new BaseRequest()),
                 new Response<BaseResult<MineInfo>>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult<MineInfo> result) {
-                        MineInfo mineInfo = result.data;
+                        mineInfo = result.data;
                         tvHotelName.setText(mineInfo.shopName);
                         tv_hotel_name1.setText(mineInfo.shopName);
                         tv_address.setText(mineInfo.address);

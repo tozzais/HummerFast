@@ -12,6 +12,9 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.switchroom.SwitchRoomShowData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * 房型右侧的适配器
@@ -19,19 +22,23 @@ import com.xianlv.business.bean.switchroom.SwitchRoomShowData;
 public class SwitchRoomNameManageAdapter extends BaseQuickAdapter<SwitchRoomShowData, BaseViewHolder> implements LoadMoreModule {
 
 
+    private List<RecyclerView> list;
     private int type;
     public SwitchRoomNameManageAdapter(int type) {
         super(R.layout.item_switch_room, null);
         this.type = type;
+        this.list = new ArrayList<>();
     }
 
     @Override
     protected void convert(BaseViewHolder helper,  SwitchRoomShowData item) {
         int position = helper.getAdapterPosition();
+        helper.setIsRecyclable(false);
         TextView tv_title = helper.getView(R.id.tv_title);
         tv_title.setText(item.data.getDate());
 
         RecyclerView rv_list = helper.getView(R.id.rv_list);
+        list.add(rv_list);
         rv_list.setLayoutManager(new LinearLayoutManager(getContext()));
         if (type == 0){
             SwitchRoomDetailAdapter adapter = new SwitchRoomDetailAdapter();
@@ -44,11 +51,10 @@ public class SwitchRoomNameManageAdapter extends BaseQuickAdapter<SwitchRoomShow
         }
 
 
-
-
-
    }
 
 
-
+    public List<RecyclerView> getList() {
+        return list;
+    }
 }

@@ -122,5 +122,6 @@ public class GoodsOrderFragment extends BaseListFragment<GoodsOrderItem> {
     @OnClick(R.id.tv_search)
     public void onClick() {
         et_search.setText("");
+        onRefresh();
     }
 }

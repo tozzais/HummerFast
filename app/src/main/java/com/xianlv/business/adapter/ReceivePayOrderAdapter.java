@@ -71,8 +71,8 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
             tv_text3.setText("退款金额："+item.refundMoney);
             helper.setText(R.id.tv_text1,"订单号："+item.orderNo)
                     .setText(R.id.tv_text2,item.getReturnStatus())
-                    .setText(R.id.tv_text4,"收款类型："+item.money)
-                    .setText(R.id.tv_text41,"收款金额："+item.qrcodeName)
+                    .setText(R.id.tv_text4,"收款类型："+item.qrcodeName)
+                    .setText(R.id.tv_text41,"收款金额："+item.money)
                     .setText(R.id.tv_text5,"付款人："+item.nickname)
                     .setText(R.id.tv_text6,"收款员工："+item.operuser)
                     .setText(R.id.tv_text7,"收款时间："+item.createtime)
@@ -97,7 +97,7 @@ public class ReceivePayOrderAdapter extends BaseQuickAdapter<ReceiveOrderItem, B
                     ,new Response<BaseResult<EmployeePermissions>>(getContext()){
                         @Override
                         public void onSuccess(BaseResult<EmployeePermissions> baseResult) {
-                            if (baseResult.data.isCanReceivePayment()){
+                            if (baseResult.data.isCanRefund()){
                                 Refund1Activity.launch(getContext(),item.scanId);
                             }else {
                                 ToastCommom.createToastConfig().ToastShow(getContext(),"暂无权限");
