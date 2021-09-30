@@ -91,10 +91,11 @@ import butterknife.OnClick;
 
 /**
  * 接口地址：https://www.apizza.net/project/d8b19ba9902b438ff73489c7110e1b83/browse
- * 这是2.0.0版本
+ * 2.0.0版本
  * 1天 新增消息 和订单处理
  * 2天 打印机和线下订单
  * 2天 所有的订单处理修改 和商品管理页面
+ * 2天 开关房需求
  */
 public class MainActivity extends CheckPermissionActivity {
 
