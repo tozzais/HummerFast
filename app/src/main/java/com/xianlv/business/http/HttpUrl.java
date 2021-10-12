@@ -8,7 +8,7 @@ public interface HttpUrl {
     String weather_url = "http://api.k780.com/";
 
 
-    String base_url1 = "test.shanghaixianlv.com";
+    String base_url1 = "shanghaixianlv.com";
 
 //    String base_url = "https://shanghaixianlv.com/";
     String base_url = "https://"+base_url1+"/";
