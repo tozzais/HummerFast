@@ -113,13 +113,29 @@
         style="@style/login_btn_style"
         android:text="登录"/>
 
-    <TextView
-        android:id="@+id/tv_agreement"
-        style="@style/base_text_style"
-        android:text="登录即同意《用户协议》和《隐私政策》"
-        android:textColor="@color/white"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="12dp"
+        android:gravity="center_vertical"
         android:layout_marginBottom="10dp"
-        />
+        >
+        <ImageView
+            android:id="@+id/checkbox"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@mipmap/icon_agreement_unselect"
+            />
+        <TextView
+            android:id="@+id/tv_agreement"
+            style="@style/base_text_style"
+            android:text="登录即同意《用户协议》和《隐私政策》"
+            android:textColor="@color/white"
+            android:layout_marginLeft="8dp"
+
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 </LinearLayout>

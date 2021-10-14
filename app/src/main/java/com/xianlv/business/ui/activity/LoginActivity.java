@@ -14,6 +14,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -69,6 +70,8 @@ public class LoginActivity extends CheckPermissionActivity {
     TextView tvCode;
     @BindView(R.id.tv_agreement)
     TextView tvAgreement;
+    @BindView(R.id.checkbox)
+    ImageView checkbox;
 
     public static void launch(Context from) {
         if (!ClickUtils.isFastClick()) {
@@ -163,7 +166,7 @@ public class LoginActivity extends CheckPermissionActivity {
     }
 
     private static final int REQUEST_CODE_SCAN = 1001;
-    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login})
+    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
@@ -178,11 +181,24 @@ public class LoginActivity extends CheckPermissionActivity {
 //                MessageActivity.launch(mActivity);
                 getCode();
                 break;
+            case R.id.checkbox:
+                if (ck_agreement){
+                    checkbox.setBackgroundResource(R.mipmap.icon_agreement_unselect);
+                }else {
+                    checkbox.setBackgroundResource(R.mipmap.icon_agreement_select);
+                }
+                ck_agreement = !ck_agreement;
+                break;
 
         }
     }
+    private boolean ck_agreement = false;
 
     private void login() {
+        if (!ck_agreement){
+            tsg("请阅读并勾选《用户协议》和《隐私政策》");
+            return;
+        }
         String phone = etPhone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
             tsg("请输入手机号");
@@ -196,6 +212,7 @@ public class LoginActivity extends CheckPermissionActivity {
             tsg("请输入验证码");
             return;
         }
+
         RequestLogin bean = new RequestLogin();
         bean.phone = phone;
         bean.code = code;
