@@ -32,21 +32,6 @@ android {
         ]
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String','HTTP_URL',''
-        }
-        test{
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     signingConfigs {
         release {
@@ -62,6 +47,21 @@ android {
             storePassword '123456'
         }
     }
+
+
+    buildTypes {
+        release {
+            //是否开启混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 
 
 
@@ -89,6 +89,18 @@ android {
             }
         }
 
+    }
+
+    flavorDimensions "default"
+    productFlavors{
+        uat{
+            buildConfigField("String", "BASE_URL", "\"https://shanghaixianlv.com/\"")
+            manifestPlaceholders = [APP_NAME :"@string/app_name"]
+        }
+        pro{
+            buildConfigField("String", "BASE_URL", "\"https://shanghaixianlv.com/\"")
+            manifestPlaceholders = [APP_NAME :"@string/app_name_dev"]
+        }
     }
 
 }

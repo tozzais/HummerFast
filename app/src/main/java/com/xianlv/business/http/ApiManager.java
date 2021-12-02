@@ -1,6 +1,9 @@
 package com.xianlv.business.http;
 
 
+
+import com.xianlv.business.BuildConfig;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,7 +19,7 @@ public class ApiManager {
 
     public ApiManager() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HttpUrl.server_url)
+                .baseUrl(BuildConfig.BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(OkHttpUtils.getInstance())
