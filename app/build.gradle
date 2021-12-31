@@ -14,8 +14,8 @@ android {
         applicationId "com.xianlv.business"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -94,11 +94,11 @@ android {
     flavorDimensions "default"
     productFlavors{
         uat{
-            buildConfigField("String", "BASE_URL", "\"https://shanghaixianlv.com/\"")
+            buildConfigField("String", "BASE_URL", "\"https://test.shanghaixianlv.com/hotel-client/\"")
             manifestPlaceholders = [APP_NAME :"@string/app_name"]
         }
         pro{
-            buildConfigField("String", "BASE_URL", "\"https://shanghaixianlv.com/\"")
+            buildConfigField("String", "BASE_URL", "\"https://shanghaixianlv.com/hotel-client/\"")
             manifestPlaceholders = [APP_NAME :"@string/app_name_dev"]
         }
     }
