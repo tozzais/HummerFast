@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="30dp"
     android:layout_marginLeft="40dp"
@@ -10,7 +10,7 @@
     >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
@@ -26,25 +26,30 @@
             android:paddingRight="60dp"
             android:textColor="@color/black_title_color"
             />
-
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:lineSpacingExtra="5dp"
-            android:text="温馨提示\n
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:lineSpacingExtra="5dp"
+                android:text="温馨提示\n
 在使用我们的产品之前，请务必审慎阅读、并充分理解《服务协议》和《隐私条款》。\n\n
 我们会严格找上述行协议为您提供服务，我们会手机，使用必要信息，同时会采集安全措施。保证您的信息安全，点击“同意，继续使用”
 即表示您已阅读并同意全部条款，可继续使用我们的产品和服务；"
-            android:textSize="12sp"
-            android:gravity="left"
-            android:textColor="@color/black_title_color_second"
-            />
+                android:textSize="12sp"
+                android:gravity="left"
+                android:textColor="@color/black_title_color_second"
+                />
+        </androidx.core.widget.NestedScrollView>
+
+
 
 
 

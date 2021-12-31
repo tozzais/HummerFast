@@ -3,6 +3,8 @@ package com.xianlv.business.ui.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,16 +20,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.CommonUtils;
+import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.ShopResult;
+import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestShopInfo;
@@ -38,9 +43,19 @@ import com.xianlv.business.http.Response;
 import com.xianlv.business.toast.OnDialogClickListener;
 import com.xianlv.business.toast.PrivacyUtil;
 import com.xianlv.business.ui.AgreementWebViewActivity;
+import com.xuexiang.xupdate.XUpdate;
+import com.xuexiang.xupdate._XUpdate;
+import com.xuexiang.xupdate.service.OnFileDownloadListener;
+import com.xuexiang.xutil.app.PathUtils;
+import com.xuexiang.xutil.display.HProgressDialogUtils;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -163,7 +178,85 @@ public class LoginActivity extends CheckPermissionActivity {
         tvAgreement.setText(string);
         tvAgreement.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
 
+        try {
+            PackageManager pm = mContext.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), 0);
+            getVersion(pi.versionName);
+        } catch (Exception e) {
+            LogUtil.e(e.toString());
+        }
+
     }
+
+    private void getVersion(String version){
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
+        hashMap.put("versionNo", version + "");
+        new RxHttp<BaseResult<VersionBean>>().send(ApiManager.getService().getVersion(hashMap),
+                new Response<BaseResult<VersionBean>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseResult<VersionBean> result) {
+                        showDialog(result.data);
+                    }
+
+                });
+    }
+    private void  showDialog(VersionBean versionBean){
+        if (!"1".equals(versionBean.news)){
+            //不是新版本
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setTitle("版本更新提示");
+        builder.setMessage(versionBean.intro);
+        builder.setPositiveButton("立即更新", (dialogInterface, i) -> {
+//            downFile(versionBean);
+            if (!TextUtils.isEmpty(versionBean.url)){
+                downFile(versionBean.url);
+            }else {
+                tsg("下载地址为空");
+            }
+
+        });
+        if (!"1".equals(versionBean.modify)){
+            //不是强制更新
+            builder.setNegativeButton("暂不更新", null);
+        }
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show(); //构建AlertDialog并显示
+
+    }
+    private void downFile(String versionBean){
+        XUpdate.newBuild(mActivity)
+                .apkCacheDir(PathUtils.getExtDownloadsPath())
+                .build()
+                .download(versionBean, new OnFileDownloadListener() {
+                    @Override
+                    public void onStart() {
+                        HProgressDialogUtils.showHorizontalProgressDialog(mActivity, "下载进度", false);
+                    }
+
+                    @Override
+                    public void onProgress(float progress, long total) {
+                        HProgressDialogUtils.setProgress(Math.round(progress * 100));
+                    }
+
+                    @Override
+                    public boolean onCompleted(File file) {
+                        HProgressDialogUtils.cancel();
+                        _XUpdate.startInstallApk(mActivity, file);
+                        return false;
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        HProgressDialogUtils.cancel();
+                    }
+                });
+    }
+
 
     private static final int REQUEST_CODE_SCAN = 1001;
     @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox})
