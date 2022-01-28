@@ -31,7 +31,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        CrashReport.initCrashReport(getApplicationContext(), "7979473f34", true);
+        CrashReport.initCrashReport(getApplicationContext(), "d0506628ec", true);
 
         mContext = this;
 

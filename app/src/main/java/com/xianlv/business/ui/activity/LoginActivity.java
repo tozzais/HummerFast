@@ -202,6 +202,9 @@ public class LoginActivity extends CheckPermissionActivity {
                 });
     }
     private void  showDialog(VersionBean versionBean){
+        if (isFinishing()){
+            return;
+        }
         if (!"1".equals(versionBean.news)){
             //不是新版本
             return;
