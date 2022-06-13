@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/statusbar_view_height"
+            />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="12dp"
+                android:gravity="center"
+                android:maxWidth="240dp"
+                android:text="上海"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:drawableRight="@mipmap/arrow_down"
+                android:drawablePadding="5dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxWidth="240dp"
+                android:text="首页"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                />
+
+            <ImageView
+                android:id="@+id/iv_right_icon"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:visibility="gone"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                style="@style/click_toolbar_style"
+                />
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="right"
+                android:textColor="@color/black_title_color"
+                android:visibility="gone"
+                android:padding="12dp"
+                android:textSize="14sp"
+                style="@style/click_toolbar_style"
+                />
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </LinearLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_bg">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/code_breakfast_bg"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="12dp">
+                    <TextView
+                        style="@style/base_text_style"
+                        android:layout_weight="1"
+                        android:text="完成车辆认证，立享服务费抵用券~"/>
+
+                    <TextView
+                        style="@style/base_text_style"
+                        android:textColor="@color/grayText"
+                        android:padding="2dp"
+                        android:text="详情"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/rl_park_fee"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/base_text_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableRight="@mipmap/arrow_down"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="停车费" />
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_charge_method"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/base_text_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableRight="@mipmap/arrow_down"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="充电方式" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_filter"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:drawablePadding="5dp"
+                        android:layout_height="match_parent"
+                        style="@style/base_text_style"
+                        android:text="筛选"
+                        android:drawableRight="@mipmap/arrow_down"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:drawablePadding="5dp"
+                        android:layout_height="match_parent"
+                        style="@style/base_text_style"
+                        android:text="地图模式"
+                        android:drawableRight="@mipmap/arrow_down"/>
+
+                </RelativeLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:id="@+id/filter_view"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#55000000"/>
+        </RelativeLayout>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">贤旅商家版</string>
+    <string name="app_name">蜂鸟速充</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

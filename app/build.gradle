@@ -11,7 +11,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.xianlv.business"
+        applicationId "com.hummer.fast.charge"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 5
@@ -171,6 +171,7 @@ dependencies {
     // 普通版 androidX：
     implementation project(':sobotsdk')
     implementation 'com.sobot.chat:sobotsupport-glidev4:2.1'
+    implementation 'com.github.dongjunkun:DropDownMenu:1.0.4'
 
 
 

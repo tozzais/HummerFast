@@ -54,7 +54,7 @@
                 android:paddingBottom="6dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:textColor="@color/yellow_text"
+                android:textColor="@color/yellowText"
                 android:text="每日10点更新，根据前一日销售金额从高到低排序"/>
 
             <LinearLayout

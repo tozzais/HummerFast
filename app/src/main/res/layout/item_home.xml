@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white5"
+    android:orientation="vertical"
+    android:id="@+id/ll_root"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/demo_video"
+            android:scaleType="fitXY"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/base_text_style"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="闵行区丰尚国际电动汽车充电站"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_agreement_select"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    style="@style/base_text_style"
+                    android:text="1.2548"
+                    android:textSize="16sp"
+                    android:textColor="@color/yellow1"/>
+
+                <TextView
+                    style="@style/base_text_style"
+                    android:textSize="12sp"
+                    android:textColor="@color/grayText"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginLeft="5dp"
+                    android:text="元/度"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    style="@style/base_text_style"
+                    android:textSize="12sp"
+                    android:textColor="@color/grayText"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginLeft="5dp"
+                    android:text="评小票减免，启动前请在蜂鸟app评小票减免，启动前请在蜂鸟app评小票减免，启动前请在蜂鸟app"/>
+            </LinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </LinearLayout>
+
+    <View
+        style="@style/line_light"
+        android:layout_margin="12dp"
+        android:visibility="invisible"
+        />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            style="@style/base_btn_style"
+            android:layout_width="40dp"
+            android:background="@drawable/shape_yellow50"
+            android:text="快"
+            android:textColor="@color/yellowText"/>
+
+        <TextView
+            style="@style/base_text_style"
+            android:text="空闲7"
+            android:layout_marginLeft="5dp"
+            android:textSize="12sp"/>
+
+        <TextView
+            style="@style/base_text_style"
+            android:text="/总数8"
+            android:textSize="12sp"/>
+
+
+        <TextView
+            style="@style/base_btn_style"
+            android:layout_width="40dp"
+            android:background="@drawable/shape_yellow50"
+            android:text="慢"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/yellowText"/>
+
+        <TextView
+            style="@style/base_text_style"
+            android:text="空闲7"
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            style="@style/base_text_style"
+            android:text="/总数8"
+            android:textSize="12sp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            style="@style/base_btn_style"
+            android:layout_width="60dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/shape_basecolor50"
+            android:text="1.4km"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/gray_bg"/>
+
+
+
+
+
+
+</LinearLayout>

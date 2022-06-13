@@ -30,9 +30,11 @@ import com.tozzais.baselibrary.util.CommonUtils;
 import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.request.RequestCode;
+import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestShopInfo;
 import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
@@ -59,7 +61,7 @@ import butterknife.OnClick;
 /**
  * 尹晓冬 账号：15729271332
  */
-public class LoginActivity extends CheckPermissionActivity {
+public class RegisterActivity extends CheckPermissionActivity {
 
 
     public static String[] needPermissions = {
@@ -81,8 +83,6 @@ public class LoginActivity extends CheckPermissionActivity {
     TextView tvCode;
     @BindView(R.id.tv_agreement)
     TextView tvAgreement;
-    @BindView(R.id.tv_login_pass)
-    TextView tv_login_pass;
     @BindView(R.id.checkbox)
     ImageView checkbox;
 
@@ -90,12 +90,8 @@ public class LoginActivity extends CheckPermissionActivity {
         if (!ClickUtils.isFastClick()) {
             return;
         }
-        Intent intent = new Intent(from, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(from, RegisterActivity.class);
         from.startActivity(intent);
-        if (from instanceof MainActivity){
-            ((MainActivity)from).finish();
-        }
     }
 
     @Override
@@ -105,7 +101,7 @@ public class LoginActivity extends CheckPermissionActivity {
 
     @Override
     protected int getBaseLayout() {
-        return R.layout.activity_login;
+        return R.layout.activity_register;
     }
 
     @Override
@@ -142,13 +138,13 @@ public class LoginActivity extends CheckPermissionActivity {
         }
 
 
-        String str = "登录即同意《用户协议》和《隐私政策》";
+        String str = "我已阅读并同意《用户协议》、《隐私政策》";
         SpannableString string = new SpannableString(str);
         string.setSpan(new ClickableSpan() {
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(getResources().getColor(R.color.white));       //设置文件颜色
+                ds.setColor(getResources().getColor(R.color.baseColor));       //设置文件颜色
                 ds.setUnderlineText(true);      //设置下划线
             }
             @Override
@@ -162,7 +158,7 @@ public class LoginActivity extends CheckPermissionActivity {
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
-                ds.setColor(getResources().getColor(R.color.white));       //设置文件颜色
+                ds.setColor(getResources().getColor(R.color.baseColor));       //设置文件颜色
                 ds.setUnderlineText(true);      //设置下划线
             }
             @Override
@@ -259,15 +255,16 @@ public class LoginActivity extends CheckPermissionActivity {
 
 
     private static final int REQUEST_CODE_SCAN = 1001;
-    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox, R.id.tv_login_pass})
+    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
-                RegisterActivity.launch(mActivity);
+                finish();
 //                BottomDialogUtil.showSelectDialog(mActivity);
                 break;
             case R.id.tv_login:
                 login();
+//
                 break;
             case R.id.tv_code:
 //                MessageActivity.launch(mActivity);
@@ -281,46 +278,43 @@ public class LoginActivity extends CheckPermissionActivity {
                 }
                 ck_agreement = !ck_agreement;
                 break;
-            case R.id.tv_login_pass:
-                changeLoginWay();
-                break;
 
         }
     }
     private boolean ck_agreement = false;
 
     private void login() {
-//        if (!ck_agreement){
-//            tsg("请阅读并勾选《用户协议》和《隐私政策》");
-//            return;
-//        }
-//        String phone = etPhone.getText().toString().trim();
-//        if (TextUtils.isEmpty(phone)) {
-//            tsg("请输入手机号");
-//            return;
-//        } else if (!CommonUtils.isMobileNO(phone)) {
-//            tsg("请输入正确的手机号");
-//            return;
-//        }
-//        String code = etCode.getText().toString().trim();
-//        if (TextUtils.isEmpty(phone)) {
-//            tsg("请输入验证码");
-//            return;
-//        }
-//
-//        RequestLogin bean = new RequestLogin();
-//        bean.phone = phone;
-//        bean.code = code;
-//        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(bean),
-//                new Response<BaseResult<LoginBean>>(mActivity) {
-//                    @Override
-//                    public void onSuccess(BaseResult<LoginBean> result) {
-//                        tsg("登录成功");
-//                        GlobalParam.setLoginBean(result.data);
+        if (!ck_agreement){
+            tsg("请阅读并勾选《用户协议》和《隐私政策》");
+            return;
+        }
+        String phone = etPhone.getText().toString().trim();
+        if (TextUtils.isEmpty(phone)) {
+            tsg("请输入手机号");
+            return;
+        } else if (!CommonUtils.isMobileNO(phone)) {
+            tsg("请输入正确的手机号");
+            return;
+        }
+        String code = etCode.getText().toString().trim();
+        if (TextUtils.isEmpty(phone)) {
+            tsg("请输入验证码");
+            return;
+        }
+
+        RequestLogin bean = new RequestLogin();
+        bean.phone = phone;
+        bean.code = code;
+        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(bean),
+                new Response<BaseResult<LoginBean>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<LoginBean> result) {
+                        tsg("登录成功");
+                        GlobalParam.setLoginBean(result.data);
                         MainActivity.launch(mActivity);
                         finish();
-//                    }
-//                });
+                    }
+                });
     }
 
 
@@ -426,18 +420,16 @@ public class LoginActivity extends CheckPermissionActivity {
     }
 
 
-    private int way = 2;
+    private int way = 1;
     private int login_pass = 1;
     private int login_code = 2;
     private void changeLoginWay(){
         if (way == login_pass){
             way = login_code;
-            tv_login_pass.setText("验证码登录");
             ll_code.setVisibility(View.GONE);
             et_pass.setVisibility(View.VISIBLE);
         }else if (way == login_code){
             way = login_pass;
-            tv_login_pass.setText("密码登录");
             ll_code.setVisibility(View.VISIBLE);
             et_pass.setVisibility(View.GONE);
         }
