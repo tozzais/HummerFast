@@ -22,7 +22,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@mipmap/demo_video"
+            android:src="@mipmap/product"
             android:scaleType="fitXY"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -46,20 +46,20 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_agreement_select"/>
+                    android:src="@mipmap/collect_default"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="6dp"
                 >
 
                 <TextView
                     style="@style/base_text_style"
                     android:text="1.2548"
                     android:textSize="16sp"
-                    android:textColor="@color/yellow1"/>
+                    android:textColor="@color/yellowText"/>
 
                 <TextView
                     style="@style/base_text_style"
@@ -96,7 +96,8 @@
     <View
         style="@style/line_light"
         android:layout_margin="12dp"
-        android:visibility="invisible"
+        android:visibility="gone"
+
         />
 
 
@@ -106,7 +107,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="12dp"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+        android:paddingRight="12dp"
+        android:layout_marginTop="12dp">
 
         <TextView
             style="@style/base_btn_style"
@@ -124,16 +126,17 @@
         <TextView
             style="@style/base_text_style"
             android:text="/总数8"
+            android:textColor="@color/grayText"
             android:textSize="12sp"/>
 
 
         <TextView
             style="@style/base_btn_style"
             android:layout_width="40dp"
-            android:background="@drawable/shape_yellow50"
+            android:background="@drawable/shape_blue50"
             android:text="慢"
             android:layout_marginLeft="20dp"
-            android:textColor="@color/yellowText"/>
+            android:textColor="@color/baseColor"/>
 
         <TextView
             style="@style/base_text_style"
@@ -144,6 +147,7 @@
         <TextView
             style="@style/base_text_style"
             android:text="/总数8"
+            android:textColor="@color/grayText"
             android:textSize="12sp"/>
 
         <View
@@ -153,12 +157,14 @@
 
         <TextView
             style="@style/base_btn_style"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:background="@drawable/shape_basecolor50"
-            android:text="1.4km"/>
+            android:text="1.444km"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@mipmap/xiaofeiji"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

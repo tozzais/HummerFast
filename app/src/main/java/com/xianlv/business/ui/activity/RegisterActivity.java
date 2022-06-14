@@ -145,28 +145,28 @@ public class RegisterActivity extends CheckPermissionActivity {
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
                 ds.setColor(getResources().getColor(R.color.baseColor));       //设置文件颜色
-                ds.setUnderlineText(true);      //设置下划线
+                ds.setUnderlineText(false);      //设置下划线
             }
             @Override
             public void onClick(View view) {
                 AgreementWebViewActivity.launch(mActivity,
                         "http://www.mofan.store/mf/profile/biz/html/xianlvyhxy.html","用户协议");
             }
-        },str.indexOf("《用户协议》"), str.indexOf("《用户协议》")+"《用户协议》".length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        },str.indexOf("《用户协议》"), str.indexOf("《用户协议》")+"《用户协议》".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
         string.setSpan(new ClickableSpan() {
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
                 ds.setColor(getResources().getColor(R.color.baseColor));       //设置文件颜色
-                ds.setUnderlineText(true);      //设置下划线
+                ds.setUnderlineText(false);      //设置下划线
             }
             @Override
             public void onClick(View view) {
                 AgreementWebViewActivity.launch(mActivity,
                         "http://www.mofan.store/mf/profile/biz/html/xianlvxy.html","隐私政策");
             }
-        },str.indexOf("《隐私政策》"), str.indexOf("《隐私政策》")+"《隐私政策》".length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        },str.indexOf("《隐私政策》"), str.indexOf("《隐私政策》")+"《隐私政策》".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
         tvAgreement.setText(string);
         tvAgreement.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件

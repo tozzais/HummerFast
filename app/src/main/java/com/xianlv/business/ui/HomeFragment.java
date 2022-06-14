@@ -3,11 +3,10 @@ package com.xianlv.business.ui;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +18,6 @@ import com.xianlv.business.R;
 import com.xianlv.business.adapter.HomeAdapter;
 import com.xianlv.business.adapter.drop.ListDropDownAdapter;
 import com.xianlv.business.weight.MyPopupWindow;
-import com.xianlv.business.weight.PopupWindowManager;
 
 import java.util.Arrays;
 
@@ -92,35 +90,54 @@ public class HomeFragment extends BaseFragment  {
     }
 
 
+    private MyPopupWindow parkWindow;
+    private int parkPosition = 0;
     private void openSimplePopUpWindow() {
         final ListView ageView = new ListView(getActivity());
         ageView.setDividerHeight(0);
-        ageAdapter = new ListDropDownAdapter(getActivity(), Arrays.asList(ages));
+        ageAdapter = new ListDropDownAdapter(getActivity(), Arrays.asList(ages),parkPosition);
         ageView.setAdapter(ageAdapter);
-        PopupWindowManager.getInstance().init(ageView).setOnDismissListener(new PopupWindow.OnDismissListener() {
+        ageView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onDismiss() {
-                PopupWindowManager.getInstance().close();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ageAdapter.setCheckItem(position);
+                parkPosition = position;
+                parkWindow.dismiss();
             }
-        }).setTouchInterceptor(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                PopupWindowManager.getInstance().close();
-                return false;
-            }
-        }).showAsDropDown(rl_park_fee);
+        });
+        parkWindow = new MyPopupWindow();
+        parkWindow.setContentView(ageView);
+        parkWindow.setOutsideTouchable(true);
+        parkWindow.setFocusable(true);
+        parkWindow.setElevation(0);
+        parkWindow.setTouchable(true);
+        ColorDrawable dw = new ColorDrawable(Color.parseColor("#50000000"));
+        parkWindow.setBackgroundDrawable(dw);
+        parkWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        parkWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        parkWindow.showAsDropDown(rl_park_fee);
+
+
     }
 
     private MyPopupWindow chargeWindow;
+    private int chargePosition = 0;
     private void showChargePopUpWindow() {
         final ListView ageView = new ListView(getActivity());
         ageView.setDividerHeight(0);
-        ageAdapter1 = new ListDropDownAdapter(getActivity(), Arrays.asList(ages1));
+        ageAdapter1 = new ListDropDownAdapter(getActivity(), Arrays.asList(ages1),chargePosition);
         ageView.setAdapter(ageAdapter1);
-
+        ageView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ageAdapter.setCheckItem(position);
+                chargePosition = position;
+                chargeWindow.dismiss();
+            }
+        });
         chargeWindow = new MyPopupWindow();
         chargeWindow.setContentView(ageView);
-        chargeWindow.setOutsideTouchable(false);
+        chargeWindow.setOutsideTouchable(true);
         chargeWindow.setFocusable(true);
         chargeWindow.setElevation(0);
         chargeWindow.setTouchable(true);

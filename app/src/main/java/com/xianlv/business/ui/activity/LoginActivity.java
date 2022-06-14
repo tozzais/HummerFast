@@ -93,9 +93,7 @@ public class LoginActivity extends CheckPermissionActivity {
         Intent intent = new Intent(from, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         from.startActivity(intent);
-        if (from instanceof MainActivity){
-            ((MainActivity)from).finish();
-        }
+
     }
 
     @Override
@@ -259,7 +257,7 @@ public class LoginActivity extends CheckPermissionActivity {
 
 
     private static final int REQUEST_CODE_SCAN = 1001;
-    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox, R.id.tv_login_pass})
+    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox, R.id.tv_login_pass, R.id.iv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
@@ -283,6 +281,9 @@ public class LoginActivity extends CheckPermissionActivity {
                 break;
             case R.id.tv_login_pass:
                 changeLoginWay();
+                break;
+            case R.id.iv_back:
+                finish();
                 break;
 
         }

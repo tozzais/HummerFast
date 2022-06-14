@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xianlv.business.R;
@@ -26,9 +27,10 @@ public class ListDropDownAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public ListDropDownAdapter(Context context, List<String> list) {
+    public ListDropDownAdapter(Context context, List<String> list,int checkItemPosition) {
         this.context = context;
         this.list = list;
+        this.checkItemPosition = checkItemPosition;
     }
 
     @Override
@@ -64,11 +66,11 @@ public class ListDropDownAdapter extends BaseAdapter {
         viewHolder.mText.setText(list.get(position));
         if (checkItemPosition != -1) {
             if (checkItemPosition == position) {
-                viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_selected));
-                viewHolder.mText.setBackgroundResource(R.color.check_bg);
+                viewHolder.mText.setTextColor(context.getResources().getColor(R.color.baseColor));
+                viewHolder.iv_avatar.setVisibility(View.VISIBLE);
             } else {
-                viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_unselected));
-                viewHolder.mText.setBackgroundResource(R.color.white);
+                viewHolder.mText.setTextColor(context.getResources().getColor(R.color.black_title_color));
+                viewHolder.iv_avatar.setVisibility(View.GONE);
             }
         }
     }
@@ -76,6 +78,8 @@ public class ListDropDownAdapter extends BaseAdapter {
     static class ViewHolder {
         @BindView(R.id.text)
         TextView mText;
+        @BindView(R.id.iv_avatar)
+        ImageView iv_avatar;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

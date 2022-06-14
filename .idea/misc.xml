@@ -8,6 +8,7 @@
         <entry key="..\:/android/hanyu/xianlvBusiness/baselibrary/src/main/res/drawable/shape_toast_background.xml" value="0.3625" />
         <entry key="..\:/android/hanyu/xianlvBusiness/baselibrary/src/main/res/layout/base_toast_dialog.xml" value="0.3365036231884058" />
         <entry key="app/src/main/res/drawable/shape_blue5.xml" value="0.164" />
+        <entry key="app/src/main/res/drawable/shape_blue50.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/shape_gray5.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/shape_white5.xml" value="0.164" />
         <entry key="app/src/main/res/drawable/shape_white5_top.xml" value="0.164" />
@@ -25,6 +26,7 @@
         <entry key="app/src/main/res/layout/item_home.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/item_order.xml" value="0.21331521739130435" />
         <entry key="baselibrary/src/main/res/drawable/shape_basecoloe50.xml" value="0.164" />
+        <entry key="baselibrary/src/main/res/drawable/shape_blue50.xml" value="0.164" />
         <entry key="baselibrary/src/main/res/drawable/shape_yellow50.xml" value="0.164" />
         <entry key="baselibrary/src/main/res/layout/base_toolbar.xml" value="0.21331521739130435" />
       </map>
