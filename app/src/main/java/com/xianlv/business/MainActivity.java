@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -93,6 +94,13 @@ public class MainActivity extends CheckPermissionActivity {
     private HomeFragment mineCollectShopFragment;
     private WelfareFragment welfareFragment;
     private MineFragment mineFragment;
+
+
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @BindView(R.id.drawer_content)
+    LinearLayout  drawer_content;
 
 
     @Override
@@ -346,10 +354,12 @@ public class MainActivity extends CheckPermissionActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_home:
-                selectFragment(HOME);
+                mDrawerLayout.openDrawer(drawer_content);
+//                selectFragment(HOME);
                 break;
             case R.id.ll_category:
-                selectFragment(CATEGORY);
+                mDrawerLayout.closeDrawers();
+//                selectFragment(CATEGORY);
                 break;
             case R.id.ll_community:
                 Intent intent = new Intent(mActivity, CaptureActivity.class);
