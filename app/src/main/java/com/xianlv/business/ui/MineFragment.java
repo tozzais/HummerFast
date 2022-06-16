@@ -23,8 +23,6 @@ public class MineFragment extends BaseFragment  {
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-
-
         initHeadView();
 
     }
