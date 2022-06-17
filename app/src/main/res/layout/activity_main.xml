@@ -157,37 +157,41 @@
         android:layout_gravity="end"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="状态"
-            android:textStyle="bold" />
-
-        <GridView
-            android:id="@+id/processed_state_gv"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
-            android:verticalSpacing="10dp"></GridView>
+            android:layout_height="@dimen/statusbar_view_height" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="时间"
+            android:text="区域"
             android:textStyle="bold" />
 
         <GridView
-            android:id="@+id/processed_time_gv"
+            android:id="@+id/gv_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:horizontalSpacing="10dp"
             android:numColumns="3"
-            android:verticalSpacing="10dp"></GridView>
+            android:verticalSpacing="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="充电方式"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/gv_charge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"/>
 
         <View
             android:layout_width="0dp"

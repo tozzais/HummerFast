@@ -23,8 +23,13 @@
         <entry key="app/src/main/res/layout/fragment_mine.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/fragment_welfare.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout/item_default_drop_down.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/layout/item_filter.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.21331521739130435" />
         <entry key="app/src/main/res/layout/item_order.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/item_switch_room.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/item_switch_room_name.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/item_switch_room_price_manage.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/item_tab_select.xml" value="0.21331521739130435" />
         <entry key="baselibrary/src/main/res/drawable/shape_basecoloe50.xml" value="0.164" />
         <entry key="baselibrary/src/main/res/drawable/shape_blue50.xml" value="0.164" />
         <entry key="baselibrary/src/main/res/drawable/shape_yellow50.xml" value="0.164" />

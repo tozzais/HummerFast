@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -103,6 +106,7 @@ public class MainActivity extends CheckPermissionActivity {
     LinearLayout  drawer_content;
 
 
+
     @Override
     public int getLayoutId() {
         return -1;
@@ -131,6 +135,7 @@ public class MainActivity extends CheckPermissionActivity {
 //        }else {
 //            getVersion();
 //        }
+        setDrawerView();
 
     }
 
@@ -400,6 +405,21 @@ public class MainActivity extends CheckPermissionActivity {
                 }
             }
         }
+    }
+
+    @BindView(R.id.gv_area)
+    GridView gv_area;
+    private String[] s = {"停车免费","限时免费","停车收费"};
+    private void setDrawerView(){
+        gv_area.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.item_filter,
+                R.id.tv_text, s));
+        gv_area.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tv = (TextView) view.findViewById(R.id.tv_text);
+            }
+        });
     }
 
 
