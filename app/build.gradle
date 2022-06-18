@@ -103,6 +103,11 @@ android {
         }
     }
 
+    viewBinding{
+        enabled = true
+    }
+
+
 }
 static def releaseTime() {
 

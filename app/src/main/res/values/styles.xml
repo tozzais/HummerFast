@@ -23,7 +23,7 @@
         <item name="colorPrimaryDark">@color/baseColor</item>
         <item name="colorAccent">@color/baseColor</item>
         <item name="android:windowAnimationStyle">@style/Animation_Activity</item>
-        <item name="android:windowBackground">@drawable/welcome_bg</item>
+        <item name="android:windowBackground">@drawable/splash_preview</item>
         <item name="android:gravity">center</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>

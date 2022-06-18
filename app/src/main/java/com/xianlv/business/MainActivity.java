@@ -2,6 +2,7 @@ package com.xianlv.business;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -49,10 +50,12 @@ public class MainActivity extends CheckPermissionActivity {
      *
      * @param context
      */
-    public static void launch(Activity context) {
+    public static void launch(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
-        context.finish();
+        if (context instanceof  Activity){
+            ((Activity)context).finish();
+        }
 
     }
 
