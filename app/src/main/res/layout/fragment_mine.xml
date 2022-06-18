@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/mine_bg"
     android:orientation="vertical">
 
 
@@ -59,13 +60,26 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:padding="12dp">
-
-        <com.tozzais.baselibrary.weight.CircleImageView
-            android:id="@+id/ci_avatar"
+        <RelativeLayout
             android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@mipmap/demo_avatar"
-            />
+            android:layout_height="60dp">
+
+            <com.tozzais.baselibrary.weight.CircleImageView
+                android:id="@+id/ci_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/demo_avatar"
+                />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_edit"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -124,6 +138,8 @@
                 style="@style/base_text_style"
                 android:text="最新消息"
                 android:textSize="16sp"
+                android:drawableLeft="@mipmap/xiaoxi"
+                android:drawablePadding="3dp"
                 />
 
             <TextView
@@ -187,7 +203,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order1"/>
+                        android:src="@mipmap/cheliang"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -226,7 +242,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order2"/>
+                        android:src="@mipmap/dingdan"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -260,7 +276,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order3"/>
+                        android:src="@mipmap/fapiao"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -295,7 +311,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order4"/>
+                        android:src="@mipmap/qianbao"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -341,7 +357,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order1"/>
+                        android:src="@mipmap/youhuiquan" />
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -380,7 +396,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order2"/>
+                        android:src="@mipmap/shoucang"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -414,7 +430,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order3"/>
+                        android:src="@mipmap/message"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -449,7 +465,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order4"/>
+                        android:src="@mipmap/about_us"/>
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -482,19 +498,20 @@
                 android:layout_height="match_parent"
                 android:paddingRight="8dp"
                 android:layout_weight="1">
+
                 <LinearLayout
                     android:id="@+id/ll_order9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order1"/>
+                        android:src="@mipmap/kefu" />
 
                     <TextView
                         style="@style/black_text_12sp"
@@ -533,7 +550,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/icon_order2"/>
+                        android:src="@mipmap/shezhi"/>
 
                     <TextView
                         style="@style/black_text_12sp"
