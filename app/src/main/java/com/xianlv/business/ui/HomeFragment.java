@@ -33,6 +33,8 @@ public class HomeFragment extends BaseFragment  {
     RelativeLayout rl_park_fee;
     @BindView(R.id.filter_view)
     View filterview;
+    @BindView(R.id.view)
+    View view;
 
     private HomeAdapter homeAdapter;
     private ListDropDownAdapter ageAdapter;
@@ -115,7 +117,7 @@ public class HomeFragment extends BaseFragment  {
         parkWindow.setBackgroundDrawable(dw);
         parkWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         parkWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        parkWindow.showAsDropDown(rl_park_fee);
+        parkWindow.showAsDropDown(view);
 
 
     }
@@ -145,7 +147,7 @@ public class HomeFragment extends BaseFragment  {
         chargeWindow.setBackgroundDrawable(dw);
         chargeWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         chargeWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        chargeWindow.showAsDropDown(rl_park_fee);
+        chargeWindow.showAsDropDown(view,0,0);
 
 
     }

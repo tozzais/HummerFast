@@ -220,6 +220,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
+                android:id="@+id/view"
                 style="@style/line_light"/>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -242,7 +243,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#55000000"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
         </RelativeLayout>
 
 

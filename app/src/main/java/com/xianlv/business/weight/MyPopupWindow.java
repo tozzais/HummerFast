@@ -35,7 +35,7 @@ public class MyPopupWindow extends PopupWindow {
             Rect rect = new Rect();
             anchor.getGlobalVisibleRect(rect);
             int heightPixels = anchor.getResources().getDisplayMetrics().heightPixels;
-            int h = heightPixels - rect.bottom + getStatusHeight(anchor.getContext());
+            int h = heightPixels - rect.bottom;
             setHeight(h);
         }
     }
