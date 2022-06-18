@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.tozzais.baselibrary.util.DataUtil;
+import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.HomeAdapter;
 import com.xianlv.business.adapter.drop.ListDropDownAdapter;
@@ -53,11 +54,14 @@ public class HomeFragment extends BaseFragment  {
                 showChargePopUpWindow();
                 break;
             case R.id.rl_filter:
-                if (filterview.getVisibility() == View.GONE){
-                    filterview.setVisibility(View.VISIBLE);
-                }else {
-                    filterview.setVisibility(View.GONE);
+                if (mActivity instanceof MainActivity){
+                    ((MainActivity)mActivity).openDrawerView();
                 }
+//                if (filterview.getVisibility() == View.GONE){
+//                    filterview.setVisibility(View.VISIBLE);
+//                }else {
+//                    filterview.setVisibility(View.GONE);
+//                }
                 break;
 
         }

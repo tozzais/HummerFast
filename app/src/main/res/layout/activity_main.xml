@@ -181,6 +181,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:text="停车费"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/gv_fee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="充电方式"
             android:textStyle="bold" />
 
@@ -192,20 +208,129 @@
             android:horizontalSpacing="10dp"
             android:numColumns="3"
             android:verticalSpacing="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="电压"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/gv_voltage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="距离"
+            android:textStyle="bold" />
+
+        <GridView
+            android:id="@+id/gv_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="电价"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_ele_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0~0"
+                android:textStyle="bold"
+                android:textColor="@color/baseColor"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+
+        <SeekBar
+            android:id="@+id/seekbar_voice"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:splitTrack="false"
+            android:background="@mipmap/line"
+            android:progressDrawable="@drawable/seekbar_bg"
+            android:thumb="@drawable/seekbar_circle_bg"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/grayText"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/grayText"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="5" />
 
-        <TextView
-            android:id="@+id/processed_commit"
+        <View
+            style="@style/line_light"
+            />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="完成"
-            android:textSize="16sp" />
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_reset"
+                style="@style/base_btn_style_large"
+                android:background="@drawable/shape_gray50"
+                android:gravity="center"
+                android:textColor="@color/baseColor"
+                android:text="重置"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tv_finish"
+                style="@style/base_btn_style_large"
+                android:background="@drawable/shape_basecolor50"
+                android:gravity="center"
+                android:text="完成"
+                android:textSize="14sp"
+                android:layout_marginLeft="40dp"/>
+
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 

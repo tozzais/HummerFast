@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.StatusBarUtil;
+import com.xianlv.business.adapter.gv.FilterAdapter;
+import com.xianlv.business.bean.local.FilterBean;
 import com.xianlv.business.ui.BalanceFragment;
 import com.xianlv.business.ui.HomeFragment;
 import com.xianlv.business.ui.MineFragment;
@@ -28,6 +31,10 @@ import com.xianlv.business.ui.WelfareFragment;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -355,16 +362,17 @@ public class MainActivity extends CheckPermissionActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick({R.id.ll_home, R.id.ll_category, R.id.ll_community, R.id.ll_cart, R.id.ll_mine})
+    @OnClick({R.id.ll_home, R.id.ll_category, R.id.ll_community, R.id.ll_cart, R.id.ll_mine
+            , R.id.tv_reset, R.id.tv_finish})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_home:
-                mDrawerLayout.openDrawer(drawer_content);
-//                selectFragment(HOME);
+//                mDrawerLayout.openDrawer(drawer_content);
+                selectFragment(HOME);
                 break;
             case R.id.ll_category:
-                mDrawerLayout.closeDrawers();
-//                selectFragment(CATEGORY);
+//                mDrawerLayout.closeDrawers();
+                selectFragment(CATEGORY);
                 break;
             case R.id.ll_community:
                 Intent intent = new Intent(mActivity, CaptureActivity.class);
@@ -384,6 +392,12 @@ public class MainActivity extends CheckPermissionActivity {
             case R.id.ll_mine:
 //                WebViewActivity.launch(mActivity,"年度额度", Constant.H5_QUOTA);
                 selectFragment(MINE);
+                break;
+            case R.id.tv_reset:
+                reset(feeAdapter,chargeAdapter,voltageAdapter,distanceAdapter);
+                break;
+            case R.id.tv_finish:
+                mDrawerLayout.closeDrawers();
                 break;
         }
     }
@@ -407,17 +421,79 @@ public class MainActivity extends CheckPermissionActivity {
         }
     }
 
+    public void openDrawerView(){
+        mDrawerLayout.openDrawer(drawer_content);
+    }
+
     @BindView(R.id.gv_area)
     GridView gv_area;
-    private String[] s = {"停车免费","限时免费","停车收费"};
+    @BindView(R.id.gv_fee)
+    GridView gv_fee;
+    @BindView(R.id.gv_charge)
+    GridView gv_charge;
+    @BindView(R.id.gv_voltage)
+    GridView gv_voltage;
+    @BindView(R.id.gv_distance)
+    GridView gv_distance;
+    @BindView(R.id.seekbar_voice)
+    SeekBar seekbar_voice;
+    @BindView(R.id.tv_ele_fee)
+    TextView tv_ele_fee;
+
+    private FilterAdapter feeAdapter;
+    private FilterAdapter chargeAdapter;
+    private FilterAdapter voltageAdapter;
+    private FilterAdapter distanceAdapter;
     private void setDrawerView(){
-        gv_area.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.item_filter,
-                R.id.tv_text, s));
-        gv_area.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gv_area.setAdapter(new FilterAdapter(this,getFilter(new String[]{"全部"})));
+
+        feeAdapter = new FilterAdapter(this,getFilter(new String[]{"限时免费","限时免费","停车收费"}));
+        gv_fee.setAdapter(feeAdapter);
+
+        chargeAdapter = new FilterAdapter(this,getFilter(new String[]{"快充","慢充"}));
+        gv_charge.setAdapter(chargeAdapter);
+
+        voltageAdapter = new FilterAdapter(this,getFilter(new String[]{"高压","低压","高压兼低压"}));
+        gv_voltage.setAdapter(voltageAdapter);
+
+        distanceAdapter = new FilterAdapter(this,getFilter(new String[]{"3公里","5公里","10公里","20公里","30公里","50公里"}));
+        gv_distance.setAdapter(distanceAdapter);
+
+        addListener();
+    }
+
+    private void reset(FilterAdapter... filterAdapters){
+        for (FilterAdapter f :
+                filterAdapters) {
+            f.reset();
+        }
+
+    }
+
+
+    private List<FilterBean> getFilter(String[] s){
+        List<FilterBean> list = new ArrayList<>();
+        for (int i = 0; i < s.length; i++) {
+            list.add(new FilterBean(i==0,s[i]));
+        }
+        return list;
+    }
+
+    private void addListener(){
+        seekbar_voice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView tv = (TextView) view.findViewById(R.id.tv_text);
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tv_ele_fee.setText("0~"+(String.format("%.2f", progress/100.0*5)));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
