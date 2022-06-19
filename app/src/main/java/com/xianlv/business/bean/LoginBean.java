@@ -2,17 +2,18 @@ package com.xianlv.business.bean;
 
 public class LoginBean{
 
-    public String token;
+    //没用
     public String tenantId;
     public String shopId;
-    public String tenantName;
+
+    //用到的
     public String userId;
-    public String myCode;
-    public String parentId;
     public String nickname;
     public String phone;
+    public String token;
     public String openid;
-    public int worker;
     public String platform;
-    public String appName;
+    public String ip;
+
+
 }

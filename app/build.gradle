@@ -94,11 +94,11 @@ android {
     flavorDimensions "default"
     productFlavors{
         uat{
-            buildConfigField("String", "BASE_URL", "\"https://test.shanghaixianlv.com/hotel-client/\"")
+            buildConfigField("String", "BASE_URL", "\"https://fn.hanyu365.com.cn/fn-client/\"")
             manifestPlaceholders = [APP_NAME :"@string/app_name"]
         }
         pro{
-            buildConfigField("String", "BASE_URL", "\"https://shanghaixianlv.com/hotel-client/\"")
+            buildConfigField("String", "BASE_URL", "\"https://fn.hanyu365.com.cn/fn-client/\"")
             manifestPlaceholders = [APP_NAME :"@string/app_name_dev"]
         }
     }
@@ -152,6 +152,7 @@ dependencies {
 
     //定位功能
     implementation 'com.amap.api:location:5.3.1'
+    implementation 'com.amap.api:map2d:6.0.0'
 
     //log上传
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9

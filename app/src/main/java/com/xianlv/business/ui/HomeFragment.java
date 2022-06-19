@@ -19,6 +19,7 @@ import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.HomeAdapter;
 import com.xianlv.business.adapter.drop.ListDropDownAdapter;
+import com.xianlv.business.ui.activity.home.MapActivity;
 import com.xianlv.business.weight.MyPopupWindow;
 
 import java.util.Arrays;
@@ -46,7 +47,7 @@ public class HomeFragment extends BaseFragment  {
     private ListDropDownAdapter ageAdapter1;
     private String[] ages1 = {"不限","快充","慢充"};
 
-    @OnClick({R.id.rl_park_fee, R.id.rl_charge_method, R.id.rl_filter})
+    @OnClick({R.id.rl_park_fee, R.id.rl_charge_method, R.id.rl_filter, R.id.rl_map})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_park_fee:
@@ -64,6 +65,9 @@ public class HomeFragment extends BaseFragment  {
 //                }else {
 //                    filterview.setVisibility(View.GONE);
 //                }
+                break;
+            case R.id.rl_map:
+                MapActivity.launch(mActivity);
                 break;
 
         }

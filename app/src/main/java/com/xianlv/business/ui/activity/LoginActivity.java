@@ -23,6 +23,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.gson.Gson;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -30,9 +31,11 @@ import com.tozzais.baselibrary.util.CommonUtils;
 import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VersionBean;
 import com.xianlv.business.bean.request.RequestCode;
+import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestShopInfo;
 import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
@@ -51,6 +54,7 @@ import com.yzq.zxinglibrary.common.Constant;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -176,7 +180,7 @@ public class LoginActivity extends CheckPermissionActivity {
         try {
             PackageManager pm = mContext.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), 0);
-            getVersion(pi.versionName);
+//            getVersion(pi.versionName);
         } catch (Exception e) {
             LogUtil.e(e.toString());
         }
@@ -295,33 +299,43 @@ public class LoginActivity extends CheckPermissionActivity {
 //            tsg("请阅读并勾选《用户协议》和《隐私政策》");
 //            return;
 //        }
-//        String phone = etPhone.getText().toString().trim();
-//        if (TextUtils.isEmpty(phone)) {
-//            tsg("请输入手机号");
-//            return;
-//        } else if (!CommonUtils.isMobileNO(phone)) {
-//            tsg("请输入正确的手机号");
-//            return;
-//        }
+        String phone = etPhone.getText().toString().trim();
+        if (TextUtils.isEmpty(phone)) {
+            tsg("请输入手机号");
+            return;
+        } else if (!CommonUtils.isMobileNO(phone)) {
+            tsg("请输入正确的手机号");
+            return;
+        }
+        String pass = et_pass.getText().toString().trim();
+        if (TextUtils.isEmpty(pass)) {
+            tsg("请输入您的密码");
+            return;
+        }
+
 //        String code = etCode.getText().toString().trim();
 //        if (TextUtils.isEmpty(phone)) {
 //            tsg("请输入验证码");
 //            return;
 //        }
 //
-//        RequestLogin bean = new RequestLogin();
-//        bean.phone = phone;
-//        bean.code = code;
-//        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(bean),
-//                new Response<BaseResult<LoginBean>>(mActivity) {
-//                    @Override
-//                    public void onSuccess(BaseResult<LoginBean> result) {
-//                        tsg("登录成功");
-//                        GlobalParam.setLoginBean(result.data);
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("loginWay","1");
+        map.put("phone",phone);
+        map.put("password",pass);
+        LogUtil.e("加密数据"+new Gson().toJson(map));
+
+
+        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(map),
+                new Response<BaseResult<LoginBean>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<LoginBean> result) {
+                        tsg("登录成功");
+                        GlobalParam.setLoginBean(result.data);
                         MainActivity.launch(mActivity);
                         finish();
-//                    }
-//                });
+                    }
+                });
     }
 
 

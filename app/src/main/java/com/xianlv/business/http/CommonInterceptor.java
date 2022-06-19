@@ -1,7 +1,12 @@
 package com.xianlv.business.http;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+import com.tozzais.baselibrary.util.log.LogUtil;
+import com.tozzais.baselibrary.util.sign.SignUtil;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.global.GlobalParam;
 
@@ -12,15 +17,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 
+import okhttp3.FormBody;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.logging.Utf8Kt;
 import okio.Buffer;
 
 public class CommonInterceptor implements Interceptor {
@@ -87,13 +96,34 @@ public class CommonInterceptor implements Interceptor {
     }
 
     private Request rebuildRequest(Request request) throws IOException {
+        RequestBody requestBody = request.body();
+        StringBuilder sb = new StringBuilder();
+        if (requestBody != null) {
+            Buffer buffer = new Buffer();
+            requestBody.writeTo(buffer);
+            //编码设为UTF-8
+            Charset charset = StandardCharsets.UTF_8;
+            MediaType contentType = requestBody.contentType();
+            if (contentType != null) {
+                charset = contentType.charset(StandardCharsets.UTF_8);
+            }
+            if (charset != null)
+            sb.append(buffer.readString(charset));
+            buffer.close();
+        }
+        LogUtil.e("加密信息前"+sb.toString());
+        String sign = "";
+        if (request.method().equals("POST")) {
+            sign = SignUtil.getMd5(sb.toString());
+        }
+        LogUtil.e("加密信息后"+sign);
         LoginBean loginBean = GlobalParam.getLoginBean();
-            request = request.newBuilder()
-                    .addHeader("worker", "1")
-                    .addHeader("tenantId",loginBean == null?"":loginBean.tenantId)
-                    .addHeader("shopId",loginBean == null?"":loginBean.shopId)
+        if (TextUtils.isEmpty(sign)){
+            request.newBuilder().addHeader("sign",sign);
+        }
+        request = request.newBuilder()
+                    .addHeader("platform","APP")
                     .addHeader("token",loginBean == null?"":loginBean.token)
-                    .addHeader("idempotent", UUID.randomUUID().toString().replace("-", ""))
                     .build();
         return request;
 

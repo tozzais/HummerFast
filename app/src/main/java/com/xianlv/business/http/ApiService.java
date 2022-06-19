@@ -75,7 +75,9 @@ import com.xianlv.business.bean.switchroom.ShopBean;
 import com.xianlv.business.bean.switchroom.SwitchRoomItem;
 import com.xianlv.business.bean.weather.WeatherResult;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -96,7 +98,7 @@ public interface ApiService {
 
     @POST(HttpUrl.login)
     Observable<BaseResult<LoginBean>>
-    getLogin(@Body RequestLogin bean);
+    getLogin(@Body TreeMap<String,String> bean);
     @POST(HttpUrl.shop_info)
     Observable<BaseResult<ShopResult>>
     shopInfo(@Body RequestShopInfo bean);

@@ -302,19 +302,19 @@ public class RegisterActivity extends CheckPermissionActivity {
             return;
         }
 
-        RequestLogin bean = new RequestLogin();
-        bean.phone = phone;
-        bean.code = code;
-        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(bean),
-                new Response<BaseResult<LoginBean>>(mActivity) {
-                    @Override
-                    public void onSuccess(BaseResult<LoginBean> result) {
-                        tsg("登录成功");
-                        GlobalParam.setLoginBean(result.data);
-                        MainActivity.launch(mActivity);
-                        finish();
-                    }
-                });
+//        RequestLogin bean = new RequestLogin();
+//        bean.phone = phone;
+//        bean.code = code;
+//        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(bean),
+//                new Response<BaseResult<LoginBean>>(mActivity) {
+//                    @Override
+//                    public void onSuccess(BaseResult<LoginBean> result) {
+//                        tsg("登录成功");
+//                        GlobalParam.setLoginBean(result.data);
+//                        MainActivity.launch(mActivity);
+//                        finish();
+//                    }
+//                });
     }
 
 
