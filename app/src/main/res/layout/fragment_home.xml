@@ -26,6 +26,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawableLeft="@mipmap/sydw"
@@ -36,9 +37,11 @@
                 android:maxWidth="240dp"
                 android:maxLines="1"
                 android:paddingRight="12dp"
-                android:text="上海"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone"
+                />
 
 
             <TextView

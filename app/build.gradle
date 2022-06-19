@@ -37,13 +37,13 @@ android {
         release {
             keyAlias 'hanyu'
             keyPassword '123456'
-            storeFile file('../xianlv.jks')
+            storeFile file('../hummerfast.jks')
             storePassword '123456'
         }
         debug {
             keyAlias 'hanyu'
             keyPassword '123456'
-            storeFile file('../xianlv.jks')
+            storeFile file('../hummerfast.jks')
             storePassword '123456'
         }
     }

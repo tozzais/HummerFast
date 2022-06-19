@@ -116,7 +116,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="c232fe0cce630dbc186b9ae3da2988ff" />
+            android:value="ab1e93a41caa0cc1d5b9ac58c4c0d9da" />
 
         <service android:name="com.amap.api.location.APSService" /> <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 这个Service要继承JCommonService -->

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class HomeFragment extends BaseFragment  {
     View filterview;
     @BindView(R.id.view)
     View view;
+
 
     private HomeAdapter homeAdapter;
     private ListDropDownAdapter ageAdapter;
@@ -162,4 +164,11 @@ public class HomeFragment extends BaseFragment  {
 
     }
 
+    @BindView(R.id.tv_address)
+    TextView tv_address;
+    public void setAddress(String city) {
+        tv_address.setText(city);
+        tv_address.setVisibility(View.VISIBLE);
+
+    }
 }
