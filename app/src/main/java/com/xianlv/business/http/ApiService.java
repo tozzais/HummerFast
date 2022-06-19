@@ -52,17 +52,14 @@ import com.xianlv.business.bean.request.RequestCashId;
 import com.xianlv.business.bean.request.RequestCashUpdate;
 import com.xianlv.business.bean.request.RequestCategory;
 import com.xianlv.business.bean.request.RequestCheckDeduction;
-import com.xianlv.business.bean.request.RequestCode;
 import com.xianlv.business.bean.request.RequestEditMessage;
 import com.xianlv.business.bean.request.RequestGiveWay;
 import com.xianlv.business.bean.request.RequestGoodsOrderId;
 import com.xianlv.business.bean.request.RequestGoodsVerify;
 import com.xianlv.business.bean.request.RequestList;
-import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestMyCouponId;
 import com.xianlv.business.bean.request.RequestPhone;
 import com.xianlv.business.bean.request.RequestRank;
-import com.xianlv.business.bean.request.RequestRegister;
 import com.xianlv.business.bean.request.RequestShopId;
 import com.xianlv.business.bean.request.RequestShopInfo;
 import com.xianlv.business.bean.request.RequestStaffHousingId;
@@ -75,7 +72,6 @@ import com.xianlv.business.bean.switchroom.ShopBean;
 import com.xianlv.business.bean.switchroom.SwitchRoomItem;
 import com.xianlv.business.bean.weather.WeatherResult;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -92,7 +88,7 @@ public interface ApiService {
 
     @POST(HttpUrl.get_code)
     Observable<BaseResult>
-    getCode(@Body RequestCode requestCode);
+    getCode(@Body TreeMap<String,String> bean);
 
 
 
@@ -103,8 +99,8 @@ public interface ApiService {
     Observable<BaseResult<ShopResult>>
     shopInfo(@Body RequestShopInfo bean);
     @POST(HttpUrl.register)
-    Observable<BaseResult>
-    register(@Body RequestRegister requestCode);
+    Observable<BaseResult<LoginBean>>
+    register(@Body TreeMap<String,String> bean);
     @POST(HttpUrl.mine_info)
     Observable<BaseResult<MineInfo>>
     mineInfo(@Body BaseRequest bean);

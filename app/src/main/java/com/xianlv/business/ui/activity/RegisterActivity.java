@@ -53,6 +53,7 @@ import com.yzq.zxinglibrary.common.Constant;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -284,10 +285,7 @@ public class RegisterActivity extends CheckPermissionActivity {
     private boolean ck_agreement = false;
 
     private void login() {
-        if (!ck_agreement){
-            tsg("请阅读并勾选《用户协议》和《隐私政策》");
-            return;
-        }
+
         String phone = etPhone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
             tsg("请输入手机号");
@@ -297,24 +295,39 @@ public class RegisterActivity extends CheckPermissionActivity {
             return;
         }
         String code = etCode.getText().toString().trim();
-        if (TextUtils.isEmpty(phone)) {
+        if (TextUtils.isEmpty(code)) {
             tsg("请输入验证码");
+            return;
+        }
+        String pass = et_pass.getText().toString().trim();
+        if (TextUtils.isEmpty(pass)) {
+            tsg("请输入您的密码");
+            return;
+        }
+        if (!ck_agreement){
+            tsg("请阅读并勾选《用户协议》和《隐私政策》");
             return;
         }
 
 //        RequestLogin bean = new RequestLogin();
 //        bean.phone = phone;
 //        bean.code = code;
-//        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(bean),
-//                new Response<BaseResult<LoginBean>>(mActivity) {
-//                    @Override
-//                    public void onSuccess(BaseResult<LoginBean> result) {
-//                        tsg("登录成功");
-//                        GlobalParam.setLoginBean(result.data);
-//                        MainActivity.launch(mActivity);
-//                        finish();
-//                    }
-//                });
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("phone",phone);
+        map.put("code",code);
+        map.put("password",pass);
+        map.put("registerType","1");
+
+        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().register(map),
+                new Response<BaseResult<LoginBean>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<LoginBean> result) {
+                        tsg("注册成功");
+                        GlobalParam.setLoginBean(result.data);
+                        MainActivity.launch(mActivity);
+                        finish();
+                    }
+                });
     }
 
 
@@ -327,9 +340,10 @@ public class RegisterActivity extends CheckPermissionActivity {
             tsg("请输入正确的手机号");
             return;
         }
-        RequestCode requestCode = new RequestCode();
-        requestCode.phone = phone;
-        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(requestCode),
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("phone",phone);
+        map.put("type","2");
+        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult result) {

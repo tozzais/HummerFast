@@ -334,16 +334,16 @@ public class WelcomeActivity extends CheckPermissionActivity {
             tsg("请输入正确的手机号");
             return;
         }
-        RequestCode requestCode = new RequestCode();
-        requestCode.phone = phone;
-        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(requestCode),
-                new Response<BaseResult>(mActivity) {
-                    @Override
-                    public void onSuccess(BaseResult result) {
-                        tsg("验证码发送成功");
-                        mHandler.sendEmptyMessage(1);
-                    }
-                });
+//        RequestCode requestCode = new RequestCode();
+//        requestCode.phone = phone;
+//        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(requestCode),
+//                new Response<BaseResult>(mActivity) {
+//                    @Override
+//                    public void onSuccess(BaseResult result) {
+//                        tsg("验证码发送成功");
+//                        mHandler.sendEmptyMessage(1);
+//                    }
+//                });
     }
 
     private int time = 60;

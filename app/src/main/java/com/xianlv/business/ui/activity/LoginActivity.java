@@ -283,8 +283,14 @@ public class LoginActivity extends CheckPermissionActivity {
             return;
         }
         String pass = et_pass.getText().toString().trim();
-        if (TextUtils.isEmpty(pass)) {
+        if (TextUtils.isEmpty(pass) && way == login_code) {
             tsg("请输入您的密码");
+            return;
+        }
+
+        String code = etCode.getText().toString().trim();
+        if (TextUtils.isEmpty(code) && way == login_pass) {
+            tsg("请输入验证码");
             return;
         }
 
@@ -295,10 +301,16 @@ public class LoginActivity extends CheckPermissionActivity {
 //        }
 //
         TreeMap<String,String> map = new TreeMap<>();
-        map.put("loginWay","1");
-        map.put("phone",phone);
-        map.put("password",pass);
-        LogUtil.e("加密数据"+new Gson().toJson(map));
+        if (way == login_code){
+            map.put("loginWay","1");
+            map.put("phone",phone);
+            map.put("password",pass);
+        }else {
+            map.put("loginWay","2");
+            map.put("phone",phone);
+            map.put("code",code);
+        }
+
 
 
         new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().getLogin(map),
@@ -323,9 +335,10 @@ public class LoginActivity extends CheckPermissionActivity {
             tsg("请输入正确的手机号");
             return;
         }
-        RequestCode requestCode = new RequestCode();
-        requestCode.phone = phone;
-        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(requestCode),
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("phone",phone);
+        map.put("type","1");
+        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult result) {

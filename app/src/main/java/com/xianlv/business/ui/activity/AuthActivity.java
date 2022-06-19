@@ -17,12 +17,12 @@ import com.tozzais.baselibrary.util.CommonUtils;
 import com.xianlv.business.R;
 import com.xianlv.business.bean.ShopInfo;
 import com.xianlv.business.bean.ShopResult;
-import com.xianlv.business.bean.request.RequestCode;
-import com.xianlv.business.bean.request.RequestRegister;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.util.DepartmentDialogUtil;
+
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -117,20 +117,20 @@ public class AuthActivity extends BaseActivity {
             tsg("请选择部门");
             return;
         }
-        RequestRegister bean = new RequestRegister();
-        bean.phone = phone;
-        bean.code = code;
-        bean.shopId = shopResult.appShop.shopId;
-        bean.truename = name;
-        bean.departmentId = (int) etPart.getTag()+"";
-        new RxHttp<BaseResult>().send(ApiManager.getService().register(bean),
-                new Response<BaseResult>(mActivity) {
-                    @Override
-                    public void onSuccess(BaseResult result) {
-                        tsg("认证成功");
-                        finish();
-                    }
-                });
+//        RequestRegister bean = new RequestRegister();
+//        bean.phone = phone;
+//        bean.code = code;
+//        bean.shopId = shopResult.appShop.shopId;
+//        bean.truename = name;
+//        bean.departmentId = (int) etPart.getTag()+"";
+//        new RxHttp<BaseResult>().send(ApiManager.getService().register(bean),
+//                new Response<BaseResult>(mActivity) {
+//                    @Override
+//                    public void onSuccess(BaseResult result) {
+//                        tsg("认证成功");
+//                        finish();
+//                    }
+//                });
     }
 
     private void getCode() {
@@ -142,9 +142,10 @@ public class AuthActivity extends BaseActivity {
             tsg("请输入正确的手机号");
             return;
         }
-        RequestCode requestCode = new RequestCode();
-        requestCode.phone = phone;
-        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(requestCode),
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("phone",phone);
+        map.put("type","1");
+        new RxHttp<BaseResult>().send(ApiManager.getService().getCode(map),
                 new Response<BaseResult>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult result) {
