@@ -2,9 +2,13 @@ package com.xianlv.business.ui.activity
 
 import android.os.Bundle
 import com.tozzais.baselibrary.ui.BaseActivity
+import com.xianlv.business.MainActivity
 import com.xianlv.business.R
 import com.xianlv.business.adapter.vp.WelcomeVPAdapter
 import com.xianlv.business.databinding.ActivitySplashBinding
+import com.xianlv.business.global.GlobalParam
+import com.xianlv.business.toast.OnDialogClickListener
+import com.xianlv.business.toast.PrivacyUtil
 
 /**
  * author : xumingming
@@ -21,6 +25,8 @@ class WelActivity : BaseActivity<Any>(){
 
 
     override fun initView(savedInstanceState: Bundle?) {
+
+
         mBinding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
@@ -31,5 +37,28 @@ class WelActivity : BaseActivity<Any>(){
         val welcomeVPAdapter = WelcomeVPAdapter(this, listOf)
         mBinding.viewPager.adapter = welcomeVPAdapter
         mBinding.viewPager.offscreenPageLimit = 2
+
+
+        val firstUse = GlobalParam.getFirstUse()
+        if (!firstUse) {
+//            PrivacyUtil.showTwo(mActivity, object : OnDialogClickListener {
+//                override fun onSure() {
+//                    GlobalParam.setFirstUse(true)
+//                    if (GlobalParam.getUserLogin()) {
+//                        MainActivity.launch(mActivity)
+//                        finish()
+//                    }
+//                }
+//
+//                override fun onCancel() {
+//                    if (!isFinishing) finish()
+//                }
+//            })
+        } else {
+//            if (GlobalParam.getUserLogin()) {
+                MainActivity.launch(mActivity)
+                finish()
+//            }
+        }
     }
 }

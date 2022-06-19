@@ -3,12 +3,11 @@ package com.xianlv.business.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import com.sobot.chat.activity.WebViewActivity;
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.R;
 import com.xianlv.business.global.Constant;
-import com.xianlv.business.ui.activity.LoginActivity;
+import com.xianlv.business.util.BottomDialogUtil;
 
 import butterknife.OnClick;
 
@@ -89,7 +88,9 @@ public class MineFragment extends BaseFragment  {
                 AgreementWebViewActivity.launch(mActivity, Constant.about_us_url1);
                 break;
             case R.id.rl_order10:
-                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url2);
+                BottomDialogUtil.showSelectDialog(mActivity);
+
+//                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url2);
                 break;
 
 

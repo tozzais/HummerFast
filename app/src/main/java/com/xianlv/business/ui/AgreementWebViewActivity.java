@@ -97,6 +97,11 @@ public class AgreementWebViewActivity extends BaseActivity {
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         web_view.addJavascriptInterface(new AppJs(this), "toLogin");
 
+        if (GlobalParam.getLoginBean() != null) {
+            LogUtil.e("调用H5加载了" + GlobalParam.getLoginBean().token);
+            web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
+        }
+
 
     }
 
@@ -139,12 +144,9 @@ public class AgreementWebViewActivity extends BaseActivity {
             String title1 = getIntent().getStringExtra("title");
             if (i == 100) {
                 title.setText(TextUtils.isEmpty(title1) ? webView.getTitle() : title1);
-                if (i == 100) {
-                    LogUtil.e("调用H5加载了");
-                    if (GlobalParam.getLoginBean() != null) {
-                        LogUtil.e("调用H5加载了1231243");
-                        web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
-                    }
+                if (GlobalParam.getLoginBean() != null) {
+                    LogUtil.e("调用H5加载了" + GlobalParam.getLoginBean().token);
+                    web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
                 }
             }
 

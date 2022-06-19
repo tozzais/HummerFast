@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -16,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -28,11 +30,13 @@ import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.StatusBarUtil;
 import com.xianlv.business.adapter.gv.FilterAdapter;
 import com.xianlv.business.bean.local.FilterBean;
+import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.ui.BalanceFragment;
 import com.xianlv.business.ui.ChargeFragment;
 import com.xianlv.business.ui.HomeFragment;
 import com.xianlv.business.ui.MineFragment;
 import com.xianlv.business.ui.WelfareFragment;
+import com.xianlv.business.ui.activity.LoginActivity;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
@@ -44,6 +48,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
+@RequiresApi(api = Build.VERSION_CODES.Q)
 public class MainActivity extends CheckPermissionActivity implements AMapLocationListener {
 
 
@@ -155,7 +160,6 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE
     };
@@ -227,6 +231,10 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
                 setTabSelection(mPosition);
                 break;
             case MINE:
+                if (!GlobalParam.getUserLogin()){
+                    LoginActivity.launch(mActivity);
+                    return;
+                }
                 StatusBarUtil.setLightMode(this);
                 mPosition = MINE;
                 setTabChecked(mPosition);

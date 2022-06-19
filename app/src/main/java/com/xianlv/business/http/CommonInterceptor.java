@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.google.gson.Gson;
 import com.tozzais.baselibrary.util.log.LogUtil;
 import com.tozzais.baselibrary.util.sign.SignUtil;
 import com.xianlv.business.bean.LoginBean;
@@ -20,16 +19,13 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.UUID;
 
-import okhttp3.FormBody;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.logging.Utf8Kt;
 import okio.Buffer;
 
 public class CommonInterceptor implements Interceptor {
@@ -116,12 +112,13 @@ public class CommonInterceptor implements Interceptor {
         if (request.method().equals("POST")) {
             sign = SignUtil.getMd5(sb.toString());
         }
-        LogUtil.e("加密信息后"+sign);
+
         LoginBean loginBean = GlobalParam.getLoginBean();
-        if (TextUtils.isEmpty(sign)){
-            request.newBuilder().addHeader("sign",sign);
+        if (!TextUtils.isEmpty(sign)){
+            LogUtil.e("加密信息后"+sign);
         }
         request = request.newBuilder()
+                    .addHeader("sign",sign == null?"":sign)
                     .addHeader("platform","APP")
                     .addHeader("token",loginBean == null?"":loginBean.token)
                     .build();

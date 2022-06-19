@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.xianlv.business.MainActivity
+import com.xianlv.business.global.GlobalParam
 
 /**
  * author : xumingming
@@ -29,6 +30,7 @@ class WelcomeVPAdapter(val context: Context,var list: List<Int>) : PagerAdapter(
         imageView.setImageResource(list[position])
         imageView.setOnClickListener {
             if (position == list.size-1){
+                GlobalParam.setFirstUse(true)
                 MainActivity.launch(context)
             }
         }

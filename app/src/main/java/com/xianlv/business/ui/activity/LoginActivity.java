@@ -119,31 +119,6 @@ public class LoginActivity extends CheckPermissionActivity {
 
     @Override
     public void loadData() {
-        boolean firstUse = GlobalParam.getFirstUse();
-        if (!firstUse) {
-            PrivacyUtil.showTwo(mActivity, new OnDialogClickListener() {
-                @Override
-                public void onSure() {
-                    GlobalParam.setFirstUse(true);
-                    if (GlobalParam.getUserLogin()){
-                        MainActivity.launch(mActivity);
-                        finish();
-                    }
-                }
-                @Override
-                public void onCancel() {
-                    if (!isFinishing())
-                        finish();
-                }
-            });
-        }else {
-            if (GlobalParam.getUserLogin()){
-            MainActivity.launch(mActivity);
-            finish();
-            }
-        }
-
-
         String str = "登录即同意《用户协议》和《隐私政策》";
         SpannableString string = new SpannableString(str);
         string.setSpan(new ClickableSpan() {
