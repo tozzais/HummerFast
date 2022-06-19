@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -26,12 +24,12 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.google.gson.Gson;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.StatusBarUtil;
 import com.xianlv.business.adapter.gv.FilterAdapter;
 import com.xianlv.business.bean.local.FilterBean;
 import com.xianlv.business.ui.BalanceFragment;
+import com.xianlv.business.ui.ChargeFragment;
 import com.xianlv.business.ui.HomeFragment;
 import com.xianlv.business.ui.MineFragment;
 import com.xianlv.business.ui.WelfareFragment;
@@ -39,10 +37,7 @@ import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -111,9 +106,9 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
     private int mPosition;//当前选中的底部菜单
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
-    private BalanceFragment balanceFragment;
-    private HomeFragment mineCollectShopFragment;
-    private WelfareFragment welfareFragment;
+    private ChargeFragment balanceFragment;
+    private ChargeFragment chargeFragment;
+    private ChargeFragment welfareFragment;
     private MineFragment mineFragment;
 
 
@@ -276,24 +271,24 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
 
             case CATEGORY:
                 if (balanceFragment == null) {
-                    balanceFragment = new BalanceFragment();
+                    balanceFragment = ChargeFragment.newInstance(com.xianlv.business.global.Constant.balance_charge_url);
                     transaction.add(R.id.fl_container, balanceFragment, TAG_CATEGROY);
                 } else {
                     transaction.show(balanceFragment);
                 }
                 break;
             case COMMUNITY:
-                if (mineCollectShopFragment == null) {
-                    mineCollectShopFragment = new HomeFragment();
-                    transaction.add(R.id.fl_container, mineCollectShopFragment, TAG_COMMUNITY);
+                if (chargeFragment == null) {
+                    chargeFragment = ChargeFragment.newInstance(com.xianlv.business.global.Constant.scan_charge_url);
+                    transaction.add(R.id.fl_container, chargeFragment, TAG_COMMUNITY);
                 } else {
-                    transaction.show(mineCollectShopFragment);
+                    transaction.show(chargeFragment);
                 }
                 break;
 
             case CART:
                 if (welfareFragment == null) {
-                    welfareFragment = new WelfareFragment();
+                    welfareFragment = ChargeFragment.newInstance(com.xianlv.business.global.Constant.welfare_activity_url);
                     transaction.add(R.id.fl_container, welfareFragment, TAG_CART);
                 } else {
                     transaction.show(welfareFragment);
@@ -323,8 +318,8 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
         if (balanceFragment != null) {
             transaction.hide(balanceFragment);
         }
-        if (mineCollectShopFragment != null) {
-            transaction.hide(mineCollectShopFragment);
+        if (chargeFragment != null) {
+            transaction.hide(chargeFragment);
         }
         if (welfareFragment != null) {
             transaction.hide(welfareFragment);
@@ -341,9 +336,9 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
         if (savedInstanceState != null) {
             fragmentManager = getSupportFragmentManager();
             homeFragment = (HomeFragment) fragmentManager.findFragmentByTag(TAG_HOME);
-            balanceFragment = (BalanceFragment) fragmentManager.findFragmentByTag(TAG_CATEGROY);
-            mineCollectShopFragment = (HomeFragment) fragmentManager.findFragmentByTag(TAG_COMMUNITY);
-            welfareFragment = (WelfareFragment) fragmentManager.findFragmentByTag(TAG_CART);
+            balanceFragment = (ChargeFragment) fragmentManager.findFragmentByTag(TAG_CATEGROY);
+            chargeFragment = (ChargeFragment) fragmentManager.findFragmentByTag(TAG_COMMUNITY);
+            welfareFragment = (ChargeFragment) fragmentManager.findFragmentByTag(TAG_CART);
             mineFragment = (MineFragment) fragmentManager.findFragmentByTag(TAG_MINE);
         }
         mPosition = savedInstanceState.getInt("mPosition");
@@ -388,16 +383,17 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
                 selectFragment(CATEGORY);
                 break;
             case R.id.ll_community:
-                Intent intent = new Intent(mActivity, CaptureActivity.class);
-                ZxingConfig config = new ZxingConfig();
-                config.setShake(true);//是否震动  默认为true
-                config.setDecodeBarCode(true);//是否扫描条形码 默认为true
-                config.setReactColor(R.color.baseColor);//设置扫描框四个角的颜色 默认为白色
-                config.setFrameLineColor(R.color.white);//设置扫描框边框颜色 默认无色
-                config.setScanLineColor(R.color.white);//设置扫描线的颜色 默认白色
-                config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
-                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
-                startActivityForResult(intent, REQUEST_CODE_SCAN);
+                selectFragment(COMMUNITY);
+//                Intent intent = new Intent(mActivity, CaptureActivity.class);
+//                ZxingConfig config = new ZxingConfig();
+//                config.setShake(true);//是否震动  默认为true
+//                config.setDecodeBarCode(true);//是否扫描条形码 默认为true
+//                config.setReactColor(R.color.baseColor);//设置扫描框四个角的颜色 默认为白色
+//                config.setFrameLineColor(R.color.white);//设置扫描框边框颜色 默认无色
+//                config.setScanLineColor(R.color.white);//设置扫描线的颜色 默认白色
+//                config.setFullScreenScan(false);//是否全屏扫描  默认为true  设为false则只会在扫描框中扫描
+//                intent.putExtra(Constant.INTENT_ZXING_CONFIG, config);
+//                startActivityForResult(intent, REQUEST_CODE_SCAN);
                 break;
             case R.id.ll_cart:
                 selectFragment(CART);

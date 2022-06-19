@@ -54,6 +54,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_mine_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_white5"
@@ -118,6 +119,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_white5"

@@ -55,5 +55,84 @@ public class Constant {
 
 
 
+    /*
+        蜂鸟速充安卓对接
+        一、Html传值给安卓调用方法：window.htmlMessage.message(JSON.stringify(message));
+        message = {
+         type: 1, //类型
+         value: ‘’//值为泛型
+        }
+        type:
+        1.登录
+        2.退出登录
+        3.扫码充电
+
+        二、安卓调取h5方法
+        登录：userLogin(token)
+        退出登录：userLogout()
+
+        三、加载页面 https://fn.hanyu365.com.cn/park/h5/index.html#/pages/index/index?
+        route=&
+        longitude=&
+        latitude&
+        city=&
+        atOpenStatus=&
+        value=
+        1.非必填
+        longitude：当前城市纬度
+        latitude：当前城市经度
+        city：当前城市名称
+        atOpenStatus：当前城市是否开通
+        2必填
+        route：页面名称
+        value：页面需要参数 为字典形式，需转成json字符串，如页面需要id参数，则value 为 {id:0} 的json字符串
+        route值及value如下：
+        topup：底部菜单余额充值
+        scan：底部菜单扫码充电
+        activity：底部菜单优惠活动
+        chargeInfo：充电桩详情，value中id为充电桩id
+        mineInfo：个人资料
+        car：我的车辆
+        order：我的订单
+        invoice：我的发票
+        wallet：我的钱包
+        coupon：我的优惠券
+        collect：我的收藏
+        message：我的消息
+        html：关于我们，value中的 value为3、text为3、title为 关于我们
+        start：开始充电，value中的code为终端编号
+     */
+    public static final String url = "https://fn.hanyu365.com.cn/park/h5/index.html#/pages/index/index?route=";
+    //底部扫码充电
+    public static final String scan_charge_url = url+"scan";
+    //底部福利活动
+    public static final String welfare_activity_url = url+"activity";
+    //底部余额充值
+    public static final String balance_charge_url = url + "topup";
+    //个人资料
+    public static final String mine_info_url = url + "mineInfo";
+    //我的消息
+    public static final String mine_message_url = url + "message";
+    //我的车辆
+    public static final String mine_car_url = url + "car";
+    //我的订单
+    public static final String mine_order_url = url + "order";
+    //我的发票
+    public static final String mine_invoice_url = url + "invoice";
+    //我的钱包
+    public static final String mine_wallet_url = url + "wallet";
+    //我的优惠券
+    public static final String mine_coupon_url = url + "coupon";
+    //我的收藏
+    public static final String mine_collect_url = url + "collect";
+    //我的消息
+    public static final String message_url = url + "message";
+    //关于我们
+    public static final String about_us_url = url + "html&value=3";
+    public static final String about_us_url2 = url + "html&value=2";
+    public static final String about_us_url1 = url + "html&value=1";
+
+
+
 
 }

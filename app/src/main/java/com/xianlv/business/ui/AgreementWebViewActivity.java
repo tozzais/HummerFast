@@ -19,8 +19,10 @@ import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
+import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.AppJs;
 import com.xianlv.business.R;
+import com.xianlv.business.global.GlobalParam;
 import com.ycbjie.webviewlib.X5WebView;
 
 import butterknife.BindView;
@@ -41,8 +43,8 @@ public class AgreementWebViewActivity extends BaseActivity {
     TextView title;
 
 
-    public static void launch(Context from,  String  type) {
-        if (!ClickUtils.isFastClick()){
+    public static void launch(Context from, String type) {
+        if (!ClickUtils.isFastClick()) {
             return;
         }
         Intent intent = new Intent(from, AgreementWebViewActivity.class);
@@ -50,8 +52,8 @@ public class AgreementWebViewActivity extends BaseActivity {
         from.startActivity(intent);
     }
 
-    public static void launch(Context from,  String  type,  String  title) {
-        if (!ClickUtils.isFastClick()){
+    public static void launch(Context from, String type, String title) {
+        if (!ClickUtils.isFastClick()) {
             return;
         }
         Intent intent = new Intent(from, AgreementWebViewActivity.class);
@@ -59,9 +61,6 @@ public class AgreementWebViewActivity extends BaseActivity {
         intent.putExtra("title", title);
         from.startActivity(intent);
     }
-
-
-
 
 
     @Override
@@ -100,7 +99,8 @@ public class AgreementWebViewActivity extends BaseActivity {
 
 
     }
-    public void toLogin(){
+
+    public void toLogin() {
         Intent intent = getPackageManager().getLaunchIntentForPackage("com.cinderellavip.store");
         if (intent != null) {
             startActivity(intent);
@@ -119,9 +119,9 @@ public class AgreementWebViewActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_left_back:
-                if (web_view.canGoBack()){
+                if (web_view.canGoBack()) {
                     web_view.goBack();
-                }else {
+                } else {
                     finish();
                 }
                 break;
@@ -137,8 +137,15 @@ public class AgreementWebViewActivity extends BaseActivity {
             super.onProgressChanged(webView, i);
             mProgress.setProgress(i);
             String title1 = getIntent().getStringExtra("title");
-            if (i == 100){
-                title.setText(TextUtils.isEmpty(title1)?webView.getTitle():title1);
+            if (i == 100) {
+                title.setText(TextUtils.isEmpty(title1) ? webView.getTitle() : title1);
+                if (i == 100) {
+                    LogUtil.e("调用H5加载了");
+                    if (GlobalParam.getLoginBean() != null) {
+                        LogUtil.e("调用H5加载了1231243");
+                        web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
+                    }
+                }
             }
 
         }
@@ -150,9 +157,11 @@ public class AgreementWebViewActivity extends BaseActivity {
             return true;
         }
     }
+
     //全局声明，用于记录选择图片返回的地址值
     private ValueCallback<Uri> uploadMessage;
     private ValueCallback<Uri[]> valueCallback;
+
     private void selectImage() {
         Intent i = new Intent(Intent.ACTION_GET_CONTENT);
         i.addCategory(Intent.CATEGORY_OPENABLE);
@@ -193,8 +202,8 @@ public class AgreementWebViewActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && web_view.canGoBack()) {
             web_view.goBack();// 返回前一个页面
-                       return true;
-                  }
+            return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
 
