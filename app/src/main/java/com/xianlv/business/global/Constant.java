@@ -132,6 +132,11 @@ public class Constant {
     public static final String about_us_url2 = url + "html&value=2";
     public static final String about_us_url1 = url + "html&value=1";
 
+    //充电桩详情
+    public static final String charge_info_url = url + "chargeInfo&value={id:2}";
+
+
+
 
 
 

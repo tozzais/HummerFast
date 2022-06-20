@@ -40,6 +40,7 @@ import com.xianlv.business.bean.VideoDetail;
 import com.xianlv.business.bean.VideoItem;
 import com.xianlv.business.bean.VisitorUserItem;
 import com.xianlv.business.bean.WriteOffHistoryItem;
+import com.xianlv.business.bean.home.HomeResult;
 import com.xianlv.business.bean.order.ReserveOrderDetail;
 import com.xianlv.business.bean.order.ReserveOrderItem;
 import com.xianlv.business.bean.order.StoreCardOrderItem;
@@ -110,6 +111,10 @@ public interface ApiService {
     @POST("user/get")
     Observable<BaseResult<MineInfo>>
     getMineInfo();
+
+    @POST("app/powerStation/getList")
+    Observable<BaseResult<HomeResult>>
+    getHomeList(@Body TreeMap<String,String> bean);
 
 
     @POST(HttpUrl.mine_info)

@@ -13,16 +13,21 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseFragment;
-import com.tozzais.baselibrary.util.DataUtil;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.HomeAdapter;
 import com.xianlv.business.adapter.drop.ListDropDownAdapter;
+import com.xianlv.business.bean.home.HomeResult;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.home.MapActivity;
 import com.xianlv.business.weight.MyPopupWindow;
 
 import java.util.Arrays;
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -88,7 +93,7 @@ public class HomeFragment extends BaseFragment  {
         rv_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         homeAdapter = new HomeAdapter();
         rv_list.setAdapter(homeAdapter);
-        homeAdapter.setNewData(DataUtil.getData(2));
+
 
 
 
@@ -97,6 +102,18 @@ public class HomeFragment extends BaseFragment  {
 
     @Override
     public void loadData() {
+
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("page","0");
+        new RxHttp<BaseResult<HomeResult>>().send(ApiManager.getService().getHomeList(map),
+                new Response<BaseResult<HomeResult>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<HomeResult> result) {
+                        homeAdapter.setNewData(result.data.component1());
+
+                    }
+                });
+
 
 
     }
