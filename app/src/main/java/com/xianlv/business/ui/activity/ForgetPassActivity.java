@@ -1,19 +1,11 @@
 package com.xianlv.business.ui.activity;
 
-import android.Manifest;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,40 +13,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
 import com.tozzais.baselibrary.util.CommonUtils;
-import com.tozzais.baselibrary.util.log.LogUtil;
-import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
-import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.ShopResult;
-import com.xianlv.business.bean.VersionBean;
-import com.xianlv.business.bean.request.RequestCode;
-import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestShopInfo;
-import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
-import com.xianlv.business.toast.OnDialogClickListener;
-import com.xianlv.business.toast.PrivacyUtil;
-import com.xianlv.business.ui.AgreementWebViewActivity;
-import com.xuexiang.xupdate.XUpdate;
-import com.xuexiang.xupdate._XUpdate;
-import com.xuexiang.xupdate.service.OnFileDownloadListener;
-import com.xuexiang.xutil.app.PathUtils;
-import com.xuexiang.xutil.display.HProgressDialogUtils;
 import com.yzq.zxinglibrary.common.Constant;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -62,7 +34,7 @@ import butterknife.OnClick;
 /**
  * 尹晓冬 账号：15729271332
  */
-public class RegisterActivity extends CheckPermissionActivity {
+public class ForgetPassActivity extends CheckPermissionActivity {
 
 
 
@@ -81,12 +53,12 @@ public class RegisterActivity extends CheckPermissionActivity {
     @BindView(R.id.checkbox)
     ImageView checkbox;
 
-    public static void launch(Context from) {
+    public static void launch(Activity from) {
         if (!ClickUtils.isFastClick()) {
             return;
         }
-        Intent intent = new Intent(from, RegisterActivity.class);
-        from.startActivity(intent);
+        Intent intent = new Intent(from, ForgetPassActivity.class);
+        from.startActivityForResult(intent,102);
     }
 
     @Override
@@ -96,7 +68,7 @@ public class RegisterActivity extends CheckPermissionActivity {
 
     @Override
     protected int getBaseLayout() {
-        return R.layout.activity_register;
+        return R.layout.activity_forget_pass;
     }
 
     @Override
@@ -108,144 +80,8 @@ public class RegisterActivity extends CheckPermissionActivity {
 
     @Override
     public void loadData() {
-        boolean firstUse = GlobalParam.getFirstUse();
-        if (!firstUse) {
-            PrivacyUtil.showTwo(mActivity, new OnDialogClickListener() {
-                @Override
-                public void onSure() {
-                    GlobalParam.setFirstUse(true);
-                    if (GlobalParam.getUserLogin()){
-                        MainActivity.launch(mActivity);
-                        finish();
-                    }
-                }
-                @Override
-                public void onCancel() {
-                    if (!isFinishing())
-                        finish();
-                }
-            });
-        }else {
-            if (GlobalParam.getUserLogin()){
-            MainActivity.launch(mActivity);
-            finish();
-            }
-        }
 
 
-        String str = "我已阅读并同意《用户协议》、《隐私政策》";
-        SpannableString string = new SpannableString(str);
-        string.setSpan(new ClickableSpan() {
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setColor(getResources().getColor(R.color.baseColor));       //设置文件颜色
-                ds.setUnderlineText(false);      //设置下划线
-            }
-            @Override
-            public void onClick(View view) {
-                AgreementWebViewActivity.launch(mActivity,
-                        "http://www.mofan.store/mf/profile/biz/html/xianlvyhxy.html","用户协议");
-            }
-        },str.indexOf("《用户协议》"), str.indexOf("《用户协议》")+"《用户协议》".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-
-        string.setSpan(new ClickableSpan() {
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setColor(getResources().getColor(R.color.baseColor));       //设置文件颜色
-                ds.setUnderlineText(false);      //设置下划线
-            }
-            @Override
-            public void onClick(View view) {
-                AgreementWebViewActivity.launch(mActivity,
-                        "http://www.mofan.store/mf/profile/biz/html/xianlvxy.html","隐私政策");
-            }
-        },str.indexOf("《隐私政策》"), str.indexOf("《隐私政策》")+"《隐私政策》".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-
-        tvAgreement.setText(string);
-        tvAgreement.setMovementMethod(LinkMovementMethod.getInstance());//开始响应点击事件
-
-        try {
-            PackageManager pm = mContext.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), 0);
-            getVersion(pi.versionName);
-        } catch (Exception e) {
-            LogUtil.e(e.toString());
-        }
-
-    }
-
-    private void getVersion(String version){
-        Map<String, String> hashMap = new HashMap<>();
-        hashMap.put("nonce_str", UUID.randomUUID().toString().replace("-", "").substring(0, 6));
-        hashMap.put("versionNo", version + "");
-        new RxHttp<BaseResult<VersionBean>>().send(ApiManager.getService().getVersion(hashMap),
-                new Response<BaseResult<VersionBean>>(mActivity,Response.BOTH) {
-                    @Override
-                    public void onSuccess(BaseResult<VersionBean> result) {
-                        showDialog(result.data);
-                    }
-
-                });
-    }
-    private void  showDialog(VersionBean versionBean){
-        if (isFinishing()){
-            return;
-        }
-        if (!"1".equals(versionBean.news)){
-            //不是新版本
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        builder.setTitle("版本更新提示");
-        builder.setMessage(versionBean.intro);
-        builder.setPositiveButton("立即更新", (dialogInterface, i) -> {
-//            downFile(versionBean);
-            if (!TextUtils.isEmpty(versionBean.url)){
-                downFile(versionBean.url);
-            }else {
-                tsg("下载地址为空");
-            }
-
-        });
-        if (!"1".equals(versionBean.modify)){
-            //不是强制更新
-            builder.setNegativeButton("暂不更新", null);
-        }
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.show(); //构建AlertDialog并显示
-
-    }
-    private void downFile(String versionBean){
-        XUpdate.newBuild(mActivity)
-                .apkCacheDir(PathUtils.getExtDownloadsPath())
-                .build()
-                .download(versionBean, new OnFileDownloadListener() {
-                    @Override
-                    public void onStart() {
-                        HProgressDialogUtils.showHorizontalProgressDialog(mActivity, "下载进度", false);
-                    }
-
-                    @Override
-                    public void onProgress(float progress, long total) {
-                        HProgressDialogUtils.setProgress(Math.round(progress * 100));
-                    }
-
-                    @Override
-                    public boolean onCompleted(File file) {
-                        HProgressDialogUtils.cancel();
-                        _XUpdate.startInstallApk(mActivity, file);
-                        return false;
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        HProgressDialogUtils.cancel();
-                    }
-                });
     }
 
 
@@ -298,10 +134,7 @@ public class RegisterActivity extends CheckPermissionActivity {
             tsg("请输入您的密码");
             return;
         }
-        if (!ck_agreement){
-            tsg("请阅读并勾选《用户协议》和《隐私政策》");
-            return;
-        }
+
 
 //        RequestLogin bean = new RequestLogin();
 //        bean.phone = phone;
@@ -310,16 +143,21 @@ public class RegisterActivity extends CheckPermissionActivity {
         map.put("phone",phone);
         map.put("code",code);
         map.put("password",pass);
-        map.put("registerType","1");
-
-        new RxHttp<BaseResult<LoginBean>>().send(ApiManager.getService().register(map),
-                new Response<BaseResult<LoginBean>>(mActivity) {
+        new RxHttp<BaseResult<Integer>>().send(ApiManager.getService().forgetPass(map),
+                new Response<BaseResult<Integer>>(mActivity) {
                     @Override
-                    public void onSuccess(BaseResult<LoginBean> result) {
-                        tsg("注册成功");
-                        GlobalParam.setLoginBean(result.data);
-                        MainActivity.launch(mActivity);
-                        finish();
+                    public void onSuccess(BaseResult<Integer> result) {
+                        if (result.data == 1){
+                            tsg("修改成功");
+                            Intent intent = new Intent();
+                            intent.putExtra("phone",phone);
+                            intent.putExtra("password",pass);
+                            setResult(RESULT_OK,intent);
+                            finish();
+                        }else {
+                            tsg(result.msg);
+                        }
+
                     }
                 });
     }
@@ -336,7 +174,7 @@ public class RegisterActivity extends CheckPermissionActivity {
         }
         TreeMap<String,String> map = new TreeMap<>();
         map.put("phone",phone);
-        map.put("type","2");
+        map.put("type","3");
         new RxHttp<BaseResult>().send(ApiManager.getService().getCode(map),
                 new Response<BaseResult>(mActivity) {
                     @Override

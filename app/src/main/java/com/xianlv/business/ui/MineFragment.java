@@ -1,18 +1,41 @@
 package com.xianlv.business.ui;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
+
+import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.tozzais.baselibrary.util.log.LogUtil;
+import com.tozzais.baselibrary.weight.CircleImageView;
 import com.xianlv.business.R;
+import com.xianlv.business.bean.MineInfo;
 import com.xianlv.business.global.Constant;
+import com.xianlv.business.global.ImageUtil;
+import com.xianlv.business.http.ApiManager;
+import com.xianlv.business.http.BaseResult;
+import com.xianlv.business.http.Response;
 import com.xianlv.business.util.BottomDialogUtil;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
 public class MineFragment extends BaseFragment  {
+
+    @BindView(R.id.ci_avatar)
+    CircleImageView ci_avatar;
+    @BindView(R.id.tv_nickname)
+    TextView tv_nickname;
+    @BindView(R.id.tv_phone)
+    TextView tv_phone;
+    @BindView(R.id.tv_message)
+    TextView tv_message;
+    @BindView(R.id.ll_message)
+    LinearLayoutCompat ll_message;
 
 
     @Override
@@ -25,19 +48,32 @@ public class MineFragment extends BaseFragment  {
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        initHeadView();
-
-    }
-
-    private void initHeadView() {
-
-
 
     }
 
     @Override
     public void loadData() {
+        new RxHttp<BaseResult<MineInfo>>().send(ApiManager.getService().getMineInfo(),
+                new Response<BaseResult<MineInfo>>(mActivity,Response.BOTH) {
+                    @Override
+                    public void onSuccess(BaseResult<MineInfo> result) {
+                        if (result.isSuccess()){
+                            MineInfo data = result.data;
+                            ImageUtil.loadFullAddress(mActivity,ci_avatar, data.logo);
+                            tv_nickname.setText(data.nickname);
+                            tv_phone.setText(data.phone);
+                            MineInfo.Message message = data.message;
+                            if (message != null && !TextUtils.isEmpty(message.text)){
+                                ll_message.setVisibility(View.VISIBLE);
+                                tv_message.setText(message.text);
+                            }else {
+                                ll_message.setVisibility(View.GONE);
+                            }
+                        }
 
+                    }
+
+                });
 
     }
 

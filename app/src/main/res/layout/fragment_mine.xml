@@ -69,8 +69,7 @@
                 android:id="@+id/ci_avatar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/demo_avatar"
-                />
+                android:src="@mipmap/demo_avatar" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:layout_width="wrap_content"
@@ -91,12 +90,14 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/tv_nickname"
                 style="@style/base_text_style"
                 android:text="不吃鱼的猫"
                 android:textSize="18sp"
                 />
 
             <TextView
+                android:id="@+id/tv_phone"
                 style="@style/base_text_style"
                 android:text="183****5566"
                 android:textSize="14sp"
@@ -129,6 +130,7 @@
         android:padding="12dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -145,6 +147,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_message"
                 style="@style/base_text_style"
                 android:text="您的爱车充电已完成，请立即查看"
                 android:textSize="14sp"

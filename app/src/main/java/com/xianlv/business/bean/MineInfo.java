@@ -2,10 +2,14 @@ package com.xianlv.business.bean;
 
 public class MineInfo {
 
-    public String userId;
-    public String department;
-    public String address;
-    public String shopName;
-    public String nickName;
-    public String trueName;
+    public String logo;
+    public String phone;
+    public String nickname;
+
+    public Message message;
+
+
+    public class Message{
+        public String text;
+    }
 }

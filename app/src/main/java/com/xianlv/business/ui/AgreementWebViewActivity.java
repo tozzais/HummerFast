@@ -82,7 +82,13 @@ public class AgreementWebViewActivity extends BaseActivity {
     @Override
     public void loadData() {
 
-        web_view.loadUrl(getIntent().getStringExtra("type"));
+
+        String url = getIntent().getStringExtra("type");
+        if (GlobalParam.getLoginBean() != null){
+            url = url +"&token="+GlobalParam.getLoginBean().token;
+        }
+        LogUtil.e("加载的url = "+url);
+        web_view.loadUrl(url);
 
 
         web_view.setWebChromeClient(new WebChrome());

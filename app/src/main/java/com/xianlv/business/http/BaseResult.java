@@ -8,4 +8,8 @@ public class BaseResult<T>{
     public int code;
     public T data;
     public String msg;
+
+    public boolean isSuccess(){
+        return code == 0;
+    }
 }

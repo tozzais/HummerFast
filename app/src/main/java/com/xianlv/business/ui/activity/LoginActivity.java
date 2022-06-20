@@ -23,7 +23,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.google.gson.Gson;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.CheckPermissionActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
@@ -34,15 +33,11 @@ import com.xianlv.business.R;
 import com.xianlv.business.bean.LoginBean;
 import com.xianlv.business.bean.ShopResult;
 import com.xianlv.business.bean.VersionBean;
-import com.xianlv.business.bean.request.RequestCode;
-import com.xianlv.business.bean.request.RequestLogin;
 import com.xianlv.business.bean.request.RequestShopInfo;
 import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
-import com.xianlv.business.toast.OnDialogClickListener;
-import com.xianlv.business.toast.PrivacyUtil;
 import com.xianlv.business.ui.AgreementWebViewActivity;
 import com.xuexiang.xupdate.XUpdate;
 import com.xuexiang.xupdate._XUpdate;
@@ -236,9 +231,13 @@ public class LoginActivity extends CheckPermissionActivity {
 
 
     private static final int REQUEST_CODE_SCAN = 1001;
-    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox, R.id.tv_login_pass, R.id.iv_back})
+    @OnClick({R.id.tv_code, R.id.tv_register, R.id.tv_login, R.id.checkbox, R.id.tv_login_pass
+            , R.id.iv_back, R.id.tv_forget_pass})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_forget_pass:
+                ForgetPassActivity.launch(mActivity);
+                break;
             case R.id.tv_register:
                 RegisterActivity.launch(mActivity);
 //                BottomDialogUtil.showSelectDialog(mActivity);
@@ -267,6 +266,7 @@ public class LoginActivity extends CheckPermissionActivity {
 
         }
     }
+
     private boolean ck_agreement = false;
 
     private void login() {
@@ -391,6 +391,10 @@ public class LoginActivity extends CheckPermissionActivity {
                     tsg("不是系统的二维码");
                 }
             }
+        }
+        if (requestCode == 102 && resultCode == RESULT_OK) {
+           etPhone.setText(data.getStringExtra("phone"));
+           et_pass.setText(data.getStringExtra("password"));
         }
     }
 

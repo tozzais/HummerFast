@@ -101,6 +101,17 @@ public interface ApiService {
     @POST(HttpUrl.register)
     Observable<BaseResult<LoginBean>>
     register(@Body TreeMap<String,String> bean);
+
+    @POST("user/forgetPwd")
+    Observable<BaseResult<Integer>>
+    forgetPass(@Body TreeMap<String,String> bean);
+
+
+    @POST("user/get")
+    Observable<BaseResult<MineInfo>>
+    getMineInfo();
+
+
     @POST(HttpUrl.mine_info)
     Observable<BaseResult<MineInfo>>
     mineInfo(@Body BaseRequest bean);
