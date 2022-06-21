@@ -24,6 +24,7 @@ import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.home.MapActivity;
+import com.xianlv.business.ui.activity.home.SelectCityActivity;
 import com.xianlv.business.weight.MyPopupWindow;
 
 import java.util.Arrays;
@@ -52,9 +53,12 @@ public class HomeFragment extends BaseFragment  {
     private ListDropDownAdapter ageAdapter1;
     private String[] ages1 = {"不限","快充","慢充"};
 
-    @OnClick({R.id.rl_park_fee, R.id.rl_charge_method, R.id.rl_filter, R.id.rl_map})
+    @OnClick({R.id.tv_address, R.id.rl_park_fee, R.id.rl_charge_method, R.id.rl_filter, R.id.rl_map})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_address:
+                SelectCityActivity.launch(mActivity);
+                break;
             case R.id.rl_park_fee:
                 openSimplePopUpWindow();
                 break;
@@ -110,7 +114,6 @@ public class HomeFragment extends BaseFragment  {
                     @Override
                     public void onSuccess(BaseResult<HomeResult> result) {
                         homeAdapter.setNewData(result.data.component1());
-
                     }
                 });
 
