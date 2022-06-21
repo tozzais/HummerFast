@@ -4,6 +4,7 @@ package com.xianlv.business.adapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.google.gson.Gson;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.util.toast.ToastCommom;
 import com.xianlv.business.R;
@@ -50,7 +51,9 @@ public class HomeAdapter extends BaseQuickAdapter<HomePowerItem, BaseViewHolder>
 //            refuse(item.roomOrderId);
 //        });
         helper.getView(R.id.ll_root).setOnClickListener(v -> {
-            AgreementWebViewActivity.launch(getContext(), Constant.charge_info_url);
+            HashMap<String,String> map = new HashMap<>();
+            map.put("id",item.getPowerStationId());
+            AgreementWebViewActivity.launch(getContext(), Constant.charge_info_url+(new Gson().toJson(map)));
 
         });
 

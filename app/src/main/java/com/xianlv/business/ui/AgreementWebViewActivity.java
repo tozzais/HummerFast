@@ -19,6 +19,7 @@ import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
+import com.tozzais.baselibrary.util.NetworkUtil;
 import com.tozzais.baselibrary.util.log.LogUtil;
 import com.xianlv.business.AppJs;
 import com.xianlv.business.R;
@@ -108,6 +109,27 @@ public class AgreementWebViewActivity extends BaseActivity {
             web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
         }
 
+        //提高渲染的优先级
+        settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        //使把图片加载放在最后来加载渲染
+        settings.setBlockNetworkImage(true);
+        //开启H5(APPCache)缓存功能
+
+        settings.setAppCacheEnabled(true);
+        //开启 DOM storage 功能
+
+        settings.setDomStorageEnabled(true);
+        //应用可以有数据库
+
+        settings.setDatabaseEnabled(true);
+        //根据网络连接情况，设置缓存模式，
+        if (NetworkUtil.isNetworkAvailable(this)) {
+            settings.setCacheMode(WebSettings.LOAD_DEFAULT);// 根据cache-control决定是否从网络上取数据
+        } else {
+            settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);// 先查找缓存，没有的情况下从网络获取。
+        }
+        //可以读取文件缓存(manifest生效)
+        settings.setAllowFileAccess(true);
 
     }
 
