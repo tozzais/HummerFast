@@ -433,6 +433,9 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
                 }
             }
         }
+        if (requestCode == 1002 && resultCode == RESULT_OK && data != null){
+            homeFragment.setAddress(data.getStringExtra("city"));
+        }
     }
 
     public void openDrawerView() {

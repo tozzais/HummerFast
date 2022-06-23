@@ -1,19 +1,24 @@
 package com.xianlv.business.ui.activity.home;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseActivity;
 import com.tozzais.baselibrary.util.ClickUtils;
+import com.wang.avi.AVLoadingIndicatorView;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.CityListAdapter;
 import com.xianlv.business.adapter.gv.CityAdapter;
@@ -38,13 +43,25 @@ public class SelectCityActivity extends BaseActivity {
     @BindView(R.id.tv_city)
     TextView tv_city;
 
+    @BindView(R.id.loading)
+    AVLoadingIndicatorView loading;
 
-    public static void launch(Context from) {
+    @BindView(R.id.tv_location)
+    TextView tv_location;
+
+
+    private void refresh(boolean isRefresh) {
+        loading.setVisibility(isRefresh ? View.VISIBLE : View.GONE);
+        tv_location.setVisibility(isRefresh ? View.GONE : View.VISIBLE);
+    }
+
+
+    public static void launch(Activity from) {
         if (!ClickUtils.isFastClick()) {
             return;
         }
         Intent intent = new Intent(from, SelectCityActivity.class);
-        from.startActivity(intent);
+        from.startActivityForResult(intent,1002);
     }
 
 
@@ -56,22 +73,26 @@ public class SelectCityActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
         setBackTitle("选择城市");
+        setLineVisibility();
 
 
     }
 
     @Override
     public void loadData() {
+        refresh(true);
         LocationManager.getInstance().startLocation(mActivity, new LocationManager.OnCallBack() {
             @Override
             public void onSuccess(AMapLocation amapLocation) {
+                tv_city.setText(amapLocation.getCity());
                 getCitys(amapLocation);
+            }
 
+            @Override
+            public void onFail() {
+                refresh(false);
             }
         });
-
-
-
 
 
     }
@@ -80,36 +101,61 @@ public class SelectCityActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_location:
+                loadData();
                 break;
 
         }
     }
 
 
-    private void  getCitys(AMapLocation amapLocation){
-        TreeMap<String,String> map = new TreeMap<>();
-        map.put("cityName",amapLocation.getCity());
-        map.put("longitude",amapLocation.getLongitude()+"");
-        map.put("latitude",amapLocation.getLatitude()+"");
+    private void getCitys(AMapLocation amapLocation) {
+        TreeMap<String, String> map = new TreeMap<>();
+        map.put("cityName", amapLocation.getCity());
+        map.put("longitude", amapLocation.getLongitude() + "");
+        map.put("latitude", amapLocation.getLatitude() + "");
         new RxHttp<BaseResult<CityResult>>().send(ApiManager.getService().getCityList(map),
-                new Response<BaseResult<CityResult>>(mActivity) {
+                new Response<BaseResult<CityResult>>(mActivity,Response.BOTH) {
                     @Override
                     public void onSuccess(BaseResult<CityResult> result) {
-
-
+                        if (result.data == null){
+                            return;
+                        }
                         CityAdapter chargeAdapter = new CityAdapter(mActivity, result.data.getHotCityList());
                         gv_area.setAdapter(chargeAdapter);
-
                         CityListAdapter cityListAdapter = new CityListAdapter();
                         rv_city.setLayoutManager(new LinearLayoutManager(mActivity));
                         rv_city.setAdapter(cityListAdapter);
                         cityListAdapter.setNewData(result.data.getCityList());
+                        gv_area.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                setResultFinish(result.data.getHotCityList().get(position).getCityName());
+                            }
+                        });
+                        cityListAdapter.setOnItemClickListener(new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                                setResultFinish(result.data.getCityList().get(position).getCityName());
+                            }
+                        });
 
+                    }
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        refresh(false);
                     }
                 });
     }
 
+    private void setResultFinish(String city){
+        Intent intent = new Intent();
+        intent.putExtra("city",city);
+        setResult(RESULT_OK,intent);
+        finish();
 
+
+    }
 
 
 }
