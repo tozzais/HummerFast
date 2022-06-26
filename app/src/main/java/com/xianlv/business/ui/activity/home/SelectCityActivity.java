@@ -3,8 +3,11 @@ package com.xianlv.business.ui.activity.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -48,6 +51,8 @@ public class SelectCityActivity extends BaseActivity {
 
     @BindView(R.id.tv_location)
     TextView tv_location;
+    @BindView(R.id.et_search)
+    EditText et_search;
 
 
     private void refresh(boolean isRefresh) {
@@ -74,6 +79,16 @@ public class SelectCityActivity extends BaseActivity {
     public void initView(Bundle savedInstanceState) {
         setBackTitle("选择城市");
         setLineVisibility();
+        et_search.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId== EditorInfo.IME_ACTION_SEND ||(event!=null&&event.getKeyCode()== KeyEvent.KEYCODE_ENTER))
+            {
+                //点击搜索要做的操作
+                getCitys(et_search.getText().toString().trim());
+                return true;
+            }
+            return false;
+        });
+
 
 
     }
@@ -109,12 +124,51 @@ public class SelectCityActivity extends BaseActivity {
 
 
     private void getCitys(AMapLocation amapLocation) {
+        getCitys(amapLocation.getCity());
+//        TreeMap<String, String> map = new TreeMap<>();
+//        map.put("cityName", amapLocation.getCity());
+//        map.put("longitude", amapLocation.getLongitude() + "");
+//        map.put("latitude", amapLocation.getLatitude() + "");
+//        new RxHttp<BaseResult<CityResult>>().send(ApiManager.getService().getCityList(map),
+//                new Response<BaseResult<CityResult>>(mActivity,Response.BOTH) {
+//                    @Override
+//                    public void onSuccess(BaseResult<CityResult> result) {
+//                        if (result.data == null){
+//                            return;
+//                        }
+//                        CityAdapter chargeAdapter = new CityAdapter(mActivity, result.data.getHotCityList());
+//                        gv_area.setAdapter(chargeAdapter);
+//                        CityListAdapter cityListAdapter = new CityListAdapter();
+//                        rv_city.setLayoutManager(new LinearLayoutManager(mActivity));
+//                        rv_city.setAdapter(cityListAdapter);
+//                        cityListAdapter.setNewData(result.data.getCityList());
+//                        gv_area.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                setResultFinish(result.data.getHotCityList().get(position).getCityName());
+//                            }
+//                        });
+//                        cityListAdapter.setOnItemClickListener(new OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+//                                setResultFinish(result.data.getCityList().get(position).getCityName());
+//                            }
+//                        });
+//
+//                    }
+//                    @Override
+//                    public void onCompleted() {
+//                        super.onCompleted();
+//                        refresh(false);
+//                    }
+//                });
+    }
+
+    private void getCitys(String city) {
         TreeMap<String, String> map = new TreeMap<>();
-        map.put("cityName", amapLocation.getCity());
-        map.put("longitude", amapLocation.getLongitude() + "");
-        map.put("latitude", amapLocation.getLatitude() + "");
+        map.put("cityName", city);
         new RxHttp<BaseResult<CityResult>>().send(ApiManager.getService().getCityList(map),
-                new Response<BaseResult<CityResult>>(mActivity,Response.BOTH) {
+                new Response<BaseResult<CityResult>>(mActivity) {
                     @Override
                     public void onSuccess(BaseResult<CityResult> result) {
                         if (result.data == null){
@@ -147,6 +201,7 @@ public class SelectCityActivity extends BaseActivity {
                     }
                 });
     }
+
 
     private void setResultFinish(String city){
         Intent intent = new Intent();

@@ -12,38 +12,55 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.xianlv.business.MainActivity;
 import com.xianlv.business.R;
 import com.xianlv.business.adapter.HomeAdapter;
+import com.xianlv.business.adapter.banner.ImageAdapter;
 import com.xianlv.business.adapter.drop.ListDropDownAdapter;
+import com.xianlv.business.bean.home.AppBannerItem;
+import com.xianlv.business.bean.home.HomeNoticeItem;
 import com.xianlv.business.bean.home.HomeResult;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.ui.activity.home.MapActivity;
 import com.xianlv.business.ui.activity.home.SelectCityActivity;
+import com.xianlv.business.weight.CustomTextSwitcher;
 import com.xianlv.business.weight.MyPopupWindow;
+import com.youth.banner.Banner;
+import com.youth.banner.indicator.CircleIndicator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 
-public class HomeFragment extends BaseFragment  {
+public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_list)
     RecyclerView rv_list;
     @BindView(R.id.rl_park_fee)
     RelativeLayout rl_park_fee;
-    @BindView(R.id.filter_view)
-    View filterview;
     @BindView(R.id.view)
     View view;
+    @BindView(R.id.banner)
+    Banner banner;
+    @BindView(R.id.swipeLayout)
+    SwipeRefreshLayout swipeLayout;
+    @BindView(R.id.tv_notice)
+    CustomTextSwitcher tv_notice;
+    @BindView(R.id.appBarLayout)
+    AppBarLayout appBarLayout;
 
 
     private HomeAdapter homeAdapter;
@@ -53,7 +70,8 @@ public class HomeFragment extends BaseFragment  {
     private ListDropDownAdapter ageAdapter1;
     private String[] ages1 = {"不限","快充","慢充"};
 
-    @OnClick({R.id.tv_address, R.id.rl_park_fee, R.id.rl_charge_method, R.id.rl_filter, R.id.rl_map})
+    @OnClick({R.id.tv_address, R.id.rl_park_fee, R.id.rl_charge_method, R.id.rl_filter, R.id.rl_map,
+            R.id.tv_detail})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_address:
@@ -78,6 +96,9 @@ public class HomeFragment extends BaseFragment  {
             case R.id.rl_map:
                 MapActivity.launch(mActivity);
                 break;
+            case R.id.tv_detail:
+                tv_notice.setClick();
+                break;
 
         }
     }
@@ -98,6 +119,10 @@ public class HomeFragment extends BaseFragment  {
         homeAdapter = new HomeAdapter();
         rv_list.setAdapter(homeAdapter);
 
+        swipeLayout.setOnRefreshListener(this);
+
+
+
 
 
 
@@ -106,16 +131,16 @@ public class HomeFragment extends BaseFragment  {
 
     @Override
     public void loadData() {
-
-        TreeMap<String,String> map = new TreeMap<>();
-        map.put("page","0");
-        new RxHttp<BaseResult<HomeResult>>().send(ApiManager.getService().getHomeList(map),
-                new Response<BaseResult<HomeResult>>(mActivity) {
-                    @Override
-                    public void onSuccess(BaseResult<HomeResult> result) {
-                        homeAdapter.setNewData(result.data.component1());
-                    }
-                });
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset >= 0) {
+                    swipeLayout.setEnabled(true);
+                } else {
+                    swipeLayout.setEnabled(false);
+                }
+            }
+        });
 
 
 
@@ -135,6 +160,12 @@ public class HomeFragment extends BaseFragment  {
                 ageAdapter.setCheckItem(position);
                 parkPosition = position;
                 parkWindow.dismiss();
+                if (parkPosition == 0){
+                    parkingFeeType = "";
+                }else {
+                    parkingFeeType = ""+(parkPosition - 1);
+                }
+                onRefresh();
             }
         });
         parkWindow = new MyPopupWindow();
@@ -162,9 +193,15 @@ public class HomeFragment extends BaseFragment  {
         ageView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ageAdapter.setCheckItem(position);
+                ageAdapter1.setCheckItem(position);
                 chargePosition = position;
                 chargeWindow.dismiss();
+                if (position == 0){
+                    chargeType = "";
+                }else {
+                    chargeType = ""+(position - 1);
+                }
+                onRefresh();
             }
         });
         chargeWindow = new MyPopupWindow();
@@ -193,6 +230,106 @@ public class HomeFragment extends BaseFragment  {
     public void setAddress(String city) {
         tv_address.setText(city);
         tv_address.setVisibility(View.VISIBLE);
+        this.city = city;
+        getData(page);
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    private int page = 0;
+    private double longitude; //经度
+    private double latitude; //维度
+    private String city;
+
+    private String parkingFeeType = ""; // 0.停车免费 1.限时收费 2.收费
+    private String chargeType = ""; //0.快充 1.慢充
+    private String voltageType = ""; // 0.高低压兼容 1.高压 2.低压
+    private String distance = ""; // 距离
+    private String maxPrice = ""; // 距离
+    private void  getData(int page){
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("page",page+"");
+        map.put("provinceName",city);
+        map.put("longitude",longitude+"");
+        map.put("latitude",latitude+"");
+        map.put("parkingFeeType",parkingFeeType+"");
+        map.put("chargeType",chargeType+"");
+        map.put("voltageType",voltageType+"");
+        map.put("distance",distance+"");
+        map.put("maxPrice",maxPrice+"");
+        new RxHttp<BaseResult<HomeResult>>().send(ApiManager.getService().getHomeList(map),
+                new Response<BaseResult<HomeResult>>(mActivity) {
+                    @Override
+                    public void onSuccess(BaseResult<HomeResult> result) {
+                        homeAdapter.setNewData(result.data.component1());
+                        setAppBanner(Objects.requireNonNull(result.data.getAppBannerList()));
+                        setNotice(result.data.getAnnouncementList());
+                    }
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        swipeLayout.setRefreshing(false);
+                    }
+                });
+    }
+
+    private void setNotice(List<HomeNoticeItem> announcementList){
+        announcementList.addAll(announcementList);
+        tv_notice.bindData(announcementList)
+                .setInAnimation(R.anim.animation_down_up_in_animation)
+                .setOutAnimation(R.anim.animation_down_up_out_animation)
+                .startSwitch(3000L);
+    }
+
+    private void setAppBanner(List<AppBannerItem> appBanner){
+        List<String> images = new ArrayList<>();
+        for (AppBannerItem appBannerItem:appBanner){
+            images.add(appBannerItem.getLogo());
+        }
+        banner.addBannerLifecycleObserver(this)//添加生命周期观察者
+                .setAdapter(new ImageAdapter(images))
+                .setIndicator(new CircleIndicator(mActivity));
+//        banner.setBannerGalleryMZ(60,0.8f);
+    }
+
+    @Override
+    public void onRefresh() {
+        getData(page);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        banner.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        banner.stop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        banner.destroy();
+    }
+
+    public void setFilter(String parkingFeeType, String chargeType, String voltageType, String distance, String maxPrice) {
+        this.parkingFeeType = parkingFeeType;
+        this.chargeType = chargeType;
+        this.voltageType = voltageType;
+        this.distance = distance;
+        this.maxPrice = maxPrice;
+        onRefresh();
 
     }
 }

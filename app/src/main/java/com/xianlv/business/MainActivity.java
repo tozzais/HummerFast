@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -412,6 +413,7 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
                 break;
             case R.id.tv_finish:
                 mDrawerLayout.closeDrawers();
+                setFilter();
                 break;
         }
     }
@@ -442,8 +444,6 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
         mDrawerLayout.openDrawer(drawer_content);
     }
 
-    @BindView(R.id.gv_area)
-    GridView gv_area;
     @BindView(R.id.gv_fee)
     GridView gv_fee;
     @BindView(R.id.gv_charge)
@@ -463,21 +463,23 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
     private FilterAdapter distanceAdapter;
 
     private void setDrawerView() {
-        gv_area.setAdapter(new FilterAdapter(this, getFilter(new String[]{"全部"})));
 
-        feeAdapter = new FilterAdapter(this, getFilter(new String[]{"限时免费", "限时免费", "停车收费"}));
+        feeAdapter = new FilterAdapter(this, getFilter(new String[]{"不限","限时免费", "限时免费", "停车收费"}));
         gv_fee.setAdapter(feeAdapter);
 
-        chargeAdapter = new FilterAdapter(this, getFilter(new String[]{"快充", "慢充"}));
+        chargeAdapter = new FilterAdapter(this, getFilter(new String[]{"不限","快充", "慢充"}));
         gv_charge.setAdapter(chargeAdapter);
 
-        voltageAdapter = new FilterAdapter(this, getFilter(new String[]{"高压", "低压", "高压兼低压"}));
+        voltageAdapter = new FilterAdapter(this, getFilter(new String[]{"不限","高压", "低压", "高压兼低压"}));
         gv_voltage.setAdapter(voltageAdapter);
 
-        distanceAdapter = new FilterAdapter(this, getFilter(new String[]{"3公里", "5公里", "10公里", "20公里", "30公里", "50公里"}));
+        distanceAdapter = new FilterAdapter(this, getFilter(new String[]{"不限","3公里", "5公里", "10公里", "20公里", "30公里", "50公里"}));
         gv_distance.setAdapter(distanceAdapter);
 
         addListener();
+
+
+
     }
 
     private void reset(FilterAdapter... filterAdapters) {
@@ -485,6 +487,48 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
                 filterAdapters) {
             f.reset();
         }
+        maxPrice = "";
+        seekbar_voice.setProgress(0);
+
+
+    }
+
+    private String maxPrice = "";
+    private void setFilter(){
+        String parkingFeeType = "";
+        int selectPosition = feeAdapter.getSelectPosition();
+        if (selectPosition != 0){
+            parkingFeeType = ""+(selectPosition - 1);
+        }
+        String chargeType = "";
+        int p = chargeAdapter.getSelectPosition();
+        if (p != 0){
+            chargeType = ""+(p - 1);
+        }
+        String voltageType = "";
+        int p1 = voltageAdapter.getSelectPosition();
+        if (p1 != 0 && p1 != 3){
+            voltageType = ""+(p);
+        }else if (p1 ==3){
+            voltageType = "0";
+        }
+        String distance = "";
+        int p2 = distanceAdapter.getSelectPosition();
+        if (p2 == 1){
+            distance = "3";
+        }else if (p2 == 2){
+            distance = "5";
+        }else if (p2 == 3){
+            distance = "10";
+        }else if (p2 == 4){
+            distance = "20";
+        }else if (p2 == 5){
+            distance = "30";
+        }else if (p2 == 6){
+            distance = "50";
+        }
+
+        homeFragment.setFilter(parkingFeeType,chargeType,voltageType,distance,maxPrice);
 
     }
 
@@ -501,7 +545,8 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
         seekbar_voice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tv_ele_fee.setText("0~" + (String.format("%.2f", progress / 100.0 * 5)));
+                maxPrice = String.format("%.2f", progress / 100.0 * 3.75);
+                tv_ele_fee.setText("0~" + (String.format("%.2f", progress / 100.0 * 3.75)));
             }
 
             @Override
@@ -513,6 +558,10 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
+        });
+        seekbar_voice.setOnTouchListener((v, event) -> {
+            mDrawerLayout.requestDisallowInterceptTouchEvent(true);
+            return false;
         });
     }
 
@@ -548,6 +597,9 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
                 if (homeFragment != null){
+                    homeFragment.setLatitude(amapLocation.getLatitude());
+                    homeFragment.setLongitude(amapLocation.getLongitude());
+                    //必须在经纬度之后
                     homeFragment.setAddress(amapLocation.getCity());
                 }
             } else {

@@ -87,172 +87,7 @@
 
     </LinearLayout>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_bg">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/banner" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:padding="12dp">
-
-                    <TextView
-                        style="@style/base_text_style"
-                        android:layout_weight="1"
-                        android:drawableLeft="@mipmap/icon_notice"
-                        android:drawablePadding="5dp"
-                        android:text="完成车辆认证，立享服务费抵用券~"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        style="@style/base_text_style"
-                        android:padding="2dp"
-                        android:text="详情"
-                        android:textColor="@color/grayText"
-                        android:textSize="12sp" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/white">
-
-                <RelativeLayout
-                    android:id="@+id/rl_park_fee"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <TextView
-                        style="@style/base_text_style"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:drawableRight="@mipmap/icon_filter_right"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
-                        android:text="停车费" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/rl_charge_method"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <TextView
-                        style="@style/base_text_style"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:drawableRight="@mipmap/icon_filter_right"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
-                        android:text="充电方式" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_filter"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <TextView
-                        style="@style/base_text_style"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:drawableRight="@mipmap/icon_filter_right2"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
-                        android:text="筛选" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_map"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <TextView
-                        style="@style/base_text_style"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:drawableRight="@mipmap/icon_filter_right3"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
-                        android:text="地图模式" />
-
-                </RelativeLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/collect_default"
-                    android:padding="12dp"
-                    android:layout_gravity="center_vertical"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <View
-                android:id="@+id/view"
-                style="@style/line_light"/>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_scrollFlags="scroll">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <View
-                android:id="@+id/filter_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#55000000"
-                android:visibility="gone"
-                />
-        </RelativeLayout>
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -260,8 +95,178 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        >
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_bg">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        app:banner_loop_time="3000"
+                        app:banner_auto_loop="true"
+                        app:banner_indicator_normal_width="6dp"
+                        app:banner_indicator_normal_color="@color/white"
+                        app:banner_indicator_selected_color="@color/baseColor"
+                        app:banner_indicator_gravity="center"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="12dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_notice"/>
+
+                        <com.xianlv.business.weight.CustomTextSwitcher
+                            android:id="@+id/tv_notice"
+                            style="@style/base_text_style"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:text="完成车辆认证，立享服务费抵用券~"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_detail"
+                            style="@style/base_text_style"
+                            android:padding="12dp"
+                            android:text="详情"
+                            android:textColor="@color/grayText"
+                            android:textSize="12sp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_park_fee"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/base_text_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableRight="@mipmap/icon_filter_right"
+                            android:drawablePadding="5dp"
+                            android:gravity="center"
+                            android:text="停车费" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_charge_method"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/base_text_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableRight="@mipmap/icon_filter_right"
+                            android:drawablePadding="5dp"
+                            android:gravity="center"
+                            android:text="充电方式" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_filter"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/base_text_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableRight="@mipmap/icon_filter_right2"
+                            android:drawablePadding="5dp"
+                            android:gravity="center"
+                            android:text="筛选" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_map"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/base_text_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableRight="@mipmap/icon_filter_right3"
+                            android:drawablePadding="5dp"
+                            android:gravity="center"
+                            android:text="地图模式" />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/collect_default"
+                        android:padding="12dp"
+                        android:visibility="gone"
+                        android:layout_gravity="center_vertical"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:id="@+id/view"
+                    style="@style/line_light"/>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_scrollFlags="scroll"/>
+
+
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

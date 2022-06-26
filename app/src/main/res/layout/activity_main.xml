@@ -161,21 +161,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/statusbar_view_height" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="区域"
-            android:textStyle="bold" />
-
-        <GridView
-            android:id="@+id/gv_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
-            android:verticalSpacing="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -261,7 +246,7 @@
         <SeekBar
             android:id="@+id/seekbar_voice"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="15dp"
             android:splitTrack="false"
             android:background="@mipmap/line"
             android:progressDrawable="@drawable/seekbar_bg"
@@ -284,7 +269,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5"
+                android:text="3.75"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/grayText"
                 android:textSize="12sp"/>

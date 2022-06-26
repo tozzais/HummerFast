@@ -184,6 +184,9 @@ dependencies {
     //androidUtilCode
     implementation 'com.blankj:utilcodex:1.31.0'
 
+    //banner库
+    implementation 'io.github.youth5201314:banner:2.2.2'
+
 
 
 

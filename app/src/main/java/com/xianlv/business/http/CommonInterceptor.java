@@ -114,9 +114,9 @@ public class CommonInterceptor implements Interceptor {
         }
 
         LoginBean loginBean = GlobalParam.getLoginBean();
-        if (!TextUtils.isEmpty(sign)){
-            LogUtil.e("加密信息后"+sign);
-        }
+//        if (!TextUtils.isEmpty(sign)){
+//            LogUtil.e("加密信息后"+sign);
+//        }
         request = request.newBuilder()
                     .addHeader("sign",sign == null?"":sign)
                     .addHeader("platform","APP")

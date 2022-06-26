@@ -120,6 +120,12 @@ public interface ApiService {
     @POST("app/region/getCityList")
     Observable<BaseResult<CityResult>>
     getCityList(@Body TreeMap<String,String> bean);
+    @POST("app/collect/add")
+    Observable<BaseResult>
+    collect(@Body TreeMap<String,String> bean);
+    @POST("app/collect/cancel")
+    Observable<BaseResult>
+    cancelCollect(@Body TreeMap<String,String> bean);
 
 
     @POST(HttpUrl.mine_info)

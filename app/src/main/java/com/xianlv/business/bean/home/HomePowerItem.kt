@@ -10,4 +10,5 @@ data class HomePowerItem(
     val trickleChargeNum:String?,
     val trickUsableNum:String?,
     val distance:String?,
+    var collect:Int?,
 )

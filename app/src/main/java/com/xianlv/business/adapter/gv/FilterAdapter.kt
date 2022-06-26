@@ -46,7 +46,14 @@ class FilterAdapter(val context: Context,val list: List<FilterBean>) : BaseAdapt
 
     }
 
+    var selectPosition : Int = 0
+
+    fun getSelect(): Int {
+        return selectPosition
+    }
+
     fun select(position : Int){
+        this.selectPosition = position
         for (index in list.indices){
             list[index].isCheck = index == position
         }

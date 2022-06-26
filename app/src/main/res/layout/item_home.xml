@@ -14,15 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingTop="12dp"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
         android:orientation="horizontal">
 
         <com.xianlv.business.weight.SquareRoundImageView
             android:id="@+id/iv_product"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="12dp"
             android:scaleType="fitXY"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -45,9 +44,11 @@
                     android:text="闵行区丰尚国际电动汽车充电站"/>
 
                 <ImageView
+                    android:id="@+id/iv_image"
+                    android:padding="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/collect_default"/>
+                    android:src="@mipmap/collect_default" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,6 +85,7 @@
                 <TextView
                     style="@style/base_text_style"
                     android:textSize="12sp"
+                    android:layout_marginRight="12dp"
                     android:textColor="@color/grayText"
                     android:maxLines="1"
                     android:ellipsize="end"
