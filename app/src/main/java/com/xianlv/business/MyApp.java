@@ -3,6 +3,10 @@ package com.xianlv.business;
 import android.app.Application;
 import android.content.Context;
 
+import com.blankj.utilcode.util.CrashUtils;
+import com.blankj.utilcode.util.EncryptUtils;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.PhoneUtils;
 import com.sobot.chat.ZCSobotApi;
 import com.sobot.chat.api.apiUtils.SobotBaseUrl;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -49,6 +53,7 @@ public class MyApp extends Application {
         SobotBaseUrl.setApi_Host("https://www.soboten.com");
 
         ZCSobotApi.initSobotSDK(this,"d8a1bd63850b46ac965acebacd6ad402","");
+
 
     }
 

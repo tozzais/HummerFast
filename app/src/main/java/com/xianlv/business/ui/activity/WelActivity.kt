@@ -1,6 +1,8 @@
 package com.xianlv.business.ui.activity
 
+import android.app.ApplicationErrorReport
 import android.os.Bundle
+import com.blankj.utilcode.util.CrashUtils
 import com.tozzais.baselibrary.ui.BaseActivity
 import com.xianlv.business.MainActivity
 import com.xianlv.business.R
@@ -9,6 +11,7 @@ import com.xianlv.business.databinding.ActivitySplashBinding
 import com.xianlv.business.global.GlobalParam
 import com.xianlv.business.toast.OnDialogClickListener
 import com.xianlv.business.toast.PrivacyUtil
+import com.xuexiang.xutil.app.AppUtils
 
 /**
  * author : xumingming
@@ -37,6 +40,7 @@ class WelActivity : BaseActivity<Any>(){
         val welcomeVPAdapter = WelcomeVPAdapter(this, listOf)
         mBinding.viewPager.adapter = welcomeVPAdapter
         mBinding.viewPager.offscreenPageLimit = 2
+
 
 
         val firstUse = GlobalParam.getFirstUse()
