@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import com.google.gson.Gson;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.tozzais.baselibrary.util.log.LogUtil;
@@ -19,6 +20,8 @@ import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
 import com.xianlv.business.util.BottomDialogUtil;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -118,7 +121,12 @@ public class MineFragment extends BaseFragment  {
                 AgreementWebViewActivity.launch(mActivity, Constant.message_url);
                 break;
             case R.id.rl_order8:
-                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url);
+                Gson gson = new Gson();
+                HashMap<String, String> map = new HashMap<>();
+                map.put("value","3");
+                map.put("text","3");
+                map.put("title","关于我们");
+                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url+gson.toJson(map));
                 break;
             case R.id.rl_order9:
                 AgreementWebViewActivity.launch(mActivity, Constant.about_us_url1);

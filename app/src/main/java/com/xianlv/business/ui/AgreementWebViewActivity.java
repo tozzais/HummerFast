@@ -32,7 +32,45 @@ import me.jingbin.progress.WebProgress;
 
 
 /**
- * Created by Administrator on 2016/9/8.
+ 蜂鸟速充安卓对接
+ 一、Html传值给安卓调用方法：window.htmlMessage.message(JSON.stringify(message));
+ message = {
+ type: 1, //类型
+ value: ‘’//值为泛型
+ }
+ type:
+ 1.登录
+ 2.退出登录
+ 3.扫码充电
+
+ 二、安卓调取h5方法
+ 登录：userLogin(token)
+ 退出登录：userLogout()
+
+ 三、加载页面 https://fn.hanyu365.com.cn/park/h5/index.html#/pages/index/index?route=&longitude=&latitude&city=&atOpenStatus=&value=
+ 1.非必填
+ longitude：当前城市纬度
+ latitude：当前城市经度
+ city：当前城市名称
+ atOpenStatus：当前城市是否开通
+ 2必填
+ route：页面名称
+ value：页面需要参数 为字典形式，需转成json字符串，如页面需要id参数，则value 为 {id:0} 的json字符串
+ route值及value如下：
+ topup：底部菜单余额充值
+ scan：底部菜单扫码充电
+ activity：底部菜单优惠活动
+ chargeInfo：充电桩详情，value中id为充电桩id
+ mineInfo：个人资料
+ car：我的车辆
+ order：我的订单
+ invoice：我的发票
+ wallet：我的钱包
+ coupon：我的优惠券
+ collect：我的收藏
+ message：我的消息
+ html：关于我们，value中的 value为3、text为3、title为 关于我们
+ start：开始充电，value中的code为终端编号
  */
 public class AgreementWebViewActivity extends BaseActivity {
 
@@ -102,12 +140,17 @@ public class AgreementWebViewActivity extends BaseActivity {
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        web_view.addJavascriptInterface(new AppJs(this), "toLogin");
+        web_view.addJavascriptInterface(new AppJs(this), "message");
 
-        if (GlobalParam.getLoginBean() != null) {
-            LogUtil.e("调用H5加载了" + GlobalParam.getLoginBean().token);
-            web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
-        }
+        settings.setDomStorageEnabled(true);
+        settings.setAppCacheMaxSize(1024*1024*8);
+        String appCachePath = mActivity.getCacheDir().getAbsolutePath();
+        settings.setAppCachePath(appCachePath);
+        settings.setAllowFileAccess(true);
+        settings.setAppCacheEnabled(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setAllowFileAccess(true);
+        settings.setGeolocationEnabled(true);
 
         //提高渲染的优先级
         settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
@@ -172,10 +215,10 @@ public class AgreementWebViewActivity extends BaseActivity {
             String title1 = getIntent().getStringExtra("title");
             if (i == 100) {
                 title.setText(TextUtils.isEmpty(title1) ? webView.getTitle() : title1);
-                if (GlobalParam.getLoginBean() != null) {
-                    LogUtil.e("调用H5加载了" + GlobalParam.getLoginBean().token);
-                    web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
-                }
+//                if (GlobalParam.getLoginBean() != null) {
+//                    LogUtil.e("调用H5加载了" + GlobalParam.getLoginBean().token);
+//                    web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
+//                }
             }
 
         }

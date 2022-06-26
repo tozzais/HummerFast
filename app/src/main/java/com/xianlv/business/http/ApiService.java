@@ -46,6 +46,7 @@ import com.xianlv.business.bean.order.ReserveOrderDetail;
 import com.xianlv.business.bean.order.ReserveOrderItem;
 import com.xianlv.business.bean.order.StoreCardOrderItem;
 import com.xianlv.business.bean.order.ValidityOrderItem;
+import com.xianlv.business.bean.recharge.RechargeQuestResult;
 import com.xianlv.business.bean.request.BaseRequest;
 import com.xianlv.business.bean.request.RequestBreakfastId;
 import com.xianlv.business.bean.request.RequestCardReduce;
@@ -87,46 +88,67 @@ import rx.Observable;
  * Created by jumpbox on 16/5/2.
  */
 public interface ApiService {
-
+    //获取验证码
     @POST(HttpUrl.get_code)
     Observable<BaseResult>
     getCode(@Body TreeMap<String,String> bean);
-
-
-
+    //登录
     @POST(HttpUrl.login)
     Observable<BaseResult<LoginBean>>
     getLogin(@Body TreeMap<String,String> bean);
-    @POST(HttpUrl.shop_info)
-    Observable<BaseResult<ShopResult>>
-    shopInfo(@Body RequestShopInfo bean);
+    //注册
     @POST(HttpUrl.register)
     Observable<BaseResult<LoginBean>>
     register(@Body TreeMap<String,String> bean);
-
+    //忘记密码
     @POST("user/forgetPwd")
     Observable<BaseResult<Integer>>
     forgetPass(@Body TreeMap<String,String> bean);
-
-
+    //获取个人信息
     @POST("user/get")
     Observable<BaseResult<MineInfo>>
     getMineInfo();
-
+    //获取首页数据
     @POST("app/powerStation/getList")
     Observable<BaseResult<HomeResult>>
     getHomeList(@Body TreeMap<String,String> bean);
-
+    //获取城市列表
     @POST("app/region/getCityList")
     Observable<BaseResult<CityResult>>
     getCityList(@Body TreeMap<String,String> bean);
+    //收藏
     @POST("app/collect/add")
     Observable<BaseResult>
     collect(@Body TreeMap<String,String> bean);
+    //取消收藏
     @POST("app/collect/cancel")
     Observable<BaseResult>
     cancelCollect(@Body TreeMap<String,String> bean);
+    //充值
+    @POST("app/topUpOrder/submit")
+    Observable<BaseResult<RechargeQuestResult>>
+    recharge(@Body TreeMap<String,String> bean);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @POST(HttpUrl.shop_info)
+    Observable<BaseResult<ShopResult>>
+    shopInfo(@Body RequestShopInfo bean);
 
     @POST(HttpUrl.mine_info)
     Observable<BaseResult<MineInfo>>

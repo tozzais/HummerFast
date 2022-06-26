@@ -128,12 +128,14 @@ public class Constant {
     //我的消息
     public static final String message_url = url + "message";
     //关于我们
-    public static final String about_us_url = url + "html&value=3";
+    public static final String about_us_url = url + "html&value=";
     public static final String about_us_url2 = url + "html&value=2";
     public static final String about_us_url1 = url + "html&value=1";
 
     //充电桩详情
     public static final String charge_info_url = url + "chargeInfo&value=";
+    //充电
+    public static final String charge_url = url + "start&value=";
 
 
 

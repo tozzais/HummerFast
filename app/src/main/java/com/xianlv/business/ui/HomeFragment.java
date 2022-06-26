@@ -308,18 +308,21 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onStart() {
         super.onStart();
+        if (banner != null)
         banner.start();
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        if (banner != null)
         banner.stop();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (banner != null)
         banner.destroy();
     }
 

@@ -1,51 +1,27 @@
 package com.xianlv.business.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.xianlv.business.R;
 
 
-public class BalanceFragment extends BaseFragment  {
+public class BalanceFragment extends ChargeFragment  {
 
-
-
-    @Override
-    public int setLayout() {
-        return R.layout.fragment_balance;
+    public static BalanceFragment newInstance(String url){
+        BalanceFragment balanceFragment = new BalanceFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("url",url);
+        balanceFragment.setArguments(bundle);
+        return balanceFragment;
     }
 
 
     @Override
     public void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-
-
-
-
-
-
-        initHeadView();
-
+        toolbar.setVisibility(View.VISIBLE);
+        tv_title.setText("充值");
     }
-
-    private void initHeadView() {
-
-
-
-    }
-
-    @Override
-    public void loadData() {
-
-
-    }
-
-
-    @Override
-    public void initListener() {
-        super.initListener();
-
-    }
-
 }
