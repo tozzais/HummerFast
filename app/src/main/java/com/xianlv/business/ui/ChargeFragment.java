@@ -1,26 +1,15 @@
 package com.xianlv.business.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
@@ -30,25 +19,22 @@ import com.tencent.smtt.sdk.WebViewClient;
 import com.tozzais.baselibrary.http.RxHttp;
 import com.tozzais.baselibrary.ui.BaseFragment;
 import com.tozzais.baselibrary.util.log.LogUtil;
-import com.xianlv.business.AppJs;
 import com.xianlv.business.R;
-import com.xianlv.business.adapter.CityListAdapter;
-import com.xianlv.business.adapter.gv.CityAdapter;
 import com.xianlv.business.bean.JsBean;
-import com.xianlv.business.bean.home.CityResult;
 import com.xianlv.business.bean.recharge.JsPayBean;
 import com.xianlv.business.bean.recharge.RechargeQuestResult;
 import com.xianlv.business.global.GlobalParam;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
+import com.xianlv.business.ui.activity.LoginActivity;
+import com.xianlv.business.util.CenterDialogUtil;
+import com.xianlv.business.util.OnGetStringListener;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
 import com.yzq.zxinglibrary.common.Constant;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -232,6 +218,7 @@ public class ChargeFragment extends BaseFragment {
 //            JsBean jsBean = gson.fromJson(json, JsBean.class);
             if (jsBean.type == 1) {
                 //登录
+                showLoginDialog();
             }else if (jsBean.type == 2) {
                 //退出
             }else if (jsBean.type == 3) {
@@ -280,5 +267,25 @@ public class ChargeFragment extends BaseFragment {
                     }
 
                 });
+    }
+
+
+    private void showLoginDialog(){
+        CenterDialogUtil.show(getContext(), "登录提示", "您还没有登录，请先登录", new OnGetStringListener() {
+            @Override
+            public void getString(String s) {
+                if (s.equals("1")){
+                    LoginActivity.launch1(mActivity);
+                }
+            }
+        });
+    }
+
+    public void onload() {
+
+        if (GlobalParam.getLoginBean() != null){
+            LogUtil.e("调用H5加载了"+GlobalParam.getLoginBean().token);
+            web_view.loadUrl("javascript:userLogin(\"" + GlobalParam.getLoginBean().token + "\")");
+        }
     }
 }

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -436,6 +435,11 @@ public class MainActivity extends CheckPermissionActivity implements AMapLocatio
         }
         if (requestCode == 1002 && resultCode == RESULT_OK && data != null){
             homeFragment.setAddress(data.getStringExtra("city"));
+        }
+        if (requestCode == 1003 && resultCode == RESULT_OK && data != null){
+            if (balanceFragment != null){
+                balanceFragment.onload();
+            }
         }
     }
 

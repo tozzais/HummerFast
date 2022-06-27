@@ -3,9 +3,6 @@ package com.xianlv.business.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import com.tozzais.baselibrary.ui.BaseFragment;
-import com.xianlv.business.R;
-
 
 public class BalanceFragment extends ChargeFragment  {
 
@@ -24,4 +21,6 @@ public class BalanceFragment extends ChargeFragment  {
         toolbar.setVisibility(View.VISIBLE);
         tv_title.setText("充值");
     }
+
+
 }

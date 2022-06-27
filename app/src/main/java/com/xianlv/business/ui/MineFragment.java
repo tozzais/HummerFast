@@ -19,7 +19,8 @@ import com.xianlv.business.global.ImageUtil;
 import com.xianlv.business.http.ApiManager;
 import com.xianlv.business.http.BaseResult;
 import com.xianlv.business.http.Response;
-import com.xianlv.business.util.BottomDialogUtil;
+import com.xianlv.business.util.CenterDialogUtil;
+import com.xianlv.business.util.OnGetStringListener;
 
 import java.util.HashMap;
 
@@ -129,10 +130,22 @@ public class MineFragment extends BaseFragment  {
                 AgreementWebViewActivity.launch(mActivity, Constant.about_us_url+gson.toJson(map));
                 break;
             case R.id.rl_order9:
-                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url1);
+                CenterDialogUtil.show(getContext(), "联系客服", "是否拨打400 888 8888", new OnGetStringListener() {
+                    @Override
+                    public void getString(String s) {
+//                        if (s.equals("1")){
+//                            LoginActivity.launch1(mActivity);
+//                        }
+                    }
+                });
+//                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url1);
                 break;
             case R.id.rl_order10:
-                BottomDialogUtil.showSelectDialog(mActivity);
+                Gson gson1 = new Gson();
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("version","1.0.0");
+                AgreementWebViewActivity.launch(mActivity, Constant.setting_url+gson1.toJson(map1));
+//                BottomDialogUtil.showSelectDialog(mActivity);
 
 //                AgreementWebViewActivity.launch(mActivity, Constant.about_us_url2);
                 break;

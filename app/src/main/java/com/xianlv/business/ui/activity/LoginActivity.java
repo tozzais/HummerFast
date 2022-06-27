@@ -1,6 +1,7 @@
 package com.xianlv.business.ui.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -95,6 +96,18 @@ public class LoginActivity extends CheckPermissionActivity {
 
     }
 
+    public static void launch1(Activity from) {
+        if (!ClickUtils.isFastClick()) {
+            return;
+        }
+        Intent intent = new Intent(from, LoginActivity.class);
+        intent.putExtra("isFinish",true);
+        from.startActivityForResult(intent,1003);
+
+    }
+
+    private boolean isFinish;
+
     @Override
     public int getLayoutId() {
         return -1;
@@ -108,6 +121,7 @@ public class LoginActivity extends CheckPermissionActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
         setStatusBar(0);
+        isFinish = getIntent().getBooleanExtra("isFinish",false);
 //        toolbar.setNavigationIcon(R.mipmap.back_white);
 //        toolbar.setNavigationOnClickListener(view -> back());
     }
@@ -319,8 +333,15 @@ public class LoginActivity extends CheckPermissionActivity {
                     public void onSuccess(BaseResult<LoginBean> result) {
                         tsg("登录成功");
                         GlobalParam.setLoginBean(result.data);
-                        MainActivity.launch(mActivity);
-                        finish();
+                        if (isFinish){
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK,intent);
+                            finish();
+                        }else {
+                            MainActivity.launch(mActivity);
+                            finish();
+                        }
+
                     }
                 });
     }
